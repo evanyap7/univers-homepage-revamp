@@ -13,6 +13,7 @@ function boot() {
     ['initEngineSimulator', initEngineSimulator],
     ['initSectorExplorer', initSectorExplorer],
     ['initKeyClientsInteractive', initKeyClientsInteractive],
+    ['initPartnerMarqueeTooltip', initPartnerMarqueeTooltip],
     ['initValueCalculator', initValueCalculator],
     ['initScrollReveal', initScrollReveal],
     ['initKineticCanvas', initKineticCanvas],
@@ -611,6 +612,45 @@ function initKeyClientsInteractive() {
   // Stop auto-cycle when user clicks
   tabs.forEach(tab => {
     tab.addEventListener('click', () => clearInterval(autoCycle), { once: true });
+  });
+}
+
+/* ==========================================================================
+   4c. PARTNER MARQUEE HOVER TOOLTIP
+   The scrolling track sits inside an overflow:hidden wrapper (needed to
+   mask the infinite-loop edges), so a per-logo tooltip can't be a child of
+   that wrapper without being clipped. Instead we position one shared
+   tooltip node against the un-clipped .partners-marquee-wrap ancestor.
+   ========================================================================== */
+function initPartnerMarqueeTooltip() {
+  const wrap = document.querySelector('.partners-marquee-wrap');
+  if (!wrap) return;
+
+  const tooltip = document.createElement('div');
+  tooltip.className = 'marquee-hover-tooltip';
+  wrap.appendChild(tooltip);
+
+  let hideTimer = null;
+
+  wrap.addEventListener('mouseover', (e) => {
+    const item = e.target.closest('.marquee-logo-item');
+    if (!item || !item.dataset.name) return;
+    clearTimeout(hideTimer);
+
+    const wrapRect = wrap.getBoundingClientRect();
+    const itemRect = item.getBoundingClientRect();
+
+    tooltip.textContent = item.dataset.name;
+    tooltip.style.left = `${itemRect.left - wrapRect.left + itemRect.width / 2}px`;
+    tooltip.style.top = `${itemRect.top - wrapRect.top}px`;
+    tooltip.classList.add('visible');
+  });
+
+  wrap.addEventListener('mouseout', (e) => {
+    const item = e.target.closest('.marquee-logo-item');
+    if (!item) return;
+    if (item.contains(e.relatedTarget)) return;
+    hideTimer = setTimeout(() => tooltip.classList.remove('visible'), 60);
   });
 }
 
