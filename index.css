@@ -3140,161 +3140,257 @@ body.grid-surge-active::after {
   margin-bottom: 36px;
 }
 
-/* Key Clients Highlight Grid (Highlighted to stand out prominently) */
-.key-clients-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-bottom: 48px;
+
+/* ======================================================
+   KEY CLIENTS: Interactive Tab Selector + Metrics Panel
+   ====================================================== */
+.key-clients-interactive {
+  margin-bottom: 52px;
 }
 
-.key-client-card {
-  background: #ffffff;
-  border: 1.5px solid rgba(122, 66, 234, 0.28);
-  border-radius: 14px;
-  padding: 24px 20px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 24px rgba(122, 66, 234, 0.08);
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+.kc-tab-row {
   display: flex;
-  flex-direction: column;
-}
-
-.key-client-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--univ-purple), var(--univ-purple-light));
-}
-
-.key-client-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(122, 66, 234, 0.16);
-  border-color: var(--univ-purple);
-}
-
-.key-client-badge {
-  display: inline-flex;
+  gap: 8px;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 5px;
-  align-self: flex-start;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--univ-purple);
-  background: rgba(122, 66, 234, 0.1);
-  padding: 3px 8px;
-  border-radius: 4px;
-  margin-bottom: 14px;
-}
-
-.key-client-logo-wrap {
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 14px;
-}
-
-.key-client-logo {
-  max-height: 48px;
-  max-width: 140px;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.06));
-}
-
-.key-client-name {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--univ-navy);
-  margin-bottom: 6px;
-}
-
-.key-client-impact {
-  font-size: 0.82rem;
-  color: var(--univ-text-secondary);
-  line-height: 1.45;
-  margin-top: auto;
-  padding-top: 8px;
-  border-top: 1px dashed rgba(122, 66, 234, 0.15);
-}
-
-.key-client-impact strong {
-  color: var(--univ-purple);
-}
-
-/* Strategic Partner Ecosystem Marquee / Grid */
-.partners-category-group {
-  margin-top: 40px;
-}
-
-.partners-category-label {
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--univ-text-muted);
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.partners-category-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--univ-border-subtle);
-}
-
-.partners-logo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 14px;
-}
-
-.partner-logo-item {
-  background: #ffffff;
+  justify-content: center;
+  padding: 6px 8px;
+  background: rgba(255,255,255,0.6);
   border: 1px solid var(--univ-border-subtle);
-  border-radius: 10px;
-  padding: 12px 14px;
+  border-radius: 14px;
+  margin-bottom: 16px;
+  backdrop-filter: blur(8px);
+}
+
+.kc-tab {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 60px;
-  transition: all var(--transition-fast);
+  padding: 8px 18px;
+  min-height: 52px;
+  min-width: 80px;
+  background: transparent;
+  border: 1.5px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  position: relative;
+  flex-shrink: 0;
 }
 
-.partner-logo-item:hover {
-  border-color: rgba(122, 66, 234, 0.4);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+.kc-tab:hover {
+  background: rgba(122, 66, 234, 0.05);
+  border-color: rgba(122, 66, 234, 0.2);
 }
 
-.partner-logo-item img {
-  max-height: 36px;
-  max-width: 110px;
+.kc-tab.active {
+  background: #ffffff;
+  border-color: var(--univ-purple);
+  box-shadow: 0 2px 12px rgba(122, 66, 234, 0.15);
+}
+
+.kc-tab-logo {
+  max-height: 28px;
+  max-width: 88px;
   object-fit: contain;
-  opacity: 0.88;
-  transition: opacity var(--transition-fast);
+  filter: grayscale(1) opacity(0.55);
+  transition: filter 0.22s ease;
 }
 
-.partner-logo-item:hover img {
+.kc-tab:hover .kc-tab-logo,
+.kc-tab.active .kc-tab-logo {
+  filter: grayscale(0) opacity(1);
+}
+
+.kc-tab-wordmark {
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  opacity: 0.45;
+  transition: opacity 0.22s ease;
+}
+
+.kc-tab:hover .kc-tab-wordmark,
+.kc-tab.active .kc-tab-wordmark {
   opacity: 1;
 }
 
-.partner-logo-text {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--univ-navy);
-  text-align: center;
+/* Detail panel */
+.kc-panel {
+  background: linear-gradient(135deg, rgba(122,66,234,0.04) 0%, #ffffff 100%);
+  border: 1.5px solid rgba(122, 66, 234, 0.22);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
+
+.kc-panel-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  padding: 28px 32px;
+  align-items: center;
+}
+
+.kc-panel-badge {
+  display: inline-flex;
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--univ-purple);
+  background: rgba(122, 66, 234, 0.1);
+  padding: 3px 9px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.kc-panel-name {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--univ-navy);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.kc-panel-desc {
+  font-size: 0.88rem;
+  color: var(--univ-text-secondary);
+  line-height: 1.55;
+  max-width: 480px;
+}
+
+.kc-panel-metrics {
+  display: flex;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.kc-metric {
+  text-align: center;
+  padding: 16px 20px;
+  background: rgba(122, 66, 234, 0.06);
+  border: 1px solid rgba(122, 66, 234, 0.14);
+  border-radius: 10px;
+  min-width: 110px;
+}
+
+.kc-metric-val {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--univ-purple);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.kc-metric-lbl {
+  font-size: 0.72rem;
+  color: var(--univ-text-secondary);
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+/* ======================================================
+   PARTNERS: Infinite Dual-Row Marquee
+   ====================================================== */
+.partners-marquee-wrap {
+  margin-top: 44px;
+  margin-bottom: 44px;
+}
+
+.partners-marquee-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--univ-text-muted);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.marquee-outer {
+  position: relative;
+  overflow: hidden;
+}
+
+.marquee-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee-fade-l {
+  left: 0;
+  background: linear-gradient(to right, var(--univ-bg-primary, #f8f8f8), transparent);
+}
+
+.marquee-fade-r {
+  right: 0;
+  background: linear-gradient(to left, var(--univ-bg-primary, #f8f8f8), transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+.marquee-track--left {
+  animation: marquee-left 32s linear infinite;
+}
+
+.marquee-track--right {
+  animation: marquee-right 32s linear infinite;
+}
+
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.marquee-logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(0,0,0,0.07);
+}
+
+.marquee-logo-item img {
+  max-height: 26px;
+  max-width: 96px;
+  object-fit: contain;
+  filter: grayscale(1) opacity(0.45);
+  transition: filter 0.3s ease, transform 0.2s ease;
+}
+
+.marquee-logo-item:hover img {
+  filter: grayscale(0) opacity(1);
+  transform: scale(1.06);
+}
+
+
 
 /* Landmark Singapore Deployments Ribbon */
 .landmark-deployments-card {
@@ -3513,8 +3609,14 @@ body.grid-surge-active::after {
 }
 
 @media (max-width: 1024px) {
-  .key-clients-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .kc-panel-inner {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .kc-panel-metrics {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
   }
   .cert-dual-column {
     grid-template-columns: 1fr;
@@ -3522,7 +3624,37 @@ body.grid-surge-active::after {
 }
 
 @media (max-width: 640px) {
-  .key-clients-grid {
-    grid-template-columns: 1fr;
+  .kc-tab-row {
+    gap: 4px;
+    padding: 4px;
+  }
+  .kc-tab {
+    padding: 6px 12px;
+    min-height: 44px;
+    min-width: 64px;
+  }
+  .kc-tab-logo {
+    max-height: 22px;
+    max-width: 68px;
+  }
+  .kc-panel-inner {
+    padding: 20px 18px;
+  }
+  .kc-panel-name {
+    font-size: 1.15rem;
+  }
+  .kc-metric {
+    min-width: 90px;
+    padding: 12px 14px;
+  }
+  .kc-metric-val {
+    font-size: 1.2rem;
+  }
+  .marquee-logo-item {
+    padding: 8px 16px;
+  }
+  .marquee-logo-item img {
+    max-height: 20px;
+    max-width: 72px;
   }
 }
