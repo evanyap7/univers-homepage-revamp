@@ -5,22 +5,37 @@
  * and portfolio value calculator.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-  initMobileNav();
-  initHeroEntrance();
-  initLiveTelemetry();
-  initEngineSimulator();
-  initSectorExplorer();
-  initValueCalculator();
-  initScrollReveal();
+function boot() {
+  const systems = [
+    ['initMobileNav', initMobileNav],
+    ['initHeroEntrance', initHeroEntrance],
+    ['initLiveTelemetry', initLiveTelemetry],
+    ['initEngineSimulator', initEngineSimulator],
+    ['initSectorExplorer', initSectorExplorer],
+    ['initValueCalculator', initValueCalculator],
+    ['initScrollReveal', initScrollReveal],
+    ['initKineticCanvas', initKineticCanvas],
+    ['initCyberCursor', initCyberCursor],
+    ['init3DTiltCards', init3DTiltCards],
+    ['initCyberHUD', initCyberHUD],
+    ['initNumberTallies', initNumberTallies]
+  ];
 
-  // New Interactive Systems
-  initKineticCanvas();
-  initCyberCursor();
-  init3DTiltCards();
-  initCyberHUD();
-  initNumberTallies();
-});
+  systems.forEach(([name, fn]) => {
+    try {
+      if (typeof fn === 'function') fn();
+    } catch (err) {
+      console.warn(`[Univers] Error starting ${name}:`, err);
+    }
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', boot);
+} else {
+  boot();
+}
+
 
 /* ==========================================================================
    HERO ENTRANCE
@@ -1432,12 +1447,10 @@ function initCyberHUD() {
    telemetry, KPIs, and calculator results.
    ========================================================================== */
 function initNumberTallies() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
   function createOdometer(el, text) {
     if (!el) return null;
     const raw = text !== undefined ? String(text).trim() : el.textContent.trim();
-    // Skip if there are no numerical digits (e.g. "Gartner Leader")
+    // Skip if there are no numerical digits (e.g. "All Connected")
     if (!/\d/.test(raw)) return null;
 
     el.dataset.tallyTarget = raw;
@@ -1502,7 +1515,7 @@ function initNumberTallies() {
           ribbons.forEach((ribbon) => {
             const target = parseInt(ribbon.dataset.target, 10);
             const colIdx = parseInt(ribbon.dataset.colIdx, 10);
-            const delay = colIdx * 45; // Staggered ripple
+            const delay = colIdx * 50; // Staggered ripple
             // Scroll down into the second cycle: (10 + target) * 5%
             const targetY = (10 + target) * 5;
             ribbon.style.transition = `transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`;
@@ -1513,7 +1526,7 @@ function initNumberTallies() {
             isRolling = false;
             el.classList.remove('tally-landed');
             requestAnimationFrame(() => el.classList.add('tally-landed'));
-          }, duration + ribbons.length * 45);
+          }, duration + ribbons.length * 50);
         });
       });
 
@@ -1528,6 +1541,13 @@ function initNumberTallies() {
       e.stopPropagation();
       roll(1050);
     });
+
+    // Also enable parent stat card click to re-roll
+    const parentCard = el.closest('.authority-stat, .kpi-box, .sector-kpis');
+    if (parentCard && !parentCard.__hasTallyListener) {
+      parentCard.__hasTallyListener = true;
+      parentCard.addEventListener('click', () => roll(1050));
+    }
 
     const odo = { roll, update: (newText) => createOdometer(el, newText) };
     el.__odometer = odo;
@@ -1544,6 +1564,7 @@ function initNumberTallies() {
   // Find all statistics on page
   const targetSelectors = [
     '.authority-stat .stat-number',
+    '.stat-number',
     '.market-signal-grid .kpi-metric',
     '.sector-kpis .kpi-metric',
     '#res-savings',
@@ -1551,30 +1572,52 @@ function initNumberTallies() {
     '#res-payback'
   ];
 
-  const statEls = document.querySelectorAll(targetSelectors.join(', '));
+  const statEls = Array.from(document.querySelectorAll(targetSelectors.join(', ')));
+  // Filter unique elements
+  const uniqueEls = [...new Set(statEls)];
   const odometers = [];
 
-  statEls.forEach((el) => {
+  uniqueEls.forEach((el) => {
     const odo = createOdometer(el);
     if (odo) odometers.push({ el, odo });
   });
 
-  // IntersectionObserver: trigger scrolling tally when scrolled into view
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const matched = odometers.find((item) => item.el === entry.target);
-          if (matched) {
-            matched.odo.roll(1250);
-          }
-        }
-      });
-    },
-    { threshold: 0.15 }
-  );
+  // Helper to check if element is already in viewport
+  function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.bottom > 0
+    );
+  }
 
-  odometers.forEach((item) => observer.observe(item.el));
+  // Trigger roll for elements already visible on load
+  setTimeout(() => {
+    odometers.forEach(({ el, odo }, i) => {
+      if (isElementInViewport(el)) {
+        setTimeout(() => odo.roll(1200), i * 80);
+      }
+    });
+  }, 250);
+
+  // IntersectionObserver: trigger scrolling tally when scrolled into view
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const matched = odometers.find((item) => item.el === entry.target);
+            if (matched) {
+              matched.odo.roll(1250);
+            }
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
+    );
+
+    odometers.forEach((item) => observer.observe(item.el));
+  }
 }
 
 
