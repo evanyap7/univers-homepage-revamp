@@ -1694,3 +1694,512 @@ body.nav-open {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   INTERACTIVE ENGINE: KINETIC CANVAS & KINETIC OBJECTS
+   ========================================================================== */
+.kinetic-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Ensure page layers sit above background canvas */
+.dev-credit-bar,
+.site-header,
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   INTERACTIVE CYBERNETIC CURSOR & DRAG TRAIL
+   ========================================================================== */
+@media (hover: hover) and (pointer: fine) {
+  body.cyber-cursor-active {
+    cursor: none;
+  }
+  body.cyber-cursor-active a,
+  body.cyber-cursor-active button,
+  body.cyber-cursor-active input,
+  body.cyber-cursor-active select,
+  body.cyber-cursor-active [role="tab"],
+  body.cyber-cursor-active [role="button"] {
+    cursor: none;
+  }
+
+  .cyber-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 999999;
+    mix-blend-mode: normal;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease;
+  }
+
+  .cyber-cursor-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background: var(--univ-purple);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px var(--univ-purple), 0 0 20px rgba(91, 79, 229, 0.6);
+    transition: transform 0.15s ease, background-color 0.2s ease, width 0.2s, height 0.2s;
+  }
+
+  .cyber-cursor-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 38px;
+    height: 38px;
+    border: 1.5px solid rgba(91, 79, 229, 0.45);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.2s ease,
+                background-color 0.2s ease;
+  }
+
+  /* Target HUD Brackets */
+  .cyber-cursor-brackets {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 48px;
+    height: 48px;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.2s ease, width 0.25s ease, height 0.25s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .cyber-cursor-brackets span {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-color: var(--univ-purple);
+    border-style: solid;
+  }
+  .bracket-tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
+  .bracket-tr { top: 0; right: 0; border-width: 2px 2px 0 0; }
+  .bracket-bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+  .bracket-br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+
+  /* Hovering Interactive Elements */
+  .cyber-cursor.is-hovering .cyber-cursor-ring {
+    width: 52px;
+    height: 52px;
+    border-color: var(--univ-purple);
+    background: rgba(91, 79, 229, 0.08);
+  }
+
+  .cyber-cursor.is-hovering .cyber-cursor-brackets {
+    opacity: 1;
+    width: 58px;
+    height: 58px;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .cyber-cursor.is-hovering .cyber-cursor-dot {
+    transform: translate(-50%, -50%) scale(1.4);
+    background: #FFFFFF;
+    box-shadow: 0 0 12px var(--univ-purple);
+  }
+
+  /* Active Drag State */
+  .cyber-cursor.is-dragging .cyber-cursor-ring {
+    width: 64px;
+    height: 64px;
+    border-color: #8478FF;
+    border-width: 2px;
+    border-style: dashed;
+    animation: cursorRingSpin 3s linear infinite;
+    background: rgba(132, 120, 255, 0.15);
+    box-shadow: 0 0 24px rgba(91, 79, 229, 0.4);
+  }
+
+  .cyber-cursor.is-dragging .cyber-cursor-dot {
+    transform: translate(-50%, -50%) scale(2);
+    background: #00E599;
+    box-shadow: 0 0 16px #00E599, 0 0 32px rgba(0, 229, 153, 0.8);
+  }
+}
+
+@keyframes cursorRingSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ==========================================================================
+   INTERACTIVE 3D PERSPECTIVE TILT & SPECULAR FLASHLIGHT
+   ========================================================================== */
+.tilt-card {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: transform 0.18s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.25s ease;
+  will-change: transform;
+  position: relative;
+  overflow: hidden;
+}
+
+.tilt-card::before {
+  content: '';
+  position: absolute;
+  top: var(--mouse-y, -999px);
+  left: var(--mouse-x, -999px);
+  width: 420px;
+  height: 420px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(91, 79, 229, 0.12) 0%, rgba(91, 79, 229, 0.03) 45%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 1;
+}
+
+.tilt-card:hover::before {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   MAGNETIC BUTTON EFFECT
+   ========================================================================== */
+.magnetic-target {
+  transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+  display: inline-flex;
+}
+
+/* Click Spark Burst */
+.click-burst-spark {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 999998;
+  animation: sparkFadeOut 0.65s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes sparkFadeOut {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(0.1);
+  }
+}
+
+/* Radar Ripple Effect on Click */
+.radar-ping-wave {
+  position: fixed;
+  pointer-events: none;
+  border: 1.5px solid rgba(91, 79, 229, 0.6);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0.1);
+  animation: radarPingOut 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+  z-index: 9999;
+}
+
+@keyframes radarPingOut {
+  0% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(0.1);
+    box-shadow: 0 0 20px rgba(91, 79, 229, 0.4);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(12);
+    box-shadow: 0 0 60px rgba(91, 79, 229, 0);
+  }
+}
+
+/* ==========================================================================
+   CYBER HUD: FLOATING DOCK & CONTROLS
+   ========================================================================== */
+.cyber-hud {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  font-family: var(--font-body);
+}
+
+.cyber-hud-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--univ-navy);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-full);
+  padding: 10px 18px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  box-shadow: 0 12px 32px rgba(20, 20, 43, 0.32), 0 0 0 1px rgba(91, 79, 229, 0.2);
+  cursor: pointer;
+  position: relative;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.cyber-hud-trigger:hover {
+  transform: translateY(-2px);
+  border-color: var(--univ-purple);
+  box-shadow: 0 16px 40px rgba(20, 20, 43, 0.45), 0 0 20px var(--univ-purple-glow);
+}
+
+.hud-pulse-ring {
+  width: 8px;
+  height: 8px;
+  background: var(--univ-purple);
+  border-radius: 50%;
+  position: relative;
+}
+
+.hud-pulse-ring::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--univ-purple);
+  border-radius: 50%;
+  animation: hudPulse 1.8s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+@keyframes hudPulse {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.cyber-hud-panel {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  right: 0;
+  width: 330px;
+  background: rgba(20, 20, 43, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(91, 79, 229, 0.25);
+  color: #FFFFFF;
+  overflow: hidden;
+  animation: hudSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes hudSlideUp {
+  from { opacity: 0; transform: translateY(12px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 768px) {
+  .cyber-hud {
+    bottom: 16px;
+    right: 16px;
+  }
+  .cyber-hud-panel {
+    width: min(320px, calc(100vw - 32px));
+    right: 0;
+  }
+}
+
+.hud-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hud-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--univ-purple-light);
+}
+
+.hud-close-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  transition: color 0.15s;
+}
+.hud-close-btn:hover {
+  color: #FFFFFF;
+}
+
+.hud-panel-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hud-control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hud-control-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.hud-badge-active,
+.hud-audio-indicator {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hud-badge-active.active {
+  background: rgba(0, 229, 153, 0.2);
+  color: #00E599;
+}
+
+.hud-audio-indicator.active {
+  background: rgba(91, 79, 229, 0.3);
+  color: var(--univ-purple-light);
+}
+
+.hud-action-btn,
+.hud-toggle-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: #FFFFFF;
+}
+
+.hud-action-btn:hover,
+.hud-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.hud-btn-surge {
+  background: linear-gradient(135deg, rgba(91, 79, 229, 0.35) 0%, rgba(67, 56, 202, 0.5) 100%);
+  border-color: rgba(132, 120, 255, 0.4);
+}
+
+.hud-btn-surge:hover {
+  background: linear-gradient(135deg, rgba(91, 79, 229, 0.6) 0%, rgba(67, 56, 202, 0.8) 100%);
+  border-color: var(--univ-purple-light);
+  box-shadow: 0 0 18px var(--univ-purple-glow);
+}
+
+.hud-btn-scan {
+  background: rgba(0, 229, 153, 0.12);
+  border-color: rgba(0, 229, 153, 0.3);
+  color: #00E599;
+}
+
+.hud-btn-scan:hover {
+  background: rgba(0, 229, 153, 0.22);
+  box-shadow: 0 0 16px rgba(0, 229, 153, 0.3);
+}
+
+.hud-button-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  gap: 6px;
+}
+
+.hud-pill-btn {
+  padding: 7px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: var(--radius-sm);
+  font-size: 0.74rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.hud-pill-btn:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.hud-pill-btn.active {
+  background: var(--univ-purple);
+  border-color: var(--univ-purple-light);
+  color: #FFFFFF;
+  font-weight: 600;
+  box-shadow: 0 0 12px var(--univ-purple-glow);
+}
+
+.hud-caption {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   GRID SURGE / STRESS TEST VISUAL PULSES
+   ========================================================================== */
+body.grid-surge-active {
+  animation: gridSurgeAura 0.5s ease infinite alternate;
+}
+
+body.grid-surge-active::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  border: 4px solid var(--univ-purple);
+  box-shadow: inset 0 0 60px var(--univ-purple-glow), inset 0 0 100px rgba(91, 79, 229, 0.25);
+  pointer-events: none;
+  z-index: 99998;
+  animation: surgeBorderPulse 0.4s ease infinite alternate;
+}
+
+@keyframes surgeBorderPulse {
+  0% { border-color: rgba(91, 79, 229, 0.4); }
+  100% { border-color: rgba(0, 229, 153, 0.8); }
+}
+
+@keyframes gridSurgeAura {
+  0% { filter: contrast(1); }
+  100% { filter: contrast(1.06) brightness(1.02); }
+}
+
