@@ -1,52 +1,92 @@
-# Univers Physical AI — Concept Redesign
+# Univers — Platform for Decarbonization & Physical AI (Concept Redesign)
 
-> **The Platform for Physical AI**
-> Physical AI that runs the world's critical operations. 1,070 GW+ managed | 450M+ connected devices | Gartner Magic Quadrant Leader 2025.
+Hey! 👋 Welcome to my concept redesign of the [Univers](https://univers.com/) website.
 
-> ⚠️ **Unofficial concept project.** This is a design & front-end exercise inspired by [univers.com](https://univers.com/). It is **not affiliated with, endorsed by, or representing Univers**. Company names, statistics, and customer quotes are sourced from Univers' public website and customer stories; see the footer disclosure on the live page for details. The page is served with `noindex, nofollow` so it is not indexed by search engines.
+I built this project as a front-end and design exploration into how a modern, enterprise-grade deep-tech brand can look and feel. Univers operates at the intersection of heavy operational technology (energy grids, automated ports, industrial manufacturing, smart buildings) and cloud intelligence. I wanted to design an experience that reflects that scale: high-precision, clean, tactile, and genuinely fun to interact with.
+
+👉 **Live Demo:** [https://univers-homepage-revamp.vercel.app/](https://univers-homepage-revamp.vercel.app/)
 
 ---
 
-## Overview
+## ✨ Fun & Interactive Stuff to Try
 
-This repository is a single-page, dependency-free static site (`index.html`, `index.css`, `app.js`) built as a UI/UX concept redesign of Univers' public marketing homepage. It's a fully deployable static site — no build step, no framework, no backend.
+I wanted the page to feel alive rather than just a wall of static marketing text. Here are a few interactive details built right into the site:
 
-Sections cover: hero + live telemetry simulator, institutional scale & real customer/award recognition, the industrial market shift, an interactive "Perceive → Understand → Orchestrate" architecture simulator, a four-sector outcomes explorer (Energy, Built Environment, Transportation & Ports, Manufacturing) with a verified customer testimonial (ORIX) and case studies, the EnOS™ AI Box hardware banner, a security & compliance overview linking to Univers' official Trust Center, and an illustrative ROI calculator.
+- **Interactive Background Mesh:** Fullscreen HTML5 Canvas simulating connected OT endpoints and energy grids. Nodes drift with organic physics, draw live vector connections, and gently repel away from your cursor with spring-mass dampening.
+- **Electric Drag Trail & Particle Sparks:** Click and drag your mouse anywhere on the page! It generates an electric neon ribbon path with glowing spark micro-particles that shoot outward with real-time physics velocity and decay.
+- **Mechanical Number Tally (Odometer Animation):** As you scroll down the page, statistics and KPI counters don't just jump into place — each individual digit reel scrolls vertically downward like a precision slot machine or mechanical ticker. You can also hover over or click any number to re-roll it!
+- **3D Card Tilt & Specular Flashlight:** Cards across the page react to your mouse position with smooth 3D perspective rotation, casting a soft radial spotlight flare across their surfaces.
+- **The "Interactive Lab" Cyber HUD:** Check out the floating button in the bottom-right corner! Opening it reveals:
+  - ⚡ **Grid Stress Test (Cascade Simulator):** Triggers a high-voltage surge across the site — telemetry numbers spike, background nodes surge, and the autonomous AI kicks in to stabilize the network in 11ms.
+  - 🔊 **Procedural Sci-Fi Audio Synthesizer:** Built completely from scratch using the browser's native **Web Audio API** (zero external mp3 files). Generates procedural chimes on hover, crisp clicks on buttons, harmonic sweeps on radar pings, and electric hums when dragging.
+  - 🎛️ **Background & Cursor Mode Switchers:** Switch between OT Mesh, Grid Matrix (orthogonal circuit paths), and Solar Drift.
 
-## Local development
+---
+
+## 🛠️ Built Purely with Vanilla Web Tech
+
+No React, no Next.js, no Tailwind, and zero `node_modules` bloat.
+
+- **HTML5:** Semantic, accessible markup structured logically from hero down to footer.
+- **Vanilla CSS:** Custom design tokens, glassmorphism, responsive grid & flexbox layouts, and hardware-accelerated transforms.
+- **Vanilla JavaScript:** Clean, dependency-free modules driving canvas rendering, physics interpolation, custom cursor tracking, and the Web Audio engine.
+
+### Why Vanilla?
+Frameworks are great, but building this dependency-free means:
+- Instantaneous initial paint (< 50ms)
+- Rock-solid 60fps canvas animations
+- Zero build steps required to run or deploy
+
+---
+
+## 🎨 Design & Brand Identity
+
+This redesign is grounded in Univers' actual brand assets:
+- **Brand Colors:** Real Univers brand purple (`#5B4FE5`), deep industrial navy (`#14142B`) for product UI surfaces, and crisp light editorial canvas backgrounds (`#F5F5F7`).
+- **Typography:** Set in Inter for both display and body text with tabular figures (`tnum`) for rock-solid metric alignment, plus JetBrains Mono for telemetry tags.
+- **Global Headquarters:** Sourced directly from Univers' real Singapore headquarters at **1 Harbourfront Avenue, #17-01 Keppel Bay Tower, Singapore 098632**.
+
+---
+
+## 💻 Running Locally
+
+You don't need `npm install` or any build toolchain. All you need is a basic static file server:
 
 ```bash
-python3 -m http.server 8088
-open http://localhost:8088
+# Clone the repository
+git clone https://github.com/evanyap7/univers-homepage-revamp.git
+cd univers-homepage-revamp
+
+# Start a local server (Python 3)
+python3 -m http.server 8080
+
+# Or using Node
+npx serve .
 ```
 
-No build step is required — edit `index.html` / `index.css` / `app.js` directly and refresh.
+Then open `http://localhost:8080` in your browser and you're good to go!
 
-## Deployment
+---
 
-This is a zero-config static site. `vercel.json` sets clean URLs and long-lived caching for CSS/JS/SVG assets.
+## 🚀 Deployment
 
-```bash
-npm i -g vercel   # if not already installed
-vercel deploy --prod
-```
+The site is configured for zero-config static hosting on [Vercel](https://vercel.com/):
+- Pushes to `main` automatically trigger builds and instant cache invalidation.
+- `vercel.json` configures clean URLs and asset caching headers.
 
-Or connect the repo in the Vercel dashboard — it will auto-detect a static site (no framework, no build command needed).
+---
 
-## Design system
+## ⚠️ Disclaimer
 
-- **Logo:** the real Univers wordmark (orbit-ring mark + "univers" logotype), extracted as vector paths from the brand's own master deck template rather than redrawn — see `favicon.svg` and the inline `.brand-logo-mark` SVG in `index.html`
-- **Typography:** Inter for both display and body, matching Univers' real brand system (every Latin run set in one face — Aptos Display in the deck template — rather than a separate heading/body pairing). Aptos Display has no web-embeddable distribution, so Inter is the closest freely-licensed substitute. Hero-scale headings use a light weight for an airy, oversized display moment; JetBrains Mono remains for telemetry/data labels — via Google Fonts
-- **Palette:** Light Editorial (Osmo.supply-inspired light-surface tokens blended with Jeton.com's single-accent restraint), built on the *real* Univers brand purple from the deck design system (`#5B4FE5`) rather than an invented color — page background `#F5F5F7`, cards white, ink text `#17171F`. Two panels (hero telemetry console, engine screen) stay deliberately dark navy as "live product UI" moments, the same pattern Stripe/Linear/Vercel use for product screenshots on a light page. WCAG AA-verified text contrast throughout
-- **Icons:** hand-authored inline SVG, stroke-based, consistent with the Feather/Tabler style referenced in [bradtraversy/design-resources-for-developers](https://github.com/bradtraversy/design-resources-for-developers)
-- Accessible mobile navigation (offcanvas drawer), scroll-reveal micro-interactions that respect `prefers-reduced-motion`, and sticky-header-aware anchor scrolling
+This is an **unofficial concept and portfolio redesign** inspired by [univers.com](https://univers.com/) and Univers' publicly available brand guidelines. It is not affiliated with, endorsed by, or officially representing Univers. All trademarks, logos, and company names belong to their respective owners.
 
-Originally built using design system intelligence from [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill).
+---
 
-## Content sourcing
+## 👤 Author
 
-Copy, statistics, customer names, and the one attributed testimonial in this build are sourced from univers.com's homepage, about page, and published customer stories (ORIX, PSA, Indorama). Where no verified named quote existed for a sector, the site uses factual, unattributed case-study framing instead of inventing a person — see `app.js` → `sectorData` for the `quoteType` distinction between `testimonial` (verified, attributed) and `caseStudy` (factual, unattributed).
+Developed with care by **Evan Yap**.
 
-## License
+- 💼 **LinkedIn:** [linkedin.com/in/evanyapzhikai](https://www.linkedin.com/in/evanyapzhikai/)
+- 🌐 **Project Live URL:** [univers-homepage-revamp.vercel.app](https://univers-homepage-revamp.vercel.app/)
 
-Personal concept/portfolio project. Not an official Univers property.
+Feel free to reach out if you'd like to chat about front-end engineering, creative web design, or interactive UI!
