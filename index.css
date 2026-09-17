@@ -143,7 +143,7 @@ h1, h2, h3, h4, h5, h6 {
   font-feature-settings: "tnum" 1, "zero" 1;
 }
 
-.text-gradient {
+.text-accent {
   color: var(--univ-purple);
 }
 
