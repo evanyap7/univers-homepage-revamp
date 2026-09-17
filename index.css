@@ -87,9 +87,9 @@ html {
   scroll-behavior: smooth;
   color-scheme: light;
   font-size: 16px;
-  /* .site-header (77px: 76px nav-container + 1px border) stacks with
-     .chapter-nav (60px) beneath it — anchor jumps need to clear both. */
-  scroll-padding-top: 137px;
+  /* .site-header is 77px tall (76px .nav-container + 1px border) — the
+     only sticky bar now that the chapter pills live inside it. */
+  scroll-padding-top: 77px;
 }
 
 body {
@@ -390,28 +390,6 @@ h1, h2, h3, h4, h5, h6 {
   height: 26px;
   width: auto;
   display: block;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  list-style: none;
-}
-
-.nav-link {
-  color: var(--univ-text-secondary);
-  text-decoration: none;
-  font-size: 0.92rem;
-  font-weight: 500;
-  transition: color var(--transition-fast);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.nav-link:hover {
-  color: var(--univ-purple);
 }
 
 .nav-actions {
@@ -1707,17 +1685,27 @@ body.nav-open {
     transition: transform var(--transition-slow);
   }
 
-  .nav-links {
+  .nav-menu .chapter-pills-wrap {
     flex-direction: column;
     align-items: stretch;
+    overflow-x: visible;
     gap: 0;
+    padding: 0;
   }
 
-  .nav-link {
+  .nav-menu .chapter-pill {
+    justify-content: flex-start;
     padding: 14px 4px;
     min-height: 44px;
     font-size: 1.05rem;
+    border-radius: 0;
+    border: none;
     border-bottom: 1px solid var(--univ-border-subtle);
+  }
+
+  .nav-menu .chapter-pill.active,
+  .nav-menu .chapter-pill:hover {
+    background: transparent;
   }
 
   .mobile-nav-cta-group {
@@ -2717,31 +2705,11 @@ body.grid-surge-active::after {
 }
 
 /* ==========================================================================
-   STICKY CHAPTER NAVIGATOR
+   CHAPTER/SECTION PILLS
+   Lives inline inside .site-header's .nav-menu now (desktop: a row next
+   to the logo; mobile: stacked in the off-canvas drawer) — it used to be
+   a second sticky bar of its own, stacked beneath the header.
    ========================================================================== */
-.chapter-nav {
-  position: sticky;
-  /* .site-header is 77px tall (76px .nav-container + 1px border) — this
-     must match exactly or the two sticky bars either overlap (nav hidden
-     under the header) or leave a gap once both are pinned mid-scroll. */
-  top: 77px;
-  z-index: 95;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(20, 20, 43, 0.08);
-  box-shadow: 0 4px 20px -5px rgba(20, 20, 43, 0.04);
-  transition: all var(--transition-normal);
-  padding: 8px 0;
-}
-
-.chapter-nav-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-
 .chapter-pills-wrap {
   display: flex;
   align-items: center;
@@ -2798,27 +2766,6 @@ body.grid-surge-active::after {
 .chapter-pill.active .pill-dot {
   background: var(--univ-purple);
   box-shadow: 0 0 8px var(--univ-purple);
-}
-
-.chapter-cta-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--univ-purple);
-  color: #FFFFFF;
-  border: none;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all var(--transition-fast);
-}
-
-.chapter-cta-btn:hover {
-  background: var(--univ-purple-dark);
-  transform: translateY(-1px);
 }
 
 /* ==========================================================================
