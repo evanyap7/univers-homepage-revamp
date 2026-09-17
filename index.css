@@ -155,20 +155,46 @@ h1, h2, h3, h4, h5, h6 {
   color: rgba(255, 255, 255, 0.85);
   text-align: center;
   padding: 8px 16px;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.dev-credit-bar a {
+.dev-credit-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   color: #FFFFFF;
   text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-  transition: border-color var(--transition-fast), color var(--transition-fast);
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all var(--transition-fast);
 }
 
-.dev-credit-bar a:hover {
-  color: var(--univ-purple-light);
+.dev-credit-link:hover {
+  color: #FFFFFF;
+  background: rgba(91, 79, 229, 0.25);
   border-color: var(--univ-purple-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(91, 79, 229, 0.2);
+}
+
+.dev-credit-link .icon-linkedin {
+  width: 15px;
+  height: 15px;
+  fill: #0A66C2;
+  background: #FFFFFF;
+  border-radius: 2px;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.dev-credit-link:hover .icon-linkedin {
+  transform: scale(1.1);
 }
 
 /* Container Framework */
@@ -1499,6 +1525,37 @@ body.nav-open {
   margin-top: 16px;
   max-width: 320px;
   line-height: 1.6;
+}
+
+.footer-office-block {
+  margin-top: 18px;
+  padding: 12px 14px;
+  background: var(--univ-bg-base);
+  border: 1px solid var(--univ-border-subtle);
+  border-radius: var(--radius-sm);
+  max-width: 320px;
+}
+
+.footer-office-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--univ-text-primary);
+  margin-bottom: 4px;
+}
+
+.footer-office-title svg {
+  color: var(--univ-purple);
+  flex-shrink: 0;
+}
+
+.footer-office-address {
+  font-style: normal;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--univ-text-secondary);
 }
 
 .footer-col h5 {
