@@ -1,12 +1,11 @@
 /**
  * UNIVERS PHYSICAL AI - INTERACTIVE HOMEPAGE ENGINE
- * Powers live telemetry stream, Elementor Inspector overlay,
+ * Powers the live telemetry stream, mobile navigation, scroll reveals,
  * interactive 3-stage architecture simulator, sector explorer,
  * and portfolio value calculator.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initElementorInspector();
   initMobileNav();
   initLiveTelemetry();
   initEngineSimulator();
@@ -122,28 +121,6 @@ function initScrollReveal() {
   );
 
   targets.forEach((el) => observer.observe(el));
-}
-
-/* ==========================================================================
-   1. ELEMENTOR INSPECTOR OVERLAY
-   Enables web developers to preview how this design translates 1:1
-   into Elementor 4.x Containers and Widgets.
-   ========================================================================== */
-function initElementorInspector() {
-  const inspectorBtn = document.getElementById('toggle-inspector-btn');
-  if (!inspectorBtn) return;
-
-  inspectorBtn.addEventListener('click', () => {
-    const isActive = document.body.classList.toggle('elementor-inspector-active');
-    inspectorBtn.classList.toggle('active', isActive);
-    inspectorBtn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-    
-    // Update button text
-    const textSpan = inspectorBtn.querySelector('span');
-    if (textSpan) {
-      textSpan.textContent = isActive ? 'Elementor Mode: ON' : 'Elementor Mode';
-    }
-  });
 }
 
 /* ==========================================================================
@@ -316,6 +293,7 @@ function initSectorExplorer() {
   const kpiLabel2El = document.getElementById('kpi-label-2');
   const kpi3El = document.getElementById('kpi-3');
   const kpiLabel3El = document.getElementById('kpi-label-3');
+  const quoteLabelEl = document.getElementById('quote-label');
   const quoteTextEl = document.getElementById('quote-text');
   const quoteAvatarEl = document.getElementById('quote-avatar');
   const quoteNameEl = document.getElementById('quote-name');
@@ -325,30 +303,32 @@ function initSectorExplorer() {
     energy: {
       title: 'Energy & Utilities: Stabilizing the Intermittent Grid',
       desc: 'Grids are facing unprecedented pressure from rising renewable volatility, EV charging peaks, and distributed energy resources. Univers coordinates generation, storage, and curtailment in real time.',
-      kpi1: '1,005 GW',
-      kpiLabel1: 'Assets under AI orchestration',
-      kpi2: '10–20%',
-      kpiLabel2: 'Reduction in O&M costs',
-      kpi3: '+12%',
-      kpiLabel3: 'Revenue gain via AI power forecast',
-      quote: '“The clarity and consistency of data across different suppliers, and the ability to drill from site-level KPIs down to rack and cell data, are vital to our day-to-day operation.”',
-      avatar: 'KS',
-      name: 'Ked Shayer',
-      role: 'Engineering Director, Harmony Energy'
+      kpi1: '10–20%',
+      kpiLabel1: 'Reduction in O&M costs',
+      kpi2: '12%+',
+      kpiLabel2: 'Revenue protection via AI power forecasting',
+      kpi3: '1,070 GW+',
+      kpiLabel3: 'Energy assets under AI management',
+      quoteType: 'testimonial',
+      quote: '“With Univers’ end-to-end solution and expertise, ORIX Renewable Energy Management can provide total customer support – from proposals to implementation to maintenance, which in turn helps our customers optimize energy use and reduce costs.”',
+      avatar: 'KY',
+      name: 'Kazuhisa Yurita',
+      role: 'EVP & Chief Strategy Officer, ORIX Renewable Energy Management'
     },
     buildings: {
-      title: 'Built Environment: Eliminating 40% Global Energy Waste',
+      title: 'Built Environment: Cutting Portfolio-Wide Energy Waste',
       desc: 'Commercial and institutional buildings consume massive amounts of power through inefficient HVAC and manual setpoints. Univers delivers autonomous predictive chiller and ventilation control across entire real estate portfolios.',
       kpi1: '9.8%',
-      kpiLabel1: 'Verified net energy reduction',
+      kpiLabel1: 'Verified net energy savings',
       kpi2: '99.5%',
-      kpiLabel2: 'Critical chiller plant uptime',
-      kpi3: '< 12 Mo',
-      kpiLabel3: 'Verified payback period',
-      quote: '“Univers gave us complete portfolio visibility across 42 commercial towers. The predictive thermal optimization reduced our chiller consumption with zero tenant discomfort.”',
-      avatar: 'DL',
-      name: 'David Lim',
-      role: 'Head of Portfolio Operations, Global Asset Management'
+      kpiLabel2: 'Portfolio-wide asset uptime',
+      kpi3: '100%',
+      kpiLabel3: 'Portfolio visibility, single pane of glass',
+      quoteType: 'caseStudy',
+      quote: 'Across commercial and institutional real estate portfolios, Univers customers report verified double-digit energy savings and full portfolio visibility from a single operating view — without compromising tenant comfort.',
+      avatar: 'BE',
+      name: 'Built Environment Benchmark',
+      role: 'Aggregated across Univers real estate deployments'
     },
     logistics: {
       title: 'Transportation & Ports: Zero-Downtime Electrification',
@@ -356,27 +336,29 @@ function initSectorExplorer() {
       kpi1: '85M+ TEUs',
       kpiLabel1: 'Managed at PSA International',
       kpi2: '99.5%',
-      kpiLabel2: 'Energy disruption reduction',
+      kpiLabel2: 'Reduction in energy-related disruptions',
       kpi3: '8–12%',
       kpiLabel3: 'Terminal energy reduction',
-      quote: '“We identified AI and IoT as technology levers to deliver intelligent insights and open our existing capabilities in engineering and port operations.”',
+      quoteType: 'testimonial',
+      quote: '“We identified AI and IoT as technology levers to deliver intelligent insights and open our existing capabilities in engineering and operations.”',
       avatar: 'TC',
       name: 'Tan Choon Huat',
       role: 'AVP Energy Infrastructure, PSA International'
     },
     manufacturing: {
       title: 'Industrial Manufacturing: Pre-empting Unplanned Downtime',
-      desc: 'Unplanned downtime is the single costliest failure mode in manufacturing. Univers analyzes CNC machine vibrations, motor current signatures, and power quality to predict mechanical failures 30 to 90 days before they occur.',
+      desc: 'Unplanned downtime is one of the costliest failure modes in manufacturing. Univers fuses machine telemetry, energy data, and maintenance history to catch abnormal equipment behavior before it causes a stoppage.',
       kpi1: '40%',
       kpiLabel1: 'Reduction in unplanned downtime',
       kpi2: '30%',
-      kpiLabel2: 'Improvement in asset effectiveness',
+      kpiLabel2: 'Improvement in equipment effectiveness (OEE)',
       kpi3: '10 : 1',
       kpiLabel3: 'ROI realized within 12–18 months',
-      quote: '“With Univers, we track 50 CNC machines in real time. Predictive maintenance spots abnormal power signatures early, reducing idle consumption and cutting breakdown risk significantly.”',
-      avatar: 'AC',
-      name: 'Astro Chang',
-      role: 'CEO, Starburst Holdings / Nordic Group'
+      quoteType: 'caseStudy',
+      quote: 'Indorama deployed Univers’ smart factory platform to centralize energy data from smart meters and SCADA systems across its global operations — reaching worldwide ISO 50001 Energy Management System compliance while cutting plant-wide energy waste.',
+      avatar: 'IN',
+      name: 'Indorama',
+      role: 'Global manufacturer & petrochemicals — Customer Story'
     }
   };
 
@@ -401,6 +383,7 @@ function initSectorExplorer() {
       if (kpiLabel2El) kpiLabel2El.textContent = d.kpiLabel2;
       if (kpi3El) kpi3El.textContent = d.kpi3;
       if (kpiLabel3El) kpiLabel3El.textContent = d.kpiLabel3;
+      if (quoteLabelEl) quoteLabelEl.textContent = d.quoteType === 'testimonial' ? 'Customer Testimonial' : 'Customer Story';
       if (quoteTextEl) quoteTextEl.textContent = d.quote;
       if (quoteAvatarEl) quoteAvatarEl.textContent = d.avatar;
       if (quoteNameEl) quoteNameEl.textContent = d.name;
@@ -458,7 +441,7 @@ function initValueCalculator() {
       paybackMonths = 8;
       carbonMultiplier = 650;
     } else if (sector === 'buildings') {
-      savingsRate = 0.118;
+      savingsRate = 0.098;
       paybackMonths = 10;
       carbonMultiplier = 420;
     } else if (sector === 'logistics') {
@@ -478,7 +461,7 @@ function initValueCalculator() {
       resSavings.textContent = `$${netSavings.toLocaleString('en-US')}`;
     }
     if (resSubtext) {
-      resSubtext.textContent = `Verified ${(savingsRate * 100).toFixed(1)}% operational optimization & downtime prevention`;
+      resSubtext.textContent = `Illustrative estimate — modeled at a ${(savingsRate * 100).toFixed(1)}% optimization rate from Univers’ published sector benchmarks`;
     }
     if (resPayback) {
       resPayback.textContent = `< ${paybackMonths} Months`;

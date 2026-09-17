@@ -441,28 +441,6 @@ body.nav-open {
   overflow: hidden;
 }
 
-/* ELEMENTOR INSPECTOR TOGGLE SWITCH */
-.inspector-badge-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(147, 51, 234, 0.15);
-  border: 1px solid rgba(147, 51, 234, 0.4);
-  color: #D8B4FE;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  padding: 6px 12px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.inspector-badge-btn:hover, .inspector-badge-btn.active {
-  background: #9333EA;
-  color: #FFFFFF;
-  box-shadow: 0 0 16px rgba(147, 51, 234, 0.5);
-}
-
 /* ==========================================================================
    ACT 1: HIGH-STAKES HERO
    ========================================================================== */
@@ -745,6 +723,18 @@ body.nav-open {
   flex-wrap: wrap;
 }
 
+.marquee-awards {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--univ-border-subtle);
+}
+
+.marquee-awards .logo-item {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
 .logo-item {
   color: var(--univ-text-muted);
   font-weight: 700;
@@ -763,6 +753,13 @@ body.nav-open {
 /* ==========================================================================
    ACT 3: THE INDUSTRIAL SHIFT: WHY DASHBOARDS FAILED
    ========================================================================== */
+.market-signal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
 .shift-comparison-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1501,6 +1498,20 @@ body.nav-open {
   color: var(--univ-text-primary);
 }
 
+.footer-disclosure {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--univ-text-muted);
+  padding-top: 32px;
+  margin-bottom: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  max-width: 760px;
+}
+
+.footer-disclosure a {
+  color: var(--univ-text-secondary);
+}
+
 .footer-bottom {
   display: flex;
   justify-content: space-between;
@@ -1511,53 +1522,6 @@ body.nav-open {
   color: var(--univ-text-muted);
   flex-wrap: wrap;
   gap: 16px;
-}
-
-/* ==========================================================================
-   ELEMENTOR INSPECTOR OVERLAY SYSTEM
-   (Toggled on to show web developers exact Elementor Container & Widget mapping)
-   ========================================================================== */
-.elementor-inspector-active [data-elementor-container] {
-  outline: 2px dashed #9333EA !important;
-  outline-offset: -2px;
-  position: relative;
-}
-
-.elementor-inspector-active [data-elementor-container]::before {
-  content: attr(data-elementor-container);
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  background: #9333EA;
-  color: #FFFFFF;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 3px;
-  z-index: 999;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-  pointer-events: none;
-}
-
-.elementor-inspector-active [data-elementor-widget] {
-  outline: 1px dotted #3B82F6 !important;
-  position: relative;
-}
-
-.elementor-inspector-active [data-elementor-widget]::after {
-  content: attr(data-elementor-widget);
-  position: absolute;
-  bottom: 4px;
-  right: 4px;
-  background: rgba(59, 130, 246, 0.9);
-  color: #FFFFFF;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  padding: 2px 6px;
-  border-radius: 3px;
-  z-index: 999;
-  pointer-events: none;
 }
 
 /* ==========================================================================
@@ -1589,7 +1553,8 @@ body.nav-open {
     gap: 36px;
   }
 
-  .authority-grid {
+  .authority-grid,
+  .market-signal-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1613,14 +1578,6 @@ body.nav-open {
 
   .nav-cta-desktop {
     display: none;
-  }
-
-  .inspector-badge-btn span {
-    display: none;
-  }
-
-  .inspector-badge-btn {
-    padding: 10px;
   }
 
   .nav-menu {
@@ -1682,7 +1639,8 @@ body.nav-open {
     grid-template-columns: 1fr;
   }
 
-  .authority-grid {
+  .authority-grid,
+  .market-signal-grid {
     grid-template-columns: 1fr;
   }
 
