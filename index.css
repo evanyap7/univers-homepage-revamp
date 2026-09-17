@@ -1580,14 +1580,6 @@ body.nav-open {
     display: none;
   }
 
-  .inspector-badge-btn span {
-    display: none;
-  }
-
-  .inspector-badge-btn {
-    padding: 10px;
-  }
-
   .nav-menu {
     position: fixed;
     top: 0;
