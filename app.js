@@ -13,6 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initSectorExplorer();
   initValueCalculator();
   initScrollReveal();
+
+  // New Interactive Systems
+  initKineticCanvas();
+  initCyberCursor();
+  init3DTiltCards();
+  initCyberHUD();
 });
 
 /* ==========================================================================
@@ -504,3 +510,900 @@ function initValueCalculator() {
 
   updateCalculator();
 }
+
+/* ==========================================================================
+   INTERACTIVE ENGINE: KINETIC BACKGROUND CANVAS & PHYSICS SIMULATION
+   Physical AI Mesh, floating OT telemetry nodes, mouse force-field,
+   and drag-activated electric tethering.
+   ========================================================================== */
+function initKineticCanvas() {
+  const canvas = document.getElementById('kinetic-canvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  let width = 0;
+  let height = 0;
+  let dpr = 1;
+
+  // Global interactive configuration accessible by HUD
+  window.UniversInteractive = window.UniversInteractive || {};
+  window.UniversInteractive.bgMode = 'mesh'; // 'mesh' | 'matrix' | 'particles'
+  window.UniversInteractive.cursorMode = 'plasma'; // 'plasma' | 'sparks'
+  window.UniversInteractive.isSurging = false;
+  window.UniversInteractive.soundEnabled = false;
+
+  const particles = [];
+  const floatingGlyphs = [];
+  const dragTrail = [];
+  const dragSparks = [];
+  const radarRings = [];
+
+  let mouseX = -9999;
+  let mouseY = -9999;
+  let prevMouseX = -9999;
+  let prevMouseY = -9999;
+  let isMouseDown = false;
+  let isDragging = false;
+  let dragDistance = 0;
+
+  // Track viewport sizing with device pixel ratio
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    initParticles();
+  }
+
+  // Generate responsive pool of OT physical nodes
+  function initParticles() {
+    particles.length = 0;
+    const count = Math.floor(Math.min(width, 1600) / 18); // ~50 to 90 nodes
+    const colors = ['#5B4FE5', '#00E599', '#00D2FF', '#8478FF', '#14142B'];
+
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        radius: 1.5 + Math.random() * 2.2,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        baseAlpha: 0.25 + Math.random() * 0.5,
+        alpha: 0.3,
+        pulseSpeed: 0.02 + Math.random() * 0.03,
+        pulseOffset: Math.random() * Math.PI * 2,
+        highlightTime: 0,
+        highlightLabel: ''
+      });
+    }
+
+    // Ambient floating OT data packets / HUD glyphs
+    floatingGlyphs.length = 0;
+    const glyphLabels = [
+      'OT-NODE // 400kV',
+      'IEC 61850 STREAM',
+      'EnOS™ AGENT-07',
+      '1,072.4 GW SYNC',
+      'SUBSTATION ALPHA',
+      'BERTH-04 AGV',
+      'CLOSED-LOOP 14ms',
+      'BESS 2.4 MWh'
+    ];
+
+    const glyphCount = Math.max(4, Math.floor(width / 320));
+    for (let g = 0; g < glyphCount; g++) {
+      floatingGlyphs.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.2,
+        vy: -0.15 - Math.random() * 0.25,
+        label: glyphLabels[g % glyphLabels.length],
+        alpha: 0.18 + Math.random() * 0.22,
+        size: 14 + Math.random() * 12,
+        rot: Math.random() * Math.PI * 2,
+        rotSpeed: (Math.random() - 0.5) * 0.004
+      });
+    }
+  }
+
+  // Listeners for mouse tracking and interaction
+  window.addEventListener('mousemove', (e) => {
+    prevMouseX = mouseX;
+    prevMouseY = mouseY;
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    if (isMouseDown) {
+      const distMoved = Math.hypot(mouseX - prevMouseX, mouseY - prevMouseY);
+      dragDistance += distMoved;
+      if (dragDistance > 4) {
+        isDragging = true;
+        addDragSparks(mouseX, mouseY, distMoved);
+      }
+    }
+  });
+
+  window.addEventListener('mousedown', (e) => {
+    // Only capture primary mouse clicks
+    if (e.button !== 0) return;
+    isMouseDown = true;
+    dragDistance = 0;
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  window.addEventListener('mouseup', () => {
+    isMouseDown = false;
+    isDragging = false;
+    dragDistance = 0;
+  });
+
+  window.addEventListener('mouseleave', () => {
+    isMouseDown = false;
+    isDragging = false;
+    mouseX = -9999;
+    mouseY = -9999;
+  });
+
+  // Radar click ping emitter on canvas
+  window.addEventListener('click', (e) => {
+    // Check if clicked element was an input or button
+    if (e.target.closest('button, a, input, select, textarea, .cyber-hud')) return;
+    triggerRadarPing(e.clientX, e.clientY);
+  });
+
+  function triggerRadarPing(x, y) {
+    radarRings.push({
+      x,
+      y,
+      radius: 5,
+      maxRadius: Math.max(width, height) * 0.75,
+      alpha: 0.8,
+      speed: 14
+    });
+
+    if (window.UniversInteractive.soundEnabled && window.UniversInteractive.playSound) {
+      window.UniversInteractive.playSound('ping');
+    }
+  }
+  window.UniversInteractive.triggerRadar = triggerRadarPing;
+
+  // Add sparks along cursor drag path
+  function addDragSparks(x, y, speed) {
+    const sparkCount = Math.min(Math.floor(speed * 0.4) + 1, 5);
+    const colors = ['#5B4FE5', '#00E599', '#00D2FF', '#FFFFFF', '#8478FF'];
+
+    // Push into drag trail points
+    dragTrail.push({
+      x,
+      y,
+      life: 1.0,
+      decay: 0.04
+    });
+    if (dragTrail.length > 25) dragTrail.shift();
+
+    for (let i = 0; i < sparkCount; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const velocity = 1.5 + Math.random() * 4.5;
+      dragSparks.push({
+        x,
+        y,
+        vx: Math.cos(angle) * velocity,
+        vy: Math.sin(angle) * velocity,
+        size: 2 + Math.random() * 3.5,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        life: 1.0,
+        decay: 0.035 + Math.random() * 0.04
+      });
+    }
+
+    if (dragSparks.length > 120) dragSparks.splice(0, dragSparks.length - 120);
+
+    if (window.UniversInteractive.soundEnabled && window.UniversInteractive.playSound) {
+      window.UniversInteractive.playSound('drag');
+    }
+  }
+
+  // Main Canvas Render Loop (60fps)
+  let lastTime = performance.now();
+
+  function animate(now) {
+    requestAnimationFrame(animate);
+    const dt = Math.min((now - lastTime) / 1000, 0.1);
+    lastTime = now;
+
+    ctx.clearRect(0, 0, width, height);
+
+    const isSurging = window.UniversInteractive.isSurging;
+    const mode = window.UniversInteractive.bgMode;
+    const speedMult = isSurging ? 2.8 : 1.0;
+
+    // 1. Update & Render Ambient Floating Glyphs
+    ctx.font = '9px "JetBrains Mono", monospace';
+    for (let g = 0; g < floatingGlyphs.length; g++) {
+      const gl = floatingGlyphs[g];
+      gl.y += gl.vy * speedMult;
+      gl.x += gl.vx * speedMult;
+      gl.rot += gl.rotSpeed;
+
+      if (gl.y < -40) gl.y = height + 40;
+      if (gl.x < -40) gl.x = width + 40;
+      if (gl.x > width + 40) gl.x = -40;
+
+      // Draw subtle hexagon
+      ctx.save();
+      ctx.translate(gl.x, gl.y);
+      ctx.rotate(gl.rot);
+      ctx.strokeStyle = isSurging ? 'rgba(91, 79, 229, 0.4)' : `rgba(20, 20, 43, ${gl.alpha * 0.8})`;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (let s = 0; s < 6; s++) {
+        const a = (s * Math.PI) / 3;
+        const hx = Math.cos(a) * (gl.size * 0.6);
+        const hy = Math.sin(a) * (gl.size * 0.6);
+        s === 0 ? ctx.moveTo(hx, hy) : ctx.lineTo(hx, hy);
+      }
+      ctx.closePath();
+      ctx.stroke();
+
+      // Draw telemetry label
+      ctx.fillStyle = isSurging ? 'rgba(91, 79, 229, 0.7)' : `rgba(82, 82, 95, ${gl.alpha})`;
+      ctx.fillText(gl.label, gl.size * 0.8, 3);
+      ctx.restore();
+    }
+
+    // 2. Update & Render Particles
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+
+      // Physics velocity
+      p.x += p.vx * speedMult;
+      p.y += p.vy * speedMult;
+
+      // Gentle screen bounce/wrap
+      if (p.x < 0) { p.x = 0; p.vx *= -1; }
+      if (p.x > width) { p.x = width; p.vx *= -1; }
+      if (p.y < 0) { p.y = 0; p.vy *= -1; }
+      if (p.y > height) { p.y = height; p.vy *= -1; }
+
+      // Mouse Force-Field Repulsion & Interaction
+      if (mouseX > 0 && mouseY > 0) {
+        const dx = p.x - mouseX;
+        const dy = p.y - mouseY;
+        const dist = Math.hypot(dx, dy);
+
+        if (dist < 140) {
+          const force = (1 - dist / 140) * (isDragging ? 3.0 : 1.4);
+          p.vx += (dx / dist) * force * 0.8;
+          p.vy += (dy / dist) * force * 0.8;
+          p.highlightTime = 0.4;
+        }
+      }
+
+      // Dampening to prevent runaway speed
+      p.vx *= 0.98;
+      p.vy *= 0.98;
+
+      // Pulse alpha
+      const pulse = Math.sin(now * p.pulseSpeed + p.pulseOffset);
+      p.alpha = Math.max(0.1, p.baseAlpha + pulse * 0.15);
+
+      if (p.highlightTime > 0) {
+        p.highlightTime -= dt;
+        p.alpha = Math.min(1.0, p.alpha + 0.5);
+      }
+
+      // Render node dot
+      ctx.fillStyle = isSurging ? '#5B4FE5' : p.color;
+      ctx.globalAlpha = p.alpha;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius * (isSurging ? 1.5 : 1), 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1.0;
+
+    // 3. Connect Nodes (OT Mesh / Matrix)
+    if (mode === 'mesh' || mode === 'matrix') {
+      const maxDist = mode === 'matrix' ? 95 : 115;
+      for (let i = 0; i < particles.length; i++) {
+        const p1 = particles[i];
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const dist = Math.hypot(dx, dy);
+
+          if (dist < maxDist) {
+            const lineAlpha = (1 - dist / maxDist) * 0.18 * (isSurging ? 2.5 : 1);
+            ctx.strokeStyle = isSurging
+              ? `rgba(91, 79, 229, ${lineAlpha})`
+              : `rgba(91, 79, 229, ${lineAlpha * 0.75})`;
+            ctx.lineWidth = isSurging ? 1.4 : 0.8;
+
+            ctx.beginPath();
+            if (mode === 'matrix') {
+              // Digital right-angle connections
+              ctx.moveTo(p1.x, p1.y);
+              ctx.lineTo(p2.x, p1.y);
+              ctx.lineTo(p2.x, p2.y);
+            } else {
+              // Direct organic vector connections
+              ctx.moveTo(p1.x, p1.y);
+              ctx.lineTo(p2.x, p2.y);
+            }
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    // 4. Mouse Tethering / Energy Arcs when Dragging
+    if (isDragging && mouseX > 0) {
+      let connectedCount = 0;
+      for (let i = 0; i < particles.length && connectedCount < 4; i++) {
+        const p = particles[i];
+        const dist = Math.hypot(p.x - mouseX, p.y - mouseY);
+        if (dist < 190) {
+          connectedCount++;
+          const arcAlpha = (1 - dist / 190) * 0.7;
+          ctx.strokeStyle = `rgba(132, 120, 255, ${arcAlpha})`;
+          ctx.lineWidth = 1.6;
+          ctx.beginPath();
+          ctx.moveTo(mouseX, mouseY);
+          // Curved electric bezier arc
+          const cx = (mouseX + p.x) / 2 + (Math.random() - 0.5) * 20;
+          const cy = (mouseY + p.y) / 2 + (Math.random() - 0.5) * 20;
+          ctx.quadraticCurveTo(cx, cy, p.x, p.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // 5. Render Electric Drag Ribbon Trail
+    if (dragTrail.length > 1) {
+      ctx.beginPath();
+      ctx.moveTo(dragTrail[0].x, dragTrail[0].y);
+      for (let t = 1; t < dragTrail.length; t++) {
+        const pt = dragTrail[t];
+        ctx.lineTo(pt.x, pt.y);
+        pt.life -= pt.decay;
+      }
+      ctx.strokeStyle = 'rgba(91, 79, 229, 0.45)';
+      ctx.lineWidth = 4;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+
+      // Clean dead trail points
+      while (dragTrail.length > 0 && dragTrail[0].life <= 0) {
+        dragTrail.shift();
+      }
+    }
+
+    // 6. Render Kinetic Drag Sparks
+    for (let s = dragSparks.length - 1; s >= 0; s--) {
+      const sp = dragSparks[s];
+      sp.x += sp.vx;
+      sp.y += sp.vy;
+      sp.vx *= 0.94;
+      sp.vy *= 0.94;
+      sp.life -= sp.decay;
+
+      if (sp.life <= 0) {
+        dragSparks.splice(s, 1);
+        continue;
+      }
+
+      ctx.save();
+      ctx.globalAlpha = sp.life;
+      ctx.fillStyle = sp.color;
+      ctx.shadowColor = sp.color;
+      ctx.shadowBlur = 8;
+      ctx.beginPath();
+      ctx.arc(sp.x, sp.y, sp.size * sp.life, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // 7. Render Radar Wave Rings
+    for (let r = radarRings.length - 1; r >= 0; r--) {
+      const ring = radarRings[r];
+      ring.radius += ring.speed;
+      ring.alpha = Math.max(0, 1 - ring.radius / ring.maxRadius);
+
+      if (ring.radius >= ring.maxRadius) {
+        radarRings.splice(r, 1);
+        continue;
+      }
+
+      ctx.save();
+      ctx.strokeStyle = `rgba(91, 79, 229, ${ring.alpha * 0.85})`;
+      ctx.lineWidth = 2;
+      ctx.shadowColor = '#5B4FE5';
+      ctx.shadowBlur = 12;
+      ctx.beginPath();
+      ctx.arc(ring.x, ring.y, ring.radius, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Highlight particles crossed by radar
+      for (let p = 0; p < particles.length; p++) {
+        const pt = particles[p];
+        const dist = Math.hypot(pt.x - ring.x, pt.y - ring.y);
+        if (Math.abs(dist - ring.radius) < ring.speed * 1.5) {
+          pt.highlightTime = 0.9;
+        }
+      }
+      ctx.restore();
+    }
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(animate);
+}
+
+/* ==========================================================================
+   INTERACTIVE CYBERNETIC CURSOR SYSTEM & DRAG ANIMATIONS
+   Center dot + smooth lerp outer ring + magnetic target brackets
+   and drag state morphing.
+   ========================================================================== */
+function initCyberCursor() {
+  const cursorEl = document.getElementById('cyber-cursor');
+  if (!cursorEl) return;
+
+  // Only enable custom cursor on fine pointer devices (desktop/mouse)
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    cursorEl.style.display = 'none';
+    return;
+  }
+
+  document.body.classList.add('cyber-cursor-active');
+
+  let mouseX = -100;
+  let mouseY = -100;
+  let cursorX = -100;
+  let cursorY = -100;
+  let isDragging = false;
+  let isMouseDown = false;
+  let dragOriginX = 0;
+  let dragOriginY = 0;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    if (isMouseDown) {
+      const moved = Math.hypot(mouseX - dragOriginX, mouseY - dragOriginY);
+      if (moved > 5 && !isDragging) {
+        isDragging = true;
+        cursorEl.classList.add('is-dragging');
+      }
+    }
+  });
+
+  window.addEventListener('mousedown', (e) => {
+    if (e.button !== 0) return;
+    isMouseDown = true;
+    dragOriginX = e.clientX;
+    dragOriginY = e.clientY;
+  });
+
+  window.addEventListener('mouseup', () => {
+    isMouseDown = false;
+    isDragging = false;
+    cursorEl.classList.remove('is-dragging');
+  });
+
+  // Smooth lerp animation loop for the outer cursor ring
+  function renderCursor() {
+    // Lerp outer ring toward mouse coordinate
+    cursorX += (mouseX - cursorX) * 0.22;
+    cursorY += (mouseY - cursorY) * 0.22;
+
+    cursorEl.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+    requestAnimationFrame(renderCursor);
+  }
+  requestAnimationFrame(renderCursor);
+
+  // Hover detection for interactive targets
+  const interactiveSelector = `
+    a, button, input, select, textarea,
+    [role="tab"], [role="button"],
+    .sector-pill, .engine-step-tab, .logo-item,
+    .tilt-card, .flow-node, .hud-action-btn, .hud-pill-btn
+  `;
+
+  document.addEventListener('mouseover', (e) => {
+    const target = e.target.closest(interactiveSelector);
+    if (target) {
+      cursorEl.classList.add('is-hovering');
+    }
+  });
+
+  document.addEventListener('mouseout', (e) => {
+    const target = e.target.closest(interactiveSelector);
+    if (target) {
+      cursorEl.classList.remove('is-hovering');
+    }
+  });
+
+  // Click spark burst on elements
+  document.addEventListener('click', (e) => {
+    spawnClickSparks(e.clientX, e.clientY);
+  });
+
+  function spawnClickSparks(x, y) {
+    const sparkCount = 12;
+    const colors = ['#5B4FE5', '#00E599', '#00D2FF', '#8478FF'];
+
+    for (let i = 0; i < sparkCount; i++) {
+      const spark = document.createElement('div');
+      spark.className = 'click-burst-spark';
+
+      const angle = (i / sparkCount) * Math.PI * 2;
+      const distance = 24 + Math.random() * 32;
+      const dx = Math.cos(angle) * distance;
+      const dy = Math.sin(angle) * distance;
+      const size = 3 + Math.random() * 3;
+      const color = colors[i % colors.length];
+
+      spark.style.left = `${x}px`;
+      spark.style.top = `${y}px`;
+      spark.style.width = `${size}px`;
+      spark.style.height = `${size}px`;
+      spark.style.backgroundColor = color;
+      spark.style.boxShadow = `0 0 10px ${color}`;
+      spark.style.setProperty('--dx', `${dx}px`);
+      spark.style.setProperty('--dy', `${dy}px`);
+
+      document.body.appendChild(spark);
+      setTimeout(() => spark.remove(), 700);
+    }
+  }
+}
+
+/* ==========================================================================
+   INTERACTIVE 3D PERSPECTIVE TILT & SPECULAR FLASHLIGHT
+   Gives cards tactile physical depth responding to cursor coordinates.
+   ========================================================================== */
+function init3DTiltCards() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  const cardSelectors = [
+    '.telemetry-console',
+    '.compare-card',
+    '.sector-content-card',
+    '.flywheel-card',
+    '.calculator-card',
+    '.hardware-banner',
+    '.compliance-category',
+    '.authority-stat'
+  ];
+
+  const cards = document.querySelectorAll(cardSelectors.join(', '));
+  if (!cards.length) return;
+
+  cards.forEach((card) => {
+    card.classList.add('tilt-card');
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      // Set CSS variables for spotlight flashlight
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+
+      // Calculate subtle 3D rotation angles (-6deg to +6deg)
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -5.5;
+      const rotateY = ((x - centerX) / centerX) * 5.5;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(6px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+    });
+  });
+}
+
+/* ==========================================================================
+   INTERACTIVE CYBER HUD ENGINE & SOUND SYNTHESIZER
+   Web Audio API procedural sound effects, stress test simulation,
+   particle mode switcher, and radar controls.
+   ========================================================================== */
+function initCyberHUD() {
+  const hudToggle = document.getElementById('cyber-hud-toggle');
+  const hudPanel = document.getElementById('cyber-hud-panel');
+  const hudClose = document.getElementById('cyber-hud-close');
+
+  const soundToggle = document.getElementById('hud-sound-toggle');
+  const audioIndicator = document.getElementById('hud-audio-indicator');
+  const soundText = document.getElementById('hud-sound-text');
+  const iconAudioOff = soundToggle ? soundToggle.querySelector('.icon-audio-off') : null;
+  const iconAudioOn = soundToggle ? soundToggle.querySelector('.icon-audio-on') : null;
+
+  const surgeBtn = document.getElementById('hud-trigger-surge');
+  const statusBadge = document.getElementById('hud-status-badge');
+  const radarScanBtn = document.getElementById('hud-radar-scan');
+
+  const bgModeBtns = document.querySelectorAll('[data-bg-mode]');
+  const cursorModeBtns = document.querySelectorAll('[data-cursor-mode]');
+
+  // 1. HUD Toggle open/close
+  if (hudToggle && hudPanel) {
+    hudToggle.addEventListener('click', () => {
+      const isExpanded = hudToggle.getAttribute('aria-expanded') === 'true';
+      hudToggle.setAttribute('aria-expanded', !isExpanded);
+      hudPanel.hidden = isExpanded;
+    });
+  }
+
+  if (hudClose && hudPanel && hudToggle) {
+    hudClose.addEventListener('click', () => {
+      hudToggle.setAttribute('aria-expanded', 'false');
+      hudPanel.hidden = true;
+    });
+  }
+
+  // 2. Web Audio API Procedural Sound Synthesizer
+  let audioCtx = null;
+
+  function initAudioContext() {
+    if (!audioCtx) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (AudioContextClass) {
+        audioCtx = new AudioContextClass();
+      }
+    }
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+  }
+
+  function playProceduralSound(type) {
+    if (!window.UniversInteractive.soundEnabled || !audioCtx) return;
+
+    try {
+      const now = audioCtx.currentTime;
+
+      if (type === 'hover') {
+        // High-tech subtle blip
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, now);
+        osc.frequency.exponentialRampToValueAtTime(1320, now + 0.05);
+
+        gain.gain.setValueAtTime(0.04, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.06);
+      } else if (type === 'click') {
+        // Crisp tactile click
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(440, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.08);
+
+        gain.gain.setValueAtTime(0.09, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.09);
+      } else if (type === 'ping') {
+        // Deep radar ping with resonant harmonics
+        const osc1 = audioCtx.createOscillator();
+        const osc2 = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc1.type = 'sine';
+        osc2.type = 'sine';
+        osc1.frequency.setValueAtTime(520, now);
+        osc1.frequency.exponentialRampToValueAtTime(260, now + 0.4);
+        osc2.frequency.setValueAtTime(1040, now);
+        osc2.frequency.exponentialRampToValueAtTime(520, now + 0.4);
+
+        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+
+        osc1.connect(gain);
+        osc2.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc1.start(now);
+        osc2.start(now);
+        osc1.stop(now + 0.5);
+        osc2.stop(now + 0.5);
+      } else if (type === 'drag') {
+        // Gentle electric buzz tone
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(220 + Math.random() * 80, now);
+        gain.gain.setValueAtTime(0.02, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.05);
+      } else if (type === 'surge') {
+        // High voltage surge frequency sweep
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(110, now);
+        osc.frequency.linearRampToValueAtTime(660, now + 0.5);
+        osc.frequency.exponentialRampToValueAtTime(220, now + 1.2);
+
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 1.3);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 1.35);
+      }
+    } catch (e) {
+      // Audio playback failsafe
+    }
+  }
+
+  window.UniversInteractive.playSound = playProceduralSound;
+
+  // Sound Toggle Listener
+  if (soundToggle) {
+    soundToggle.addEventListener('click', () => {
+      initAudioContext();
+      const isActive = !window.UniversInteractive.soundEnabled;
+      window.UniversInteractive.soundEnabled = isActive;
+
+      soundToggle.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      if (audioIndicator) {
+        audioIndicator.textContent = isActive ? 'ACTIVE' : 'MUTED';
+        audioIndicator.classList.toggle('active', isActive);
+      }
+      if (soundText) {
+        soundText.textContent = isActive ? 'Disable Sci-Fi Audio FX' : 'Enable Sci-Fi Audio FX';
+      }
+      if (iconAudioOff) iconAudioOff.style.display = isActive ? 'none' : 'block';
+      if (iconAudioOn) iconAudioOn.style.display = isActive ? 'block' : 'none';
+
+      if (isActive) {
+        playProceduralSound('ping');
+      }
+    });
+  }
+
+  // 3. Grid Surge / Stress Test Simulator
+  if (surgeBtn) {
+    surgeBtn.addEventListener('click', () => {
+      initAudioContext();
+      if (window.UniversInteractive.isSurging) return;
+
+      window.UniversInteractive.isSurging = true;
+      document.body.classList.add('grid-surge-active');
+      surgeBtn.disabled = true;
+
+      if (statusBadge) {
+        statusBadge.textContent = 'SURGE ACTIVE';
+        statusBadge.classList.add('active');
+      }
+
+      playProceduralSound('surge');
+
+      // Spike hero telemetry metrics
+      const gwEl = document.getElementById('telemetry-gw');
+      const latencyEl = document.getElementById('telemetry-latency');
+      const actionsEl = document.getElementById('telemetry-actions');
+      const streamEl = document.getElementById('hero-log-stream');
+
+      if (gwEl) gwEl.textContent = '1,428.6';
+      if (latencyEl) {
+        latencyEl.textContent = '9';
+        latencyEl.style.color = '#FF4D4D';
+      }
+      if (actionsEl) actionsEl.textContent = '28.94';
+
+      if (streamEl) {
+        const surgeLog = document.createElement('div');
+        surgeLog.className = 'action-log-item';
+        surgeLog.innerHTML = `
+          <span class="log-time mono-metric">[SURGE-ALERT]</span>
+          <span class="log-tag tag-autonomous" style="background: rgba(255, 77, 77, 0.2); color: #FF4D4D; border-color: rgba(255, 77, 77, 0.4);">CASCADE TRIP PRE-EMPTION</span>
+          <span class="log-desc" style="color: #FF4D4D; font-weight: 600;">Substation 400kV bus frequency spike detected. Autonomous load-shedding agents dispatched.</span>
+        `;
+        streamEl.insertBefore(surgeLog, streamEl.firstChild);
+      }
+
+      // After 1.8 seconds, autonomous physical AI stabilizes the grid
+      setTimeout(() => {
+        window.UniversInteractive.isSurging = false;
+        document.body.classList.remove('grid-surge-active');
+        surgeBtn.disabled = false;
+
+        if (statusBadge) {
+          statusBadge.textContent = 'STABILIZED';
+          setTimeout(() => {
+            if (statusBadge) {
+              statusBadge.textContent = 'STANDBY';
+              statusBadge.classList.remove('active');
+            }
+          }, 3000);
+        }
+
+        if (latencyEl) {
+          latencyEl.textContent = '12';
+          latencyEl.style.color = 'var(--univ-purple)';
+        }
+
+        if (streamEl) {
+          const resolvedLog = document.createElement('div');
+          resolvedLog.className = 'action-log-item';
+          resolvedLog.innerHTML = `
+            <span class="log-time mono-metric">[AI-RESOLVED]</span>
+            <span class="log-tag tag-governed" style="background: rgba(0, 229, 153, 0.2); color: #00E599; border-color: rgba(0, 229, 153, 0.4);">NOMINAL ENVELOPE RESTORED</span>
+            <span class="log-desc" style="color: #00E599; font-weight: 600;">Cascade avoided in 11ms. Frequency locked at 50.00 Hz. All 450M endpoints synchronized.</span>
+          `;
+          streamEl.insertBefore(resolvedLog, streamEl.firstChild);
+        }
+
+        playProceduralSound('ping');
+      }, 1800);
+    });
+  }
+
+  // 4. Background Particle Modes
+  bgModeBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      bgModeBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      const mode = btn.getAttribute('data-bg-mode');
+      if (mode && window.UniversInteractive) {
+        window.UniversInteractive.bgMode = mode;
+      }
+      playProceduralSound('click');
+    });
+  });
+
+  // 5. Cursor Drag FX Modes
+  cursorModeBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      cursorModeBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      const mode = btn.getAttribute('data-cursor-mode');
+      if (mode && window.UniversInteractive) {
+        window.UniversInteractive.cursorMode = mode;
+      }
+      playProceduralSound('click');
+    });
+  });
+
+  // 6. Radar Scan Button
+  if (radarScanBtn) {
+    radarScanBtn.addEventListener('click', () => {
+      initAudioContext();
+      if (window.UniversInteractive.triggerRadar) {
+        window.UniversInteractive.triggerRadar(window.innerWidth / 2, window.innerHeight / 2);
+      }
+    });
+  }
+}
+
