@@ -830,4 +830,144 @@ h1, h2, h3, h4, h5, h6 {
 .engine-step-tab {
   background: var(--univ-bg-card);
   border: 1px solid var(--univ-border-subtle);
-  border-radius: var(--
+  border-radius: var(--radius-md);
+  padding: 24px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-align: left;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  position: relative;
+}
+
+.engine-step-tab:hover {
+  border-color: var(--univ-border-medium);
+  background: var(--univ-bg-surface-elevated);
+}
+
+.engine-step-tab.active {
+  background: var(--univ-bg-surface-elevated);
+  border-color: var(--univ-emerald);
+  box-shadow: 0 10px 30px -10px rgba(0, 229, 153, 0.2);
+}
+
+.step-number {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--univ-text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition-normal);
+}
+
+.engine-step-tab.active .step-number {
+  color: var(--univ-bg-base);
+  background: var(--univ-emerald);
+}
+
+.step-details h3 {
+  font-size: 1.25rem;
+  margin-bottom: 6px;
+}
+
+.step-details p {
+  font-size: 0.9rem;
+  color: var(--univ-text-secondary);
+  line-height: 1.5;
+}
+
+.engine-step-tab .step-badge {
+  margin-top: 10px;
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--univ-emerald);
+}
+
+/* Engine Live Visualization Screen */
+.engine-screen {
+  background: #06090F;
+  border: 1px solid var(--univ-border-medium);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  min-height: 460px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.8), 0 20px 40px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+
+.screen-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--univ-border-subtle);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.screen-title {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--univ-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.screen-content-box {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.interactive-architecture-canvas {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--univ-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+}
+
+/* Architecture Node Flow inside Canvas */
+.flow-nodes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  align-items: center;
+}
+
+.flow-node {
+  background: rgba(13, 20, 32, 0.8);
+  border: 1px solid var(--univ-border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  text-align: center;
+  transition: all var(--transition-normal);
+}
+
+.flow-node.highlighted {
+  border-color: var(--univ-emerald);
+  background: rgba(0, 229, 153, 0.08);
+  transform: scale(1.04);
+}
+
+.flow-node-title {
+  font-family: var(--font-mono);
+  font
