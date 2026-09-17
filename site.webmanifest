@@ -4,8 +4,8 @@
   "description": "Unofficial concept redesign inspired by univers.com. Not affiliated with or endorsed by Univers.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#07090E",
-  "theme_color": "#07090E",
+  "background_color": "#F5F5F7",
+  "theme_color": "#5B4FE5",
   "icons": [
     {
       "src": "favicon.svg",
