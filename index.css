@@ -495,4 +495,81 @@ h1, h2, h3, h4, h5, h6 {
 .console-title {
   display: flex;
   align-items: center;
- 
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--univ-text-secondary);
+}
+
+.status-badge-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 229, 153, 0.12);
+  color: var(--univ-emerald);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.console-body {
+  padding: 24px;
+}
+
+.telemetry-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.metric-tile {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--univ-border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  color: var(--univ-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.metric-value {
+  font-family: var(--font-mono);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--univ-text-primary);
+}
+
+.metric-delta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--univ-emerald);
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Closed-Loop Action Stream in Console */
+.action-log-stream {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--univ-border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.action-log-item {
+  display: flex;
+  alig
