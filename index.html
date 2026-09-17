@@ -25,6 +25,10 @@
 </head>
 <body>
 
+  <div class="dev-credit-bar">
+    Developed by <a href="https://www.linkedin.com/in/evanyapzhikai/" target="_blank" rel="noopener noreferrer">Evan Yap</a>
+  </div>
+
   <!-- ========================================================================
        NAVIGATION BAR
        ======================================================================== -->
@@ -161,7 +165,7 @@
                 </div>
                 <div class="metric-tile">
                   <div class="metric-label">Mean Latency to Act</div>
-                  <div class="metric-value mono-metric" style="color: var(--univ-cyan);"><span id="telemetry-latency">48</span> ms</div>
+                  <div class="metric-value mono-metric" style="color: var(--univ-purple-light);"><span id="telemetry-latency">48</span> ms</div>
                   <div class="metric-delta">Edge AI Box + Cloud Mesh</div>
                 </div>
               </div>
@@ -422,7 +426,7 @@
                 <span class="pulse-dot"></span>
                 <span>LAYER 01: REAL-TIME PHYSICAL PERCEPTION</span>
               </div>
-              <span class="mono-metric" id="engine-telemetry-rate" style="font-size: 0.78rem; color: var(--univ-cyan);">
+              <span class="mono-metric" id="engine-telemetry-rate" style="font-size: 0.78rem; color: var(--univ-purple-light);">
                 RATE: 2.84M events/sec
               </span>
             </div>
@@ -446,7 +450,7 @@
 
                 <div class="sim-live-stream" id="sim-live-console">
                   <span id="sim-console-text">>> Ingesting BACnet, Modbus, IEC 61850, OPC-UA protocol streams...</span>
-                  <span class="mono-metric" style="color: #94A3B8;">STATUS: OPTIMAL</span>
+                  <span class="mono-metric" style="color: rgba(255,255,255,0.5);">STATUS: OPTIMAL</span>
                 </div>
               </div>
             </div>
@@ -585,7 +589,7 @@
         <!-- Hardware & Edge AI Banner: EnOS AI Box with AMD -->
         <div class="hardware-banner">
           <div class="hardware-info">
-            <div class="eyebrow" style="color: var(--univ-cyan);">
+            <div class="eyebrow" style="color: var(--univ-purple-dark);">
               <span>CES 2026 Breakthrough</span>
             </div>
             <h3>EnOS™ AI Box: Ultra-Low Latency at the Physical Edge</h3>
@@ -599,7 +603,7 @@
             </div>
           </div>
           <div class="hardware-graphic">
-            <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--univ-cyan); margin-bottom: 8px;">EDGE HARDWARE SPECIFICATION</div>
+            <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--univ-purple-dark); margin-bottom: 8px;">EDGE HARDWARE SPECIFICATION</div>
             <div style="font-size: 2.2rem; font-weight: 800; font-family: var(--font-heading);">EnOS™ BOX-01</div>
             <p style="font-size: 0.82rem; color: var(--univ-text-muted); margin-top: 6px;">Ruggedized Fanless Industrial DIN-Rail // AMD Ryzen™ Embedded</p>
           </div>
@@ -700,7 +704,7 @@
             <div class="calc-form-group">
               <div class="calc-label">
                 <span>Asset Scale / Volume</span>
-                <span class="mono-metric" id="calc-scale-display" style="color: var(--univ-emerald);">5,000,000 sq ft</span>
+                <span class="mono-metric" id="calc-scale-display" style="color: var(--univ-purple);">5,000,000 sq ft</span>
               </div>
               <input type="range" id="calc-scale-slider" class="calc-range" min="1" max="10" value="5" step="1" aria-label="Asset scale slider">
             </div>
@@ -708,7 +712,7 @@
             <div class="calc-form-group">
               <div class="calc-label">
                 <span>Current Annual Energy / O&M Spend</span>
-                <span class="mono-metric" id="calc-spend-display" style="color: var(--univ-cyan);">$12,000,000 / yr</span>
+                <span class="mono-metric" id="calc-spend-display" style="color: var(--univ-purple);">$12,000,000 / yr</span>
               </div>
               <input type="range" id="calc-spend-slider" class="calc-range" min="1" max="50" value="12" step="1" aria-label="Annual spend slider">
             </div>
@@ -720,13 +724,13 @@
             <div class="res-subtext" id="res-subtext">Illustrative estimate — modeled at a 9.8% optimization rate from Univers' published sector benchmarks</div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;">
-              <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 6px;">
-                <div style="font-size: 0.72rem; color: var(--univ-text-muted);">PROJECTED PAYBACK</div>
-                <div class="mono-metric" id="res-payback" style="font-size: 1.15rem; font-weight: 700; color: var(--univ-emerald);">&lt; 10 Months</div>
+              <div style="background: rgba(255,255,255,0.14); padding: 12px; border-radius: 6px;">
+                <div style="font-size: 0.72rem; color: rgba(255,255,255,0.86);">PROJECTED PAYBACK</div>
+                <div class="mono-metric" id="res-payback" style="font-size: 1.15rem; font-weight: 700; color: #FFFFFF;">&lt; 10 Months</div>
               </div>
-              <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 6px;">
-                <div style="font-size: 0.72rem; color: var(--univ-text-muted);">CO2e ABATEMENT</div>
-                <div class="mono-metric" id="res-carbon" style="font-size: 1.15rem; font-weight: 700; color: var(--univ-cyan);">5,040 Tons/yr</div>
+              <div style="background: rgba(255,255,255,0.14); padding: 12px; border-radius: 6px;">
+                <div style="font-size: 0.72rem; color: rgba(255,255,255,0.86);">CO2e ABATEMENT</div>
+                <div class="mono-metric" id="res-carbon" style="font-size: 1.15rem; font-weight: 700; color: #FFFFFF;">5,040 Tons/yr</div>
               </div>
             </div>
 
