@@ -4,21 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Univers | The Operating System for Physical AI</title>
+  <meta name="description" content="Univers runs real-time, autonomous operations across critical infrastructure — from energy grids and buildings to ports and factories. Governed autonomy at every critical threshold.">
+  <link rel="canonical" href="https://univers.com/">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Univers | The Operating System for Physical AI">
+  <meta property="og:description" content="Physical AI that runs the world's critical infrastructure. 1,070 GW+ managed. 450M+ connected devices. Gartner MQ Leader.">
+  <meta property="og:type" content="website">
+  
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
+
+  <!-- ========================================================================
+       NAVIGATION BAR
+       Elementor Mapping: Container (Flexbox Row, Sticky, Full Width)
+       ======================================================================== -->
   <header class="site-header" data-elementor-container="Container: Sticky Header (Flex Row)">
     <div class="container nav-container">
-      <a href="#" class="brand-logo" data-elementor-widget="Widget: Brand Logo / Image">
+      <a href="#" class="brand-logo" data-elementor-widget="Widget: Brand Logo / Image" aria-label="Univers Homepage">
         <div class="logo-symbol">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
           </svg>
         </div>
         <span>univers</span>
       </a>
-          <nav class="nav-menu">
-        <ul class="nav-links">
+
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <ul class="nav-links" data-elementor-widget="Widget: Nav Menu Pro">
           <li><a href="#platform" class="nav-link">Platform</a></li>
           <li><a href="#industries" class="nav-link">Industries</a></li>
           <li><a href="#flywheel" class="nav-link">Compounding Moat</a></li>
@@ -26,83 +41,169 @@
           <li><a href="#calculator" class="nav-link">ROI Calculator</a></li>
         </ul>
       </nav>
-      <div class="nav-actions">
-        <a href="#calculator" class="btn btn-secondary btn-sm">Assess Portfolio</a>
-        <a href="#contact" class="btn btn-primary btn-sm">Talk to Us</a>
+
+      <div class="nav-actions" data-elementor-container="Container: Header CTAs (Flex Row)">
+        <!-- ELEMENTOR INSPECTOR MODE TOGGLE -->
+        <button id="toggle-inspector-btn" class="inspector-badge-btn" title="Toggle visual badges indicating exact Elementor Containers and Widgets" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="3" y1="9" x2="21" y2="9"></line>
+            <line x1="9" y1="21" x2="9" y2="9"></line>
+          </svg>
+          <span>Elementor Mode</span>
+        </button>
+
+        <a href="#calculator" class="btn btn-secondary btn-sm" data-elementor-widget="Widget: Button (Secondary)">Assess Portfolio</a>
+        <a href="#contact" class="btn btn-primary btn-sm" data-elementor-widget="Widget: Button (Primary)">Talk to Us</a>
       </div>
     </div>
   </header>
+
   <main>
+    <!-- ========================================================================
+         ACT 1: HIGH-STAKES HERO
+         Narrative Purpose: Sharp, bold category definition. Anchor Physical AI
+         in tangible infrastructure. Show live machine-speed action.
+         ======================================================================== -->
     <section class="section hero-section" data-elementor-container="Container: Hero Section (Boxed, 2-Col Flex/Grid)">
       <div class="container hero-grid">
-        <div class="hero-content">
-                    <div class="eyebrow">
+        <div class="hero-content" data-elementor-container="Container: Hero Text Column">
+          <div class="eyebrow" data-elementor-widget="Widget: Heading (Eyebrow HTML)">
             <span class="pulse-dot"></span>
             <span>The Operating System for Physical AI</span>
           </div>
-                    <h1 class="hero-headline">
+
+          <h1 class="hero-headline" data-elementor-widget="Widget: Heading (H1)">
             Infrastructure has outgrown human reaction time. <br>
             <span class="text-gradient">Univers runs it.</span>
           </h1>
-          <p class="hero-lead">
+
+          <p class="hero-lead" data-elementor-widget="Widget: Text Editor">
             The platforms built for the last decade were designed to monitor. Univers was built to <strong>act</strong>. We deploy governed closed-loop AI across power grids, port automation, mission-critical buildings, and manufacturing plants worldwide.
           </p>
-                    <div class="hero-cta-group">
-            <a href="#engine" class="btn btn-primary">
+
+          <div class="hero-cta-group" data-elementor-container="Container: Hero Action Buttons (Flex Row)">
+            <a href="#engine" class="btn btn-primary" data-elementor-widget="Widget: Button">
               <span>See Governed Autonomy in Action</span>
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
             </a>
-            <a href="#calculator" class="btn btn-secondary">
+            <a href="#calculator" class="btn btn-secondary" data-elementor-widget="Widget: Button">
               <span>Calculate Estate ROI</span>
             </a>
           </div>
-                    <div class="hero-trust-badges">
-            <div class="trust-item">IEC 62443 & SOC 2 Certified</div>
-            <div class="trust-item">Sub-second Edge-to-Cloud Execution</div>
-            <div class="trust-item">Gartner Magic Quadrant Leader</div>
+
+          <div class="hero-trust-badges" data-elementor-container="Container: Trust Badges (Flex Row)">
+            <div class="trust-item" data-elementor-widget="Widget: Icon Box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              <span>IEC 62443 & SOC 2 Certified</span>
+            </div>
+            <div class="trust-item" data-elementor-widget="Widget: Icon Box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              <span>Sub-second Edge-to-Cloud Execution</span>
+            </div>
+            <div class="trust-item" data-elementor-widget="Widget: Icon Box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+              <span>Gartner Magic Quadrant Leader</span>
+            </div>
           </div>
         </div>
-        <div class="hero-visual">
-                    <div class="telemetry-console">
+
+        <!-- HERO INTERACTIVE TELEMETRY SIMULATOR -->
+        <div class="hero-visual" data-elementor-container="Container: Hero Interactive Console">
+          <div class="telemetry-console">
             <div class="console-header">
-              <div class="console-title">EnOS™ REAL-TIME TELEMETRY ENGINE</div>
-              <span class="status-badge-live">LIVE</span>
+              <div class="console-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+                <span>EnOS™ REAL-TIME TELEMETRY ENGINE</span>
+              </div>
+              <span class="status-badge-live">
+                <span class="pulse-dot"></span> LIVE
+              </span>
             </div>
+
             <div class="console-body">
-              <div class="telemetry-metric-grid">
-                <div class="metric-tile">
+              <div class="telemetry-metric-grid" data-elementor-container="Container: Console Metrics 2x2 Grid">
+                <div class="metric-tile" data-elementor-widget="Widget: Counter / Metric Tile">
                   <div class="metric-label">Active Generation Managed</div>
                   <div class="metric-value mono-metric"><span id="telemetry-gw">1,072.4</span> GW</div>
+                  <div class="metric-delta">▲ 20.4% global clean capacity</div>
                 </div>
-                <div class="metric-tile">
+                <div class="metric-tile" data-elementor-widget="Widget: Counter / Metric Tile">
                   <div class="metric-label">Connected OT Endpoints</div>
                   <div class="metric-value mono-metric"><span id="telemetry-endpoints">452,890,140</span></div>
+                  <div class="metric-delta">▲ Real-time bidirectional</div>
+                </div>
+                <div class="metric-tile" data-elementor-widget="Widget: Counter / Metric Tile">
+                  <div class="metric-label">Closed-Loop Actions / 24h</div>
+                  <div class="metric-value mono-metric"><span id="telemetry-actions">14.82</span>M</div>
+                  <div class="metric-delta">99.998% governed safety pass</div>
+                </div>
+                <div class="metric-tile" data-elementor-widget="Widget: Counter / Metric Tile">
+                  <div class="metric-label">Mean Latency to Act</div>
+                  <div class="metric-value mono-metric" style="color: var(--univ-cyan);"><span id="telemetry-latency">48</span> ms</div>
+                  <div class="metric-delta">Edge AI Box + Cloud Mesh</div>
                 </div>
               </div>
-              <div class="action-log-stream" id="hero-log-stream"></div>
+
+              <!-- Stream of Autonomous Governed Actions -->
+              <div class="action-log-stream" id="hero-log-stream" aria-live="polite">
+                <div class="action-log-item">
+                  <span class="log-time mono-metric">[12:44:02.102]</span>
+                  <span class="log-tag tag-autonomous">AUTONOMOUS</span>
+                  <span class="log-desc">Solar Farm BESS: Pre-empted inverter trip, adjusted reactive power injection (+4.2 MVAR)</span>
+                </div>
+                <div class="action-log-item">
+                  <span class="log-time mono-metric">[12:44:01.890]</span>
+                  <span class="log-tag tag-governed">GOVERNED</span>
+                  <span class="log-desc">Port Terminal 4: Dispatched automated crane power throttling; peak demand threshold protected</span>
+                </div>
+                <div class="action-log-item">
+                  <span class="log-time mono-metric">[12:44:01.215]</span>
+                  <span class="log-tag tag-autonomous">AUTONOMOUS</span>
+                  <span class="log-desc">CBD Tower Chiller Loop: Optimized delta-T setpoint; saved 142 kWh with zero thermal drift</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- ========================================================================
+         ACT 2: INSTITUTIONAL SCALE & AUTHORITY
+         Proof points that eliminate risk for enterprise buyers.
+         ======================================================================== -->
     <section class="authority-section" data-elementor-container="Container: Authority Numbers Strip (Full Width)">
       <div class="container">
         <div class="authority-grid">
-          <div class="authority-stat">
+          <div class="authority-stat" data-elementor-widget="Widget: Counter Stat">
             <div class="stat-number mono-metric">1,070 GW+</div>
             <div class="stat-title">Energy Assets Under AI Management</div>
             <div class="stat-desc">Representing ~20% of global renewable capacity</div>
           </div>
-          <div class="authority-stat">
+          <div class="authority-stat" data-elementor-widget="Widget: Counter Stat">
             <div class="stat-number mono-metric">450M+</div>
             <div class="stat-title">Connected OT Sensors & Devices</div>
             <div class="stat-desc">Unified across every major OEM protocol</div>
           </div>
-          <div class="authority-stat">
+          <div class="authority-stat" data-elementor-widget="Widget: Counter Stat">
             <div class="stat-number mono-metric">800+</div>
             <div class="stat-title">Enterprise Infrastructure Clients</div>
             <div class="stat-desc">Operating in 45 countries with mission-critical SLA</div>
           </div>
-          <div class="authority-stat">
+          <div class="authority-stat" data-elementor-widget="Widget: Counter Stat">
             <div class="stat-number mono-metric">Gartner Leader</div>
             <div class="stat-title">Industrial IoT Platforms 2025</div>
             <div class="stat-desc">Sample Vendor in Digital Grid Hype Cycle 2026</div>
@@ -110,126 +211,574 @@
         </div>
       </div>
     </section>
-    <section class="partner-marquee-section">
+
+    <!-- Client Marquee & Credibility Strip -->
+    <section class="partner-marquee-section" data-elementor-container="Container: Client Marquee (Flex Row)">
       <div class="container marquee-wrapper">
         <div class="marquee-label">Trusted by infrastructure leaders worldwide</div>
         <div class="marquee-logos">
-          <div class="logo-item">PSA INTERNATIONAL</div>
-          <div class="logo-item">HARMONY ENERGY</div>
-          <div class="logo-item">NORDIC GROUP</div>
-          <div class="logo-item">SBR AI WINNER 2026</div>
-          <div class="logo-item">UN GLOBAL COMPACT</div>
+          <div class="logo-item" title="PSA International - Global Port Operator">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+            <span>PSA INTERNATIONAL</span>
+          </div>
+          <div class="logo-item" title="Harmony Energy - Utility-Scale Storage">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span>HARMONY ENERGY</span>
+          </div>
+          <div class="logo-item" title="Starburst Holdings / Nordic Group">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/></svg>
+            <span>NORDIC GROUP</span>
+          </div>
+          <div class="logo-item" title="Singapore Business Review Award 2026">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            <span>SBR AI WINNER 2026</span>
+          </div>
+          <div class="logo-item" title="UN Global Compact Best Sustainable Solution">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12a4 4 0 0 1 8 0"/></svg>
+            <span>UN GLOBAL COMPACT</span>
+          </div>
         </div>
       </div>
     </section>
-    <section class="section section-border-top" id="shift">
+
+    <!-- ========================================================================
+         ACT 3: THE INDUSTRIAL SHIFT (WHY MONITORING IS DEAD)
+         Narrative Purpose: Provoke the prospect. Dashboards notify you after
+         the failure happens; Univers pre-empts failure before it happens.
+         ======================================================================== -->
+    <section class="section section-border-top" id="shift" data-elementor-container="Container: Act 3 Industrial Shift (Boxed)">
       <div class="container">
         <div class="section-header text-center">
-          <div class="eyebrow">The Paradigm Shift</div>
-          <h2 class="section-title">Why monitoring is no longer enough.</h2>
-          <p class="section-subtitle">Modern infrastructure produces millions of telemetry signals per second. When anomalies occur, a human operator looking at a dashboard is already 15 minutes too late.</p>
+          <div class="eyebrow" data-elementor-widget="Widget: Eyebrow">
+            <span>The Paradigm Shift</span>
+          </div>
+          <h2 class="section-title" data-elementor-widget="Widget: Heading (H2)">
+            Why monitoring is no longer enough.
+          </h2>
+          <p class="section-subtitle" data-elementor-widget="Widget: Text Editor">
+            Modern infrastructure produces millions of telemetry signals per second. When anomalies occur, a human operator looking at a dashboard is already 15 minutes too late.
+          </p>
         </div>
-        <div class="shift-comparison-grid">
-                    <div class="compare-card compare-legacy">
+
+        <div class="shift-comparison-grid" data-elementor-container="Container: Comparison Cards 2-Col Grid">
+          <!-- Legacy Monitoring Card -->
+          <div class="compare-card compare-legacy" data-elementor-container="Container: Legacy Card (Custom Class)">
             <span class="compare-badge">Legacy IoT & Dashboards</span>
             <h3 class="compare-heading">The Passive Notification Trap</h3>
             <p class="compare-lead">Built in 2015 to show you what just broke so your engineers can start a post-mortem.</p>
+            <ul class="compare-list">
+              <li>
+                <svg class="icon-x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                <span><strong>Alarm Fatigue:</strong> Thousands of unprioritized threshold alerts burying critical root causes.</span>
+              </li>
+              <li>
+                <svg class="icon-x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                <span><strong>Human Latency:</strong> Manual triage taking 20 to 180 minutes while equipment suffers thermal and mechanical degradation.</span>
+              </li>
+              <li>
+                <svg class="icon-x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                <span><strong>Disconnected Silos:</strong> Weather, grid pricing, SCADA, and maintenance logs trapped in separate software windows.</span>
+              </li>
+              <li>
+                <svg class="icon-x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                <span><strong>Zero Compounding Intelligence:</strong> Every incident is handled from scratch without institutional learning.</span>
+              </li>
+            </ul>
           </div>
-          <div class="compare-card compare-autonomous">
+
+          <!-- Univers Physical AI Card -->
+          <div class="compare-card compare-autonomous" data-elementor-container="Container: Univers Card (Custom Class)">
             <span class="compare-badge">Univers Physical AI</span>
             <h3 class="compare-heading">Autonomous Governed Execution</h3>
             <p class="compare-lead">Built for 2026+ to predict failure 30–90 days ahead and execute closed-loop mitigation in milliseconds.</p>
+            <ul class="compare-list">
+              <li>
+                <svg class="icon-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span><strong>Perceives at Machine Speed:</strong> Continuous stream ingestion fusing time-series, spatial, and relational physics models.</span>
+              </li>
+              <li>
+                <svg class="icon-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span><strong>Closed-Loop Action:</strong> AI agents dispatch control commands directly to inverters, BMS, and cranes within strict safety guardrails.</span>
+              </li>
+              <li>
+                <svg class="icon-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span><strong>Governed Autonomy:</strong> Machine speed at execution level; strict human sign-off policy at high-consequence thresholds.</span>
+              </li>
+              <li>
+                <svg class="icon-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span><strong>Compounding Moat:</strong> 10+ years of industrial ontology means the platform is pre-trained on your asset types before day one.</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
-    <section class="section section-border-top" id="engine">
+
+    <!-- ========================================================================
+         ACT 4: THE PHYSICAL AI ENGINE (PERCEIVE -> UNDERSTAND -> ORCHESTRATE)
+         Interactive 3-Stage Simulator
+         ======================================================================== -->
+    <section class="section section-border-top" id="engine" data-elementor-container="Container: Act 4 Physical AI Engine">
       <div class="container">
         <div class="section-header">
-          <div class="eyebrow">One Platform, Three Layers</div>
-          <h2 class="section-title">Built to Perceive, Understand, and Orchestrate.</h2>
-          <p class="section-subtitle">Click each layer below to see how Univers converts raw physical reality into governed operational action in sub-second cycles.</p>
+          <div class="eyebrow" data-elementor-widget="Widget: Eyebrow">
+            <span>One Platform, Three Layers</span>
+          </div>
+          <h2 class="section-title" data-elementor-widget="Widget: Heading (H2)">
+            Built to Perceive, Understand, and Orchestrate.
+          </h2>
+          <p class="section-subtitle" data-elementor-widget="Widget: Text Editor">
+            Click each layer below to see how Univers converts raw physical reality into governed operational action in sub-second cycles.
+          </p>
         </div>
-        <div class="engine-container">
-                    <div class="engine-steps" role="tablist">
-            <button class="engine-step-tab active" id="tab-perceive" data-step="1">
+
+        <div class="engine-container" data-elementor-container="Container: Engine Interactive 2-Col Layout">
+          <!-- Step Tabs Column -->
+          <div class="engine-steps" role="tablist" aria-label="Physical AI Layers" data-elementor-container="Container: Tabs Column (Nested Tabs)">
+            
+            <button class="engine-step-tab active" id="tab-perceive" role="tab" aria-selected="true" aria-controls="panel-screen" data-step="1">
               <div class="step-number">01</div>
               <div class="step-details">
                 <h3>Perceive the World</h3>
-                <p>450M+ connected assets. Ingesting high-frequency telemetry at sub-second speeds.</p>
+                <p>450M+ connected assets. Ingesting high-frequency telemetry across every OEM protocol, SCADA system, and sensor vendor at sub-second speeds.</p>
+                <span class="step-badge">→ Telemetry & Sensor Mesh</span>
               </div>
             </button>
-            <button class="engine-step-tab" id="tab-understand" data-step="2">
+
+            <button class="engine-step-tab" id="tab-understand" role="tab" aria-selected="false" aria-controls="panel-screen" data-step="2">
               <div class="step-number">02</div>
               <div class="step-details">
                 <h3>Understand the Physics</h3>
-                <p>A decade of domain ontology built on 5-D data models.</p>
+                <p>A decade of domain ontology built on Time-Series, Spatial, Relational, Vector, and Graph data. The platform knows what happened and what comes next.</p>
+                <span class="step-badge">→ Industrial Knowledge Graph</span>
               </div>
             </button>
-            <button class="engine-step-tab" id="tab-orchestrate" data-step="3">
+
+            <button class="engine-step-tab" id="tab-orchestrate" role="tab" aria-selected="false" aria-controls="panel-screen" data-step="3">
               <div class="step-number">03</div>
               <div class="step-details">
                 <h3>Orchestrate the Action</h3>
-                <p>Domain AI agents execute closed-loop adjustments within safety envelopes.</p>
+                <p>Domain AI agents execute closed-loop adjustments within safety envelopes. Autonomous at machine speed, governed at every critical human threshold.</p>
+                <span class="step-badge">→ Closed-Loop Control</span>
               </div>
             </button>
+
           </div>
-          <div class="engine-screen" id="panel-screen">
+
+          <!-- Interactive Visualization Screen -->
+          <div class="engine-screen" id="panel-screen" role="tabpanel" data-elementor-container="Container: Engine Interactive Canvas Box">
             <div class="screen-topbar">
-              <div class="screen-title" id="engine-stage-title">LAYER 01: REAL-TIME PHYSICAL PERCEPTION</div>
-              <span class="mono-metric" id="engine-telemetry-rate">RATE: 2.84M events/sec</span>
+              <div class="screen-title" id="engine-stage-title">
+                <span class="pulse-dot"></span>
+                <span>LAYER 01: REAL-TIME PHYSICAL PERCEPTION</span>
+              </div>
+              <span class="mono-metric" id="engine-telemetry-rate" style="font-size: 0.78rem; color: var(--univ-cyan);">
+                RATE: 2.84M events/sec
+              </span>
             </div>
-            <div class="sim-live-stream" id="sim-live-console">
-              <span id="sim-console-text">>> Streaming live protocol packets...</span>
+
+            <div class="screen-content-box">
+              <div class="interactive-architecture-canvas">
+                <div class="flow-nodes" id="flow-nodes-container">
+                  <div class="flow-node highlighted" id="node-1">
+                    <div class="flow-node-title">INGESTION</div>
+                    <div class="flow-node-desc">450M Sensors & SCADA</div>
+                  </div>
+                  <div class="flow-node" id="node-2">
+                    <div class="flow-node-title">ONTOLOGY</div>
+                    <div class="flow-node-desc">5-D Industrial Graph</div>
+                  </div>
+                  <div class="flow-node" id="node-3">
+                    <div class="flow-node-title">GOVERNED ACT</div>
+                    <div class="flow-node-desc">Closed-Loop Dispatch</div>
+                  </div>
+                </div>
+
+                <div class="sim-live-stream" id="sim-live-console">
+                  <span id="sim-console-text">>> Ingesting BACnet, Modbus, IEC 61850, OPC-UA protocol streams...</span>
+                  <span class="mono-metric" style="color: #94A3B8;">STATUS: OPTIMAL</span>
+                </div>
+              </div>
             </div>
-            <button class="btn btn-secondary btn-sm" id="trigger-sim-action">Simulate Event</button>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid var(--univ-border-subtle);">
+              <span class="mono-metric" style="font-size: 0.72rem; color: var(--univ-text-muted);">ENOS-AGENT-KERNEL v4.8.2 // SAFETY INTERLOCK: ACTIVE</span>
+              <button class="btn btn-secondary btn-sm" id="trigger-sim-action">Simulate Event</button>
+            </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="section section-border-top" id="industries">
+
+    <!-- ========================================================================
+         ACT 5: BUILT FOR CRITICAL INFRASTRUCTURE (SECTOR EXPLORER)
+         Narrative Purpose: Tangible proof across the 4 core domains.
+         Real stats, verified case studies, and customer quotes.
+         ======================================================================== -->
+    <section class="section section-border-top" id="industries" data-elementor-container="Container: Act 5 Industries (Boxed)">
       <div class="container">
         <div class="section-header text-center">
-          <div class="eyebrow">Critical Infrastructure Outcomes</div>
-          <h2 class="section-title">Industries that cannot afford to stop.</h2>
-          <p class="section-subtitle">Univers delivers one unified operating foundation across four mission-critical sectors.</p>
+          <div class="eyebrow" data-elementor-widget="Widget: Eyebrow">
+            <span>Critical Infrastructure Outcomes</span>
+          </div>
+          <h2 class="section-title" data-elementor-widget="Widget: Heading (H2)">
+            Industries that cannot afford to stop.
+          </h2>
+          <p class="section-subtitle" data-elementor-widget="Widget: Text Editor">
+            Univers delivers one unified operating foundation across four mission-critical sectors with outcomes measured in uptime, revenue, and carbon reduction.
+          </p>
         </div>
-        <div class="sector-nav-pills">
-                    <button class="sector-pill active" data-sector="energy">Energy & Utilities</button>
-          <button class="sector-pill" data-sector="buildings">Built Environment</button>
-          <button class="sector-pill" data-sector="logistics">Transportation & Ports</button>
-          <button class="sector-pill" data-sector="manufacturing">Industrial Manufacturing</button>
+
+        <!-- Sector Pills Navigation -->
+        <div class="sector-nav-pills" role="tablist" data-elementor-container="Container: Sector Pills (Flex Row Center)">
+          <button class="sector-pill active" data-sector="energy" role="tab" aria-selected="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span>Energy & Utilities</span>
+          </button>
+          <button class="sector-pill" data-sector="buildings" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="22.01"/><line x1="15" y1="22" x2="15" y2="22.01"/></svg>
+            <span>Built Environment</span>
+          </button>
+          <button class="sector-pill" data-sector="logistics" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <span>Transportation & Ports</span>
+          </button>
+          <button class="sector-pill" data-sector="manufacturing" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            <span>Industrial Manufacturing</span>
+          </button>
         </div>
-        <div class="sector-content-card" id="sector-display">
-          <!-- Sector Details -->
+
+        <!-- Dynamic Sector Card Content -->
+        <div class="sector-content-card" id="sector-display" data-elementor-container="Container: Sector Display Card (2-Col)">
+          <div class="sector-info">
+            <h3 id="sec-title">Energy & Utilities: Stabilizing the Intermittent Grid</h3>
+            <p id="sec-desc">Grids are facing unprecedented pressure from rising renewable volatility, EV charging peaks, and distributed energy resources. Univers coordinates generation, storage, and curtailment in real time.</p>
+            
+            <div class="sector-kpis">
+              <div class="kpi-box" data-elementor-widget="Widget: KPI Box">
+                <div class="kpi-metric mono-metric" id="kpi-1">1,005 GW</div>
+                <div class="kpi-label" id="kpi-label-1">Assets under AI orchestration</div>
+              </div>
+              <div class="kpi-box" data-elementor-widget="Widget: KPI Box">
+                <div class="kpi-metric mono-metric" id="kpi-2">10–20%</div>
+                <div class="kpi-label" id="kpi-label-2">Reduction in O&M costs</div>
+              </div>
+              <div class="kpi-box" data-elementor-widget="Widget: KPI Box">
+                <div class="kpi-metric mono-metric" id="kpi-3">+12%</div>
+                <div class="kpi-label" id="kpi-label-3">Revenue gain via AI power forecast</div>
+              </div>
+            </div>
+
+            <a href="#calculator" class="btn btn-secondary btn-sm" id="sec-cta">Explore Energy Case Study & Data</a>
+          </div>
+
+          <div class="sector-quote-card" data-elementor-container="Container: Testimonial Box">
+            <p class="quote-body" id="quote-text">
+              "The clarity and consistency of data across different suppliers, and the ability to drill from site-level KPIs down to rack and cell data, are vital to our day-to-day operation."
+            </p>
+            <div class="quote-author">
+              <div class="author-avatar" id="quote-avatar">KS</div>
+              <div>
+                <div class="author-name" id="quote-name">Ked Shayer</div>
+                <div class="author-role" id="quote-role">Engineering Director, Harmony Energy</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-    <section class="section section-border-top" id="flywheel">
+
+    <!-- ========================================================================
+         ACT 6: THE COMPOUNDING MOAT & EDGE HARDWARE
+         Narrative Purpose: Why competitors cannot catch up (Flywheel) +
+         Univers EnOS AI Box debut at CES 2026 with AMD.
+         ======================================================================== -->
+    <section class="section section-border-top" id="flywheel" data-elementor-container="Container: Act 6 Compounding Moat">
       <div class="container">
         <div class="section-header text-center">
-          <div class="eyebrow">Defensible Advantage</div>
-          <h2 class="section-title">Intelligence that compounds with every decision.</h2>
-          <p class="section-subtitle">Most software vendors sell static dashboards. Univers creates a self-reinforcing operational flywheel.</p>
+          <div class="eyebrow" data-elementor-widget="Widget: Eyebrow">
+            <span>Defensible Advantage</span>
+          </div>
+          <h2 class="section-title" data-elementor-widget="Widget: Heading (H2)">
+            Intelligence that compounds with every decision.
+          </h2>
+          <p class="section-subtitle" data-elementor-widget="Widget: Text Editor">
+            Most software vendors sell static dashboards. Univers creates a self-reinforcing operational flywheel: every connected device deepens our domain ontology, making each subsequent agent smarter.
+          </p>
+        </div>
+
+        <div class="flywheel-grid" data-elementor-container="Container: Flywheel 4-Step Grid">
+          <div class="flywheel-card" data-elementor-container="Container: Flywheel Step 1">
+            <span class="flywheel-step-tag">01 / TARGETING</span>
+            <h4>Value Identification</h4>
+            <p>We target exact high-friction failure modes and operational costs before a single line of integration code is deployed.</p>
+          </div>
+          <div class="flywheel-card" data-elementor-container="Container: Flywheel Step 2">
+            <span class="flywheel-step-tag">02 / ONTOLOGY</span>
+            <h4>5-D Knowledge Graph</h4>
+            <p>Ingesting Time-Series, Spatial, Relational, Vector, and Graph data into an industrial ontology honed across 10+ years.</p>
+          </div>
+          <div class="flywheel-card" data-elementor-container="Container: Flywheel Step 3">
+            <span class="flywheel-step-tag">03 / CONTROL</span>
+            <h4>Domain Agent Deployment</h4>
+            <p>Domain-specific agents are deployed with closed-loop execution and fail-safe human threshold governance.</p>
+          </div>
+          <div class="flywheel-card" data-elementor-container="Container: Flywheel Step 4">
+            <span class="flywheel-step-tag">04 / MOAT</span>
+            <h4>Compounding Moat</h4>
+            <p>Every operational intervention refines the underlying model across 1,070 GW of assets. No new entrant can replicate this overnight.</p>
+          </div>
+        </div>
+
+        <!-- Hardware & Edge AI Banner: EnOS AI Box with AMD -->
+        <div class="hardware-banner" data-elementor-container="Container: Hardware Banner (2-Col)">
+          <div class="hardware-info">
+            <div class="eyebrow" style="background: rgba(0, 210, 255, 0.1); border-color: rgba(0, 210, 255, 0.3); color: var(--univ-cyan);">
+              <span>CES 2026 Breakthrough</span>
+            </div>
+            <h3>EnOS™ AI Box: Ultra-Low Latency at the Physical Edge</h3>
+            <p>
+              Developed in partnership with <strong>AMD</strong>, the EnOS™ AI Box executes real-time AI inference directly inside substations, port terminals, and plant mechanical rooms. Millisecond response even when external cloud connectivity is severed.
+            </p>
+            <div class="chip-specs">
+              <span class="chip-spec-pill">AMD Embedded NPU</span>
+              <span class="chip-spec-pill">&lt;10ms Local Reaction Time</span>
+              <span class="chip-spec-pill">Zero-Trust OT Hardware Security</span>
+            </div>
+          </div>
+          <div class="hardware-graphic" data-elementor-widget="Widget: Hardware Visual / Spec Block">
+            <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--univ-cyan); margin-bottom: 8px;">EDGE HARDWARE SPECIFICATION</div>
+            <div style="font-size: 2.2rem; font-weight: 800; font-family: var(--font-heading);">EnOS™ BOX-01</div>
+            <p style="font-size: 0.82rem; color: var(--univ-text-muted); margin-top: 6px;">Ruggedized Fanless Industrial DIN-Rail // AMD Ryzen™ Embedded</p>
+          </div>
         </div>
       </div>
     </section>
-    <section class="section section-border-top" id="security">
+
+    <!-- ========================================================================
+         ACT 7: MISSION-CRITICAL SECURITY & COMPLIANCE VAULT
+         Narrative Purpose: Infrastructure buyers must pass rigorous IT/OT audits.
+         Show unassailable certifications.
+         ======================================================================== -->
+    <section class="section section-border-top" id="security" data-elementor-container="Container: Act 7 Security Vault">
       <div class="container">
         <div class="section-header text-center">
-          <div class="eyebrow">Zero-Trust Physical Architecture</div>
-          <h2 class="section-title">Built for environments where security is non-negotiable.</h2>
+          <div class="eyebrow" data-elementor-widget="Widget: Eyebrow">
+            <span>Zero-Trust Physical Architecture</span>
+          </div>
+          <h2 class="section-title" data-elementor-widget="Widget: Heading (H2)">
+            Built for environments where security is non-negotiable.
+          </h2>
+          <p class="section-subtitle" data-elementor-widget="Widget: Text Editor">
+            Critical infrastructure allows zero room for downtime or intrusion. Univers is engineered from the silicon up to meet global IT and OT cybersecurity standards.
+          </p>
+        </div>
+
+        <div class="compliance-grid" data-elementor-container="Container: Compliance 3-Col Grid">
+          <div class="compliance-category" data-elementor-container="Container: OT/IT Certifications">
+            <h4>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span>Industrial OT & IT Security</span>
+            </h4>
+            <div class="compliance-badges">
+              <span class="compliance-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> IEC 62443 4-1 / 4-2</span>
+              <span class="compliance-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ISO/IEC 27001</span>
+              <span class="compliance-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ISO 27701 Privacy</span>
+              <span class="compliance-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> SOC 2 Type II</span>
+              <span class="compliance-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> SOC 3</span>
+              <span class="compliance-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> MLPS Level 3</span>
+            </div>
+          </div>
+
+          <div class="compliance-category" data-elementor-container="Container: Global Regulatory">
+            <h4>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <span>Regulatory Compliance</span>
+            </h4>
+            <div class="compliance-badges">
+              <span class="compliance-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> EU NIS2 Directive</span>
+              <span class="compliance-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> NERC CIP (Electric)</span>
+              <span class="compliance-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> NIST CSF 2.0</span>
+              <span class="compliance-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> EU Cyber Resilience Act</span>
+              <span class="compliance-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> GDPR / CCPA</span>
+            </div>
+          </div>
+
+          <div class="compliance-category" data-elementor-container="Container: Sovereign Reliability">
+            <h4>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Sovereignty & Air-Gap Support</span>
+            </h4>
+            <div class="compliance-badges">
+              <span class="compliance-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Singapore Cyber Trust</span>
+              <span class="compliance-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> On-Premise Air-Gap</span>
+              <span class="compliance-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Multi-Region Data Residency</span>
+              <span class="compliance-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 99.99% Availability SLA</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-    <section class="section section-border-top" id="calculator">
+
+    <!-- ========================================================================
+         ACT 8: PORTFOLIO VALUE REALIZATION CALCULATOR & HIGH-INTENT CONVERSION
+         Narrative Purpose: Self-qualification for enterprise buyers.
+         Interactive sliders deliver immediate perceived value.
+         ======================================================================== -->
+    <section class="section section-border-top" id="calculator" data-elementor-container="Container: Act 8 Calculator & Conversion">
       <div class="container">
         <div class="section-header text-center">
-          <div class="eyebrow">Value Realization</div>
-          <h2 class="section-title">Estimate your portfolio's autonomous upside.</h2>
+          <div class="eyebrow" data-elementor-widget="Widget: Eyebrow">
+            <span>Value Realization</span>
+          </div>
+          <h2 class="section-title" data-elementor-widget="Widget: Heading (H2)">
+            Estimate your portfolio's autonomous upside.
+          </h2>
+          <p class="section-subtitle" data-elementor-widget="Widget: Text Editor">
+            Select your sector and asset scale to calculate projected energy savings, avoided downtime, and carbon abatement based on verified Univers benchmark deployments.
+          </p>
+        </div>
+
+        <div class="calculator-card" data-elementor-container="Container: Calculator 2-Col Interactive Card">
+          <div class="calc-inputs" data-elementor-container="Container: Form Controls">
+            <div class="calc-form-group">
+              <label class="calc-label" for="calc-sector">Primary Asset Sector</label>
+              <select id="calc-sector" class="calc-select">
+                <option value="energy">Renewable Energy & Utilities (GW)</option>
+                <option value="buildings" selected>Commercial Built Environment (sq ft)</option>
+                <option value="logistics">Transportation / Port Infrastructure</option>
+                <option value="manufacturing">Industrial Manufacturing Plants</option>
+              </select>
+            </div>
+
+            <div class="calc-form-group">
+              <div class="calc-label">
+                <span>Asset Scale / Volume</span>
+                <span class="mono-metric" id="calc-scale-display" style="color: var(--univ-emerald);">5,000,000 sq ft</span>
+              </div>
+              <input type="range" id="calc-scale-slider" class="calc-range" min="1" max="10" value="5" step="1" aria-label="Asset scale slider">
+            </div>
+
+            <div class="calc-form-group">
+              <div class="calc-label">
+                <span>Current Annual Energy / O&M Spend</span>
+                <span class="mono-metric" id="calc-spend-display" style="color: var(--univ-cyan);">$12,000,000 / yr</span>
+              </div>
+              <input type="range" id="calc-spend-slider" class="calc-range" min="1" max="50" value="12" step="1" aria-label="Annual spend slider">
+            </div>
+          </div>
+
+          <div class="calc-results-panel" data-elementor-container="Container: Results Output Box">
+            <div class="res-title">Estimated Annual Net Value Realized</div>
+            <div class="res-highlight mono-metric" id="res-savings">$1,440,000</div>
+            <div class="res-subtext" id="res-subtext">Verified 12.0% reduction in energy waste & avoided downtime incidents</div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;">
+              <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 6px;">
+                <div style="font-size: 0.72rem; color: var(--univ-text-muted);">PROJECTED PAYBACK</div>
+                <div class="mono-metric" id="res-payback" style="font-size: 1.15rem; font-weight: 700; color: var(--univ-emerald);">&lt; 10 Months</div>
+              </div>
+              <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 6px;">
+                <div style="font-size: 0.72rem; color: var(--univ-text-muted);">CO2e ABATEMENT</div>
+                <div class="mono-metric" id="res-carbon" style="font-size: 1.15rem; font-weight: 700; color: var(--univ-cyan);">4,820 Tons/yr</div>
+              </div>
+            </div>
+
+            <a href="#contact" class="btn btn-primary" style="width: 100%;" data-elementor-widget="Widget: Form Submission Button">
+              Request Tailored Architecture Audit
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         FINAL HIGH-INTENT CONVERSION SECTION
+         ======================================================================== -->
+    <section class="section" id="contact" style="padding-top: 40px;" data-elementor-container="Container: Final CTA Section">
+      <div class="container" style="text-align: center; max-width: 840px;">
+        <h2 style="font-size: clamp(2.2rem, 3.8vw, 3.4rem); margin-bottom: 1.25rem;">
+          One conversation. Map where your assets can run autonomously.
+        </h2>
+        <p style="font-size: 1.15rem; color: var(--univ-text-secondary); margin-bottom: 2.5rem; line-height: 1.6;">
+          Our solution architects will review your asset telemetry, protocol requirements, and market constraints, then demonstrate Univers running live on operational portfolios similar to yours.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+          <a href="#" class="btn btn-primary" style="padding: 16px 36px; font-size: 1.05rem;">
+            <span>Schedule an Executive Walkthrough</span>
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a href="#" class="btn btn-secondary" style="padding: 16px 32px;">Download Physical AI Architecture Whitepaper</a>
         </div>
       </div>
     </section>
   </main>
+
+  <!-- ========================================================================
+       SITE FOOTER
+       ======================================================================== -->
+  <footer class="site-footer" data-elementor-container="Container: Footer (Full Width)">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="brand-logo">
+            <div class="logo-symbol">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <span>univers</span>
+          </a>
+          <p>
+            The Platform for Physical AI. Managing real-time autonomous operations across global energy grids, ports, smart buildings, and manufacturing plants. Headquartered in Singapore.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Platform & Products</h5>
+          <ul class="footer-links">
+            <li><a href="#">EnOS™ AI Operating System</a></li>
+            <li><a href="#">EnOS™ AI Box (with AMD)</a></li>
+            <li><a href="#">Perceive-Understand-Act Engine</a></li>
+            <li><a href="#">Industrial Knowledge Graph</a></li>
+            <li><a href="#">Bazefield Renewable Suite</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Sectors</h5>
+          <ul class="footer-links">
+            <li><a href="#">Energy & Utilities</a></li>
+            <li><a href="#">Built Environment</a></li>
+            <li><a href="#">Transportation & Ports</a></li>
+            <li><a href="#">Industrial Manufacturing</a></li>
+            <li><a href="#">Enterprise Microgrids</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Company & Trust</h5>
+          <ul class="footer-links">
+            <li><a href="#">About Univers</a></li>
+            <li><a href="#">The Singapore Story</a></li>
+            <li><a href="#">Security & Certifications</a></li>
+            <li><a href="#">Gartner Leader Recognition</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Univers. All rights reserved. Built with precision for Elementor Pro.</div>
+        <div style="display: flex; gap: 20px;">
+          <a href="#" style="color: var(--univ-text-muted); text-decoration: none;">Privacy Policy</a>
+          <a href="#" style="color: var(--univ-text-muted); text-decoration: none;">Terms of Service</a>
+          <a href="#" style="color: var(--univ-text-muted); text-decoration: none;">Security Architecture</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
 </body>
 </html>
