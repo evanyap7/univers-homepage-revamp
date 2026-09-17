@@ -1,7 +1,7 @@
 /**
- * UNIVERS PHYSICAL AI - INTERACTIVE HOMEPAGE ENGINE
- * Powers the live telemetry stream, mobile navigation, scroll reveals,
- * interactive 3-stage architecture simulator, sector explorer,
+ * UNIVERS — ALL CONNECTED. INTERACTIVE HOMEPAGE ENGINE
+ * Powers the live decarbonization data stream, mobile navigation, scroll
+ * reveals, interactive Edge -> Cloud -> Earth simulator, sector explorer,
  * and portfolio value calculator.
  */
 
@@ -167,16 +167,16 @@ function initLiveTelemetry() {
   const actionsEl = document.getElementById('telemetry-actions');
   const streamEl = document.getElementById('hero-log-stream');
 
-  let baseGW = 1072.4;
-  let baseEndpoints = 452890140;
+  let baseGW = 552.1;
+  let baseEndpoints = 220140912;
   let baseActions = 14.82;
 
   const eventPool = [
-    { tag: 'AUTONOMOUS', type: 'tag-autonomous', text: 'Wind Farm Cluster 12: Turbine #8 yaw optimized for wake-steering (+3.8% generation)' },
-    { tag: 'GOVERNED', type: 'tag-governed', text: 'Substation Alpha: Volt-VAR optimization triggered; active power factor locked at 0.99' },
-    { tag: 'AUTONOMOUS', type: 'tag-autonomous', text: 'Automated Port Berth 6: AGV charging throttled to prevent transformer surge' },
-    { tag: 'GOVERNED', type: 'tag-governed', text: 'Semiconductor Fab Cleanroom: Airflow pressure differential stabilized; delta-P restored' },
-    { tag: 'AUTONOMOUS', type: 'tag-autonomous', text: 'Commercial Microgrid: Discharged 2.4 MWh BESS during dynamic tariff price spike' }
+    { tag: 'CONNECTED', type: 'tag-autonomous', text: 'Wind Farm Cluster 12: Turbine #8 output logged, generation forecast updated (+3.8%)' },
+    { tag: 'REPORTED', type: 'tag-governed', text: 'Substation Alpha: Power factor data synced to EnOS Cloud; logged at 0.99' },
+    { tag: 'CONNECTED', type: 'tag-autonomous', text: 'Automated Port Berth 6: AGV charging data streamed; demand flagged for review' },
+    { tag: 'REPORTED', type: 'tag-governed', text: 'Semiconductor Fab Cleanroom: Airflow pressure differential logged; delta-P within range' },
+    { tag: 'ABATED', type: 'tag-autonomous', text: 'Commercial Microgrid: 2.4 MWh BESS discharge recorded during dynamic tariff spike' }
   ];
 
   let eventIdx = 0;
@@ -230,8 +230,8 @@ function initLiveTelemetry() {
 }
 
 /* ==========================================================================
-   3. PHYSICAL AI ENGINE INTERACTIVE 3-STAGE SIMULATOR
-   Perceive -> Understand -> Orchestrate
+   3. ENOS PLATFORM INTERACTIVE 3-STAGE SIMULATOR
+   Edge -> Cloud -> Earth
    ========================================================================== */
 function initEngineSimulator() {
   const tabs = document.querySelectorAll('.engine-step-tab');
@@ -246,21 +246,21 @@ function initEngineSimulator() {
 
   const stageData = {
     '1': {
-      title: 'LAYER 01: REAL-TIME PHYSICAL PERCEPTION',
-      rate: 'RATE: 2.84M events/sec',
-      console: '>> Streaming 450M endpoints: Ingesting Modbus, IEC 61850, OPC-UA, BACnet, MQTT packets in sub-50ms cycles...',
+      title: 'ON THE GROUND: ENOS EDGE',
+      rate: 'CONNECTED: 220M+ Devices',
+      console: '>> Reading real-time energy data from meters, sensors, BMS, and industrial equipment across every OEM protocol...',
       activeNodes: [node1]
     },
     '2': {
-      title: 'LAYER 02: INDUSTRIAL DOMAIN ONTOLOGY',
-      rate: 'GRAPH: 12.8M Nodes // 48M Relations',
-      console: '>> Fusing time-series physics, weather vectors, degradation models, and dynamic power market constraints...',
+      title: 'IN THE CLOUD: ENOS CLOUD',
+      rate: 'MANAGING: 552.1 GW Renewable Capacity',
+      console: '>> Fusing on-the-ground data with cloud intelligence into accurate, reliable, actionable decarbonization data...',
       activeNodes: [node1, node2]
     },
     '3': {
-      title: 'LAYER 03: GOVERNED AUTONOMOUS EXECUTION',
-      rate: 'EXECUTION: <15ms Closed-Loop',
-      console: '>> EnOS Domain Agents executing autonomous setpoint adjustments within pre-certified safety parameters...',
+      title: 'FOR THE EARTH: MONITORING, REPORTING & ABATEMENT',
+      rate: 'COMMUNITY: 500+ Customers Toward Net Zero',
+      console: '>> Delivering data-driven carbon monitoring, reporting, and abatement across the portfolio...',
       activeNodes: [node1, node2, node3]
     }
   };
@@ -295,16 +295,16 @@ function initEngineSimulator() {
   // Manual Trigger Simulation
   if (triggerBtn) {
     triggerBtn.addEventListener('click', () => {
-      triggerBtn.textContent = 'Executing...';
+      triggerBtn.textContent = 'Logging...';
       triggerBtn.disabled = true;
 
       if (consoleText) {
-        consoleText.textContent = '>> ANOMALY DETECTED: Thermal surge on Transformer 4. Pre-empting trip with load-rebalance agent...';
+        consoleText.textContent = '>> NEW DATA POINT: Transformer 4 thermal reading logged. Emissions impact recalculated...';
       }
 
       setTimeout(() => {
         if (consoleText) {
-          consoleText.textContent = '>> [SUCCESS] Load rebalanced in 32ms. Trip avoided. Telemetry returned to nominal envelope.';
+          consoleText.textContent = '>> [LOGGED] Real-time carbon ledger updated in 32ms. Portfolio emissions trend visible instantly.';
         }
         triggerBtn.textContent = 'Simulate Event';
         triggerBtn.disabled = false;
@@ -334,14 +334,14 @@ function initSectorExplorer() {
 
   const sectorData = {
     energy: {
-      title: 'Energy & Utilities: Stabilizing the Intermittent Grid',
-      desc: 'Grids are facing unprecedented pressure from rising renewable volatility, EV charging peaks, and distributed energy resources. Univers coordinates generation, storage, and curtailment in real time.',
+      title: 'Energy & Utilities: Real-Time Data for an Intermittent Grid',
+      desc: 'Grids face unprecedented pressure from rising renewable volatility, EV charging peaks, and distributed energy resources. Univers connects generation, storage, and market data in real time — the accurate picture operators need to manage, and transform, performance.',
       kpi1: '10–20%',
       kpiLabel1: 'Reduction in O&M costs',
       kpi2: '12%+',
       kpiLabel2: 'Revenue protection via AI power forecasting',
-      kpi3: '1,070 GW+',
-      kpiLabel3: 'Energy assets under AI management',
+      kpi3: '550 GW+',
+      kpiLabel3: 'Renewable energy under Univers management',
       quoteType: 'testimonial',
       quote: '“With Univers’ end-to-end solution and expertise, ORIX Renewable Energy Management can provide total customer support – from proposals to implementation to maintenance, which in turn helps our customers optimize energy use and reduce costs.”',
       avatar: 'KY',
@@ -349,8 +349,8 @@ function initSectorExplorer() {
       role: 'EVP & Chief Strategy Officer, ORIX Renewable Energy Management'
     },
     buildings: {
-      title: 'Built Environment: Cutting Portfolio-Wide Energy Waste',
-      desc: 'Commercial and institutional buildings consume massive amounts of power through inefficient HVAC and manual setpoints. Univers delivers autonomous predictive chiller and ventilation control across entire real estate portfolios.',
+      title: 'Built Environment: Even Giants Can Have Small Footprints',
+      desc: 'Commercial and institutional buildings consume massive amounts of power through inefficient HVAC and manual setpoints. Univers delivers real-time energy monitoring and predictive chiller and ventilation reporting across entire real estate portfolios.',
       kpi1: '9.8%',
       kpiLabel1: 'Verified net energy savings',
       kpi2: '99.5%',
@@ -513,7 +513,7 @@ function initValueCalculator() {
 
 /* ==========================================================================
    INTERACTIVE ENGINE: KINETIC BACKGROUND CANVAS & PHYSICS SIMULATION
-   Physical AI Mesh, floating OT telemetry nodes, mouse force-field,
+   Decarbonization data mesh, floating OT telemetry nodes, mouse force-field,
    and drag-activated electric tethering.
    ========================================================================== */
 function initKineticCanvas() {
@@ -589,11 +589,11 @@ function initKineticCanvas() {
     const glyphLabels = [
       'OT-NODE // 400kV',
       'IEC 61850 STREAM',
-      'EnOS™ AGENT-07',
-      '1,072.4 GW SYNC',
+      'EnOS™ CLOUD SYNC',
+      '552.1 GW MANAGED',
       'SUBSTATION ALPHA',
       'BERTH-04 AGV',
-      'CLOSED-LOOP 14ms',
+      'ALL CONNECTED',
       'BESS 2.4 MWh'
     ];
 
@@ -1315,7 +1315,7 @@ function initCyberHUD() {
       const actionsEl = document.getElementById('telemetry-actions');
       const streamEl = document.getElementById('hero-log-stream');
 
-      if (gwEl) gwEl.textContent = '1,428.6';
+      if (gwEl) gwEl.textContent = '714.9';
       if (latencyEl) {
         latencyEl.textContent = '9';
         latencyEl.style.color = '#FF4D4D';
@@ -1327,13 +1327,13 @@ function initCyberHUD() {
         surgeLog.className = 'action-log-item';
         surgeLog.innerHTML = `
           <span class="log-time mono-metric">[SURGE-ALERT]</span>
-          <span class="log-tag tag-autonomous" style="background: rgba(255, 77, 77, 0.2); color: #FF4D4D; border-color: rgba(255, 77, 77, 0.4);">CASCADE TRIP PRE-EMPTION</span>
-          <span class="log-desc" style="color: #FF4D4D; font-weight: 600;">Substation 400kV bus frequency spike detected. Autonomous load-shedding agents dispatched.</span>
+          <span class="log-tag tag-autonomous" style="background: rgba(255, 77, 77, 0.2); color: #FF4D4D; border-color: rgba(255, 77, 77, 0.4);">ANOMALY LOGGED</span>
+          <span class="log-desc" style="color: #FF4D4D; font-weight: 600;">Substation 400kV bus frequency spike detected. Real-time data flagged for immediate reporting.</span>
         `;
         streamEl.insertBefore(surgeLog, streamEl.firstChild);
       }
 
-      // After 1.8 seconds, autonomous physical AI stabilizes the grid
+      // After 1.8 seconds, the connected data stream resolves the anomaly
       setTimeout(() => {
         window.UniversInteractive.isSurging = false;
         document.body.classList.remove('grid-surge-active');
@@ -1358,9 +1358,9 @@ function initCyberHUD() {
           const resolvedLog = document.createElement('div');
           resolvedLog.className = 'action-log-item';
           resolvedLog.innerHTML = `
-            <span class="log-time mono-metric">[AI-RESOLVED]</span>
+            <span class="log-time mono-metric">[LOGGED]</span>
             <span class="log-tag tag-governed" style="background: rgba(0, 229, 153, 0.2); color: #00E599; border-color: rgba(0, 229, 153, 0.4);">NOMINAL ENVELOPE RESTORED</span>
-            <span class="log-desc" style="color: #00E599; font-weight: 600;">Cascade avoided in 11ms. Frequency locked at 50.00 Hz. All 450M endpoints synchronized.</span>
+            <span class="log-desc" style="color: #00E599; font-weight: 600;">Anomaly resolved and logged in 11ms. Frequency locked at 50.00 Hz. All 220M+ devices synchronized.</span>
           `;
           streamEl.insertBefore(resolvedLog, streamEl.firstChild);
         }
