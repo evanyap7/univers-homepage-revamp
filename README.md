@@ -35,7 +35,8 @@ Or connect the repo in the Vercel dashboard — it will auto-detect a static sit
 
 ## Design system
 
-- **Typography:** Space Grotesk (headings), Inter (body), JetBrains Mono (telemetry/data) — via Google Fonts
+- **Logo:** the real Univers wordmark (orbit-ring mark + "univers" logotype), extracted as vector paths from the brand's own master deck template rather than redrawn — see `favicon.svg` and the inline `.brand-logo-mark` SVG in `index.html`
+- **Typography:** Inter for both display and body, matching Univers' real brand system (every Latin run set in one face — Aptos Display in the deck template — rather than a separate heading/body pairing). Aptos Display has no web-embeddable distribution, so Inter is the closest freely-licensed substitute. Fraunces Italic remains a deliberate editorial accent for pull quotes; JetBrains Mono for telemetry/data labels — via Google Fonts
 - **Palette:** Neo-Industrial Deep Dark (`#07090E`), Electric Emerald (`#00E599`), Cyber Cyan (`#00D2FF`) — WCAG AA-verified text contrast
 - **Icons:** hand-authored inline SVG, stroke-based, consistent with the Feather/Tabler style referenced in [bradtraversy/design-resources-for-developers](https://github.com/bradtraversy/design-resources-for-developers)
 - Accessible mobile navigation (offcanvas drawer), scroll-reveal micro-interactions that respect `prefers-reduced-motion`, and sticky-header-aware anchor scrolling
