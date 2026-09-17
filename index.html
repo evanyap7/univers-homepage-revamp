@@ -50,6 +50,9 @@
 
   <!-- ========================================================================
        NAVIGATION BAR
+       One combined header: brand mark, the interactive chapter/section
+       pills (with scroll-spy + smooth-jump, wired in initChapterNav), and
+       the primary CTAs — previously split across two stacked sticky bars.
        ======================================================================== -->
   <header class="site-header">
     <div class="container nav-container">
@@ -58,13 +61,32 @@
       </a>
 
       <nav class="nav-menu" id="mobile-nav-drawer" aria-label="Main Navigation">
-        <ul class="nav-links">
-          <li><a href="#engine" class="nav-link">EnOS Platform</a></li>
-          <li><a href="#industries" class="nav-link">Sectors</a></li>
-          <li><a href="#flywheel" class="nav-link">All Connected</a></li>
-          <li><a href="#security" class="nav-link">Trust & Compliance</a></li>
-          <li><a href="#calculator" class="nav-link">Decarbonization Calculator</a></li>
-        </ul>
+        <div class="chapter-pills-wrap" id="chapter-nav">
+          <a href="#overview" class="chapter-pill active" data-target="overview">
+            <span class="pill-dot"></span>
+            <span>Overview</span>
+          </a>
+          <a href="#enos-stack" class="chapter-pill" data-target="enos-stack">
+            <span class="pill-dot"></span>
+            <span>EnOS™ Stack</span>
+          </a>
+          <a href="#engine" class="chapter-pill" data-target="engine">
+            <span class="pill-dot"></span>
+            <span>Simulator</span>
+          </a>
+          <a href="#sectors" class="chapter-pill" data-target="sectors">
+            <span class="pill-dot"></span>
+            <span>Sectors</span>
+          </a>
+          <a href="#security" class="chapter-pill" data-target="security">
+            <span class="pill-dot"></span>
+            <span>Trust &amp; Compliance</span>
+          </a>
+          <a href="#calculator" class="chapter-pill" data-target="calculator">
+            <span class="pill-dot"></span>
+            <span>Calculator</span>
+          </a>
+        </div>
         <div class="mobile-nav-cta-group">
           <a href="#calculator" class="btn btn-secondary">Calculate Your Impact</a>
           <button type="button" class="btn btn-primary" id="mobile-cta-demo">Talk to Us</button>
@@ -91,47 +113,6 @@
     </div>
   </header>
 
-  <!-- ========================================================================
-       STICKY CHAPTER NAVIGATOR (INTERACTIVE STORYBOARD)
-       Allows one-click jumping between key sections across the long page
-       ======================================================================== -->
-  <nav class="chapter-nav" id="chapter-nav" aria-label="Page Sections Navigation">
-    <div class="container chapter-nav-inner">
-      <div class="chapter-pills-wrap">
-        <a href="#overview" class="chapter-pill active" data-target="overview">
-          <span class="pill-dot"></span>
-          <span>Overview</span>
-        </a>
-        <a href="#enos-stack" class="chapter-pill" data-target="enos-stack">
-          <span class="pill-dot"></span>
-          <span>EnOS™ Stack</span>
-        </a>
-        <a href="#engine" class="chapter-pill" data-target="engine">
-          <span class="pill-dot"></span>
-          <span>Simulator</span>
-        </a>
-        <a href="#sectors" class="chapter-pill" data-target="sectors">
-          <span class="pill-dot"></span>
-          <span>Sectors</span>
-        </a>
-        <a href="#security" class="chapter-pill" data-target="security">
-          <span class="pill-dot"></span>
-          <span>Trust &amp; Compliance</span>
-        </a>
-        <a href="#calculator" class="chapter-pill" data-target="calculator">
-          <span class="pill-dot"></span>
-          <span>Calculator</span>
-        </a>
-      </div>
-      <div class="chapter-action">
-        <button type="button" class="chapter-cta-btn" id="chapter-cta-demo">
-          <span>Book Demo</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-        </button>
-      </div>
-    </div>
-  </nav>
-
   <main>
     <!-- ========================================================================
          ACT 1: HIGH-STAKES HERO
@@ -147,8 +128,8 @@
           </div>
 
           <h1 class="hero-headline">
-            What we can measure, we can manage. <br>
-            <span class="text-accent">What we can manage, we can transform.</span>
+            Connect everything. <br>
+            <span class="text-accent">Decarbonize everything.</span>
           </h1>
 
           <p class="hero-lead">
