@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="index.css?v=demo-csv-v1">
+  <link rel="stylesheet" href="index.css?v=enos-stack-v1">
 </head>
 <body>
   <!-- Interactive Kinetic Background Canvas -->
@@ -91,13 +91,54 @@
     </div>
   </header>
 
+  <!-- ========================================================================
+       STICKY CHAPTER NAVIGATOR (INTERACTIVE STORYBOARD)
+       Allows one-click jumping between key sections across the long page
+       ======================================================================== -->
+  <nav class="chapter-nav" id="chapter-nav" aria-label="Page Sections Navigation">
+    <div class="container chapter-nav-inner">
+      <div class="chapter-pills-wrap">
+        <a href="#overview" class="chapter-pill active" data-target="overview">
+          <span class="pill-dot"></span>
+          <span>Overview</span>
+        </a>
+        <a href="#enos-stack" class="chapter-pill" data-target="enos-stack">
+          <span class="pill-dot"></span>
+          <span>EnOS™ Stack</span>
+        </a>
+        <a href="#engine" class="chapter-pill" data-target="engine">
+          <span class="pill-dot"></span>
+          <span>Simulator</span>
+        </a>
+        <a href="#sectors" class="chapter-pill" data-target="sectors">
+          <span class="pill-dot"></span>
+          <span>Sectors</span>
+        </a>
+        <a href="#calculator" class="chapter-pill" data-target="calculator">
+          <span class="pill-dot"></span>
+          <span>Calculator</span>
+        </a>
+        <a href="#security" class="chapter-pill" data-target="security">
+          <span class="pill-dot"></span>
+          <span>Trust &amp; Compliance</span>
+        </a>
+      </div>
+      <div class="chapter-action">
+        <button type="button" class="chapter-cta-btn" id="chapter-cta-demo">
+          <span>Book Demo</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
   <main>
     <!-- ========================================================================
          ACT 1: HIGH-STAKES HERO
          Narrative Purpose: Sharp, bold statement of the real Univers brand idea —
          Unity through connection. Show live, real-time decarbonization data.
          ======================================================================== -->
-    <section class="section hero-section">
+    <section class="section hero-section" id="overview">
       <div class="container hero-grid">
         <div class="hero-content">
           <div class="eyebrow">
@@ -115,15 +156,18 @@
           </p>
 
           <div class="hero-cta-group">
-            <a href="#engine" class="btn btn-primary">
-              <span>See How It Works</span>
+            <a href="#enos-stack" class="btn btn-primary">
+              <span>Explore EnOS™ Stack</span>
               <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </a>
+            <a href="#engine" class="btn btn-secondary">
+              <span>Live Simulator</span>
+            </a>
             <a href="#calculator" class="btn btn-secondary">
-              <span>Calculate Your Impact</span>
+              <span>Calculate Impact</span>
             </a>
           </div>
 
@@ -388,6 +432,150 @@
     </section>
 
     <!-- ========================================================================
+         ACT 3.5: ENOS™ PLATFORM ARCHITECTURE & STACK EXPLORER
+         Interactive 4-Layer Technology Stack (From Univers Company Intro 2026, Slide 7)
+         ======================================================================== -->
+    <section class="section section-border-top enos-stack-section" id="enos-stack">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="eyebrow">
+            <span class="pulse-dot"></span>
+            <span>The Platform for Physical AI // EnOS™ Architecture</span>
+          </div>
+          <h2 class="section-title">
+            The EnOS™ Platform Stack: Scalable AI, Mission-Critical Reliability &amp; Open Connectivity
+          </h2>
+          <p class="section-subtitle">
+            Explore the multi-layer technology stack that powers over 550 GW of renewable energy assets and 220M+ connected operational devices worldwide. Click each layer below to inspect its data architecture, protocol adapters, and verified enterprise outcomes.
+          </p>
+        </div>
+
+        <!-- Stack Explorer Layout -->
+        <div class="stack-explorer-layout">
+          <!-- Stack Navigation Selector (Vertical Layers) -->
+          <div class="stack-layers-nav" role="tablist" aria-label="EnOS Platform Stack Layers">
+
+            <button class="stack-layer-btn active" data-layer="4" role="tab" aria-selected="true" id="stack-btn-4">
+              <div class="layer-num-badge">LAYER 04</div>
+              <div class="layer-info">
+                <div class="layer-title-row">
+                  <h3 class="layer-title">Agentic Control Tower &amp; Applications</h3>
+                  <span class="layer-tag-pill">Outcomes &amp; Action</span>
+                </div>
+                <p class="layer-summary">Closed-loop autonomous outcome management, Cloud BMS, fleet electrification, and port terminal optimization.</p>
+              </div>
+            </button>
+
+            <button class="stack-layer-btn" data-layer="3" role="tab" aria-selected="false" id="stack-btn-3">
+              <div class="layer-num-badge">LAYER 03</div>
+              <div class="layer-info">
+                <div class="layer-title-row">
+                  <h3 class="layer-title">Industrial Intelligence Hub</h3>
+                  <span class="layer-tag-pill">Physics AI &amp; Models</span>
+                </div>
+                <p class="layer-summary">Physics-informed domain models, cross-domain operational ontology, and high-performance graph computing.</p>
+              </div>
+            </button>
+
+            <button class="stack-layer-btn" data-layer="2" role="tab" aria-selected="false" id="stack-btn-2">
+              <div class="layer-num-badge">LAYER 02</div>
+              <div class="layer-info">
+                <div class="layer-title-row">
+                  <h3 class="layer-title">Integrated Data Fabric</h3>
+                  <span class="layer-tag-pill">Multi-Modal Foundation</span>
+                </div>
+                <p class="layer-summary">Time-series, spatial, relational, vector, and graph engines unified into a single operational semantic layer.</p>
+              </div>
+            </button>
+
+            <button class="stack-layer-btn" data-layer="1" role="tab" aria-selected="false" id="stack-btn-1">
+              <div class="layer-num-badge">LAYER 01</div>
+              <div class="layer-info">
+                <div class="layer-title-row">
+                  <h3 class="layer-title">Physical Connectivity &amp; Intelligent Edge</h3>
+                  <span class="layer-tag-pill">220M+ Connected OT</span>
+                </div>
+                <p class="layer-summary">EnOS Edge Logger &amp; AI-accelerated protocol injection unifying meters, sensors, and SCADA across every OEM.</p>
+              </div>
+            </button>
+
+          </div>
+
+          <!-- Dynamic Deep-Dive Display Card -->
+          <div class="stack-detail-panel" id="stack-detail-card" aria-live="polite">
+            <!-- Populated dynamically via JS with fallback initial content -->
+            <div class="stack-card-inner">
+              <div class="stack-card-header">
+                <div class="stack-layer-indicator">
+                  <span class="indicator-dot"></span>
+                  <span class="indicator-label" id="stack-card-level">LAYER 04 OF 04 // ENTERPRISE OUTCOME LAYER</span>
+                </div>
+                <h3 class="stack-card-title" id="stack-card-title">Agentic Control Tower &amp; Multi-Layer Framework</h3>
+                <p class="stack-card-desc" id="stack-card-desc">
+                  Transforms predictive intelligence into coordinated, closed-loop machine execution. Dispatches optimal chiller delta-T setpoints, throttles EV charging to protect substations, and updates the enterprise carbon accounting ledger in milliseconds.
+                </p>
+              </div>
+
+              <div class="stack-card-grid">
+                <div class="stack-spec-block">
+                  <div class="spec-label">Core Modules &amp; Capabilities</div>
+                  <ul class="spec-list" id="stack-card-modules">
+                    <li>Multi-Layer Agent Framework for autonomous operations</li>
+                    <li>Closed-loop dispatch &amp; governed setpoint execution</li>
+                    <li>EnOS Ark™ Scope 1, 2, and 3 enterprise carbon ledger</li>
+                    <li>Sub-second anomaly resolution (11ms lock frequency)</li>
+                  </ul>
+                </div>
+
+                <div class="stack-spec-block">
+                  <div class="spec-label">Verified Enterprise Deployments</div>
+                  <div class="proof-callout" id="stack-card-proof">
+                    <strong>HDB Singapore &amp; DHL Fleet:</strong> 9 vendor BMS consolidated into 1 sovereign platform across 10,000+ assets; 60,000+ EV charging assets managed with €41M net annual EBIT impact.
+                  </div>
+                </div>
+              </div>
+
+              <div class="stack-protocols-row">
+                <span class="protocols-label">Protocols &amp; Ecosystem Interfaces:</span>
+                <div class="protocol-tags" id="stack-card-protocols">
+                  <span class="proto-tag">Open REST APIs</span>
+                  <span class="proto-tag">GraphQL</span>
+                  <span class="proto-tag">Kafka Streaming</span>
+                  <span class="proto-tag">Webhooks</span>
+                  <span class="proto-tag">Python SDK</span>
+                  <span class="proto-tag">SAP / ESG Connectors</span>
+                </div>
+              </div>
+
+              <div class="stack-card-action">
+                <button type="button" class="btn btn-primary btn-sm" id="btn-stack-to-simulator">
+                  <span>See This Layer in 3-Stage Simulator ↓</span>
+                  <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section Bridge Bar -->
+        <div class="stack-bridge-bar">
+          <div class="bridge-caption">
+            <span>Ready to see the EnOS™ stack processing real-time machine telemetry?</span>
+          </div>
+          <div class="bridge-actions">
+            <a href="#engine" class="btn btn-secondary btn-sm" id="bridge-to-sim">
+              <span>Test in Live Simulator ↓</span>
+            </a>
+            <a href="#calculator" class="btn btn-primary btn-sm" id="bridge-to-calc">
+              <span>Calculate Impact for Your Estate →</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
          ACT 4: THE ENOS ENGINE (EDGE -> CLOUD -> EARTH)
          Interactive 3-Stage Simulator
          ======================================================================== -->
@@ -480,6 +668,17 @@
             </div>
           </div>
         </div>
+
+        <!-- Simulator Bridge Links ("Click into each other") -->
+        <div class="simulator-bridge-bar">
+          <div class="bridge-caption">
+            <span>Wondering how these 3 stages translate to financial returns for your sector?</span>
+          </div>
+          <div class="bridge-actions">
+            <a href="#sectors" class="btn btn-secondary btn-sm">Explore Sector Deployments →</a>
+            <a href="#calculator" class="btn btn-primary btn-sm">Calculate Value for Your Estate →</a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -488,7 +687,7 @@
          Narrative Purpose: Tangible proof across the 4 core domains.
          Real stats, verified case studies, and customer quotes.
          ======================================================================== -->
-    <section class="section section-border-top" id="industries">
+    <section class="section section-border-top" id="sectors">
       <div class="container">
         <div class="section-header text-center">
           <div class="eyebrow">
@@ -1162,6 +1361,6 @@
   </div>
 
   <!-- Scripts -->
-  <script src="app.js?v=demo-csv-v1"></script>
+  <script src="app.js?v=enos-stack-v1"></script>
 </body>
 </html>

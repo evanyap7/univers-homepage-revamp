@@ -19,7 +19,9 @@ function boot() {
     ['init3DTiltCards', init3DTiltCards],
     ['initCyberHUD', initCyberHUD],
     ['initNumberTallies', initNumberTallies],
-    ['initDemoBookingFlow', initDemoBookingFlow]
+    ['initDemoBookingFlow', initDemoBookingFlow],
+    ['initChapterNav', initChapterNav],
+    ['initEnOSStackExplorer', initEnOSStackExplorer]
   ];
 
   systems.forEach(([name, fn]) => {
@@ -2111,10 +2113,301 @@ function initDemoBookingFlow() {
     });
   }
 
+  const triggerChapter = document.getElementById('chapter-cta-demo');
+  if (triggerChapter) {
+    triggerChapter.addEventListener('click', (e) => {
+      e.preventDefault();
+      openDemoModal();
+    });
+  }
+
+  // Export globally for cross-system bridges
+  window.openDemoModal = openDemoModal;
+
   // Initial render of badges and leads
   const initialLeads = getLeads();
   updateLeadsCount(initialLeads.length);
 }
 
 
+/* ==========================================================================
+   STICKY CHAPTER NAVIGATOR (INTERACTIVE STORYBOARD)
+   Tracks user scroll across key sections and provides one-click smooth jumping
+   to eliminate long-scroll fatigue and enable instant section traversal.
+   ========================================================================== */
+function initChapterNav() {
+  const nav = document.getElementById('chapter-nav');
+  if (!nav) return;
 
+  const pills = nav.querySelectorAll('.chapter-pill');
+  const demoBtn = document.getElementById('chapter-cta-demo');
+  const pillsWrap = nav.querySelector('.chapter-pills-wrap');
+
+  const sectionIds = ['overview', 'enos-stack', 'engine', 'sectors', 'calculator', 'security'];
+  const sections = sectionIds
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+
+  // Smooth scroll on pill click
+  pills.forEach(pill => {
+    pill.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = pill.getAttribute('data-target') || pill.getAttribute('href').replace('#', '');
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        // Sticky offset accounts for header + chapter nav
+        const navHeight = nav.offsetHeight || 54;
+        const headerHeight = 72;
+        const totalOffset = navHeight + headerHeight - 10;
+        const targetPos = targetEl.getBoundingClientRect().top + window.pageYOffset - totalOffset;
+        window.scrollTo({ top: Math.max(0, targetPos), behavior: 'smooth' });
+
+        // Update active class immediately
+        pills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        if (window.UniversInteractive && window.UniversInteractive.playSound) {
+          window.UniversInteractive.playSound('click');
+        }
+      }
+    });
+  });
+
+  // Scrollspy to keep active pill synced with viewport
+  let ticking = false;
+  function updateActivePill() {
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    const navOffset = 180;
+
+    let currentId = sectionIds[0];
+    for (let i = sections.length - 1; i >= 0; i--) {
+      const section = sections[i];
+      if (scrollY >= section.offsetTop - navOffset) {
+        currentId = section.id;
+        break;
+      }
+    }
+
+    pills.forEach(pill => {
+      const targetId = pill.getAttribute('data-target') || pill.getAttribute('href').replace('#', '');
+      if (targetId === currentId) {
+        if (!pill.classList.contains('active')) {
+          pills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          // Auto-scroll pill into view on narrow screens
+          if (pillsWrap && pillsWrap.scrollWidth > pillsWrap.clientWidth) {
+            const pillLeft = pill.offsetLeft;
+            const pillWidth = pill.offsetWidth;
+            const wrapWidth = pillsWrap.clientWidth;
+            pillsWrap.scrollTo({
+              left: pillLeft - (wrapWidth / 2) + (pillWidth / 2),
+              behavior: 'smooth'
+            });
+          }
+        }
+      }
+    });
+
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateActivePill);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Initial call
+  updateActivePill();
+}
+
+
+/* ==========================================================================
+   ENOS™ PLATFORM ARCHITECTURE & STACK EXPLORER
+   Interactive 4-layer architectural deep-dive with protocol specs, verified
+   deployments, and cross-section bridges to the simulator and calculator.
+   ========================================================================== */
+function initEnOSStackExplorer() {
+  const section = document.getElementById('enos-stack');
+  if (!section) return;
+
+  const layerButtons = section.querySelectorAll('.stack-layer-btn');
+  const levelLabel = document.getElementById('stack-card-level');
+  const titleEl = document.getElementById('stack-card-title');
+  const descEl = document.getElementById('stack-card-desc');
+  const modulesEl = document.getElementById('stack-card-modules');
+  const proofEl = document.getElementById('stack-card-proof');
+  const protocolsEl = document.getElementById('stack-card-protocols');
+  const simBtn = document.getElementById('btn-stack-to-simulator');
+
+  const stackData = {
+    '4': {
+      level: 'LAYER 04 OF 04 // ENTERPRISE OUTCOME LAYER',
+      title: 'Agentic Control Tower & Multi-Layer Framework',
+      desc: 'Transforms predictive intelligence into coordinated, closed-loop machine execution. Dispatches optimal chiller delta-T setpoints, throttles EV charging to protect substations, and updates the enterprise carbon accounting ledger in milliseconds.',
+      modules: [
+        'Multi-Layer Agent Framework for autonomous operations',
+        'Closed-loop dispatch & governed setpoint execution',
+        'EnOS Ark™ Scope 1, 2, and 3 enterprise carbon ledger',
+        'Sub-second anomaly resolution (11ms lock frequency)'
+      ],
+      proof: '<strong>HDB Singapore &amp; DHL Fleet:</strong> 9 vendor BMS consolidated into 1 sovereign platform across 10,000+ assets; 60,000+ EV charging assets managed with €41M net annual EBIT impact.',
+      protocols: ['Open REST APIs', 'GraphQL', 'Kafka Streaming', 'Webhooks', 'Python SDK', 'SAP / ESG Connectors'],
+      simStep: '3',
+      simBtnText: 'See Closed-Loop Execution in Simulator (Stage 3) ↓'
+    },
+    '3': {
+      level: 'LAYER 03 OF 04 // PHYSICS-INFORMED AI ENGINE',
+      title: 'Industrial Intelligence Hub & Domain AI',
+      desc: 'Combines machine learning with fundamental thermodynamic, electrical, and mechanical principles. Generates real-time digital twins that compute efficiency degradation, predict battery thermal runaway, and optimize wind farm yaw alignment.',
+      modules: [
+        'Physics-Informed Neural Networks (PINNs) & thermodynamic twins',
+        'Multi-agent predictive maintenance & degradation forecasting',
+        'Cross-domain operational ontology & semantic graph reasoning',
+        'Continuous self-calibration against real-time operational feedback'
+      ],
+      proof: '<strong>550+ GW Global Renewable Assets &amp; AESC Gigafactories:</strong> 15% improvement in wind turbine energy capture; sub-second battery cell thermal deviation forecasting across 12 gigafactories.',
+      protocols: ['ONNX Runtime', 'PyTorch / TensorFlow', 'EnOS Model Registry', 'Graph Neural Nets', 'Jupyter Workspace', 'SQL/Vector Hybrid Query'],
+      simStep: '2',
+      simBtnText: 'See Predictive Physics AI in Simulator (Stage 2) ↓'
+    },
+    '2': {
+      level: 'LAYER 02 OF 04 // DISTRIBUTED OPERATIONAL FABRIC',
+      title: 'Integrated Data Fabric & Multi-Modal Foundation',
+      desc: 'The industrial data foundation that unifies heterogeneous operational telemetry. Ingests, normalizes, and indexes petabytes of high-frequency machine data with microsecond precision and zero data loss guarantee.',
+      modules: [
+        'Hybrid Time-Series, Spatial GIS, Relational & Vector storage engine',
+        'High-throughput stream processing pipeline (<18ms global ingestion latency)',
+        'Automated data quality cleansing, outlier rejection & deduplication',
+        'Granular role-based access control & SOC 2 / ISO 27001 encryption at rest'
+      ],
+      proof: '<strong>PSA International &amp; Major Grid Operators:</strong> Managing tens of thousands of container telemetry streams and national grid substation nodes with 99.999% platform availability.',
+      protocols: ['Apache Spark', 'Apache Kafka', 'Timescale TSDB', 'PostGIS', 'Apache Parquet', 'gRPC Streaming'],
+      simStep: '2',
+      simBtnText: 'See Ingestion & Intelligence in Simulator (Stage 2) ↓'
+    },
+    '1': {
+      level: 'LAYER 01 OF 04 // OT PROTOCOL & DEVICE INGESTION',
+      title: 'Physical Connectivity & Intelligent Edge',
+      desc: 'Enables universal hardware agnosticism. Deploys lightweight EnOS Edge Loggers and soft-adapters to bridge legacy proprietary SCADA, smart meters, sensors, chillers, inverters, and battery management systems.',
+      modules: [
+        'Universal OT protocol translation library (200+ native industrial protocols)',
+        'EnOS Edge Logger with store-and-forward edge cache for zero telemetry loss',
+        'On-premise real-time inference & local safety override governance',
+        'Plug-and-play secure onboarding with zero-touch hardware provisioning'
+      ],
+      proof: '<strong>220 Million+ Connected Devices Globally:</strong> Unifying 200+ equipment manufacturers (Siemens, Schneider, Honeywell, ABB, Daikin, Carrier) across 500+ commercial complexes and energy parks.',
+      protocols: ['Modbus TCP/RTU', 'OPC-UA', 'BACnet IP/MSTP', 'MQTT / Sparkplug B', 'IEC 61850', 'DNP3 / CANbus'],
+      simStep: '1',
+      simBtnText: 'See Edge Protocol Ingestion in Simulator (Stage 1) ↓'
+    }
+  };
+
+  function selectLayer(layerNum) {
+    const data = stackData[layerNum];
+    if (!data) return;
+
+    // Update buttons
+    layerButtons.forEach(btn => {
+      const isCurrent = btn.dataset.layer === layerNum;
+      btn.classList.toggle('active', isCurrent);
+      btn.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+    });
+
+    // Animate detail card
+    const detailCard = document.getElementById('stack-detail-card');
+    if (detailCard) {
+      detailCard.style.opacity = '0.4';
+      detailCard.style.transform = 'translateY(4px)';
+      setTimeout(() => {
+        detailCard.style.opacity = '1';
+        detailCard.style.transform = 'translateY(0)';
+      }, 140);
+    }
+
+    // Update details
+    if (levelLabel) levelLabel.textContent = data.level;
+    if (titleEl) titleEl.textContent = data.title;
+    if (descEl) descEl.textContent = data.desc;
+
+    if (modulesEl) {
+      modulesEl.innerHTML = data.modules.map(mod => `<li>${mod}</li>`).join('');
+    }
+
+    if (proofEl) {
+      proofEl.innerHTML = data.proof;
+    }
+
+    if (protocolsEl) {
+      protocolsEl.innerHTML = data.protocols.map(p => `<span class="proto-tag">${p}</span>`).join('');
+    }
+
+    if (simBtn) {
+      simBtn.dataset.simStep = data.simStep;
+      const btnSpan = simBtn.querySelector('span');
+      if (btnSpan) {
+        btnSpan.textContent = data.simBtnText;
+      }
+    }
+  }
+
+  // Layer button click handler
+  layerButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const layerNum = btn.dataset.layer;
+      selectLayer(layerNum);
+      if (window.UniversInteractive && window.UniversInteractive.playSound) {
+        window.UniversInteractive.playSound('click');
+      }
+    });
+  });
+
+  // Cross-section bridge button inside stack card to simulator
+  if (simBtn) {
+    simBtn.addEventListener('click', () => {
+      const targetStep = simBtn.dataset.simStep || '3';
+      const simSection = document.getElementById('engine');
+      if (simSection) {
+        const navOffset = 120;
+        const pos = simSection.getBoundingClientRect().top + window.pageYOffset - navOffset;
+        window.scrollTo({ top: Math.max(0, pos), behavior: 'smooth' });
+
+        // Activate corresponding step tab in simulator
+        const stepTab = document.querySelector(`.engine-step-tab[data-step="${targetStep}"]`);
+        if (stepTab) {
+          setTimeout(() => {
+            stepTab.click();
+          }, 400);
+        }
+
+        if (window.UniversInteractive && window.UniversInteractive.playSound) {
+          window.UniversInteractive.playSound('laser');
+        }
+      }
+    });
+  }
+
+  // Cross-section bridge bar links inside #enos-stack and #engine
+  const crossLinks = document.querySelectorAll('.stack-bridge-bar a[href^="#"], .simulator-bridge-bar a[href^="#"], .hero-cta-group a[href^="#"]');
+  crossLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (!href || !href.startsWith('#')) return;
+      const targetId = href.substring(1);
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        const navOffset = 120;
+        const pos = targetEl.getBoundingClientRect().top + window.pageYOffset - navOffset;
+        window.scrollTo({ top: Math.max(0, pos), behavior: 'smooth' });
+        if (window.UniversInteractive && window.UniversInteractive.playSound) {
+          window.UniversInteractive.playSound('click');
+        }
+      }
+    });
+  });
+
+  // Default select Layer 4
+  selectLayer('4');
+}
