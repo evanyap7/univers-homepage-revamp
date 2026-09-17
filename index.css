@@ -4,11 +4,15 @@
    Design Personality: Exaggerated Minimalism / Editorial Industrial Precision
    Visual direction: oversized display type, near-black canvas, one restrained
    accent, massive whitespace, serif-italic editorial pull quotes.
-   Typography: Space Grotesk (Display), Fraunces Italic (Editorial accent),
-   Inter (Body), JetBrains Mono (Telemetry/Labels)
+   Typography: Inter, used for both display and body — matching Univers' real
+   brand system, which sets every Latin run in one face (Aptos Display) rather
+   than a separate heading/body pairing. Aptos Display is a Microsoft-licensed
+   font with no web-embeddable distribution, so Inter is used as the closest
+   freely-licensed substitute. Fraunces Italic is kept as a deliberate editorial
+   accent for pull quotes; JetBrains Mono for telemetry/data labels.
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,500&display=swap');
 
 :root {
   /* Core Palette - Near-Black Editorial Canvas */
@@ -47,7 +51,7 @@
   --univ-text-dark: #0F172A;
 
   /* Font Families */
-  --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-serif: 'Fraunces', Georgia, serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -331,30 +335,17 @@ h1, h2, h3, h4, h5, h6 {
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
   text-decoration: none;
   color: var(--univ-text-primary);
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.45rem;
-  letter-spacing: -0.03em;
 }
 
-.logo-symbol {
-  width: 32px;
-  height: 32px;
-  background: linear-gradient(135deg, var(--univ-emerald) 0%, var(--univ-cyan) 100%);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 16px rgba(0, 229, 153, 0.35);
-}
-
-.logo-symbol svg {
-  width: 20px;
-  height: 20px;
-  color: #000;
+/* The real Univers wordmark, extracted as vector paths from the brand's
+   own master deck template (orbit-ring mark + "univers" lowercase logotype).
+   Renders in currentColor so it follows the surrounding theme. */
+.brand-logo-mark {
+  height: 26px;
+  width: auto;
+  display: block;
 }
 
 .nav-links {
