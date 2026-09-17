@@ -1,67 +1,51 @@
-# Univers Homepage Revamp & Elementor Implementation Blueprint
+# Univers Physical AI — Concept Redesign
 
-> **The Operating System for Physical AI**  
-> Physical AI that runs the world's critical infrastructure. 1,070 GW+ managed | 450M+ connected devices | Gartner Magic Quadrant Leader 2025.
+> **The Platform for Physical AI**
+> Physical AI that runs the world's critical operations. 1,070 GW+ managed | 450M+ connected devices | Gartner Magic Quadrant Leader 2025.
 
----
-
-## 🌟 Executive Overview
-
-Univers (formerly Envision Digital) is the global category leader in Physical AI for critical infrastructure. While Univers has established high-caliber messaging, this revamp repositions the company from a passive monitoring dashboard to **the autonomous operating system that perceives, understands, and executes closed-loop control under governed human authority**.
-
-This repository contains:
-1. **Interactive Semantic Prototype (`index.html`, `index.css`, `app.js`)**: A live, high-fidelity web experience featuring sub-second telemetry streams, an interactive 3-stage Physical AI engine simulator, a sector explorer, an estate ROI value calculator, and an **Elementor Inspector Mode** toggle.
-2. **Elementor Implementation Blueprint (`elementor-blueprint.md`)**: A complete developer specification for WordPress + Elementor Pro (container structures, widget mapping, CSS tokens, and responsive breakpoints).
-3. **Brand Messaging & Copy Matrix (`messaging-and-copy-matrix.md`)**: Production-ready copy inventory, persona pain points, and positioning guidelines.
+> ⚠️ **Unofficial concept project.** This is a design & front-end exercise inspired by [univers.com](https://univers.com/). It is **not affiliated with, endorsed by, or representing Univers**. Company names, statistics, and customer quotes are sourced from Univers' public website and customer stories; see the footer disclosure on the live page for details. The page is served with `noindex, nofollow` so it is not indexed by search engines.
 
 ---
 
-## 🚀 Key Features of the Revamped Concept
+## Overview
 
-### 1. Governed Autonomy ("Infrastructure has outgrown human reaction time. Univers runs it.")
-- Moves the industry away from passive alarm fatigue.
-- Highlights machine-speed closed-loop execution with strict human boundary controls at high-consequence thresholds.
+This repository is a single-page, dependency-free static site (`index.html`, `index.css`, `app.js`) built as a UI/UX concept redesign of Univers' public marketing homepage. It's a fully deployable static site — no build step, no framework, no backend.
 
-### 2. The 8-Act Narrative Arc
-- **Act 1: High-Stakes Hero**: Category hook, live telemetry ticker, and dual high-intent CTAs.
-- **Act 2: Institutional Scale & Authority**: 1,070 GW+ managed, 450M+ OT devices, 800+ clients, and Gartner MQ recognition.
-- **Act 3: The Industrial Shift**: Side-by-side contrast between legacy monitoring and Univers governed autonomy.
-- **Act 4: The Physical AI Engine**: Interactive 3-stage simulator (Perceive -> Understand -> Orchestrate).
-- **Act 5: Critical Infrastructure Sectors**: Tabbed explorer for Energy & Utilities, Built Environment, Transportation & Ports, and Industrial Manufacturing.
-- **Act 6: Compounding Moat & Edge AI Hardware**: The 5-D ontology flywheel and the AMD-powered EnOS™ AI Box debut at CES 2026.
-- **Act 7: Mission-Critical Security Vault**: Industrial OT/IT compliance matrix (IEC 62443, ISO 27001, SOC 2/3, NIS2, NERC CIP, Air-gap).
-- **Act 8: Value Realization Calculator & Conversion Gateway**: Dynamic self-qualification calculator with instant financial output.
+Sections cover: hero + live telemetry simulator, institutional scale & real customer/award recognition, the industrial market shift, an interactive "Perceive → Understand → Orchestrate" architecture simulator, a four-sector outcomes explorer (Energy, Built Environment, Transportation & Ports, Manufacturing) with a verified customer testimonial (ORIX) and case studies, the EnOS™ AI Box hardware banner, a security & compliance overview linking to Univers' official Trust Center, and an illustrative ROI calculator.
 
-### 3. Built 100% for Elementor Pro (WordPress)
-- Every section is architected strictly using Elementor Flexbox & Grid containers (`e-con`).
-- Click the **Elementor Mode** button in the header of the prototype to toggle live container and widget annotations across the entire page.
-
----
-
-## 💻 Local Quickstart
-
-To run the interactive prototype locally:
+## Local development
 
 ```bash
-# Clone the repository
-git clone https://github.com/evanyap7/univers-homepage-revamp.git
-cd univers-homepage-revamp
-
-# Start a local web server
 python3 -m http.server 8088
-
-# Open in your browser
 open http://localhost:8088
 ```
 
----
+No build step is required — edit `index.html` / `index.css` / `app.js` directly and refresh.
 
-## 📐 Design Intelligence & Attribution
-Built using the design system intelligence from [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill).
-- **Typography:** Space Grotesk (Headings), Inter (Body), JetBrains Mono (Telemetry/Data)
-- **Palette:** Neo-Industrial Deep Dark (`#07090E`), Electric Emerald (`#00E599`), Cyber Cyan (`#00D2FF`)
+## Deployment
 
----
+This is a zero-config static site. `vercel.json` sets clean URLs and long-lived caching for CSS/JS/SVG assets.
 
-## 📄 License
-Internal concept development for Univers Web Dev.
+```bash
+npm i -g vercel   # if not already installed
+vercel deploy --prod
+```
+
+Or connect the repo in the Vercel dashboard — it will auto-detect a static site (no framework, no build command needed).
+
+## Design system
+
+- **Typography:** Space Grotesk (headings), Inter (body), JetBrains Mono (telemetry/data) — via Google Fonts
+- **Palette:** Neo-Industrial Deep Dark (`#07090E`), Electric Emerald (`#00E599`), Cyber Cyan (`#00D2FF`) — WCAG AA-verified text contrast
+- **Icons:** hand-authored inline SVG, stroke-based, consistent with the Feather/Tabler style referenced in [bradtraversy/design-resources-for-developers](https://github.com/bradtraversy/design-resources-for-developers)
+- Accessible mobile navigation (offcanvas drawer), scroll-reveal micro-interactions that respect `prefers-reduced-motion`, and sticky-header-aware anchor scrolling
+
+Originally built using design system intelligence from [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill).
+
+## Content sourcing
+
+Copy, statistics, customer names, and the one attributed testimonial in this build are sourced from univers.com's homepage, about page, and published customer stories (ORIX, PSA, Indorama). Where no verified named quote existed for a sector, the site uses factual, unattributed case-study framing instead of inventing a person — see `app.js` → `sectorData` for the `quoteType` distinction between `testimonial` (verified, attributed) and `caseStudy` (factual, unattributed).
+
+## License
+
+Personal concept/portfolio project. Not an official Univers property.
