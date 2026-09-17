@@ -33,6 +33,11 @@ function initEngineSimulator() {
     tab.addEventListener('click', () => {
       tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
+      const step = tab.getAttribute('data-step');
+      const consoleText = document.getElementById('sim-console-text');
+      if (consoleText) {
+        consoleText.textContent = '>> Active Layer ' + step + ' engaged.';
+      }
     });
   });
 }
