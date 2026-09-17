@@ -413,4 +413,86 @@ h1, h2, h3, h4, h5, h6 {
 .hero-section {
   padding-top: clamp(60px, 8vw, 100px);
   padding-bottom: clamp(60px, 7vw, 90px);
-  p
+  position: relative;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 680px;
+}
+
+.hero-headline {
+  font-size: clamp(2.4rem, 4.4vw, 4.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  margin-bottom: 1.5rem;
+}
+
+.hero-lead {
+  font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+  color: var(--univ-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2.25rem;
+}
+
+.hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 2.5rem;
+}
+
+.hero-trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--univ-border-subtle);
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--univ-text-secondary);
+}
+
+.trust-item svg {
+  color: var(--univ-emerald);
+}
+
+/* HERO LIVE TELEMETRY SIMULATOR PANEL */
+.hero-visual {
+  position: relative;
+}
+
+.telemetry-console {
+  background: #090E17;
+  border: 1px solid var(--univ-border-medium);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 229, 153, 0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.console-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--univ-border-subtle);
+}
+
+.console-title {
+  display: flex;
+  align-items: center;
+ 
