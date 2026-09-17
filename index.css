@@ -40,7 +40,7 @@
   /* Typography Colors */
   --univ-text-primary: #FFFFFF;
   --univ-text-secondary: #94A3B8;
-  --univ-text-muted: #64748B;
+  --univ-text-muted: #7E8CA1;
   --univ-text-dark: #0F172A;
 
   /* Font Families */
@@ -74,6 +74,7 @@ html {
   scroll-behavior: smooth;
   color-scheme: dark;
   font-size: 16px;
+  scroll-padding-top: 96px;
 }
 
 body {
@@ -383,6 +384,61 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: 14px;
+}
+
+/* MOBILE NAV TOGGLE & OFFCANVAS DRAWER */
+.mobile-nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--univ-border-medium);
+  border-radius: var(--radius-sm);
+  color: var(--univ-text-primary);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.mobile-nav-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-nav-toggle .icon-close {
+  display: none;
+}
+
+.mobile-nav-toggle[aria-expanded="true"] .icon-menu {
+  display: none;
+}
+
+.mobile-nav-toggle[aria-expanded="true"] .icon-close {
+  display: block;
+}
+
+.mobile-nav-cta-group {
+  display: none;
+}
+
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 6, 10, 0.65);
+  z-index: 190;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.nav-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.nav-open {
+  overflow: hidden;
 }
 
 /* ELEMENTOR INSPECTOR TOGGLE SWITCH */
@@ -1505,6 +1561,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
+   SCROLL REVEAL
+   Classes are added by JS only when IntersectionObserver + motion are
+   available, so content is never hidden if JavaScript fails to load.
+   ========================================================================== */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
    RESPONSIVE MEDIA QUERIES
    ========================================================================== */
 @media (max-width: 1024px) {
@@ -1535,8 +1607,70 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
+  .mobile-nav-toggle {
+    display: inline-flex;
+  }
+
+  .nav-cta-desktop {
+    display: none;
+  }
+
+  .inspector-badge-btn span {
+    display: none;
+  }
+
+  .inspector-badge-btn {
+    padding: 10px;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: min(320px, 85vw);
+    background: var(--univ-bg-surface-elevated);
+    border-left: 1px solid var(--univ-border-medium);
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.6);
+    padding: 100px 28px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform var(--transition-slow), visibility 0s linear var(--transition-slow);
+    z-index: 200;
+    overflow-y: auto;
+  }
+
+  .nav-menu.open {
+    transform: translateX(0);
+    visibility: visible;
+    transition: transform var(--transition-slow);
+  }
+
   .nav-links {
-    display: none; /* In Elementor: Offcanvas drawer */
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .nav-link {
+    padding: 14px 4px;
+    min-height: 44px;
+    font-size: 1.05rem;
+    border-bottom: 1px solid var(--univ-border-subtle);
+  }
+
+  .mobile-nav-cta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .mobile-nav-cta-group .btn {
+    width: 100%;
   }
 
   .shift-comparison-grid,
