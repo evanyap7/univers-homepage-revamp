@@ -676,4 +676,158 @@ h1, h2, h3, h4, h5, h6 {
 .marquee-label {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  tex
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--univ-text-muted);
+  white-space: nowrap;
+}
+
+.marquee-logos {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.logo-item {
+  color: var(--univ-text-muted);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  transition: color var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-item:hover {
+  color: var(--univ-text-primary);
+}
+
+/* ==========================================================================
+   ACT 3: THE INDUSTRIAL SHIFT: WHY DASHBOARDS FAILED
+   ========================================================================== */
+.shift-comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.compare-card {
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.compare-legacy {
+  background: rgba(26, 16, 20, 0.4);
+  border: 1px solid rgba(255, 77, 77, 0.2);
+}
+
+.compare-legacy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--univ-red);
+}
+
+.compare-autonomous {
+  background: rgba(10, 28, 24, 0.4);
+  border: 1px solid rgba(0, 229, 153, 0.3);
+  box-shadow: 0 10px 40px -10px rgba(0, 229, 153, 0.15);
+}
+
+.compare-autonomous::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--univ-emerald);
+}
+
+.compare-badge {
+  display: inline-flex;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 1.25rem;
+}
+
+.compare-legacy .compare-badge {
+  background: rgba(255, 77, 77, 0.15);
+  color: #FFA3A3;
+}
+
+.compare-autonomous .compare-badge {
+  background: rgba(0, 229, 153, 0.15);
+  color: var(--univ-emerald);
+}
+
+.compare-heading {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.compare-lead {
+  font-size: 0.95rem;
+  color: var(--univ-text-secondary);
+  margin-bottom: 2rem;
+}
+
+.compare-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.compare-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.icon-x {
+  color: var(--univ-red);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.icon-check {
+  color: var(--univ-emerald);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   ACT 4: THE PHYSICAL AI ENGINE (PERCEIVE -> UNDERSTAND -> ORCHESTRATE)
+   Interactive 3-Stage Simulator
+   ========================================================================== */
+.engine-container {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.engine-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.engine-step-tab {
+  background: var(--univ-bg-card);
+  border: 1px solid var(--univ-border-subtle);
+  border-radius: var(--
