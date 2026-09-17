@@ -572,4 +572,108 @@ h1, h2, h3, h4, h5, h6 {
 
 .action-log-item {
   display: flex;
-  alig
+  align-items: flex-start;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.action-log-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.log-time {
+  color: var(--univ-text-muted);
+  white-space: nowrap;
+}
+
+.log-tag {
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.tag-autonomous {
+  background: rgba(0, 229, 153, 0.18);
+  color: var(--univ-emerald);
+}
+
+.tag-governed {
+  background: rgba(0, 210, 255, 0.18);
+  color: var(--univ-cyan);
+}
+
+.log-desc {
+  color: #CBD5E1;
+}
+
+/* ==========================================================================
+   ACT 2: INSTITUTIONAL AUTHORITY STRIP (TICKER & AWARDS)
+   ========================================================================== */
+.authority-section {
+  background: #090D15;
+  border-top: 1px solid var(--univ-border-subtle);
+  border-bottom: 1px solid var(--univ-border-subtle);
+  padding: 36px 0;
+}
+
+.authority-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  align-items: center;
+}
+
+.authority-stat {
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid var(--univ-border-subtle);
+  padding-left: 20px;
+}
+
+.authority-stat:first-child {
+  border-left-color: var(--univ-emerald);
+}
+
+.stat-number {
+  font-family: var(--font-mono);
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--univ-text-primary);
+  margin-bottom: 6px;
+}
+
+.stat-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #E2E8F0;
+  margin-bottom: 2px;
+}
+
+.stat-desc {
+  font-size: 0.78rem;
+  color: var(--univ-text-muted);
+}
+
+/* Client & Recognition Strip */
+.partner-marquee-section {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--univ-border-subtle);
+  background: rgba(13, 18, 29, 0.35);
+}
+
+.marquee-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.marquee-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  tex
