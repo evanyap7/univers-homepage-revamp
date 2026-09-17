@@ -1499,4 +1499,64 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-mono);
   font-size: 0.65rem;
   padding: 2px 6px;
-  bo
+  border-radius: 3px;
+  z-index: 999;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .hero-grid,
+  .engine-container,
+  .sector-content-card,
+  .hardware-banner,
+  .calculator-card {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .authority-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .flywheel-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .flywheel-card::after {
+    display: none;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* In Elementor: Offcanvas drawer */
+  }
+
+  .shift-comparison-grid,
+  .compliance-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sector-kpis {
+    grid-template-columns: 1fr;
+  }
+
+  .authority-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-nodes {
+    grid-template-columns: 1fr;
+  }
+}
