@@ -970,4 +970,94 @@ h1, h2, h3, h4, h5, h6 {
 
 .flow-node-title {
   font-family: var(--font-mono);
-  font
+  font-size: 0.78rem;
+  color: var(--univ-emerald);
+  margin-bottom: 4px;
+}
+
+.flow-node-desc {
+  font-size: 0.85rem;
+  color: var(--univ-text-primary);
+  font-weight: 600;
+}
+
+/* Live Simulation Console Text */
+.sim-live-stream {
+  margin-top: 16px;
+  padding: 12px;
+  background: #020408;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--univ-emerald);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ==========================================================================
+   ACT 5: BUILT FOR CRITICAL INFRASTRUCTURE (SECTOR EXPLORER)
+   ========================================================================== */
+.sector-nav-pills {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.sector-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--univ-border-subtle);
+  color: var(--univ-text-secondary);
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.sector-pill:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--univ-text-primary);
+  border-color: var(--univ-border-medium);
+}
+
+.sector-pill.active {
+  background: var(--univ-emerald);
+  color: var(--univ-bg-base);
+  border-color: var(--univ-emerald);
+  box-shadow: 0 4px 20px rgba(0, 229, 153, 0.3);
+}
+
+.sector-pill svg {
+  width: 18px;
+  height: 18px;
+}
+
+.sector-content-card {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  background: var(--univ-bg-card);
+  border: 1px solid var(--univ-border-medium);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  backdrop-filter: blur(20px);
+  align-items: center;
+}
+
+.sector-info h3 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.sector-info p {
+  font-size: 1.05rem;
+  color: var(--univ-text-secondary);
+  line-height: 1.6;
+  
