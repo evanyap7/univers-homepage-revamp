@@ -1,0 +1,30 @@
+/* ==========================================================================
+   UNIVERS PHYSICAL AI - DESIGN SYSTEM & STYLESHEET
+   Generated using nextlevelbuilder/ui-ux-pro-max-skill
+   Design Personality: Neo-Industrial Precision / High-Tech Governed Autonomy
+   ========================================================================== */
+
+:root {
+  /* Core Palette - High-Tech Deep Industrial */
+  --univ-bg-base: #07090E;
+  --univ-bg-surface: #0D121D;
+  --univ-bg-surface-elevated: #131A29;
+  --univ-bg-card: rgba(16, 23, 37, 0.75);
+  --univ-bg-card-hover: rgba(23, 33, 53, 0.85);
+  --univ-bg-glass: rgba(13, 18, 29, 0.65);
+
+  /* Primary Accent - Electric Emerald */
+  --univ-emerald: #00E599;
+  --univ-emerald-glow: rgba(0, 229, 153, 0.25);
+  --univ-emerald-dark: #00875A;
+  --univ-emerald-light: #66F2C2;
+
+  /* Secondary Accent - Cyber Cyan */
+  --univ-cyan: #00D2FF;
+  --univ-cyan-glow: rgba(0, 210, 255, 0.25);
+  --univ-cyan-dark: #007799;
+
+  /* Warning / Alert */
+  --univ-amber: #FFB020;
+  --univ-red: #FF4D4D;
+}
