@@ -102,3 +102,22 @@ body::before {
   outline: 2px solid var(--univ-emerald);
   outline-offset: 3px;
 }
+
+.container {
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--section-padding-x);
+  padding-right: var(--section-padding-x);
+  width: 100%;
+}
+
+.section {
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--section-padding-y);
+  position: relative;
+}
+
+.section-border-top {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
