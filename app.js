@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCyberCursor();
   init3DTiltCards();
   initCyberHUD();
+  initNumberTallies();
 });
 
 /* ==========================================================================
@@ -410,11 +411,17 @@ function initSectorExplorer() {
 
       if (titleEl) titleEl.textContent = d.title;
       if (descEl) descEl.textContent = d.desc;
-      if (kpi1El) kpi1El.textContent = d.kpi1;
+      if (window.UniversInteractive && window.UniversInteractive.updateOdometer) {
+        if (kpi1El) window.UniversInteractive.updateOdometer(kpi1El, d.kpi1);
+        if (kpi2El) window.UniversInteractive.updateOdometer(kpi2El, d.kpi2);
+        if (kpi3El) window.UniversInteractive.updateOdometer(kpi3El, d.kpi3);
+      } else {
+        if (kpi1El) kpi1El.textContent = d.kpi1;
+        if (kpi2El) kpi2El.textContent = d.kpi2;
+        if (kpi3El) kpi3El.textContent = d.kpi3;
+      }
       if (kpiLabel1El) kpiLabel1El.textContent = d.kpiLabel1;
-      if (kpi2El) kpi2El.textContent = d.kpi2;
       if (kpiLabel2El) kpiLabel2El.textContent = d.kpiLabel2;
-      if (kpi3El) kpi3El.textContent = d.kpi3;
       if (kpiLabel3El) kpiLabel3El.textContent = d.kpiLabel3;
       if (quoteLabelEl) quoteLabelEl.textContent = d.quoteType === 'testimonial' ? 'Customer Testimonial' : 'Customer Story';
       if (quoteTextEl) quoteTextEl.textContent = d.quote;
@@ -491,16 +498,28 @@ function initValueCalculator() {
     const carbonTons = Math.round(spendVal * carbonMultiplier);
 
     if (resSavings) {
-      resSavings.textContent = `$${netSavings.toLocaleString('en-US')}`;
+      if (window.UniversInteractive && window.UniversInteractive.updateOdometer) {
+        window.UniversInteractive.updateOdometer(resSavings, `$${netSavings.toLocaleString('en-US')}`);
+      } else {
+        resSavings.textContent = `$${netSavings.toLocaleString('en-US')}`;
+      }
     }
     if (resSubtext) {
       resSubtext.textContent = `Illustrative estimate — modeled at a ${(savingsRate * 100).toFixed(1)}% optimization rate from Univers’ published sector benchmarks`;
     }
     if (resPayback) {
-      resPayback.textContent = `< ${paybackMonths} Months`;
+      if (window.UniversInteractive && window.UniversInteractive.updateOdometer) {
+        window.UniversInteractive.updateOdometer(resPayback, `< ${paybackMonths} Months`);
+      } else {
+        resPayback.textContent = `< ${paybackMonths} Months`;
+      }
     }
     if (resCarbon) {
-      resCarbon.textContent = `${carbonTons.toLocaleString('en-US')} Tons/yr`;
+      if (window.UniversInteractive && window.UniversInteractive.updateOdometer) {
+        window.UniversInteractive.updateOdometer(resCarbon, `${carbonTons.toLocaleString('en-US')} Tons/yr`);
+      } else {
+        resCarbon.textContent = `${carbonTons.toLocaleString('en-US')} Tons/yr`;
+      }
     }
   }
 
@@ -1406,4 +1425,156 @@ function initCyberHUD() {
     });
   }
 }
+
+/* ==========================================================================
+   INTERACTIVE TALLY & SCROLLING DIGIT ODOMETER SYSTEM
+   Mechanical slot-machine / rolling counter physics for statistics,
+   telemetry, KPIs, and calculator results.
+   ========================================================================== */
+function initNumberTallies() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  function createOdometer(el, text) {
+    if (!el) return null;
+    const raw = text !== undefined ? String(text).trim() : el.textContent.trim();
+    // Skip if there are no numerical digits (e.g. "Gartner Leader")
+    if (!/\d/.test(raw)) return null;
+
+    el.dataset.tallyTarget = raw;
+    el.classList.add('tally-number');
+    el.setAttribute('title', 'Hover or click to re-tally');
+
+    el.innerHTML = '';
+    const ribbons = [];
+    let digitIdx = 0;
+
+    const chars = raw.split('');
+    chars.forEach((ch) => {
+      if (/\d/.test(ch)) {
+        const digit = parseInt(ch, 10);
+        const col = document.createElement('span');
+        col.className = 'odometer-col';
+
+        const ribbon = document.createElement('span');
+        ribbon.className = 'odometer-ribbon';
+
+        // 20 items: 2 cycles of 0 through 9 so every digit scrolls down at least 10 numbers
+        for (let cycle = 0; cycle < 2; cycle++) {
+          for (let d = 0; d <= 9; d++) {
+            const digitSpan = document.createElement('span');
+            digitSpan.className = 'odometer-char';
+            digitSpan.textContent = d;
+            ribbon.appendChild(digitSpan);
+          }
+        }
+
+        // Start position at top (0%)
+        ribbon.style.transform = 'translateY(0%)';
+        ribbon.dataset.target = digit;
+        ribbon.dataset.colIdx = digitIdx;
+
+        col.appendChild(ribbon);
+        el.appendChild(col);
+        ribbons.push(ribbon);
+        digitIdx++;
+      } else {
+        const staticSpan = document.createElement('span');
+        staticSpan.className = 'odometer-static';
+        staticSpan.textContent = ch;
+        el.appendChild(staticSpan);
+      }
+    });
+
+    let isRolling = false;
+
+    function roll(duration = 1200) {
+      if (isRolling) return;
+      isRolling = true;
+
+      // Reset to 0% initially
+      ribbons.forEach((ribbon) => {
+        ribbon.style.transition = 'none';
+        ribbon.style.transform = 'translateY(0%)';
+      });
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          ribbons.forEach((ribbon) => {
+            const target = parseInt(ribbon.dataset.target, 10);
+            const colIdx = parseInt(ribbon.dataset.colIdx, 10);
+            const delay = colIdx * 45; // Staggered ripple
+            // Scroll down into the second cycle: (10 + target) * 5%
+            const targetY = (10 + target) * 5;
+            ribbon.style.transition = `transform ${duration}ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`;
+            ribbon.style.transform = `translateY(-${targetY}%)`;
+          });
+
+          setTimeout(() => {
+            isRolling = false;
+            el.classList.remove('tally-landed');
+            requestAnimationFrame(() => el.classList.add('tally-landed'));
+          }, duration + ribbons.length * 45);
+        });
+      });
+
+      if (window.UniversInteractive && window.UniversInteractive.soundEnabled && window.UniversInteractive.playSound) {
+        window.UniversInteractive.playSound('hover');
+      }
+    }
+
+    // Interactive re-roll triggers
+    el.addEventListener('mouseenter', () => roll(850));
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      roll(1050);
+    });
+
+    const odo = { roll, update: (newText) => createOdometer(el, newText) };
+    el.__odometer = odo;
+    return odo;
+  }
+
+  // Expose global update method for dynamic recalculations
+  window.UniversInteractive = window.UniversInteractive || {};
+  window.UniversInteractive.updateOdometer = (el, text) => {
+    const odo = createOdometer(el, text);
+    if (odo) odo.roll(800);
+  };
+
+  // Find all statistics on page
+  const targetSelectors = [
+    '.authority-stat .stat-number',
+    '.market-signal-grid .kpi-metric',
+    '.sector-kpis .kpi-metric',
+    '#res-savings',
+    '#res-carbon',
+    '#res-payback'
+  ];
+
+  const statEls = document.querySelectorAll(targetSelectors.join(', '));
+  const odometers = [];
+
+  statEls.forEach((el) => {
+    const odo = createOdometer(el);
+    if (odo) odometers.push({ el, odo });
+  });
+
+  // IntersectionObserver: trigger scrolling tally when scrolled into view
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const matched = odometers.find((item) => item.el === entry.target);
+          if (matched) {
+            matched.odo.roll(1250);
+          }
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  odometers.forEach((item) => observer.observe(item.el));
+}
+
 
