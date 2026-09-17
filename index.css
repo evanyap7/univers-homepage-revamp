@@ -87,7 +87,9 @@ html {
   scroll-behavior: smooth;
   color-scheme: light;
   font-size: 16px;
-  scroll-padding-top: 96px;
+  /* .site-header (77px: 76px nav-container + 1px border) stacks with
+     .chapter-nav (60px) beneath it — anchor jumps need to clear both. */
+  scroll-padding-top: 137px;
 }
 
 body {
@@ -1765,9 +1767,13 @@ body.nav-open {
   pointer-events: none;
 }
 
-/* Ensure page layers sit above background canvas */
+/* Ensure page layers sit above background canvas.
+   .site-header is deliberately excluded here — it already declares its
+   own position: sticky with z-index: 100 (see .site-header above), and
+   this rule's position: relative would silently clobber that sticky
+   positioning since both selectors have equal specificity and this one
+   comes later in the file. */
 .dev-credit-bar,
-.site-header,
 main,
 .site-footer {
   position: relative;
@@ -2715,7 +2721,10 @@ body.grid-surge-active::after {
    ========================================================================== */
 .chapter-nav {
   position: sticky;
-  top: 72px; /* right beneath fixed header */
+  /* .site-header is 77px tall (76px .nav-container + 1px border) — this
+     must match exactly or the two sticky bars either overlap (nav hidden
+     under the header) or leave a gap once both are pinned mid-scroll. */
+  top: 77px;
   z-index: 95;
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(16px);
