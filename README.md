@@ -1,4 +1,4 @@
-# Univers — Platform for Decarbonization & Physical AI (Concept Redesign)
+# Univers — All Connected (Concept Redesign)
 
 Hey! 👋 Welcome to my concept redesign of the [Univers](https://univers.com/) website.
 
@@ -17,7 +17,7 @@ I wanted the page to feel alive rather than just a wall of static marketing text
 - **Mechanical Number Tally (Odometer Animation):** As you scroll down the page, statistics and KPI counters don't just jump into place — each individual digit reel scrolls vertically downward like a precision slot machine or mechanical ticker. You can also hover over or click any number to re-roll it!
 - **3D Card Tilt & Specular Flashlight:** Cards across the page react to your mouse position with smooth 3D perspective rotation, casting a soft radial spotlight flare across their surfaces.
 - **The "Interactive Lab" Cyber HUD:** Check out the floating button in the bottom-right corner! Opening it reveals:
-  - ⚡ **Grid Stress Test (Cascade Simulator):** Triggers a high-voltage surge across the site — telemetry numbers spike, background nodes surge, and the autonomous AI kicks in to stabilize the network in 11ms.
+  - ⚡ **Grid Stress Test (Cascade Simulator):** Triggers a high-voltage surge across the site — telemetry numbers spike, background nodes surge, and the anomaly is logged and resolved in 11ms as the real-time data stream re-syncs across all connected devices.
   - 🔊 **Procedural Sci-Fi Audio Synthesizer:** Built completely from scratch using the browser's native **Web Audio API** (zero external mp3 files). Generates procedural chimes on hover, crisp clicks on buttons, harmonic sweeps on radar pings, and electric hums when dragging.
   - 🎛️ **Background & Cursor Mode Switchers:** Switch between OT Mesh, Grid Matrix (orthogonal circuit paths), and Solar Drift.
 
@@ -42,7 +42,7 @@ Frameworks are great, but building this dependency-free means:
 ## 🎨 Design & Brand Identity
 
 This redesign is grounded in Univers' actual brand assets:
-- **Brand Colors:** Real Univers brand purple (`#5B4FE5`), deep industrial navy (`#14142B`) for product UI surfaces, and crisp light editorial canvas backgrounds (`#F5F5F7`).
+- **Brand Colors:** The real Univers brand purple, UN-Nebula (`#7A42EA`), straight from the Brand Guidelines' primary color palette, plus deep industrial navy (`#14142B`) for product UI surfaces and crisp light editorial canvas backgrounds (`#F5F5F7`).
 - **Typography:** Set in Inter for both display and body text with tabular figures (`tnum`) for rock-solid metric alignment, plus JetBrains Mono for telemetry tags.
 - **Global Headquarters:** Sourced directly from Univers' real Singapore headquarters at **1 Harbourfront Avenue, #17-01 Keppel Bay Tower, Singapore 098632**.
 

@@ -30,14 +30,14 @@
   /* Borders & Dividers */
   --univ-border-subtle: #E7E7EC;
   --univ-border-medium: #D6D6DE;
-  --univ-border-glow: rgba(91, 79, 229, 0.35);
+  --univ-border-glow: rgba(122, 66, 234, 0.35);
 
   /* Primary Accent - Univers Purple. The single accent; used with restraint. */
-  --univ-purple: #5B4FE5;
-  --univ-purple-glow: rgba(91, 79, 229, 0.22);
-  --univ-purple-dark: #4338CA;
-  --univ-purple-light: #8478FF;
-  --univ-purple-soft: #EFEDFC;
+  --univ-purple: #7A42EA;
+  --univ-purple-glow: rgba(122, 66, 234, 0.22);
+  --univ-purple-dark: #5F34B7;
+  --univ-purple-light: #A984F1;
+  --univ-purple-soft: #F2ECFD;
 
   /* Secondary - Navy. Reserved for the two live-UI panels (telemetry console,
      engine screen) — the "product screenshot" moments, not decoration. */
@@ -109,7 +109,7 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: radial-gradient(circle at 50% 0%, rgba(91, 79, 229, 0.05) 0%, transparent 55%);
+  background-image: radial-gradient(circle at 50% 0%, rgba(122, 66, 234, 0.05) 0%, transparent 55%);
   pointer-events: none;
   z-index: -1;
 }
@@ -177,10 +177,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .dev-credit-link:hover {
   color: #FFFFFF;
-  background: rgba(91, 79, 229, 0.25);
+  background: rgba(122, 66, 234, 0.25);
   border-color: var(--univ-purple-light);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(91, 79, 229, 0.2);
+  box-shadow: 0 4px 12px rgba(122, 66, 234, 0.2);
 }
 
 .dev-credit-link .icon-linkedin {
@@ -251,9 +251,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes pulse-ring {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(91, 79, 229, 0.6); }
-  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(91, 79, 229, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(91, 79, 229, 0); }
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(122, 66, 234, 0.6); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(122, 66, 234, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(122, 66, 234, 0); }
 }
 
 .section-title {
@@ -295,12 +295,12 @@ h1, h2, h3, h4, h5, h6 {
 .btn-primary {
   background: var(--univ-purple);
   color: var(--univ-text-on-accent);
-  box-shadow: 0 4px 16px rgba(91, 79, 229, 0.28);
+  box-shadow: 0 4px 16px rgba(122, 66, 234, 0.28);
 }
 
 .btn-primary:hover {
   background: var(--univ-purple-dark);
-  box-shadow: 0 6px 20px rgba(91, 79, 229, 0.36);
+  box-shadow: 0 6px 20px rgba(122, 66, 234, 0.36);
   transform: translateY(-1px);
 }
 
@@ -585,7 +585,7 @@ body.nav-open {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(91, 79, 229, 0.22);
+  background: rgba(122, 66, 234, 0.22);
   color: var(--univ-purple-light);
   padding: 3px 8px;
   border-radius: 4px;
@@ -676,7 +676,7 @@ body.nav-open {
 }
 
 .tag-autonomous {
-  background: rgba(91, 79, 229, 0.25);
+  background: rgba(122, 66, 234, 0.25);
   color: var(--univ-purple-light);
 }
 
@@ -848,7 +848,7 @@ body.nav-open {
 
 .compare-autonomous {
   border-top-color: var(--univ-purple);
-  box-shadow: 0 20px 45px -25px rgba(91, 79, 229, 0.35);
+  box-shadow: 0 20px 45px -25px rgba(122, 66, 234, 0.35);
 }
 
 .compare-badge {
@@ -949,7 +949,7 @@ body.nav-open {
 .engine-step-tab.active {
   background: var(--univ-purple-soft);
   border-color: var(--univ-purple);
-  box-shadow: 0 10px 30px -15px rgba(91, 79, 229, 0.3);
+  box-shadow: 0 10px 30px -15px rgba(122, 66, 234, 0.3);
 }
 
 .step-number {
@@ -1065,7 +1065,7 @@ body.nav-open {
 
 .flow-node.highlighted {
   border-color: var(--univ-purple-light);
-  background: rgba(91, 79, 229, 0.22);
+  background: rgba(122, 66, 234, 0.22);
   transform: scale(1.04);
 }
 
@@ -1132,7 +1132,7 @@ body.nav-open {
   background: var(--univ-purple);
   color: var(--univ-text-on-accent);
   border-color: var(--univ-purple);
-  box-shadow: 0 4px 20px rgba(91, 79, 229, 0.32);
+  box-shadow: 0 4px 20px rgba(122, 66, 234, 0.32);
 }
 
 .sector-pill svg {
@@ -1304,7 +1304,7 @@ body.nav-open {
 /* Hardware Feature Banner (EnOS AI Box powered by AMD at CES 2026) */
 .hardware-banner {
   background: var(--univ-purple-soft);
-  border: 1px solid rgba(91, 79, 229, 0.25);
+  border: 1px solid rgba(122, 66, 234, 0.25);
   border-radius: var(--radius-lg);
   padding: 3rem;
   display: grid;
@@ -1333,7 +1333,7 @@ body.nav-open {
 
 .chip-spec-pill {
   background: #FFFFFF;
-  border: 1px solid rgba(91, 79, 229, 0.3);
+  border: 1px solid rgba(122, 66, 234, 0.3);
   padding: 6px 14px;
   border-radius: var(--radius-full);
   font-family: var(--font-mono);
@@ -1343,7 +1343,7 @@ body.nav-open {
 
 .hardware-graphic {
   background: #FFFFFF;
-  border: 1px solid rgba(91, 79, 229, 0.2);
+  border: 1px solid rgba(122, 66, 234, 0.2);
   border-radius: var(--radius-md);
   padding: 2rem;
   text-align: center;
@@ -1444,7 +1444,7 @@ body.nav-open {
   border-radius: 50%;
   background: var(--univ-purple);
   cursor: pointer;
-  box-shadow: 0 0 0 4px rgba(91, 79, 229, 0.18);
+  box-shadow: 0 0 0 4px rgba(122, 66, 234, 0.18);
 }
 
 .calc-select {
@@ -1466,7 +1466,7 @@ body.nav-open {
   border-radius: var(--radius-md);
   padding: 2.5rem;
   text-align: center;
-  box-shadow: 0 25px 50px -20px rgba(91, 79, 229, 0.45);
+  box-shadow: 0 25px 50px -20px rgba(122, 66, 234, 0.45);
 }
 
 .calc-results-panel .res-title {
@@ -1810,7 +1810,7 @@ main,
     background: var(--univ-purple);
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 10px var(--univ-purple), 0 0 20px rgba(91, 79, 229, 0.6);
+    box-shadow: 0 0 10px var(--univ-purple), 0 0 20px rgba(122, 66, 234, 0.6);
     transition: transform 0.15s ease, background-color 0.2s ease, width 0.2s, height 0.2s;
   }
 
@@ -1820,7 +1820,7 @@ main,
     left: 50%;
     width: 38px;
     height: 38px;
-    border: 1.5px solid rgba(91, 79, 229, 0.45);
+    border: 1.5px solid rgba(122, 66, 234, 0.45);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
@@ -1858,7 +1858,7 @@ main,
     width: 52px;
     height: 52px;
     border-color: var(--univ-purple);
-    background: rgba(91, 79, 229, 0.08);
+    background: rgba(122, 66, 234, 0.08);
   }
 
   .cyber-cursor.is-hovering .cyber-cursor-brackets {
@@ -1878,12 +1878,12 @@ main,
   .cyber-cursor.is-dragging .cyber-cursor-ring {
     width: 64px;
     height: 64px;
-    border-color: #8478FF;
+    border-color: #A984F1;
     border-width: 2px;
     border-style: dashed;
     animation: cursorRingSpin 3s linear infinite;
     background: rgba(132, 120, 255, 0.15);
-    box-shadow: 0 0 24px rgba(91, 79, 229, 0.4);
+    box-shadow: 0 0 24px rgba(122, 66, 234, 0.4);
   }
 
   .cyber-cursor.is-dragging .cyber-cursor-dot {
@@ -1918,7 +1918,7 @@ main,
   width: 420px;
   height: 420px;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(91, 79, 229, 0.12) 0%, rgba(91, 79, 229, 0.03) 45%, transparent 70%);
+  background: radial-gradient(circle, rgba(122, 66, 234, 0.12) 0%, rgba(122, 66, 234, 0.03) 45%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
   opacity: 0;
@@ -1962,7 +1962,7 @@ main,
 .radar-ping-wave {
   position: fixed;
   pointer-events: none;
-  border: 1.5px solid rgba(91, 79, 229, 0.6);
+  border: 1.5px solid rgba(122, 66, 234, 0.6);
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(0.1);
   animation: radarPingOut 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
@@ -1973,12 +1973,12 @@ main,
   0% {
     opacity: 0.85;
     transform: translate(-50%, -50%) scale(0.1);
-    box-shadow: 0 0 20px rgba(91, 79, 229, 0.4);
+    box-shadow: 0 0 20px rgba(122, 66, 234, 0.4);
   }
   100% {
     opacity: 0;
     transform: translate(-50%, -50%) scale(12);
-    box-shadow: 0 0 60px rgba(91, 79, 229, 0);
+    box-shadow: 0 0 60px rgba(122, 66, 234, 0);
   }
 }
 
@@ -2005,7 +2005,7 @@ main,
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.04em;
-  box-shadow: 0 12px 32px rgba(20, 20, 43, 0.32), 0 0 0 1px rgba(91, 79, 229, 0.2);
+  box-shadow: 0 12px 32px rgba(20, 20, 43, 0.32), 0 0 0 1px rgba(122, 66, 234, 0.2);
   cursor: pointer;
   position: relative;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
@@ -2049,7 +2049,7 @@ main,
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: var(--radius-md);
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(91, 79, 229, 0.25);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(122, 66, 234, 0.25);
   color: #FFFFFF;
   overflow: hidden;
   animation: hudSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -2145,7 +2145,7 @@ main,
 }
 
 .hud-audio-indicator.active {
-  background: rgba(91, 79, 229, 0.3);
+  background: rgba(122, 66, 234, 0.3);
   color: var(--univ-purple-light);
 }
 
@@ -2174,12 +2174,12 @@ main,
 }
 
 .hud-btn-surge {
-  background: linear-gradient(135deg, rgba(91, 79, 229, 0.35) 0%, rgba(67, 56, 202, 0.5) 100%);
+  background: linear-gradient(135deg, rgba(122, 66, 234, 0.35) 0%, rgba(95, 52, 183, 0.5) 100%);
   border-color: rgba(132, 120, 255, 0.4);
 }
 
 .hud-btn-surge:hover {
-  background: linear-gradient(135deg, rgba(91, 79, 229, 0.6) 0%, rgba(67, 56, 202, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(122, 66, 234, 0.6) 0%, rgba(95, 52, 183, 0.8) 100%);
   border-color: var(--univ-purple-light);
   box-shadow: 0 0 18px var(--univ-purple-glow);
 }
@@ -2244,14 +2244,14 @@ body.grid-surge-active::after {
   position: fixed;
   inset: 0;
   border: 4px solid var(--univ-purple);
-  box-shadow: inset 0 0 60px var(--univ-purple-glow), inset 0 0 100px rgba(91, 79, 229, 0.25);
+  box-shadow: inset 0 0 60px var(--univ-purple-glow), inset 0 0 100px rgba(122, 66, 234, 0.25);
   pointer-events: none;
   z-index: 99998;
   animation: surgeBorderPulse 0.4s ease infinite alternate;
 }
 
 @keyframes surgeBorderPulse {
-  0% { border-color: rgba(91, 79, 229, 0.4); }
+  0% { border-color: rgba(122, 66, 234, 0.4); }
   100% { border-color: rgba(0, 229, 153, 0.8); }
 }
 
