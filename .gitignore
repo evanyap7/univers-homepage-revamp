@@ -5,3 +5,5 @@ _uupm_skill/
 node_modules/
 .vscode/
 .idea/
+*.tmp
+*.bak
