@@ -2203,3 +2203,68 @@ body.grid-surge-active::after {
   100% { filter: contrast(1.06) brightness(1.02); }
 }
 
+/* ==========================================================================
+   INTERACTIVE TALLY & SCROLLING DIGIT ODOMETER ANIMATION
+   Mechanical slot-machine / rolling counter physics for statistics,
+   telemetry, KPIs, and calculator results.
+   ========================================================================== */
+.tally-number {
+  display: inline-flex;
+  align-items: baseline;
+  overflow: hidden;
+  vertical-align: baseline;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+
+.tally-number:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.odometer-col {
+  display: inline-block;
+  height: 1.15em;
+  line-height: 1.15em;
+  overflow: hidden;
+  position: relative;
+  vertical-align: bottom;
+  text-align: center;
+}
+
+.odometer-ribbon {
+  display: flex;
+  flex-direction: column;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.odometer-char {
+  height: 1.15em;
+  line-height: 1.15em;
+  display: block;
+  text-align: center;
+  font-feature-settings: "tnum" 1;
+}
+
+.odometer-static {
+  display: inline-block;
+  height: 1.15em;
+  line-height: 1.15em;
+  vertical-align: bottom;
+  white-space: pre;
+}
+
+/* Landing glow flash */
+@keyframes tallyFlash {
+  0% { text-shadow: 0 0 20px var(--univ-purple-light); }
+  100% { text-shadow: none; }
+}
+
+.tally-landed {
+  animation: tallyFlash 0.7s ease-out;
+}
+
+
