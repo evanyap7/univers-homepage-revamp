@@ -1060,4 +1060,155 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.05rem;
   color: var(--univ-text-secondary);
   line-height: 1.6;
-  
+  margin-bottom: 2rem;
+}
+
+.sector-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 2rem;
+}
+
+.kpi-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--univ-border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+}
+
+.kpi-metric {
+  font-family: var(--font-mono);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--univ-emerald);
+  margin-bottom: 4px;
+}
+
+.kpi-label {
+  font-size: 0.78rem;
+  color: var(--univ-text-muted);
+  line-height: 1.3;
+}
+
+.sector-quote-card {
+  background: #090E17;
+  border: 1px solid var(--univ-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  position: relative;
+}
+
+.sector-quote-card::before {
+  content: '“';
+  position: absolute;
+  top: 10px;
+  left: 18px;
+  font-size: 4rem;
+  font-family: Georgia, serif;
+  color: rgba(255, 255, 255, 0.07);
+  line-height: 1;
+}
+
+.quote-body {
+  font-size: 0.95rem;
+  color: #E2E8F0;
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.quote-author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.author-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--univ-cyan) 0%, var(--univ-emerald) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #000;
+  font-size: 0.9rem;
+}
+
+.author-name {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--univ-text-primary);
+}
+
+.author-role {
+  font-size: 0.78rem;
+  color: var(--univ-text-muted);
+}
+
+/* ==========================================================================
+   ACT 6: THE COMPOUNDING MOAT & HARDWARE (FLYWEEL & AMD AI BOX)
+   ========================================================================== */
+.flywheel-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+.flywheel-card {
+  background: var(--univ-bg-card);
+  border: 1px solid var(--univ-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.flywheel-card::after {
+  content: '→';
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: var(--univ-emerald);
+  font-family: var(--font-mono);
+  z-index: 2;
+}
+
+.flywheel-card:last-child::after {
+  content: '↺';
+  right: 16px;
+  top: 16px;
+  transform: none;
+}
+
+.flywheel-step-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--univ-cyan);
+  margin-bottom: 12px;
+}
+
+.flywheel-card h4 {
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+}
+
+.flywheel-card p {
+  font-size: 0.85rem;
+  color: var(--univ-text-secondary);
+  line-height: 1.5;
+}
+
+/* Hardware Feature Banner (EnOS AI Box powered by AMD at CES 2026) */
+.hardware-banner {
+  background: linear-gradient(135deg, rgba(14, 22, 36, 0.9) 0%, rgba(8, 12, 20, 0.95) 100%);
+  border: 1px solid rgba(0, 21
