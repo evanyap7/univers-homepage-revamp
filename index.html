@@ -32,15 +32,20 @@
         <span>univers</span>
       </a>
 
-      <nav class="nav-menu" aria-label="Main Navigation">
+      <nav class="nav-menu" id="mobile-nav-drawer" aria-label="Main Navigation">
         <ul class="nav-links" data-elementor-widget="Widget: Nav Menu Pro">
-          <li><a href="#platform" class="nav-link">Platform</a></li>
+          <li><a href="#engine" class="nav-link">Platform</a></li>
           <li><a href="#industries" class="nav-link">Industries</a></li>
           <li><a href="#flywheel" class="nav-link">Compounding Moat</a></li>
           <li><a href="#security" class="nav-link">Trust & Compliance</a></li>
           <li><a href="#calculator" class="nav-link">ROI Calculator</a></li>
         </ul>
+        <div class="mobile-nav-cta-group">
+          <a href="#calculator" class="btn btn-secondary" data-elementor-widget="Widget: Button (Secondary)">Assess Portfolio</a>
+          <a href="#contact" class="btn btn-primary" data-elementor-widget="Widget: Button (Primary)">Talk to Us</a>
+        </div>
       </nav>
+      <div class="nav-backdrop" id="nav-backdrop" hidden></div>
 
       <div class="nav-actions" data-elementor-container="Container: Header CTAs (Flex Row)">
         <!-- ELEMENTOR INSPECTOR MODE TOGGLE -->
@@ -53,8 +58,20 @@
           <span>Elementor Mode</span>
         </button>
 
-        <a href="#calculator" class="btn btn-secondary btn-sm" data-elementor-widget="Widget: Button (Secondary)">Assess Portfolio</a>
-        <a href="#contact" class="btn btn-primary btn-sm" data-elementor-widget="Widget: Button (Primary)">Talk to Us</a>
+        <a href="#calculator" class="btn btn-secondary btn-sm nav-cta-desktop" data-elementor-widget="Widget: Button (Secondary)">Assess Portfolio</a>
+        <a href="#contact" class="btn btn-primary btn-sm nav-cta-desktop" data-elementor-widget="Widget: Button (Primary)">Talk to Us</a>
+
+        <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-nav-drawer" aria-label="Open menu">
+          <svg class="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+          </svg>
+        </button>
       </div>
     </div>
   </header>
