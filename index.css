@@ -1319,4 +1319,99 @@ h1, h2, h3, h4, h5, h6 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 48px;
-  
+  align-items: center;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8);
+}
+
+.calc-form-group {
+  margin-bottom: 24px;
+}
+
+.calc-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #E2E8F0;
+}
+
+.calc-range {
+  width: 100%;
+  height: 6px;
+  background: var(--univ-bg-surface);
+  border-radius: 4px;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.calc-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--univ-emerald);
+  cursor: pointer;
+  box-shadow: 0 0 10px var(--univ-emerald);
+}
+
+.calc-select {
+  width: 100%;
+  background: var(--univ-bg-surface);
+  border: 1px solid var(--univ-border-medium);
+  color: var(--univ-text-primary);
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+.calc-results-panel {
+  background: #060A10;
+  border: 1px solid var(--univ-border-glow);
+  border-radius: var(--radius-md);
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(0, 229, 153, 0.1);
+}
+
+.calc-results-panel .res-title {
+  font-size: 0.85rem;
+  color: var(--univ-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.calc-results-panel .res-highlight {
+  font-family: var(--font-mono);
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--univ-emerald);
+  margin-bottom: 6px;
+}
+
+.calc-results-panel .res-subtext {
+  font-size: 0.88rem;
+  color: var(--univ-text-secondary);
+  margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer {
+  background: #04060A;
+  border-top: 1px solid var(--univ-border-subtle);
+  padding: 80px 0 40px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(3, 1fr);
+  gap: 48px;
+  margin-bottom: 60px;
+}
+
+.footer-brand p {
+  fon
