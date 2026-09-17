@@ -1,33 +1,36 @@
 /* ==========================================================================
    UNIVERS PHYSICAL AI - DESIGN SYSTEM & STYLESHEET
    Generated using nextlevelbuilder/ui-ux-pro-max-skill
-   Design Personality: Neo-Industrial Precision / High-Tech Governed Autonomy
-   Typography: Space Grotesk (Headings), Inter (Body), JetBrains Mono (Telemetry)
+   Design Personality: Exaggerated Minimalism / Editorial Industrial Precision
+   Visual direction: oversized display type, near-black canvas, one restrained
+   accent, massive whitespace, serif-italic editorial pull quotes.
+   Typography: Space Grotesk (Display), Fraunces Italic (Editorial accent),
+   Inter (Body), JetBrains Mono (Telemetry/Labels)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,500&display=swap');
 
 :root {
-  /* Core Palette - High-Tech Deep Industrial */
-  --univ-bg-base: #07090E;
-  --univ-bg-surface: #0D121D;
-  --univ-bg-surface-elevated: #131A29;
-  --univ-bg-card: rgba(16, 23, 37, 0.75);
-  --univ-bg-card-hover: rgba(23, 33, 53, 0.85);
-  --univ-bg-glass: rgba(13, 18, 29, 0.65);
+  /* Core Palette - Near-Black Editorial Canvas */
+  --univ-bg-base: #050608;
+  --univ-bg-surface: #0B0E13;
+  --univ-bg-surface-elevated: #12161D;
+  --univ-bg-card: rgba(16, 23, 37, 0.55);
+  --univ-bg-card-hover: rgba(23, 33, 53, 0.7);
+  --univ-bg-glass: rgba(13, 18, 29, 0.55);
 
   /* Borders & Dividers */
-  --univ-border-subtle: rgba(255, 255, 255, 0.08);
-  --univ-border-medium: rgba(255, 255, 255, 0.15);
+  --univ-border-subtle: rgba(255, 255, 255, 0.07);
+  --univ-border-medium: rgba(255, 255, 255, 0.14);
   --univ-border-glow: rgba(0, 229, 153, 0.35);
 
-  /* Primary Accent - Electric Emerald (Energy, Transition, Active State) */
+  /* Primary Accent - Electric Emerald. The single accent; used sparingly. */
   --univ-emerald: #00E599;
   --univ-emerald-glow: rgba(0, 229, 153, 0.25);
   --univ-emerald-dark: #00875A;
   --univ-emerald-light: #66F2C2;
 
-  /* Secondary Accent - Cyber Cyan (AI, Intelligence, Grid Telemetry) */
+  /* Secondary Accent - Cyber Cyan. Reserved for the hardware moment only. */
   --univ-cyan: #00D2FF;
   --univ-cyan-glow: rgba(0, 210, 255, 0.25);
   --univ-cyan-dark: #007799;
@@ -45,12 +48,13 @@
 
   /* Font Families */
   --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Fraunces', Georgia, serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Layout Spacing */
+  /* Layout Spacing - generous, editorial breathing room */
   --container-max: 1280px;
-  --section-padding-y: clamp(72px, 8vw, 120px);
+  --section-padding-y: clamp(96px, 11vw, 176px);
   --section-padding-x: clamp(20px, 4vw, 32px);
   --radius-sm: 6px;
   --radius-md: 12px;
@@ -88,7 +92,7 @@ body {
   position: relative;
 }
 
-/* Background Ambient Grid & Glow */
+/* Background: a single restrained glow. No grid noise — let whitespace speak. */
 body::before {
   content: '';
   position: fixed;
@@ -96,12 +100,7 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: 
-    radial-gradient(circle at 50% 0%, rgba(0, 229, 153, 0.08) 0%, transparent 60%),
-    radial-gradient(circle at 85% 20%, rgba(0, 210, 255, 0.05) 0%, transparent 45%),
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 60px 60px, 60px 60px;
+  background-image: radial-gradient(circle at 50% 0%, rgba(0, 229, 153, 0.06) 0%, transparent 55%);
   pointer-events: none;
   z-index: -1;
 }
@@ -126,13 +125,22 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   color: var(--univ-text-primary);
   font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
 }
 
 .mono-metric {
   font-family: var(--font-mono);
   font-feature-settings: "tnum" 1, "zero" 1;
+}
+
+/* Editorial serif-italic accent — used sparingly for pull quotes and
+   single brand statements, echoing an editorial magazine's pull quote. */
+.font-serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
 .text-gradient {
@@ -184,15 +192,11 @@ h1, h2, h3, h4, h5, h6 {
   gap: 8px;
   font-family: var(--font-mono);
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   color: var(--univ-emerald);
-  background: rgba(0, 229, 153, 0.08);
-  border: 1px solid rgba(0, 229, 153, 0.25);
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .eyebrow .pulse-dot {
@@ -211,9 +215,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-title {
-  font-size: clamp(2rem, 3.8vw, 3.25rem);
-  margin-bottom: 1.25rem;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.4rem, 5.2vw, 4.5rem);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.035em;
 }
 
 .section-subtitle {
@@ -249,26 +253,21 @@ h1, h2, h3, h4, h5, h6 {
 .btn-primary {
   background: var(--univ-emerald);
   color: var(--univ-bg-base);
-  box-shadow: 0 4px 24px rgba(0, 229, 153, 0.25);
 }
 
 .btn-primary:hover {
   background: var(--univ-emerald-light);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 229, 153, 0.4);
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.05);
+  background: transparent;
   color: var(--univ-text-primary);
   border: 1px solid var(--univ-border-medium);
-  backdrop-filter: blur(10px);
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
+  border-color: var(--univ-emerald);
+  color: var(--univ-emerald);
 }
 
 .btn-sm {
@@ -445,39 +444,45 @@ body.nav-open {
    ACT 1: HIGH-STAKES HERO
    ========================================================================== */
 .hero-section {
-  padding-top: clamp(60px, 8vw, 100px);
-  padding-bottom: clamp(60px, 7vw, 90px);
+  padding-top: clamp(80px, 10vw, 140px);
+  padding-bottom: clamp(80px, 9vw, 120px);
   position: relative;
 }
 
 .hero-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 48px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 72px;
 }
 
 .hero-content {
-  max-width: 680px;
+  max-width: 920px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero-headline {
-  font-size: clamp(2.4rem, 4.4vw, 4.2rem);
-  line-height: 1.08;
-  letter-spacing: -0.04em;
-  margin-bottom: 1.5rem;
+  font-size: clamp(2.8rem, 6.4vw, 6.2rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  margin-bottom: 1.75rem;
 }
 
 .hero-lead {
   font-size: clamp(1.1rem, 1.4vw, 1.3rem);
   color: var(--univ-text-secondary);
   line-height: 1.6;
-  margin-bottom: 2.25rem;
+  margin-bottom: 2.5rem;
+  max-width: 52ch;
 }
 
 .hero-cta-group {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 16px;
   margin-bottom: 2.5rem;
 }
@@ -485,6 +490,7 @@ body.nav-open {
 .hero-trust-badges {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   gap: 20px;
   padding-top: 1.5rem;
@@ -506,6 +512,8 @@ body.nav-open {
 /* HERO LIVE TELEMETRY SIMULATOR PANEL */
 .hero-visual {
   position: relative;
+  width: 100%;
+  max-width: 720px;
 }
 
 .telemetry-console {
@@ -647,10 +655,10 @@ body.nav-open {
    ACT 2: INSTITUTIONAL AUTHORITY STRIP (TICKER & AWARDS)
    ========================================================================== */
 .authority-section {
-  background: #090D15;
+  background: var(--univ-bg-base);
   border-top: 1px solid var(--univ-border-subtle);
   border-bottom: 1px solid var(--univ-border-subtle);
-  padding: 36px 0;
+  padding: 56px 0;
 }
 
 .authority-grid {
@@ -673,11 +681,12 @@ body.nav-open {
 
 .stat-number {
   font-family: var(--font-mono);
-  font-size: 2.2rem;
+  font-size: clamp(2.2rem, 3vw, 3rem);
   font-weight: 700;
   line-height: 1;
   color: var(--univ-text-primary);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
 }
 
 .stat-title {
@@ -751,6 +760,23 @@ body.nav-open {
 }
 
 /* ==========================================================================
+   BRAND STATEMENT — cinematic type-only moment
+   ========================================================================== */
+.statement-section {
+  padding: clamp(100px, 14vw, 220px) 0;
+  border-bottom: 1px solid var(--univ-border-subtle);
+}
+
+.statement-text {
+  font-size: clamp(2.2rem, 6vw, 5.5rem);
+  line-height: 1.05;
+  text-align: center;
+  max-width: 18ch;
+  margin: 0 auto;
+  color: var(--univ-text-primary);
+}
+
+/* ==========================================================================
    ACT 3: THE INDUSTRIAL SHIFT: WHY DASHBOARDS FAILED
    ========================================================================== */
 .market-signal-grid {
@@ -767,41 +793,17 @@ body.nav-open {
 }
 
 .compare-card {
-  padding: 2.5rem;
-  border-radius: var(--radius-lg);
+  padding: 3rem 2.5rem;
+  border-top: 2px solid var(--univ-border-subtle);
   position: relative;
-  overflow: hidden;
 }
 
 .compare-legacy {
-  background: rgba(26, 16, 20, 0.4);
-  border: 1px solid rgba(255, 77, 77, 0.2);
-}
-
-.compare-legacy::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: var(--univ-red);
+  border-top-color: rgba(255, 77, 77, 0.5);
 }
 
 .compare-autonomous {
-  background: rgba(10, 28, 24, 0.4);
-  border: 1px solid rgba(0, 229, 153, 0.3);
-  box-shadow: 0 10px 40px -10px rgba(0, 229, 153, 0.15);
-}
-
-.compare-autonomous::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: var(--univ-emerald);
+  border-top-color: var(--univ-emerald);
 }
 
 .compare-badge {
@@ -826,7 +828,7 @@ body.nav-open {
 }
 
 .compare-heading {
-  font-size: 1.6rem;
+  font-size: clamp(1.6rem, 2.2vw, 2.1rem);
   margin-bottom: 1rem;
 }
 
@@ -1145,30 +1147,23 @@ body.nav-open {
 }
 
 .sector-quote-card {
-  background: #090E17;
-  border: 1px solid var(--univ-border-subtle);
-  border-radius: var(--radius-md);
-  padding: 2rem;
+  background: transparent;
+  border: none;
+  border-left: 2px solid var(--univ-emerald);
+  border-radius: 0;
+  padding: 0.5rem 0 0.5rem 2rem;
   position: relative;
 }
 
-.sector-quote-card::before {
-  content: '“';
-  position: absolute;
-  top: 10px;
-  left: 18px;
-  font-size: 4rem;
-  font-family: Georgia, serif;
-  color: rgba(255, 255, 255, 0.07);
-  line-height: 1;
-}
-
 .quote-body {
-  font-size: 0.95rem;
-  color: #E2E8F0;
+  font-family: var(--font-serif);
   font-style: italic;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2vw, 1.65rem);
+  color: var(--univ-text-primary);
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+  margin-bottom: 1.75rem;
   position: relative;
   z-index: 1;
 }
@@ -1275,7 +1270,7 @@ body.nav-open {
 }
 
 .hardware-info h3 {
-  font-size: 1.85rem;
+  font-size: clamp(1.85rem, 2.6vw, 2.4rem);
   margin-bottom: 0.75rem;
 }
 
@@ -1438,10 +1433,11 @@ body.nav-open {
 
 .calc-results-panel .res-highlight {
   font-family: var(--font-mono);
-  font-size: 3rem;
+  font-size: clamp(3rem, 5vw, 4rem);
   font-weight: 800;
   color: var(--univ-emerald);
   margin-bottom: 6px;
+  letter-spacing: -0.02em;
 }
 
 .calc-results-panel .res-subtext {
@@ -1525,6 +1521,22 @@ body.nav-open {
 }
 
 /* ==========================================================================
+   HERO ENTRANCE
+   Classes are added by JS only when motion is available, so hero content
+   is never hidden if JavaScript fails to load.
+   ========================================================================== */
+.hero-enter {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-enter.hero-entered {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
    SCROLL REVEAL
    Classes are added by JS only when IntersectionObserver + motion are
    available, so content is never hidden if JavaScript fails to load.
@@ -1544,7 +1556,6 @@ body.nav-open {
    RESPONSIVE MEDIA QUERIES
    ========================================================================== */
 @media (max-width: 1024px) {
-  .hero-grid,
   .engine-container,
   .sector-content-card,
   .hardware-banner,

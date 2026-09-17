@@ -7,12 +7,39 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
+  initHeroEntrance();
   initLiveTelemetry();
   initEngineSimulator();
   initSectorExplorer();
   initValueCalculator();
   initScrollReveal();
 });
+
+/* ==========================================================================
+   HERO ENTRANCE
+   A single staggered fade/rise on load for the above-the-fold hero
+   elements — the cinematic "curtain up" moment. Skips entirely for
+   prefers-reduced-motion; elements are never hidden if JS fails to load.
+   ========================================================================== */
+function initHeroEntrance() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const targets = document.querySelectorAll(
+    '.hero-content .eyebrow, .hero-headline, .hero-lead, .hero-cta-group, .hero-trust-badges, .hero-visual'
+  );
+  if (!targets.length) return;
+
+  targets.forEach((el, i) => {
+    el.classList.add('hero-enter');
+    el.style.transitionDelay = `${i * 90}ms`;
+  });
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      targets.forEach((el) => el.classList.add('hero-entered'));
+    });
+  });
+}
 
 /* ==========================================================================
    MOBILE NAV: OFFCANVAS DRAWER
@@ -102,7 +129,7 @@ function initScrollReveal() {
   if (!('IntersectionObserver' in window)) return;
 
   const targets = document.querySelectorAll(
-    '.section-header, .card-glass, .compare-card, .engine-step-tab, .flywheel-card, .compliance-category, .authority-stat, .sector-content-card'
+    '.section-header, .card-glass, .compare-card, .engine-step-tab, .flywheel-card, .compliance-category, .authority-stat, .sector-content-card, .statement-text'
   );
   if (!targets.length) return;
 
