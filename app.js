@@ -17,5 +17,12 @@ function initLiveTelemetry() {
       baseEndpoints += Math.floor(Math.random() * 8) + 1;
       endpointsEl.textContent = baseEndpoints.toLocaleString('en-US');
     }
+      const streamEl = document.getElementById('hero-log-stream');
+    if (streamEl) {
+      const logItem = document.createElement('div');
+      logItem.className = 'action-log-item';
+      logItem.innerHTML = '<span class="log-tag tag-autonomous">AUTONOMOUS</span> <span class="log-desc">Dynamic volt-VAR optimization active</span>';
+      streamEl.insertBefore(logItem, streamEl.firstChild);
+    }
   }, 3800);
 }
