@@ -599,7 +599,7 @@ function initKineticCanvas() {
   function initParticles() {
     particles.length = 0;
     const count = Math.floor(Math.min(width, 1600) / 18); // ~50 to 90 nodes
-    const colors = ['#5B4FE5', '#00E599', '#00D2FF', '#8478FF', '#14142B'];
+    const colors = ['#7A42EA', '#00E599', '#00D2FF', '#A984F1', '#14142B'];
 
     for (let i = 0; i < count; i++) {
       particles.push({
@@ -712,7 +712,7 @@ function initKineticCanvas() {
   // Add sparks along cursor drag path
   function addDragSparks(x, y, speed) {
     const sparkCount = Math.min(Math.floor(speed * 0.4) + 1, 5);
-    const colors = ['#5B4FE5', '#00E599', '#00D2FF', '#FFFFFF', '#8478FF'];
+    const colors = ['#7A42EA', '#00E599', '#00D2FF', '#FFFFFF', '#A984F1'];
 
     // Push into drag trail points
     dragTrail.push({
@@ -775,7 +775,7 @@ function initKineticCanvas() {
       ctx.save();
       ctx.translate(gl.x, gl.y);
       ctx.rotate(gl.rot);
-      ctx.strokeStyle = isSurging ? 'rgba(91, 79, 229, 0.4)' : `rgba(20, 20, 43, ${gl.alpha * 0.8})`;
+      ctx.strokeStyle = isSurging ? 'rgba(122, 66, 234, 0.4)' : `rgba(20, 20, 43, ${gl.alpha * 0.8})`;
       ctx.lineWidth = 1;
       ctx.beginPath();
       for (let s = 0; s < 6; s++) {
@@ -788,7 +788,7 @@ function initKineticCanvas() {
       ctx.stroke();
 
       // Draw telemetry label
-      ctx.fillStyle = isSurging ? 'rgba(91, 79, 229, 0.7)' : `rgba(82, 82, 95, ${gl.alpha})`;
+      ctx.fillStyle = isSurging ? 'rgba(122, 66, 234, 0.7)' : `rgba(82, 82, 95, ${gl.alpha})`;
       ctx.fillText(gl.label, gl.size * 0.8, 3);
       ctx.restore();
     }
@@ -835,7 +835,7 @@ function initKineticCanvas() {
       }
 
       // Render node dot
-      ctx.fillStyle = isSurging ? '#5B4FE5' : p.color;
+      ctx.fillStyle = isSurging ? '#7A42EA' : p.color;
       ctx.globalAlpha = p.alpha;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.radius * (isSurging ? 1.5 : 1), 0, Math.PI * 2);
@@ -857,8 +857,8 @@ function initKineticCanvas() {
           if (dist < maxDist) {
             const lineAlpha = (1 - dist / maxDist) * 0.18 * (isSurging ? 2.5 : 1);
             ctx.strokeStyle = isSurging
-              ? `rgba(91, 79, 229, ${lineAlpha})`
-              : `rgba(91, 79, 229, ${lineAlpha * 0.75})`;
+              ? `rgba(122, 66, 234, ${lineAlpha})`
+              : `rgba(122, 66, 234, ${lineAlpha * 0.75})`;
             ctx.lineWidth = isSurging ? 1.4 : 0.8;
 
             ctx.beginPath();
@@ -909,7 +909,7 @@ function initKineticCanvas() {
         ctx.lineTo(pt.x, pt.y);
         pt.life -= pt.decay;
       }
-      ctx.strokeStyle = 'rgba(91, 79, 229, 0.45)';
+      ctx.strokeStyle = 'rgba(122, 66, 234, 0.45)';
       ctx.lineWidth = 4;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
@@ -958,9 +958,9 @@ function initKineticCanvas() {
       }
 
       ctx.save();
-      ctx.strokeStyle = `rgba(91, 79, 229, ${ring.alpha * 0.85})`;
+      ctx.strokeStyle = `rgba(122, 66, 234, ${ring.alpha * 0.85})`;
       ctx.lineWidth = 2;
-      ctx.shadowColor = '#5B4FE5';
+      ctx.shadowColor = '#7A42EA';
       ctx.shadowBlur = 12;
       ctx.beginPath();
       ctx.arc(ring.x, ring.y, ring.radius, 0, Math.PI * 2);
@@ -1075,7 +1075,7 @@ function initCyberCursor() {
 
   function spawnClickSparks(x, y) {
     const sparkCount = 12;
-    const colors = ['#5B4FE5', '#00E599', '#00D2FF', '#8478FF'];
+    const colors = ['#7A42EA', '#00E599', '#00D2FF', '#A984F1'];
 
     for (let i = 0; i < sparkCount; i++) {
       const spark = document.createElement('div');
