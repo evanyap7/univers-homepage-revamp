@@ -1,0 +1,7 @@
+# Git ignore
+_uupm_skill/
+*.log
+.DS_Store
+node_modules/
+.vscode/
+.idea/
