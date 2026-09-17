@@ -175,3 +175,43 @@ body::before {
   border-color: rgba(255, 255, 255, 0.15);
   transform: translateY(-3px);
 }
+
+.site-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(7, 9, 14, 0.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 100;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--univ-text-primary);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.45rem;
+}
+
+.logo-symbol {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--univ-emerald) 0%, var(--univ-cyan) 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-symbol svg { width: 20px; height: 20px; color: #000; }
