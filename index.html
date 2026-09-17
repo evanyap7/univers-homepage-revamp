@@ -312,161 +312,122 @@
           </p>
         </div>
 
-        <!-- Featured Key Clients (Highlighted & Standing Out with Accent Frames & Proven Impact Badges) -->
-        <div class="key-clients-grid">
-          <!-- Key Client 1: PSA International -->
-          <div class="key-client-card">
-            <div class="key-client-badge">KEY CLIENT // GLOBAL PORTS</div>
-            <div class="key-client-logo-wrap">
-              <img src="assets/logos/psa-international.png" alt="PSA International Logo" class="key-client-logo">
-            </div>
-            <div class="key-client-name">PSA International</div>
-            <div class="key-client-impact">
-              <strong>S$330M</strong> annual operating profit uplift and <strong>S$83M</strong> revenue uplift across 70+ terminals in 45 countries.
-            </div>
+        <!-- Key Clients: Interactive Tab Selector + Expandable Metrics Panel -->
+        <div class="key-clients-interactive">
+          <!-- Tab Selector Row -->
+          <div class="kc-tab-row" role="tablist" aria-label="Key enterprise clients">
+            <button class="kc-tab active" data-client="psa" role="tab" aria-selected="true">
+              <img src="assets/logos/psa-international.png" alt="PSA International" class="kc-tab-logo">
+            </button>
+            <button class="kc-tab" data-client="dhl" role="tab" aria-selected="false">
+              <span class="kc-tab-wordmark" style="color:#D40511;">DHL</span>
+            </button>
+            <button class="kc-tab" data-client="hdb" role="tab" aria-selected="false">
+              <img src="assets/logos/hdb-singapore.png" alt="HDB Singapore" class="kc-tab-logo">
+            </button>
+            <button class="kc-tab" data-client="aesc" role="tab" aria-selected="false">
+              <img src="assets/logos/aesc.png" alt="AESC" class="kc-tab-logo">
+            </button>
+            <button class="kc-tab" data-client="changi" role="tab" aria-selected="false">
+              <img src="assets/logos/changi-airport.png" alt="Changi Airport" class="kc-tab-logo">
+            </button>
+            <button class="kc-tab" data-client="sp" role="tab" aria-selected="false">
+              <img src="assets/logos/sp-group.png" alt="SP Group" class="kc-tab-logo">
+            </button>
+            <button class="kc-tab" data-client="cdg" role="tab" aria-selected="false">
+              <img src="assets/logos/comfortdelgro.png" alt="ComfortDelGro" class="kc-tab-logo">
+            </button>
+            <button class="kc-tab" data-client="hkia" role="tab" aria-selected="false">
+              <img src="assets/logos/hk-airport.png" alt="HKIA" class="kc-tab-logo">
+            </button>
           </div>
 
-          <!-- Key Client 2: DHL Fleet -->
-          <div class="key-client-card">
-            <div class="key-client-badge">KEY CLIENT // ELECTRIFICATION</div>
-            <div class="key-client-logo-wrap">
-              <span class="partner-logo-text" style="font-size: 1.3rem; color: #D40511; letter-spacing: -0.02em;">DHL FLEET</span>
-            </div>
-            <div class="key-client-name">DHL Fleet</div>
-            <div class="key-client-impact">
-              <strong>€41M</strong> net annual EBIT impact by 2030; electrifying 2,100 heavy-duty trucks across 299 sites with 60,000+ AI-onboarded assets.
-            </div>
-          </div>
-
-          <!-- Key Client 3: HDB Singapore -->
-          <div class="key-client-card">
-            <div class="key-client-badge">KEY CLIENT // NATIONAL INFRASTRUCTURE</div>
-            <div class="key-client-logo-wrap">
-              <img src="assets/logos/hdb-singapore.png" alt="HDB Singapore Logo" class="key-client-logo">
-            </div>
-            <div class="key-client-name">HDB Singapore</div>
-            <div class="key-client-impact">
-              <strong>9 vendor BMS</strong> unified into 1 sovereign cloud platform across 10,000+ assets; <strong>S$7.0M</strong> annual benefit (1.94× ROI).
-            </div>
-          </div>
-
-          <!-- Key Client 4: AESC Gigafactories -->
-          <div class="key-client-card">
-            <div class="key-client-badge">KEY CLIENT // GIGAFACTORIES</div>
-            <div class="key-client-logo-wrap">
-              <img src="assets/logos/aesc.png" alt="AESC Logo" class="key-client-logo">
-            </div>
-            <div class="key-client-name">AESC Gigafactories</div>
-            <div class="key-client-impact">
-              <strong>50% → 80%</strong> systematic OEE uplift; <strong>$48M+</strong> annual productivity improvement per plant across 10+ battery gigafactories.
-            </div>
-          </div>
-
-          <!-- Key Client 5: Changi Airport Singapore -->
-          <div class="key-client-card">
-            <div class="key-client-badge">KEY CLIENT // GLOBAL AVIATION</div>
-            <div class="key-client-logo-wrap">
-              <img src="assets/logos/changi-airport.png" alt="Changi Airport Singapore Logo" class="key-client-logo">
-            </div>
-            <div class="key-client-name">Changi Airport Singapore</div>
-            <div class="key-client-impact">
-              Terminal 3 and Jewel HVAC energy optimization, delivering real-time operational insights and heightened asset reliability.
-            </div>
-          </div>
-
-          <!-- Key Client 6: SP Group -->
-          <div class="key-client-card">
-            <div class="key-client-badge">KEY CLIENT // GRID VPP</div>
-            <div class="key-client-logo-wrap">
-              <img src="assets/logos/sp-group.png" alt="SP Group Logo" class="key-client-logo">
-            </div>
-            <div class="key-client-name">SP Group</div>
-            <div class="key-client-impact">
-              Advancing Singapore's Virtual Power Plant (VPP) initiative under the Energy Market Authority's (EMA) Regulatory Sandbox.
-            </div>
-          </div>
-
-          <!-- Key Client 7: ComfortDelGro -->
-          <div class="key-client-card">
-            <div class="key-client-badge">KEY CLIENT // TRANSIT &amp; FLEET</div>
-            <div class="key-client-logo-wrap">
-              <img src="assets/logos/comfortdelgro.png" alt="ComfortDelGro Logo" class="key-client-logo">
-            </div>
-            <div class="key-client-name">ComfortDelGro</div>
-            <div class="key-client-impact">
-              Multi-modal smart charging, site microgrid optimization, and automated machine maintenance for global transport fleets.
-            </div>
-          </div>
-
-          <!-- Key Client 8: Hong Kong International Airport -->
-          <div class="key-client-card">
-            <div class="key-client-badge">KEY CLIENT // AIRPORT MICROGRID</div>
-            <div class="key-client-logo-wrap">
-              <img src="assets/logos/hk-airport.png" alt="Hong Kong International Airport Logo" class="key-client-logo">
-            </div>
-            <div class="key-client-name">HK International Airport</div>
-            <div class="key-client-impact">
-              AI-orchestrated smart building automation, peak load shifting, and predictive energy efficiency at international aviation scale.
+          <!-- Active Client Detail Panel -->
+          <div class="kc-panel" id="kc-panel">
+            <div class="kc-panel-inner">
+              <div class="kc-panel-left">
+                <div class="kc-panel-badge" id="kc-badge">KEY CLIENT // GLOBAL PORTS</div>
+                <div class="kc-panel-name" id="kc-name">PSA International</div>
+                <div class="kc-panel-desc" id="kc-desc">World's largest port operator spanning 70+ terminals across 180+ locations in 45 countries — with S$5B annual OPEX managed on EnOS.</div>
+              </div>
+              <div class="kc-panel-metrics" id="kc-metrics">
+                <div class="kc-metric">
+                  <div class="kc-metric-val">S$330M</div>
+                  <div class="kc-metric-lbl">Annual operating profit uplift</div>
+                </div>
+                <div class="kc-metric">
+                  <div class="kc-metric-val">S$83M</div>
+                  <div class="kc-metric-lbl">Annual revenue uplift</div>
+                </div>
+                <div class="kc-metric">
+                  <div class="kc-metric-val">45</div>
+                  <div class="kc-metric-lbl">Countries covered</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Strategic Ecosystem Partners Grid (Strategy, Technology & Energy Leaders) -->
-        <div class="partners-category-group">
-          <div class="partners-category-label">Global Strategic Advisory, Technology &amp; Industrial Partners</div>
-          <div class="partners-logo-grid">
-            <div class="partner-logo-item" title="McKinsey & Company">
-              <img src="assets/logos/mckinsey.png" alt="McKinsey & Company">
+        <!-- Partners: Infinite Dual-Row Auto-Scrolling Marquee -->
+        <div class="partners-marquee-wrap">
+          <div class="partners-marquee-label">Strategic Advisory, Technology &amp; Energy Partners</div>
+
+          <!-- Row 1 — scrolls left -->
+          <div class="marquee-outer">
+            <div class="marquee-fade marquee-fade-l"></div>
+            <div class="marquee-fade marquee-fade-r"></div>
+            <div class="marquee-track marquee-track--left" aria-hidden="true">
+              <div class="marquee-content">
+                <div class="marquee-logo-item"><img src="assets/logos/mckinsey.png" alt="McKinsey &amp; Company"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/mott-macdonald.png" alt="Mott MacDonald"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/aws.png" alt="AWS"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/advantech.png" alt="Advantech"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/moxa.png" alt="Moxa"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/govtech.png" alt="GovTech Singapore"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/pub-water.png" alt="PUB Singapore"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/htx.png" alt="HTX"></div>
+                <!-- Duplicated for seamless loop -->
+                <div class="marquee-logo-item"><img src="assets/logos/mckinsey.png" alt="McKinsey &amp; Company"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/mott-macdonald.png" alt="Mott MacDonald"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/aws.png" alt="AWS"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/advantech.png" alt="Advantech"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/moxa.png" alt="Moxa"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/govtech.png" alt="GovTech Singapore"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/pub-water.png" alt="PUB Singapore"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/htx.png" alt="HTX"></div>
+              </div>
             </div>
-            <div class="partner-logo-item" title="Mott MacDonald">
-              <img src="assets/logos/mott-macdonald.png" alt="Mott MacDonald">
-            </div>
-            <div class="partner-logo-item" title="Amazon Web Services">
-              <img src="assets/logos/aws.png" alt="AWS">
-            </div>
-            <div class="partner-logo-item" title="Advantech">
-              <img src="assets/logos/advantech.png" alt="Advantech">
-            </div>
-            <div class="partner-logo-item" title="Moxa Industrial IoT">
-              <img src="assets/logos/moxa.png" alt="Moxa">
-            </div>
-            <div class="partner-logo-item" title="Tenaga Nasional">
-              <img src="assets/logos/tenaga-nasional.png" alt="Tenaga Nasional">
-            </div>
-            <div class="partner-logo-item" title="PTT Energy">
-              <img src="assets/logos/ptt.png" alt="PTT">
-            </div>
-            <div class="partner-logo-item" title="SPIC">
-              <img src="assets/logos/spic.png" alt="SPIC">
-            </div>
-            <div class="partner-logo-item" title="HSBC">
-              <img src="assets/logos/hsbc.png" alt="HSBC">
-            </div>
-            <div class="partner-logo-item" title="OCBC Bank">
-              <img src="assets/logos/ocbc.png" alt="OCBC Bank">
-            </div>
-            <div class="partner-logo-item" title="Indorama Ventures">
-              <img src="assets/logos/indorama.png" alt="Indorama Ventures">
-            </div>
-            <div class="partner-logo-item" title="Eaton Power Management">
-              <img src="assets/logos/eaton.png" alt="Eaton">
-            </div>
-            <div class="partner-logo-item" title="Nippon Paint">
-              <img src="assets/logos/nippon-paint.png" alt="Nippon Paint">
-            </div>
-            <div class="partner-logo-item" title="GovTech Singapore">
-              <img src="assets/logos/govtech.png" alt="GovTech Singapore">
-            </div>
-            <div class="partner-logo-item" title="PUB Singapore Water Agency">
-              <img src="assets/logos/pub-water.png" alt="PUB Water Agency">
-            </div>
-            <div class="partner-logo-item" title="HTX Singapore">
-              <img src="assets/logos/htx.png" alt="HTX">
+          </div>
+
+          <!-- Row 2 — scrolls right -->
+          <div class="marquee-outer" style="margin-top: 12px;">
+            <div class="marquee-fade marquee-fade-l"></div>
+            <div class="marquee-fade marquee-fade-r"></div>
+            <div class="marquee-track marquee-track--right" aria-hidden="true">
+              <div class="marquee-content">
+                <div class="marquee-logo-item"><img src="assets/logos/tenaga-nasional.png" alt="Tenaga Nasional"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/ptt.png" alt="PTT"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/spic.png" alt="SPIC"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/hsbc.png" alt="HSBC"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/ocbc.png" alt="OCBC Bank"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/indorama.png" alt="Indorama Ventures"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/eaton.png" alt="Eaton"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/nippon-paint.png" alt="Nippon Paint"></div>
+                <!-- Duplicated for seamless loop -->
+                <div class="marquee-logo-item"><img src="assets/logos/tenaga-nasional.png" alt="Tenaga Nasional"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/ptt.png" alt="PTT"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/spic.png" alt="SPIC"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/hsbc.png" alt="HSBC"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/ocbc.png" alt="OCBC Bank"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/indorama.png" alt="Indorama Ventures"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/eaton.png" alt="Eaton"></div>
+                <div class="marquee-logo-item"><img src="assets/logos/nippon-paint.png" alt="Nippon Paint"></div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Landmark Singapore Deployments Card (From PPTX Slides 4 & 5) -->
+        <!-- Landmark Singapore Deployments Card -->
         <div class="landmark-deployments-card">
           <div class="landmark-header-row">
             <span class="sg-flag-badge">🇸🇬 SINGAPORE SMART NATION &amp; LANDMARK DEPLOYMENTS</span>

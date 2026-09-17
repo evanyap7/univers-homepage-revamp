@@ -12,6 +12,7 @@ function boot() {
     ['initLiveTelemetry', initLiveTelemetry],
     ['initEngineSimulator', initEngineSimulator],
     ['initSectorExplorer', initSectorExplorer],
+    ['initKeyClientsInteractive', initKeyClientsInteractive],
     ['initValueCalculator', initValueCalculator],
     ['initScrollReveal', initScrollReveal],
     ['initKineticCanvas', initKineticCanvas],
@@ -447,6 +448,169 @@ function initSectorExplorer() {
       if (quoteNameEl) quoteNameEl.textContent = d.name;
       if (quoteRoleEl) quoteRoleEl.textContent = d.role;
     });
+  });
+}
+
+/* ==========================================================================
+   4b. KEY CLIENTS INTERACTIVE TAB PANEL
+   ========================================================================== */
+function initKeyClientsInteractive() {
+  const tabs = document.querySelectorAll('.kc-tab');
+  const badgeEl = document.getElementById('kc-badge');
+  const nameEl = document.getElementById('kc-name');
+  const descEl = document.getElementById('kc-desc');
+  const metricsEl = document.getElementById('kc-metrics');
+
+  if (!tabs.length || !badgeEl) return;
+
+  const clients = {
+    psa: {
+      badge: 'KEY CLIENT // GLOBAL PORTS',
+      name: 'PSA International',
+      desc: "World's largest port operator spanning 70+ terminals across 180+ locations in 45 countries — with S$5B annual OPEX managed on EnOS.",
+      metrics: [
+        { val: 'S$330M', lbl: 'Annual operating profit uplift' },
+        { val: 'S$83M',  lbl: 'Annual revenue uplift' },
+        { val: '45',     lbl: 'Countries covered' }
+      ]
+    },
+    dhl: {
+      badge: 'KEY CLIENT // FLEET ELECTRIFICATION',
+      name: 'DHL Fleet',
+      desc: 'Electrifying 2,100 heavy-duty trucks across 299 German sites — 60,000+ assets onboarded across 40+ EV and charger OEMs.',
+      metrics: [
+        { val: '€41M',    lbl: 'Net annual EBIT impact by 2030' },
+        { val: '2,100',   lbl: 'Heavy-duty trucks electrified' },
+        { val: '60,000+', lbl: 'Assets onboarded' }
+      ]
+    },
+    hdb: {
+      badge: 'KEY CLIENT // NATIONAL INFRASTRUCTURE',
+      name: 'HDB Singapore',
+      desc: '9 legacy BMS vendors unified into 1 sovereign Singapore cloud platform across 11,000 residential blocks, 36 malls, and 2,000 car parks.',
+      metrics: [
+        { val: 'S$7.0M', lbl: 'Verified annual benefit' },
+        { val: '1.94×',  lbl: 'ROI on S$3.6M investment' },
+        { val: '10,000+', lbl: 'Assets AI-onboarded' }
+      ]
+    },
+    aesc: {
+      badge: 'KEY CLIENT // BATTERY GIGAFACTORIES',
+      name: 'AESC Gigafactories',
+      desc: '10+ battery gigafactories in 6 countries with U$5B OPEX — from 50% to 80% systematic OEE uplift in 18 months.',
+      metrics: [
+        { val: '50%→80%', lbl: 'Systematic OEE uplift' },
+        { val: '$48M+',   lbl: 'Annual productivity gain / plant' },
+        { val: '$39M+',   lbl: 'Annual operating cost reduction' }
+      ]
+    },
+    changi: {
+      badge: 'KEY CLIENT // GLOBAL AVIATION',
+      name: 'Changi Airport Singapore',
+      desc: 'Terminal 3 and Jewel HVAC energy optimization — real-time operational insights and heightened asset reliability at the world\'s most awarded airport.',
+      metrics: [
+        { val: 'T1–T5',  lbl: 'Terminals covered' },
+        { val: '24/7',   lbl: 'Real-time HVAC monitoring' },
+        { val: 'Smart',  lbl: 'Net-zero airport initiative' }
+      ]
+    },
+    sp: {
+      badge: 'KEY CLIENT // GRID VPP',
+      name: 'SP Group',
+      desc: "Advancing Singapore's Virtual Power Plant (VPP) initiative under the Energy Market Authority's (EMA) Regulatory Sandbox — distributed energy at national scale.",
+      metrics: [
+        { val: 'VPP',    lbl: 'Virtual Power Plant operator' },
+        { val: 'EMA',    lbl: 'Regulatory sandbox certified' },
+        { val: 'SGX',    lbl: 'Listed national utility' }
+      ]
+    },
+    cdg: {
+      badge: 'KEY CLIENT // TRANSIT & FLEET',
+      name: 'ComfortDelGro',
+      desc: 'Multi-modal smart charging, site microgrid optimization, and automated machine maintenance for one of the world\'s largest land transport groups.',
+      metrics: [
+        { val: '45K+',   lbl: 'Fleet vehicles managed' },
+        { val: 'Multi',  lbl: 'Modal transport types' },
+        { val: 'Smart',  lbl: 'EV depot microgrid' }
+      ]
+    },
+    hkia: {
+      badge: 'KEY CLIENT // AIRPORT MICROGRID',
+      name: 'HK International Airport',
+      desc: 'AI-orchestrated smart building automation, peak load shifting, and predictive energy efficiency at international aviation scale — Asia\'s cargo hub.',
+      metrics: [
+        { val: '#1',     lbl: 'Busiest cargo airport, Asia' },
+        { val: 'AI',     lbl: 'Energy optimization engine' },
+        { val: 'Smart',  lbl: 'Building automation layer' }
+      ]
+    }
+  };
+
+  function renderMetrics(metricsList) {
+    metricsEl.innerHTML = metricsList.map(m => `
+      <div class="kc-metric">
+        <div class="kc-metric-val">${m.val}</div>
+        <div class="kc-metric-lbl">${m.lbl}</div>
+      </div>
+    `).join('');
+  }
+
+  function selectClient(key) {
+    const data = clients[key];
+    if (!data) return;
+
+    // Animate out panel
+    const panel = document.getElementById('kc-panel');
+    if (panel) {
+      panel.style.opacity = '0';
+      panel.style.transform = 'translateY(6px)';
+    }
+
+    setTimeout(() => {
+      badgeEl.textContent = data.badge;
+      nameEl.textContent = data.name;
+      descEl.textContent = data.desc;
+      renderMetrics(data.metrics);
+
+      if (panel) {
+        panel.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
+        panel.style.opacity = '1';
+        panel.style.transform = 'translateY(0)';
+      }
+    }, 180);
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      selectClient(tab.dataset.client);
+    });
+  });
+
+  // Auto-cycle through clients every 5s
+  let autoIdx = 0;
+  const tabKeys = Array.from(tabs).map(t => t.dataset.client);
+
+  const autoCycle = setInterval(() => {
+    // Only auto-cycle if user hasn't interacted recently
+    autoIdx = (autoIdx + 1) % tabKeys.length;
+    const targetTab = tabs[autoIdx];
+    if (targetTab) {
+      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+      targetTab.classList.add('active');
+      targetTab.setAttribute('aria-selected', 'true');
+      selectClient(tabKeys[autoIdx]);
+    }
+  }, 5000);
+
+  // Stop auto-cycle when user clicks
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => clearInterval(autoCycle), { once: true });
   });
 }
 
