@@ -3166,9 +3166,9 @@ body.grid-surge-active::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 18px;
-  min-height: 52px;
-  min-width: 80px;
+  padding: 6px 14px;
+  min-height: 44px;
+  min-width: 68px;
   background: transparent;
   border: 1.5px solid transparent;
   border-radius: 10px;
@@ -3190,8 +3190,8 @@ body.grid-surge-active::after {
 }
 
 .kc-tab-logo {
-  max-height: 28px;
-  max-width: 88px;
+  max-height: 22px;
+  max-width: 72px;
   object-fit: contain;
   filter: grayscale(1) opacity(0.55);
   transition: filter 0.22s ease;
@@ -3372,14 +3372,15 @@ body.grid-surge-active::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 24px;
+  padding: 8px 18px;
   flex-shrink: 0;
   border-right: 1px solid rgba(0,0,0,0.07);
+  position: relative;
 }
 
 .marquee-logo-item img {
-  max-height: 26px;
-  max-width: 96px;
+  max-height: 20px;
+  max-width: 78px;
   object-fit: contain;
   filter: grayscale(1) opacity(0.45);
   transition: filter 0.3s ease, transform 0.2s ease;
@@ -3388,6 +3389,39 @@ body.grid-surge-active::after {
 .marquee-logo-item:hover img {
   filter: grayscale(0) opacity(1);
   transform: scale(1.06);
+}
+
+/* Hover tooltip (JS-positioned singleton, see initPartnerMarqueeTooltip in
+   app.js): .marquee-outer clips overflow to mask the scrolling track, which
+   would clip a per-item ::after tooltip too, so instead a single tooltip
+   node lives on .partners-marquee-wrap (uncipped) and is repositioned on
+   hover. */
+.partners-marquee-wrap {
+  position: relative;
+}
+
+.marquee-hover-tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--univ-navy);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  padding: 4px 9px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -6px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 3;
+}
+
+.marquee-hover-tooltip.visible {
+  opacity: 1;
+  transform: translate(-50%, -10px);
 }
 
 
@@ -3629,13 +3663,13 @@ body.grid-surge-active::after {
     padding: 4px;
   }
   .kc-tab {
-    padding: 6px 12px;
-    min-height: 44px;
-    min-width: 64px;
+    padding: 5px 10px;
+    min-height: 40px;
+    min-width: 58px;
   }
   .kc-tab-logo {
-    max-height: 22px;
-    max-width: 68px;
+    max-height: 19px;
+    max-width: 60px;
   }
   .kc-panel-inner {
     padding: 20px 18px;
@@ -3651,10 +3685,13 @@ body.grid-surge-active::after {
     font-size: 1.2rem;
   }
   .marquee-logo-item {
-    padding: 8px 16px;
+    padding: 7px 13px;
   }
   .marquee-logo-item img {
-    max-height: 20px;
-    max-width: 72px;
+    max-height: 17px;
+    max-width: 62px;
+  }
+  .marquee-logo-item::after {
+    display: none;
   }
 }
