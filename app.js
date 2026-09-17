@@ -18,7 +18,8 @@ function boot() {
     ['initCyberCursor', initCyberCursor],
     ['init3DTiltCards', init3DTiltCards],
     ['initCyberHUD', initCyberHUD],
-    ['initNumberTallies', initNumberTallies]
+    ['initNumberTallies', initNumberTallies],
+    ['initDemoBookingFlow', initDemoBookingFlow]
   ];
 
   systems.forEach(([name, fn]) => {
@@ -1619,5 +1620,501 @@ function initNumberTallies() {
     odometers.forEach((item) => observer.observe(item.el));
   }
 }
+
+/* ==========================================================================
+   INTERACTIVE DEMO BOOKING FLOW & CSV DATABASE ENGINE
+   Handles modal states, strict email validation, confirmation follow-through,
+   and persistent CSV database management.
+   ========================================================================== */
+function initDemoBookingFlow() {
+  const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  // Modals
+  const demoBackdrop = document.getElementById('demo-modal-backdrop');
+  const demoModal = document.getElementById('demo-modal');
+  const demoCloseBtn = document.getElementById('demo-modal-close');
+
+  const leadsBackdrop = document.getElementById('leads-modal-backdrop');
+  const leadsModal = document.getElementById('leads-db-modal');
+  const leadsCloseBtn = document.getElementById('leads-modal-close');
+
+  // Form elements
+  const formView = document.getElementById('demo-form-view');
+  const successView = document.getElementById('demo-success-view');
+  const form = document.getElementById('demo-booking-form');
+  const submitBtn = document.getElementById('demo-submit-btn');
+
+  const nameInput = document.getElementById('demo-name');
+  const emailInput = document.getElementById('demo-email');
+  const orgInput = document.getElementById('demo-org');
+  const inquiryInput = document.getElementById('demo-inquiry');
+
+  const nameError = document.getElementById('demo-name-error');
+  const emailError = document.getElementById('demo-email-error');
+  const orgError = document.getElementById('demo-org-error');
+  const inquiryError = document.getElementById('demo-inquiry-error');
+
+  // Success view elements
+  const receiptId = document.getElementById('receipt-id');
+  const receiptContact = document.getElementById('receipt-name-email');
+  const receiptOrg = document.getElementById('receipt-org');
+  const receiptInquiry = document.getElementById('receipt-inquiry');
+  const btnDownloadRecord = document.getElementById('btn-download-record-csv');
+  const btnViewLeads = document.getElementById('btn-view-leads-db');
+
+  // Database elements
+  const leadsCountText = document.getElementById('leads-total-count');
+  const hudLeadsCount = document.getElementById('hud-leads-count');
+  const leadsTableBody = document.getElementById('leads-table-body');
+  const btnExportCsv = document.getElementById('btn-export-full-csv');
+  const btnAddSample = document.getElementById('btn-add-sample-lead');
+  const hudOpenLeadsBtn = document.getElementById('hud-open-leads-db');
+
+  // Triggers
+  const triggerNav = document.getElementById('nav-cta-demo');
+  const triggerMobile = document.getElementById('mobile-cta-demo');
+  const triggerCalc = document.getElementById('calc-cta-demo');
+  const triggerFinal = document.getElementById('final-cta-demo');
+
+  // --- CSV DATABASE STORAGE ---
+  const STORAGE_KEY = 'univers_demo_leads_db_v1';
+  const DEFAULT_LEADS = [
+    {
+      id: 'UNIV-DEMO-2026-001',
+      timestamp: '2026-09-17T12:00:00.000Z',
+      name: 'Marcus Vance',
+      email: 'm.vance@orix-renewables.com',
+      organisation: 'ORIX Renewable Energy Management',
+      inquiry: 'Scaling real-time AI power forecasting across 4.2 GW solar-plus-storage fleet.',
+      status: 'DISPATCHED'
+    },
+    {
+      id: 'UNIV-DEMO-2026-002',
+      timestamp: '2026-09-17T15:30:00.000Z',
+      name: 'Eileen Wu',
+      email: 'eileen.wu@capitaland.com',
+      organisation: 'CapitaLand Real Estate Investment',
+      inquiry: 'Automating central chiller plant COP telemetry and Scope 2 tenant carbon accounting across 12 commercial towers.',
+      status: 'DISPATCHED'
+    }
+  ];
+
+  function getLeads() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch (e) {}
+    return DEFAULT_LEADS;
+  }
+
+  function saveLeads(leads) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(leads));
+    } catch (e) {}
+    updateLeadsCount(leads.length);
+    renderLeadsTable(leads);
+  }
+
+  function updateLeadsCount(count) {
+    if (leadsCountText) leadsCountText.textContent = count;
+    if (hudLeadsCount) hudLeadsCount.textContent = count;
+  }
+
+  function escapeCsv(val) {
+    if (val === null || val === undefined) return '""';
+    const str = String(val).replace(/"/g, '""');
+    return `"${str}"`;
+  }
+
+  function generateCsvString(leads) {
+    const header = 'ID,Timestamp (ISO),Full Name,Business Email,Organisation,Inquiry,Status\r\n';
+    const rows = leads.map((l) =>
+      [
+        escapeCsv(l.id),
+        escapeCsv(l.timestamp),
+        escapeCsv(l.name),
+        escapeCsv(l.email),
+        escapeCsv(l.organisation),
+        escapeCsv(l.inquiry),
+        escapeCsv(l.status || 'PENDING')
+      ].join(',')
+    ).join('\r\n');
+    return header + rows;
+  }
+
+  function downloadCsv(filename, content) {
+    const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    if (window.UniversInteractive && window.UniversInteractive.playSound) {
+      window.UniversInteractive.playSound('ping');
+    }
+  }
+
+  function renderLeadsTable(leads) {
+    if (!leadsTableBody) return;
+    leadsTableBody.innerHTML = '';
+    leads.forEach((lead) => {
+      const tr = document.createElement('tr');
+      const dateStr = new Date(lead.timestamp).toLocaleString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      tr.innerHTML = `
+        <td class="mono-metric" style="font-weight: 600; color: var(--univ-purple);">${lead.id}</td>
+        <td style="color: var(--univ-text-muted); font-size: 0.76rem;">${dateStr}</td>
+        <td style="font-weight: 600;">${lead.name}</td>
+        <td class="mono-metric" style="color: var(--univ-text-secondary);">${lead.email}</td>
+        <td>${lead.organisation}</td>
+        <td class="cell-inquiry" title="${lead.inquiry}">${lead.inquiry}</td>
+        <td><span class="status-tag ${lead.status === 'DISPATCHED' ? 'status-dispatched' : 'status-new'}">${lead.status || 'NEW'}</span></td>
+      `;
+      leadsTableBody.appendChild(tr);
+    });
+  }
+
+  // --- MODAL CONTROLS ---
+  let lastActiveLead = null;
+
+  function openDemoModal(initialInquiry = '') {
+    if (demoBackdrop) {
+      demoBackdrop.hidden = false;
+      document.body.style.overflow = 'hidden';
+      // Reset views
+      if (formView) formView.hidden = false;
+      if (successView) successView.hidden = true;
+      clearErrors();
+
+      if (initialInquiry && inquiryInput) {
+        inquiryInput.value = initialInquiry;
+      }
+      setTimeout(() => {
+        if (nameInput) nameInput.focus();
+      }, 100);
+    }
+    if (window.UniversInteractive && window.UniversInteractive.playSound) {
+      window.UniversInteractive.playSound('click');
+    }
+  }
+
+  function closeDemoModal() {
+    if (demoBackdrop) {
+      demoBackdrop.hidden = true;
+      document.body.style.overflow = '';
+    }
+  }
+
+  function openLeadsModal() {
+    renderLeadsTable(getLeads());
+    if (leadsBackdrop) {
+      leadsBackdrop.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+    if (window.UniversInteractive && window.UniversInteractive.playSound) {
+      window.UniversInteractive.playSound('click');
+    }
+  }
+
+  function closeLeadsModal() {
+    if (leadsBackdrop) {
+      leadsBackdrop.hidden = true;
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Bind close buttons and backdrop clicks
+  if (demoCloseBtn) demoCloseBtn.addEventListener('click', closeDemoModal);
+  if (demoBackdrop) {
+    demoBackdrop.addEventListener('click', (e) => {
+      if (e.target === demoBackdrop) closeDemoModal();
+    });
+  }
+
+  if (leadsCloseBtn) leadsCloseBtn.addEventListener('click', closeLeadsModal);
+  if (leadsBackdrop) {
+    leadsBackdrop.addEventListener('click', (e) => {
+      if (e.target === leadsBackdrop) closeLeadsModal();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeDemoModal();
+      closeLeadsModal();
+    }
+  });
+
+  // --- VALIDATION HELPERS ---
+  function showError(input, errorEl, msg) {
+    if (input) input.classList.add('has-error');
+    if (errorEl) {
+      errorEl.textContent = msg;
+      errorEl.classList.add('visible');
+    }
+  }
+
+  function clearError(input, errorEl) {
+    if (input) input.classList.remove('has-error');
+    if (errorEl) {
+      errorEl.textContent = '';
+      errorEl.classList.remove('visible');
+    }
+  }
+
+  function clearErrors() {
+    clearError(nameInput, nameError);
+    clearError(emailInput, emailError);
+    clearError(orgInput, orgError);
+    clearError(inquiryInput, inquiryError);
+  }
+
+  [nameInput, emailInput, orgInput, inquiryInput].forEach((inp) => {
+    if (inp) {
+      inp.addEventListener('input', () => {
+        inp.classList.remove('has-error');
+        const err = document.getElementById(`${inp.id}-error`);
+        if (err) {
+          err.textContent = '';
+          err.classList.remove('visible');
+        }
+      });
+    }
+  });
+
+  // --- FORM SUBMISSION ---
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearErrors();
+
+      const name = nameInput ? nameInput.value.trim() : '';
+      const email = emailInput ? emailInput.value.trim() : '';
+      const org = orgInput ? orgInput.value.trim() : '';
+      const inquiry = inquiryInput ? inquiryInput.value.trim() : '';
+
+      let hasError = false;
+
+      if (!name || name.length < 2) {
+        showError(nameInput, nameError, 'Please provide your full name.');
+        hasError = true;
+      }
+
+      if (!email) {
+        showError(emailInput, emailError, 'Business email is required.');
+        hasError = true;
+      } else if (!EMAIL_REGEX.test(email)) {
+        showError(emailInput, emailError, 'Please enter a valid email address (e.g. name@organisation.com).');
+        hasError = true;
+      }
+
+      if (!org || org.length < 2) {
+        showError(orgInput, orgError, 'Please provide your organisation or enterprise name.');
+        hasError = true;
+      }
+
+      if (!inquiry || inquiry.length < 5) {
+        showError(inquiryInput, inquiryError, 'Please describe your inquiry or decarbonization requirements.');
+        hasError = true;
+      }
+
+      if (hasError) return;
+
+      // Disable button during submission
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `
+          <span>Recording in CSV Database...</span>
+          <svg class="btn-icon rotating" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="2" x2="12" y2="6"></line>
+            <line x1="12" y1="18" x2="12" y2="22"></line>
+            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+            <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+            <line x1="2" y1="12" x2="6" y2="12"></line>
+            <line x1="18" y1="12" x2="22" y2="12"></line>
+          </svg>
+        `;
+      }
+
+      const id = `UNIV-DEMO-${Date.now().toString(36).toUpperCase()}-${Math.floor(1000 + Math.random() * 9000)}`;
+      const timestamp = new Date().toISOString();
+
+      const newLead = {
+        id,
+        timestamp,
+        name,
+        email: email.toLowerCase(),
+        organisation: org,
+        inquiry,
+        status: 'DISPATCHED'
+      };
+
+      lastActiveLead = newLead;
+
+      // 1. Save to local CSV database
+      const leads = getLeads();
+      leads.unshift(newLead);
+      saveLeads(leads);
+
+      // 2. Dispatch to /api/book-demo in background
+      try {
+        fetch('/api/book-demo', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newLead)
+        }).catch(() => {});
+      } catch (err) {}
+
+      // 3. Show follow-through confirmation screen
+      setTimeout(() => {
+        if (formView) formView.hidden = true;
+        if (successView) successView.hidden = false;
+
+        if (receiptId) receiptId.textContent = newLead.id;
+        if (receiptContact) receiptContact.textContent = `${newLead.name} (${newLead.email})`;
+        if (receiptOrg) receiptOrg.textContent = newLead.organisation;
+        if (receiptInquiry) receiptInquiry.textContent = newLead.inquiry;
+
+        // Reset submit button state for next time
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = `
+            <span>Confirm Demo Booking</span>
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          `;
+        }
+
+        if (form) form.reset();
+
+        if (window.UniversInteractive && window.UniversInteractive.playSound) {
+          window.UniversInteractive.playSound('ping');
+        }
+      }, 500);
+    });
+  }
+
+  // --- ACTIONS IN SUCCESS VIEW ---
+  if (btnDownloadRecord) {
+    btnDownloadRecord.addEventListener('click', () => {
+      if (!lastActiveLead) return;
+      const csvData = generateCsvString([lastActiveLead]);
+      downloadCsv(`univers_demo_booking_${lastActiveLead.id}.csv`, csvData);
+    });
+  }
+
+  if (btnViewLeads) {
+    btnViewLeads.addEventListener('click', () => {
+      closeDemoModal();
+      openLeadsModal();
+    });
+  }
+
+  // --- ACTIONS IN LEADS DATABASE MODAL ---
+  if (btnExportCsv) {
+    btnExportCsv.addEventListener('click', () => {
+      const leads = getLeads();
+      const csvData = generateCsvString(leads);
+      downloadCsv('univers_demo_leads.csv', csvData);
+    });
+  }
+
+  if (btnAddSample) {
+    btnAddSample.addEventListener('click', () => {
+      const sampleNames = ['Alex Mercer', 'Elena Rostova', 'Kenji Sato', 'Priya Sharma', 'David Lindqvist'];
+      const sampleOrgs = ['Vattenfall Renewables', 'Singapore Power Grid', 'Mitsubishi Heavy Industries', 'Vestas Offshore', 'Maersk Decarb'];
+      const sampleInquiries = [
+        'Looking to integrate 1.8 GW wind telemetry into EnOS Cloud.',
+        'Feasibility study for building microgrid BESS load shifting.',
+        'Connecting port container cranes for peak demand abatement.',
+        'Scope 1 and 2 automated emissions reporting for audit readiness.'
+      ];
+      const randName = sampleNames[Math.floor(Math.random() * sampleNames.length)];
+      const randOrg = sampleOrgs[Math.floor(Math.random() * sampleOrgs.length)];
+      const randEmail = `${randName.toLowerCase().replace(' ', '.')}@${randOrg.toLowerCase().replace(/[^a-z]/g, '')}.com`;
+      const randInquiry = sampleInquiries[Math.floor(Math.random() * sampleInquiries.length)];
+
+      const sampleLead = {
+        id: `UNIV-DEMO-${Date.now().toString(36).toUpperCase()}-${Math.floor(1000 + Math.random() * 9000)}`,
+        timestamp: new Date().toISOString(),
+        name: randName,
+        email: randEmail,
+        organisation: randOrg,
+        inquiry: randInquiry,
+        status: 'NEW'
+      };
+
+      const leads = getLeads();
+      leads.unshift(sampleLead);
+      saveLeads(leads);
+      if (window.UniversInteractive && window.UniversInteractive.playSound) {
+        window.UniversInteractive.playSound('click');
+      }
+    });
+  }
+
+  if (hudOpenLeadsBtn) {
+    hudOpenLeadsBtn.addEventListener('click', openLeadsModal);
+  }
+
+  // --- TRIGGER HOOKS ON SITE BUTTONS ---
+  if (triggerNav) {
+    triggerNav.addEventListener('click', (e) => {
+      e.preventDefault();
+      openDemoModal();
+    });
+  }
+
+  if (triggerMobile) {
+    triggerMobile.addEventListener('click', (e) => {
+      e.preventDefault();
+      const drawer = document.getElementById('mobile-nav-drawer');
+      const backdrop = document.getElementById('nav-backdrop');
+      if (drawer) drawer.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('open');
+      document.body.classList.remove('nav-open');
+      openDemoModal();
+    });
+  }
+
+  if (triggerCalc) {
+    triggerCalc.addEventListener('click', (e) => {
+      e.preventDefault();
+      const sectorSelect = document.getElementById('calc-sector');
+      const spendDisplay = document.getElementById('calc-spend-display');
+      const resSavings = document.getElementById('res-savings');
+      const resCarbon = document.getElementById('res-carbon');
+
+      const sector = sectorSelect ? sectorSelect.value : 'Energy';
+      const spend = spendDisplay ? spendDisplay.textContent : '$12,000,000 / yr';
+      const savings = (resSavings && resSavings.dataset.tallyTarget) ? resSavings.dataset.tallyTarget : (resSavings ? resSavings.textContent : '$1,176,000');
+      const carbon = (resCarbon && resCarbon.dataset.tallyTarget) ? resCarbon.dataset.tallyTarget : (resCarbon ? resCarbon.textContent : '5,040 Tons/yr');
+
+      const prefillMsg = `We are exploring decarbonization for our ${sector.toUpperCase()} portfolio (${spend} spend). Interested in seeing how Univers EnOS delivers the estimated ${savings} net annual savings and ${carbon} abatement.`;
+      openDemoModal(prefillMsg);
+    });
+  }
+
+  if (triggerFinal) {
+    triggerFinal.addEventListener('click', (e) => {
+      e.preventDefault();
+      openDemoModal();
+    });
+  }
+
+  // Initial render of badges and leads
+  const initialLeads = getLeads();
+  updateLeadsCount(initialLeads.length);
+}
+
 
 
