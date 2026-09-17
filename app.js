@@ -186,16 +186,16 @@ function initLiveTelemetry() {
   const actionsEl = document.getElementById('telemetry-actions');
   const streamEl = document.getElementById('hero-log-stream');
 
-  let baseGW = 552.1;
-  let baseEndpoints = 220140912;
-  let baseActions = 14.82;
+  let baseGW = 1072.4;
+  let baseEndpoints = 452140912;
+  let baseActions = 18.42;
 
   const eventPool = [
-    { tag: 'CONNECTED', type: 'tag-autonomous', text: 'Wind Farm Cluster 12: Turbine #8 output logged, generation forecast updated (+3.8%)' },
-    { tag: 'REPORTED', type: 'tag-governed', text: 'Substation Alpha: Power factor data synced to EnOS Cloud; logged at 0.99' },
-    { tag: 'CONNECTED', type: 'tag-autonomous', text: 'Automated Port Berth 6: AGV charging data streamed; demand flagged for review' },
-    { tag: 'REPORTED', type: 'tag-governed', text: 'Semiconductor Fab Cleanroom: Airflow pressure differential logged; delta-P within range' },
-    { tag: 'ABATED', type: 'tag-autonomous', text: 'Commercial Microgrid: 2.4 MWh BESS discharge recorded during dynamic tariff spike' }
+    { tag: 'CONNECTED', type: 'tag-autonomous', text: 'HDB Sovereign Cloud: 10,000+ assets synchronized across 9 BMS vendors; energy baseline validated' },
+    { tag: 'REPORTED', type: 'tag-governed', text: 'PSA International Terminal: Automated berth AGV power demand logged; peak shaved by 14%' },
+    { tag: 'CONNECTED', type: 'tag-autonomous', text: 'DHL Fleet Electrification: 2,100 heavy-duty e-trucks telemetry streamed; depot charging optimized' },
+    { tag: 'REPORTED', type: 'tag-governed', text: 'AESC Gigafactory Line 4: Battery cell thermal variance analyzed; OEE stabilized at 81.4%' },
+    { tag: 'ABATED', type: 'tag-autonomous', text: 'Southeast Asia BESS: 2.4 MWh discharge recorded during dynamic tariff surge; avoided carbon logged' }
   ];
 
   let eventIdx = 0;
@@ -266,20 +266,20 @@ function initEngineSimulator() {
   const stageData = {
     '1': {
       title: 'ON THE GROUND: ENOS EDGE',
-      rate: 'CONNECTED: 220M+ Devices',
+      rate: 'CONNECTED: 450M+ Sensors & Devices',
       console: '>> Reading real-time energy data from meters, sensors, BMS, and industrial equipment across every OEM protocol...',
       activeNodes: [node1]
     },
     '2': {
       title: 'IN THE CLOUD: ENOS CLOUD',
-      rate: 'MANAGING: 552.1 GW Renewable Capacity',
+      rate: 'MANAGING: 1,070 GW Energy Assets (~20% Global Capacity)',
       console: '>> Fusing on-the-ground data with cloud intelligence into accurate, reliable, actionable decarbonization data...',
       activeNodes: [node1, node2]
     },
     '3': {
       title: 'FOR THE EARTH: MONITORING, REPORTING & ABATEMENT',
-      rate: 'COMMUNITY: 500+ Customers Toward Net Zero',
-      console: '>> Delivering data-driven carbon monitoring, reporting, and abatement across the portfolio...',
+      rate: 'ABATEMENT: 1,013M tCO2e Avoided (800+ Global Clients)',
+      console: '>> Delivering data-driven carbon monitoring, reporting, and abatement across the global enterprise portfolio...',
       activeNodes: [node1, node2, node3]
     }
   };
@@ -354,13 +354,13 @@ function initSectorExplorer() {
   const sectorData = {
     energy: {
       title: 'Energy & Utilities: Real-Time Data for an Intermittent Grid',
-      desc: 'Grids face unprecedented pressure from rising renewable volatility, EV charging peaks, and distributed energy resources. Univers connects generation, storage, and market data in real time — the accurate picture operators need to manage, and transform, performance.',
+      desc: 'Grids face unprecedented pressure from rising renewable volatility, EV charging peaks, and distributed energy resources. Univers connects generation, storage, and market data in real time — managing ~20% of world installed capacity.',
       kpi1: '10–20%',
       kpiLabel1: 'Reduction in O&M costs',
-      kpi2: '12%+',
-      kpiLabel2: 'Revenue protection via AI power forecasting',
-      kpi3: '550 GW+',
-      kpiLabel3: 'Renewable energy under Univers management',
+      kpi2: '1,013M',
+      kpiLabel2: 'Million tCO2e avoided carbon emissions',
+      kpi3: '1,070 GW',
+      kpiLabel3: 'Managed energy assets (~20% global capacity)',
       quoteType: 'testimonial',
       quote: '“With Univers’ end-to-end solution and expertise, ORIX Renewable Energy Management can provide total customer support – from proposals to implementation to maintenance, which in turn helps our customers optimize energy use and reduce costs.”',
       avatar: 'KY',
@@ -368,49 +368,49 @@ function initSectorExplorer() {
       role: 'EVP & Chief Strategy Officer, ORIX Renewable Energy Management'
     },
     buildings: {
-      title: 'Built Environment: Even Giants Can Have Small Footprints',
-      desc: 'Commercial and institutional buildings consume massive amounts of power through inefficient HVAC and manual setpoints. Univers delivers real-time energy monitoring and predictive chiller and ventilation reporting across entire real estate portfolios.',
-      kpi1: '9.8%',
-      kpiLabel1: 'Verified net energy savings',
-      kpi2: '99.5%',
-      kpiLabel2: 'Portfolio-wide asset uptime',
-      kpi3: '100%',
-      kpiLabel3: 'Portfolio visibility, single pane of glass',
+      title: 'Built Environment: Cloud BMS Proven at National Scale',
+      desc: 'Commercial and institutional buildings consume massive amounts of power through inefficient HVAC and manual setpoints. Univers migrated 9 legacy BMS vendors into a single sovereign cloud across 10,000+ national assets.',
+      kpi1: 'S$7.0M / yr',
+      kpiLabel1: 'Verified annual benefit (HDB Singapore)',
+      kpi2: '1.94×',
+      kpiLabel2: 'Verified ROI on S$3.6M investment',
+      kpi3: '10,000+',
+      kpiLabel3: 'Assets AI-onboarded across 9 BMS vendors',
       quoteType: 'caseStudy',
-      quote: 'Across commercial and institutional real estate portfolios, Univers customers report verified double-digit energy savings and full portfolio visibility from a single operating view — without compromising tenant comfort.',
-      avatar: 'BE',
-      name: 'Built Environment Benchmark',
-      role: 'Aggregated across Univers real estate deployments'
+      quote: 'HDB deployed Univers to unify 11,000 residential blocks, 36 shopping malls, and 2,000 car parks into one sovereign cloud platform — replacing 9 proprietary BMS vendors, slashing integration time by 50%, and generating S$7.0M in verified annual savings.',
+      avatar: 'HDB',
+      name: 'Housing & Development Board (HDB)',
+      role: 'Singapore Sovereign Smart Nation Deployment'
     },
     logistics: {
-      title: 'Transportation & Ports: Zero-Downtime Electrification',
-      desc: 'Automated ports and EV fleet hubs cannot absorb power disruptions. Univers balances container crane peak demand, yard vehicle charging, and solar-plus-storage microgrids without interrupting global trade flows.',
-      kpi1: '85M+ TEUs',
-      kpiLabel1: 'Managed at PSA International',
-      kpi2: '99.5%',
-      kpiLabel2: 'Reduction in energy-related disruptions',
-      kpi3: '8–12%',
-      kpiLabel3: 'Terminal energy reduction',
-      quoteType: 'testimonial',
-      quote: '“We identified AI and IoT as technology levers to deliver intelligent insights and open our existing capabilities in engineering and operations.”',
-      avatar: 'TC',
-      name: 'Tan Choon Huat',
-      role: 'AVP Energy Infrastructure, PSA International'
+      title: 'Transportation & Ports: Fleet Electrification & Coordinated Terminals',
+      desc: 'Automated ports and electrified logistics cannot absorb power disruptions. Univers balances container crane peak demand, yard EV fleets, and automated charging depots without interrupting global supply chains.',
+      kpi1: '€41M / yr',
+      kpiLabel1: 'Net annual EBIT impact by 2030 (DHL Fleet)',
+      kpi2: 'S$330M',
+      kpiLabel2: 'Annual operating profit uplift (PSA International)',
+      kpi3: '60,000+',
+      kpiLabel3: 'Assets onboarded across 40+ OEMs',
+      quoteType: 'caseStudy',
+      quote: 'At PSA International (70+ terminals across 45 countries) and DHL Fleet (electrifying 2,100 heavy-duty trucks across 299 sites), Univers unlocks massive operational upside while guaranteeing grid resiliency under intensive megawatt charging demands.',
+      avatar: 'PSA',
+      name: 'PSA International & DHL Fleet',
+      role: 'Global Trade & Logistics Electrification Case Studies'
     },
     manufacturing: {
-      title: 'Industrial Manufacturing: Pre-empting Unplanned Downtime',
-      desc: 'Unplanned downtime is one of the costliest failure modes in manufacturing. Univers fuses machine telemetry, energy data, and maintenance history to catch abnormal equipment behavior before it causes a stoppage.',
-      kpi1: '40%',
-      kpiLabel1: 'Reduction in unplanned downtime',
-      kpi2: '30%',
-      kpiLabel2: 'Improvement in equipment effectiveness (OEE)',
-      kpi3: '10 : 1',
-      kpiLabel3: 'ROI realized within 12–18 months',
+      title: 'Industrial Manufacturing: Physical AI for Core Factory Operations',
+      desc: 'Unplanned downtime and yield loss are the costliest failure modes in advanced manufacturing. Univers fuses machine telemetry, thermodynamics, and energy management to systematically boost Overall Equipment Effectiveness.',
+      kpi1: '50% → 80%',
+      kpiLabel1: 'Systematic OEE improvement (AESC)',
+      kpi2: '$48M+ / yr',
+      kpiLabel2: 'Annual productivity improvement per plant',
+      kpi3: '$39M+',
+      kpiLabel3: 'Annual operating cost reduction',
       quoteType: 'caseStudy',
-      quote: 'Indorama deployed Univers’ smart factory platform to centralize energy data from smart meters and SCADA systems across its global operations — reaching worldwide ISO 50001 Energy Management System compliance while cutting plant-wide energy waste.',
-      avatar: 'IN',
-      name: 'Indorama',
-      role: 'Global manufacturer & petrochemicals — Customer Story'
+      quote: 'AESC deployed Univers across 10+ battery gigafactories in 6 countries. By combining physical AI with real-time operational feedback, AESC achieved a 30%+ OEE uplift in 18 months, generating over $192M in annual net EBIT impact across its manufacturing fleet.',
+      avatar: 'AESC',
+      name: 'AESC Gigafactories',
+      role: 'Global Battery Manufacturing — Core Factory Operations'
     }
   };
 
@@ -627,7 +627,7 @@ function initKineticCanvas() {
       'OT-NODE // 400kV',
       'IEC 61850 STREAM',
       'EnOS™ CLOUD SYNC',
-      '552.1 GW MANAGED',
+      '1,070 GW MANAGED',
       'SUBSTATION ALPHA',
       'BERTH-04 AGV',
       'ALL CONNECTED',
@@ -1397,7 +1397,7 @@ function initCyberHUD() {
           resolvedLog.innerHTML = `
             <span class="log-time mono-metric">[LOGGED]</span>
             <span class="log-tag tag-governed" style="background: rgba(0, 229, 153, 0.2); color: #00E599; border-color: rgba(0, 229, 153, 0.4);">NOMINAL ENVELOPE RESTORED</span>
-            <span class="log-desc" style="color: #00E599; font-weight: 600;">Anomaly resolved and logged in 11ms. Frequency locked at 50.00 Hz. All 220M+ devices synchronized.</span>
+            <span class="log-desc" style="color: #00E599; font-weight: 600;">Anomaly resolved and logged in 11ms. Frequency locked at 50.00 Hz. All 450M+ devices synchronized.</span>
           `;
           streamEl.insertBefore(resolvedLog, streamEl.firstChild);
         }
@@ -2267,7 +2267,7 @@ function initEnOSStackExplorer() {
         'Cross-domain operational ontology & semantic graph reasoning',
         'Continuous self-calibration against real-time operational feedback'
       ],
-      proof: '<strong>550+ GW Global Renewable Assets &amp; AESC Gigafactories:</strong> 15% improvement in wind turbine energy capture; sub-second battery cell thermal deviation forecasting across 12 gigafactories.',
+      proof: '<strong>1,070 GW Global Managed Energy Assets (~20% world installed capacity) &amp; AESC Gigafactories:</strong> 15% improvement in wind turbine energy capture; sub-second battery cell thermal deviation forecasting across 10+ gigafactories.',
       protocols: ['ONNX Runtime', 'PyTorch / TensorFlow', 'EnOS Model Registry', 'Graph Neural Nets', 'Jupyter Workspace', 'SQL/Vector Hybrid Query'],
       simStep: '2',
       simBtnText: 'See Predictive Physics AI in Simulator (Stage 2) ↓'
@@ -2297,7 +2297,7 @@ function initEnOSStackExplorer() {
         'On-premise real-time inference & local safety override governance',
         'Plug-and-play secure onboarding with zero-touch hardware provisioning'
       ],
-      proof: '<strong>220 Million+ Connected Devices Globally:</strong> Unifying 200+ equipment manufacturers (Siemens, Schneider, Honeywell, ABB, Daikin, Carrier) across 500+ commercial complexes and energy parks.',
+      proof: '<strong>450 Million+ Connected Sensors &amp; Devices Globally:</strong> Unifying 200+ equipment manufacturers (Siemens, Schneider, Honeywell, ABB, Daikin, Carrier) across 800+ global enterprises and energy parks.',
       protocols: ['Modbus TCP/RTU', 'OPC-UA', 'BACnet IP/MSTP', 'MQTT / Sparkplug B', 'IEC 61850', 'DNP3 / CANbus'],
       simStep: '1',
       simBtnText: 'See Edge Protocol Ingestion in Simulator (Stage 1) ↓'
