@@ -2347,7 +2347,10 @@ function initChapterNav() {
   const demoBtn = document.getElementById('chapter-cta-demo');
   const pillsWrap = nav.querySelector('.chapter-pills-wrap');
 
-  const sectionIds = ['overview', 'enos-stack', 'engine', 'sectors', 'calculator', 'security'];
+  // Must match actual DOM top-to-bottom order (not chapter-pill order) —
+  // the scrollspy loop below walks this back-to-front assuming it's
+  // sorted by document position.
+  const sectionIds = ['overview', 'enos-stack', 'engine', 'sectors', 'security', 'calculator'];
   const sections = sectionIds
     .map(id => document.getElementById(id))
     .filter(Boolean);
@@ -2359,10 +2362,11 @@ function initChapterNav() {
       const targetId = pill.getAttribute('data-target') || pill.getAttribute('href').replace('#', '');
       const targetEl = document.getElementById(targetId);
       if (targetEl) {
-        // Sticky offset accounts for header + chapter nav
-        const navHeight = nav.offsetHeight || 54;
-        const headerHeight = 72;
-        const totalOffset = navHeight + headerHeight - 10;
+        // Sticky offset accounts for header (77px: 76px nav-container +
+        // 1px border) + chapter nav stacked directly beneath it.
+        const navHeight = nav.offsetHeight || 60;
+        const headerHeight = 77;
+        const totalOffset = navHeight + headerHeight;
         const targetPos = targetEl.getBoundingClientRect().top + window.pageYOffset - totalOffset;
         window.scrollTo({ top: Math.max(0, targetPos), behavior: 'smooth' });
 
