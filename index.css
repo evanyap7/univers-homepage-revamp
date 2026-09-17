@@ -1414,4 +1414,89 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-brand p {
-  fon
+  font-size: 0.9rem;
+  color: var(--univ-text-muted);
+  margin-top: 16px;
+  max-width: 320px;
+  line-height: 1.6;
+}
+
+.footer-col h5 {
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  color: var(--univ-text-primary);
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links a {
+  color: var(--univ-text-muted);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--univ-text-primary);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 0.82rem;
+  color: var(--univ-text-muted);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* ==========================================================================
+   ELEMENTOR INSPECTOR OVERLAY SYSTEM
+   (Toggled on to show web developers exact Elementor Container & Widget mapping)
+   ========================================================================== */
+.elementor-inspector-active [data-elementor-container] {
+  outline: 2px dashed #9333EA !important;
+  outline-offset: -2px;
+  position: relative;
+}
+
+.elementor-inspector-active [data-elementor-container]::before {
+  content: attr(data-elementor-container);
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background: #9333EA;
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 3px;
+  z-index: 999;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  pointer-events: none;
+}
+
+.elementor-inspector-active [data-elementor-widget] {
+  outline: 1px dotted #3B82F6 !important;
+  position: relative;
+}
+
+.elementor-inspector-active [data-elementor-widget]::after {
+  content: attr(data-elementor-widget);
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: rgba(59, 130, 246, 0.9);
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  bo
