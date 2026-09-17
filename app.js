@@ -7,11 +7,122 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initElementorInspector();
+  initMobileNav();
   initLiveTelemetry();
   initEngineSimulator();
   initSectorExplorer();
   initValueCalculator();
+  initScrollReveal();
 });
+
+/* ==========================================================================
+   MOBILE NAV: OFFCANVAS DRAWER
+   Accessible hamburger toggle: focus handling, Escape-to-close,
+   backdrop click, and auto-close when a link is chosen or the
+   viewport grows back past the mobile breakpoint.
+   ========================================================================== */
+function initMobileNav() {
+  const toggleBtn = document.getElementById('mobile-nav-toggle');
+  const drawer = document.getElementById('mobile-nav-drawer');
+  const backdrop = document.getElementById('nav-backdrop');
+  if (!toggleBtn || !drawer || !backdrop) return;
+
+  const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
+  let lastFocusedEl = null;
+
+  function openDrawer() {
+    lastFocusedEl = document.activeElement;
+    drawer.classList.add('open');
+    backdrop.classList.add('open');
+    backdrop.hidden = false;
+    document.body.classList.add('nav-open');
+    toggleBtn.setAttribute('aria-expanded', 'true');
+    toggleBtn.setAttribute('aria-label', 'Close menu');
+    const firstLink = drawer.querySelector('.nav-link');
+    if (firstLink) firstLink.focus();
+  }
+
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    backdrop.classList.remove('open');
+    document.body.classList.remove('nav-open');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    toggleBtn.setAttribute('aria-label', 'Open menu');
+    setTimeout(() => {
+      if (!drawer.classList.contains('open')) backdrop.hidden = true;
+    }, 350);
+    if (lastFocusedEl) lastFocusedEl.focus();
+  }
+
+  function isOpen() {
+    return drawer.classList.contains('open');
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    isOpen() ? closeDrawer() : openDrawer();
+  });
+
+  backdrop.addEventListener('click', closeDrawer);
+
+  drawer.addEventListener('click', (e) => {
+    if (e.target.closest('a')) closeDrawer();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || !isOpen()) return;
+    closeDrawer();
+  });
+
+  drawer.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab' || !isOpen()) return;
+    const focusable = drawer.querySelectorAll('a, button');
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+
+  mobileMediaQuery.addEventListener('change', (e) => {
+    if (!e.matches && isOpen()) closeDrawer();
+  });
+}
+
+/* ==========================================================================
+   SCROLL REVEAL
+   Lightweight IntersectionObserver fade/slide-up on section entry.
+   Skips entirely for prefers-reduced-motion.
+   ========================================================================== */
+function initScrollReveal() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
+
+  const targets = document.querySelectorAll(
+    '.section-header, .card-glass, .compare-card, .engine-step-tab, .flywheel-card, .compliance-category, .authority-stat, .sector-content-card'
+  );
+  if (!targets.length) return;
+
+  targets.forEach((el) => el.classList.add('reveal-on-scroll'));
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
+  );
+
+  targets.forEach((el) => observer.observe(el));
+}
 
 /* ==========================================================================
    1. ELEMENTOR INSPECTOR OVERLAY
