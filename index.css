@@ -1211,4 +1211,112 @@ h1, h2, h3, h4, h5, h6 {
 /* Hardware Feature Banner (EnOS AI Box powered by AMD at CES 2026) */
 .hardware-banner {
   background: linear-gradient(135deg, rgba(14, 22, 36, 0.9) 0%, rgba(8, 12, 20, 0.95) 100%);
-  border: 1px solid rgba(0, 21
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 32px;
+  align-items: center;
+  box-shadow: 0 20px 40px -15px rgba(0, 210, 255, 0.15);
+}
+
+.hardware-info h3 {
+  font-size: 1.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.hardware-info p {
+  font-size: 0.98rem;
+  color: var(--univ-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.chip-specs {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.chip-spec-pill {
+  background: rgba(0, 210, 255, 0.08);
+  border: 1px solid rgba(0, 210, 255, 0.25);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--univ-cyan);
+}
+
+.hardware-graphic {
+  background: radial-gradient(circle at center, rgba(0, 210, 255, 0.2) 0%, transparent 70%);
+  border: 1px solid var(--univ-border-medium);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  text-align: center;
+}
+
+/* ==========================================================================
+   ACT 7: MISSION-CRITICAL COMPLIANCE VAULT
+   ========================================================================== */
+.compliance-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.compliance-category {
+  background: var(--univ-bg-card);
+  border: 1px solid var(--univ-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+}
+
+.compliance-category h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1.25rem;
+  color: var(--univ-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.compliance-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.compliance-tag {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--univ-border-subtle);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #E2E8F0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.compliance-tag svg {
+  color: var(--univ-emerald);
+  width: 14px;
+  height: 14px;
+}
+
+/* ==========================================================================
+   ACT 8: PORTFOLIO VALUE CALCULATOR & CONVERSION GATEWAY
+   ========================================================================== */
+.calculator-card {
+  background: var(--univ-bg-surface-elevated);
+  border: 1px solid var(--univ-border-medium);
+  border-radius: var(--radius-lg);
+  padding: 3.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  
