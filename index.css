@@ -161,3 +161,17 @@ body::before {
   background: rgba(255, 255, 255, 0.1);
   transform: translateY(-2px);
 }
+
+.card-glass {
+  background: var(--univ-bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  backdrop-filter: blur(16px);
+  transition: all var(--transition-normal);
+}
+
+.card-glass:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px);
+}
