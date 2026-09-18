@@ -1261,7 +1261,7 @@ body.nav-open {
   background: #FFFFFF;
   border: 1px solid var(--univ-border-subtle);
   border-radius: var(--radius-md);
-  padding: 28px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   text-decoration: none;
@@ -1275,17 +1275,30 @@ body.nav-open {
   box-shadow: 0 12px 32px -8px rgba(122, 66, 234, 0.18);
 }
 
-.explore-teaser-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: var(--univ-purple-soft);
-  color: var(--univ-purple);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 18px;
+.explore-teaser-photo {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
   flex-shrink: 0;
+}
+
+.explore-teaser-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-normal);
+}
+
+.explore-teaser-card:hover .explore-teaser-photo img {
+  transform: scale(1.05);
+}
+
+.explore-teaser-body {
+  padding: 22px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .explore-teaser-card h3 {
@@ -1315,25 +1328,6 @@ body.nav-open {
 
 .explore-teaser-card:hover .explore-teaser-link {
   gap: 8px;
-}
-
-/* Sectors teaser gets a 4-photo mosaic instead of an icon, since it maps
-   directly to four real, very visual industries. */
-.explore-teaser-photo-mosaic {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 3px;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 18px;
-  height: 64px;
-}
-
-.explore-teaser-photo-mosaic img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
 @media (max-width: 900px) {
