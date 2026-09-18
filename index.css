@@ -223,6 +223,25 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 3.5rem;
 }
 
+/* Back-to-home link at the top of each dedicated sub-page (EnOS Stack,
+   Simulator, Sectors, Trust & Compliance, Calculator) — these used to be
+   anchors on one long homepage scroll and now live on their own page. */
+.subpage-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--univ-text-secondary);
+  text-decoration: none;
+  margin-bottom: 28px;
+  transition: color var(--transition-fast);
+}
+
+.subpage-back-link:hover {
+  color: var(--univ-purple);
+}
+
 .section-header.text-center {
   text-align: center;
   max-width: 800px;
@@ -1226,6 +1245,109 @@ body.nav-open {
 /* ==========================================================================
    ACT 6: THE COMPOUNDING MOAT & HARDWARE (FLYWEEL & AMD AI BOX)
    ========================================================================== */
+/* ==========================================================================
+   PLATFORM EXPLORE TEASERS
+   Compact cards linking out to the dedicated deep-dive pages (EnOS Stack,
+   Simulator, Sectors, Trust & Compliance, Calculator) that used to be full
+   sections stacked on this one long homepage.
+   ========================================================================== */
+.explore-teaser-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.explore-teaser-card {
+  background: #FFFFFF;
+  border: 1px solid var(--univ-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.explore-teaser-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--univ-purple);
+  box-shadow: 0 12px 32px -8px rgba(122, 66, 234, 0.18);
+}
+
+.explore-teaser-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--univ-purple-soft);
+  color: var(--univ-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  flex-shrink: 0;
+}
+
+.explore-teaser-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--univ-navy);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.explore-teaser-card p {
+  font-size: 0.86rem;
+  color: var(--univ-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 18px;
+  flex-grow: 1;
+}
+
+.explore-teaser-link {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--univ-purple);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.explore-teaser-card:hover .explore-teaser-link {
+  gap: 8px;
+}
+
+/* Sectors teaser gets a 4-photo mosaic instead of an icon, since it maps
+   directly to four real, very visual industries. */
+.explore-teaser-photo-mosaic {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 18px;
+  height: 64px;
+}
+
+.explore-teaser-photo-mosaic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .explore-teaser-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .explore-teaser-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .flywheel-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -3437,6 +3559,73 @@ body.grid-surge-active::after {
   color: var(--univ-text-secondary);
   line-height: 1.45;
   margin: 0;
+}
+
+/* Featured landmark deployments with a photo — the most visually iconic
+   of the set get a real photo card; the rest stay as compact text items
+   in .landmark-grid below. */
+.landmark-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.landmark-photo-card {
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--univ-navy);
+}
+
+.landmark-photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-normal);
+}
+
+.landmark-photo-card:hover img {
+  transform: scale(1.05);
+}
+
+.landmark-photo-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 32px 14px 14px;
+  background: linear-gradient(to top, rgba(9, 9, 23, 0.88), transparent);
+}
+
+.landmark-photo-caption h5 {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.landmark-photo-desc {
+  font-size: 0.78rem;
+  color: var(--univ-text-secondary);
+  line-height: 1.45;
+  margin: 10px 2px 0;
+}
+
+@media (max-width: 900px) {
+  .landmark-photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .landmark-photo-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
 }
 
 /* World-Class Security & Certifications Extended Grid */

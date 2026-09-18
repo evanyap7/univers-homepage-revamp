@@ -62,40 +62,38 @@
 
       <nav class="nav-menu" id="mobile-nav-drawer" aria-label="Main Navigation">
         <div class="chapter-pills-wrap" id="chapter-nav">
-          <a href="#overview" class="chapter-pill active" data-target="overview">
+          <a href="#overview" class="chapter-pill active" data-target="overview" aria-current="page">
             <span class="pill-dot"></span>
             <span>Overview</span>
           </a>
-          <a href="#enos-stack" class="chapter-pill" data-target="enos-stack">
+          <a href="platform.html" class="chapter-pill" data-target="enos-stack">
             <span class="pill-dot"></span>
             <span>EnOS™ Stack</span>
           </a>
-          <a href="#engine" class="chapter-pill" data-target="engine">
+          <a href="simulator.html" class="chapter-pill" data-target="engine">
             <span class="pill-dot"></span>
             <span>Simulator</span>
           </a>
-          <a href="#sectors" class="chapter-pill" data-target="sectors">
+          <a href="sectors.html" class="chapter-pill" data-target="sectors">
             <span class="pill-dot"></span>
             <span>Sectors</span>
           </a>
-          <a href="#security" class="chapter-pill" data-target="security">
+          <a href="trust-compliance.html" class="chapter-pill" data-target="security">
             <span class="pill-dot"></span>
             <span>Trust &amp; Compliance</span>
           </a>
-          <a href="#calculator" class="chapter-pill" data-target="calculator">
+          <a href="calculator.html" class="chapter-pill" data-target="calculator">
             <span class="pill-dot"></span>
             <span>Calculator</span>
           </a>
         </div>
         <div class="mobile-nav-cta-group">
-          <a href="#calculator" class="btn btn-secondary">Calculate Your Impact</a>
           <button type="button" class="btn btn-primary" id="mobile-cta-demo">Talk to Us</button>
         </div>
       </nav>
       <div class="nav-backdrop" id="nav-backdrop" hidden></div>
 
       <div class="nav-actions">
-        <a href="#calculator" class="btn btn-secondary btn-sm nav-cta-desktop">Calculate Your Impact</a>
         <button type="button" class="btn btn-primary btn-sm nav-cta-desktop" id="nav-cta-demo">Talk to Us</button>
 
         <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-nav-drawer" aria-label="Open menu">
@@ -137,17 +135,17 @@
           </p>
 
           <div class="hero-cta-group">
-            <a href="#enos-stack" class="btn btn-primary">
+            <a href="platform.html" class="btn btn-primary">
               <span>Explore EnOS™ Stack</span>
               <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </a>
-            <a href="#engine" class="btn btn-secondary">
+            <a href="simulator.html" class="btn btn-secondary">
               <span>Live Simulator</span>
             </a>
-            <a href="#calculator" class="btn btn-secondary">
+            <a href="calculator.html" class="btn btn-secondary">
               <span>Calculate Impact</span>
             </a>
           </div>
@@ -367,146 +365,75 @@
     </section>
 
     <!-- ========================================================================
-         ACT 4: ENOS™ PLATFORM ARCHITECTURE & STACK EXPLORER
-         Interactive 4-Layer Technology Stack (From Univers Company Intro 2026, Slide 7)
+         ACT: PLATFORM EXPLORE TEASERS
+         The EnOS Stack, Simulator, Sectors, Trust & Compliance, and
+         Calculator each used to be a full section stacked on this one long
+         homepage — they're now their own pages, linked from here.
          ======================================================================== -->
-    <section class="section section-border-top enos-stack-section" id="enos-stack">
+    <section class="section section-border-top" id="explore">
       <div class="container">
         <div class="section-header text-center">
           <div class="eyebrow">
             <span class="pulse-dot"></span>
-            <span>The Platform for Physical AI // EnOS™ Architecture</span>
+            <span>Explore Univers</span>
           </div>
           <h2 class="section-title">
-            The EnOS™ Platform Stack: Scalable AI, Mission-Critical Reliability &amp; Open Connectivity
+            One platform. Five ways in.
           </h2>
           <p class="section-subtitle">
-            Explore the multi-layer technology stack that powers over 1,070 GW of managed energy assets (~20% of global installed capacity) and 450M+ connected sensors and operational devices worldwide. Click each layer below to inspect its data architecture, protocol adapters, and verified enterprise outcomes.
+            Dig into the architecture, watch it run live, see it by sector, check the compliance posture, or estimate your own impact.
           </p>
         </div>
 
-        <!-- Stack Explorer Layout -->
-        <div class="stack-explorer-layout">
-          <!-- Stack Navigation Selector (Vertical Layers) -->
-          <div class="stack-layers-nav" role="tablist" aria-label="EnOS Platform Stack Layers">
-
-            <button class="stack-layer-btn active" data-layer="4" role="tab" aria-selected="true" id="stack-btn-4">
-              <div class="layer-num-badge">LAYER 04</div>
-              <div class="layer-info">
-                <div class="layer-title-row">
-                  <h3 class="layer-title">Agentic Control Tower &amp; Applications</h3>
-                  <span class="layer-tag-pill">Outcomes &amp; Action</span>
-                </div>
-                <p class="layer-summary">Closed-loop autonomous outcome management, Cloud BMS, fleet electrification, and port terminal optimization.</p>
-              </div>
-            </button>
-
-            <button class="stack-layer-btn" data-layer="3" role="tab" aria-selected="false" id="stack-btn-3">
-              <div class="layer-num-badge">LAYER 03</div>
-              <div class="layer-info">
-                <div class="layer-title-row">
-                  <h3 class="layer-title">Industrial Intelligence Hub</h3>
-                  <span class="layer-tag-pill">Physics AI &amp; Models</span>
-                </div>
-                <p class="layer-summary">Physics-informed domain models, cross-domain operational ontology, and high-performance graph computing.</p>
-              </div>
-            </button>
-
-            <button class="stack-layer-btn" data-layer="2" role="tab" aria-selected="false" id="stack-btn-2">
-              <div class="layer-num-badge">LAYER 02</div>
-              <div class="layer-info">
-                <div class="layer-title-row">
-                  <h3 class="layer-title">Integrated Data Fabric</h3>
-                  <span class="layer-tag-pill">Multi-Modal Foundation</span>
-                </div>
-                <p class="layer-summary">Time-series, spatial, relational, vector, and graph engines unified into a single operational semantic layer.</p>
-              </div>
-            </button>
-
-            <button class="stack-layer-btn" data-layer="1" role="tab" aria-selected="false" id="stack-btn-1">
-              <div class="layer-num-badge">LAYER 01</div>
-              <div class="layer-info">
-                <div class="layer-title-row">
-                  <h3 class="layer-title">Physical Connectivity &amp; Intelligent Edge</h3>
-                  <span class="layer-tag-pill">450M+ Connected OT &amp; Sensors</span>
-                </div>
-                <p class="layer-summary">EnOS Edge Logger &amp; AI-accelerated protocol injection unifying meters, sensors, and SCADA across every OEM.</p>
-              </div>
-            </button>
-
-          </div>
-
-          <!-- Dynamic Deep-Dive Display Card -->
-          <div class="stack-detail-panel" id="stack-detail-card" aria-live="polite">
-            <!-- Populated dynamically via JS with fallback initial content -->
-            <div class="stack-card-inner">
-              <div class="stack-card-header">
-                <div class="stack-layer-indicator">
-                  <span class="indicator-dot"></span>
-                  <span class="indicator-label" id="stack-card-level">LAYER 04 OF 04 // ENTERPRISE OUTCOME LAYER</span>
-                </div>
-                <h3 class="stack-card-title" id="stack-card-title">Agentic Control Tower &amp; Multi-Layer Framework</h3>
-                <p class="stack-card-desc" id="stack-card-desc">
-                  Transforms predictive intelligence into coordinated, closed-loop machine execution. Dispatches optimal chiller delta-T setpoints, throttles EV charging to protect substations, and updates the enterprise carbon accounting ledger in milliseconds.
-                </p>
-              </div>
-
-              <div class="stack-card-grid">
-                <div class="stack-spec-block">
-                  <div class="spec-label">Core Modules &amp; Capabilities</div>
-                  <ul class="spec-list" id="stack-card-modules">
-                    <li>Multi-Layer Agent Framework for autonomous operations</li>
-                    <li>Closed-loop dispatch &amp; governed setpoint execution</li>
-                    <li>EnOS Ark™ Scope 1, 2, and 3 enterprise carbon ledger</li>
-                    <li>Sub-second anomaly resolution (11ms lock frequency)</li>
-                  </ul>
-                </div>
-
-                <div class="stack-spec-block">
-                  <div class="spec-label">Verified Enterprise Deployments</div>
-                  <div class="proof-callout" id="stack-card-proof">
-                    <strong>HDB Singapore &amp; DHL Fleet:</strong> 9 vendor BMS consolidated into 1 sovereign platform across 10,000+ assets; 60,000+ EV charging assets managed with €41M net annual EBIT impact.
-                  </div>
-                </div>
-              </div>
-
-              <div class="stack-protocols-row">
-                <span class="protocols-label">Protocols &amp; Ecosystem Interfaces:</span>
-                <div class="protocol-tags" id="stack-card-protocols">
-                  <span class="proto-tag">Open REST APIs</span>
-                  <span class="proto-tag">GraphQL</span>
-                  <span class="proto-tag">Kafka Streaming</span>
-                  <span class="proto-tag">Webhooks</span>
-                  <span class="proto-tag">Python SDK</span>
-                  <span class="proto-tag">SAP / ESG Connectors</span>
-                </div>
-              </div>
-
-              <div class="stack-card-action">
-                <button type="button" class="btn btn-primary btn-sm" id="btn-stack-to-simulator">
-                  <span>See Closed-Loop Execution in Simulator (Stage 3) ↓</span>
-                  <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </button>
-              </div>
+        <div class="explore-teaser-grid">
+          <a href="platform.html" class="explore-teaser-card">
+            <div class="explore-teaser-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
             </div>
-          </div>
-        </div>
+            <h3>EnOS™ Platform Architecture</h3>
+            <p>A 4-layer stack — from physical connectivity to the agentic control tower — powering 1,070 GW of managed energy assets and 450M+ connected sensors.</p>
+            <span class="explore-teaser-link">Explore the platform <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+          </a>
 
-        <!-- Section Bridge Bar -->
-        <div class="stack-bridge-bar">
-          <div class="bridge-caption">
-            <span>Ready to see the EnOS™ stack processing real-time machine telemetry?</span>
-          </div>
-          <div class="bridge-actions">
-            <a href="#engine" class="btn btn-secondary btn-sm" id="bridge-to-sim">
-              <span>Test in Live Simulator ↓</span>
-            </a>
-            <a href="#calculator" class="btn btn-primary btn-sm" id="bridge-to-calc">
-              <span>Calculate Impact for Your Estate →</span>
-            </a>
-          </div>
-        </div>
+          <a href="simulator.html" class="explore-teaser-card">
+            <div class="explore-teaser-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            </div>
+            <h3>Live Decarbonization Simulator</h3>
+            <p>Watch it work in real time — edge sensor data, cloud intelligence, and carbon abatement across a live 3-stage simulation you control.</p>
+            <span class="explore-teaser-link">Run the simulator <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+          </a>
 
+          <a href="sectors.html" class="explore-teaser-card">
+            <div class="explore-teaser-photo-mosaic">
+              <img src="assets/photos/energy-solar-aerial.jpg" alt="Energy & Utilities" loading="lazy">
+              <img src="assets/photos/built-environment-building.jpg" alt="Built Environment" loading="lazy">
+              <img src="assets/photos/ports-logistics-containers.jpg" alt="Transportation & Ports" loading="lazy">
+              <img src="assets/photos/manufacturing-line.jpg" alt="Industrial Manufacturing" loading="lazy">
+            </div>
+            <h3>Built for Four Critical Sectors</h3>
+            <p>Energy &amp; utilities, built environment, transportation &amp; ports, and industrial manufacturing — one operating foundation across every domain.</p>
+            <span class="explore-teaser-link">Explore sectors <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+          </a>
+
+          <a href="trust-compliance.html" class="explore-teaser-card">
+            <div class="explore-teaser-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <h3>Enterprise Trust &amp; Compliance</h3>
+            <p>ISO 27001, IEC 62443, SOC 3, and sovereign-grade certifications, built for mission-critical infrastructure buyers.</p>
+            <span class="explore-teaser-link">View the trust center <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+          </a>
+
+          <a href="calculator.html" class="explore-teaser-card">
+            <div class="explore-teaser-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="8" y1="11" x2="8" y2="11.01"></line><line x1="12" y1="11" x2="12" y2="11.01"></line><line x1="16" y1="11" x2="16" y2="11.01"></line><line x1="8" y1="15" x2="8" y2="15.01"></line><line x1="12" y1="15" x2="12" y2="15.01"></line><line x1="16" y1="15" x2="16" y2="15.01"></line></svg>
+            </div>
+            <h3>Decarbonization Impact Calculator</h3>
+            <p>Estimate your portfolio's net savings and carbon abatement potential in under a minute, by sector and scale.</p>
+            <span class="explore-teaser-link">Calculate your impact <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -650,15 +577,54 @@
             <span class="sg-flag-badge">🇸🇬 SINGAPORE SMART NATION &amp; LANDMARK DEPLOYMENTS</span>
             <span style="font-size: 0.88rem; font-weight: 600; color: var(--univ-navy);">From Infrastructure to Citizen Impact</span>
           </div>
+          <div class="landmark-photo-grid">
+            <div>
+              <div class="landmark-photo-card">
+                <img src="assets/photos/landmark-marina-bay-skyline.jpg" alt="Marina Bay, Singapore" loading="lazy">
+                <div class="landmark-photo-caption">
+                  <h5>Singapore Smart Nation OS</h5>
+                </div>
+              </div>
+              <p class="landmark-photo-desc">Univers provided the underlying operating system of Singapore's national Smart Nation platform in 2019.</p>
+            </div>
+            <div>
+              <div class="landmark-photo-card">
+                <img src="assets/photos/landmark-gardens-by-the-bay.jpg" alt="Gardens by the Bay, Singapore" loading="lazy">
+                <div class="landmark-photo-caption">
+                  <h5>Gardens by the Bay</h5>
+                </div>
+              </div>
+              <p class="landmark-photo-desc">The operations platform for Smart Net Zero Gardens at one of the world's most visited destinations (crowd dispersal, tree health, and dynamic LLM reporting).</p>
+            </div>
+            <div>
+              <div class="landmark-photo-card">
+                <img src="assets/photos/landmark-changi-jewel.jpg" alt="Jewel Changi Airport, Singapore" loading="lazy">
+                <div class="landmark-photo-caption">
+                  <h5>Changi Airport &amp; Jewel</h5>
+                </div>
+              </div>
+              <p class="landmark-photo-desc">Terminal 3 and Jewel HVAC energy optimization for the world's most awarded airport — see the full Changi story in the client showcase above.</p>
+            </div>
+            <div>
+              <div class="landmark-photo-card">
+                <img src="assets/photos/energy-solar-aerial.jpg" alt="Large-scale energy storage infrastructure" loading="lazy">
+                <div class="landmark-photo-caption">
+                  <h5>Southeast Asia's Largest BESS</h5>
+                </div>
+              </div>
+              <p class="landmark-photo-desc">Powered the real-time telemetry, frequency synchronization, and grid dispatch for Southeast Asia's largest energy storage system.</p>
+            </div>
+            <div>
+              <div class="landmark-photo-card">
+                <img src="assets/photos/landmark-hdb-estate.jpg" alt="HDB public housing estate, Singapore" loading="lazy">
+                <div class="landmark-photo-caption">
+                  <h5>HDB Singapore Residential Estates</h5>
+                </div>
+              </div>
+              <p class="landmark-photo-desc">9 legacy BMS vendors unified into 1 sovereign platform across 11,000 residential blocks, 36 malls, and 2,000 car parks — see the full HDB story in the client showcase above.</p>
+            </div>
+          </div>
           <div class="landmark-grid">
-            <div class="landmark-item">
-              <h5>Singapore Smart Nation OS</h5>
-              <p>Univers provided the underlying operating system of Singapore's national Smart Nation platform in 2019.</p>
-            </div>
-            <div class="landmark-item">
-              <h5>Gardens by the Bay</h5>
-              <p>The operations platform for Smart Net Zero Gardens at one of the world's most visited destinations (crowd dispersal, tree health, and dynamic LLM reporting).</p>
-            </div>
             <div class="landmark-item">
               <h5>Punggol Digital District (PDD)</h5>
               <p>Powering Singapore's first district-level smart grid to champion sustainable, autonomous industrial development.</p>
@@ -670,10 +636,6 @@
             <div class="landmark-item">
               <h5>TraceTogether National Gateway</h5>
               <p>Served as the high-availability gateway platform for Singapore's national COVID-19 contact tracing tokens.</p>
-            </div>
-            <div class="landmark-item">
-              <h5>Southeast Asia's Largest BESS</h5>
-              <p>Powered the real-time telemetry, frequency synchronization, and grid dispatch for Southeast Asia's largest energy storage system.</p>
             </div>
           </div>
         </div>
@@ -690,193 +652,6 @@
         <p class="statement-text">
           Even giants can have small footprints.
         </p>
-      </div>
-    </section>
-
-    <!-- ========================================================================
-         ACT 6: 3-STAGE SIMULATOR (EDGE -> CLOUD -> EARTH)
-         ======================================================================== -->
-    <section class="section section-border-top" id="engine">
-      <div class="container">
-        <div class="section-header text-center">
-          <div class="eyebrow">
-            <span class="pulse-dot"></span>
-            <span>Live Architecture Simulation</span>
-          </div>
-          <h2 class="section-title">
-            Real-time decarbonization intelligence for unmatched control and infinite opportunity.
-          </h2>
-          <p class="section-subtitle">
-            Experience how the EnOS™ platform connects on-the-ground operational technology with in-the-cloud intelligence to deliver real-time energy and carbon monitoring, reporting, and abatement.
-          </p>
-        </div>
-
-        <div class="engine-container">
-          <!-- Step Tabs Column -->
-          <div class="engine-steps" role="tablist" aria-label="EnOS Platform Layers">
-
-            <button class="engine-step-tab active" id="tab-perceive" role="tab" aria-selected="true" aria-controls="panel-screen" data-step="1">
-              <div class="step-number">01</div>
-              <div class="step-details">
-                <h3>On the Ground: EnOS Edge</h3>
-                <p>450M+ connected sensors &amp; devices. Reading real-time energy data directly from meters, sensors, BMS, and industrial equipment across every major OEM protocol.</p>
-                <span class="step-badge">→ Operational Technology</span>
-              </div>
-            </button>
-
-            <button class="engine-step-tab" id="tab-understand" role="tab" aria-selected="false" aria-controls="panel-screen" data-step="2">
-              <div class="step-number">02</div>
-              <div class="step-details">
-                <h3>In the Cloud: EnOS Cloud</h3>
-                <p>A decade of domain expertise fused with live operational data across 1,070 GW of managed energy assets — turning raw signals into accurate, reliable intelligence.</p>
-                <span class="step-badge">→ Decarbonization Intelligence</span>
-              </div>
-            </button>
-
-            <button class="engine-step-tab" id="tab-orchestrate" role="tab" aria-selected="false" aria-controls="panel-screen" data-step="3">
-              <div class="step-number">03</div>
-              <div class="step-details">
-                <h3>For the Earth: Climate Action</h3>
-                <p>Data-driven carbon monitoring, reporting, and abatement — delivering 1,013 Million tCO2e in avoided emissions across 800+ global clients.</p>
-                <span class="step-badge">→ 1,013M tCO2e Abatement</span>
-              </div>
-            </button>
-
-          </div>
-
-          <!-- Interactive Visualization Screen -->
-          <div class="engine-screen" id="panel-screen" role="tabpanel">
-            <div class="screen-topbar">
-              <div class="screen-title" id="engine-stage-title">
-                <span class="pulse-dot"></span>
-                <span>ON THE GROUND: ENOS EDGE</span>
-              </div>
-              <span class="mono-metric" id="engine-telemetry-rate" style="font-size: 0.78rem; color: var(--univ-purple-light);">
-                CONNECTED: 450M+ Sensors &amp; Devices
-              </span>
-            </div>
-
-            <div class="screen-content-box">
-              <div class="interactive-architecture-canvas">
-                <div class="flow-nodes" id="flow-nodes-container">
-                  <div class="flow-node highlighted" id="node-1">
-                    <div class="flow-node-title">EDGE</div>
-                    <div class="flow-node-desc">450M+ Sensors &amp; OT</div>
-                  </div>
-                  <div class="flow-node" id="node-2">
-                    <div class="flow-node-title">CLOUD</div>
-                    <div class="flow-node-desc">1,070 GW Asset AI</div>
-                  </div>
-                  <div class="flow-node" id="node-3">
-                    <div class="flow-node-title">EARTH</div>
-                    <div class="flow-node-desc">1,013M tCO2e Abatement</div>
-                  </div>
-                </div>
-
-                <div class="sim-live-stream" id="sim-live-console">
-                  <span id="sim-console-text">>> Reading real-time energy data from meters, sensors, BMS and industrial equipment...</span>
-                  <span class="mono-metric" style="color: rgba(255,255,255,0.5);">STATUS: CONNECTED</span>
-                </div>
-              </div>
-            </div>
-
-            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid var(--univ-border-subtle);">
-              <span class="mono-metric" style="font-size: 0.72rem; color: var(--univ-text-muted);">ENOS PLATFORM v4.8.2 // ALL CONNECTED</span>
-              <button class="btn btn-secondary btn-sm" id="trigger-sim-action">Simulate Event</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Simulator Bridge Links ("Click into each other") -->
-        <div class="simulator-bridge-bar">
-          <div class="bridge-caption">
-            <span>Wondering how these 3 stages translate to financial returns for your sector?</span>
-          </div>
-          <div class="bridge-actions">
-            <a href="#sectors" class="btn btn-secondary btn-sm">Explore Sector Deployments →</a>
-            <a href="#calculator" class="btn btn-primary btn-sm">Calculate Value for Your Estate →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================================
-         ACT 7: BUILT FOR CRITICAL INFRASTRUCTURE (SECTOR EXPLORER)
-         Narrative Purpose: Tangible proof across the 4 core domains.
-         Real stats, verified case studies, and customer quotes.
-         ======================================================================== -->
-    <section class="section section-border-top" id="sectors">
-      <div class="container">
-        <div class="section-header text-center">
-          <div class="eyebrow">
-            <span>Four Critical Sectors</span>
-          </div>
-          <h2 class="section-title">
-            For front-runners, early adopters, and those just starting to decarbonize.
-          </h2>
-          <p class="section-subtitle">
-            Univers delivers one unified operating foundation across four sectors, connecting energy, carbon, and asset data into outcomes that scale.
-          </p>
-        </div>
-
-        <!-- Sector Pills Navigation -->
-        <div class="sector-nav-pills" role="tablist">
-          <button class="sector-pill active" data-sector="energy" role="tab" aria-selected="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            <span>Energy &amp; Utilities</span>
-          </button>
-          <button class="sector-pill" data-sector="buildings" role="tab" aria-selected="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="22.01"/><line x1="15" y1="22" x2="15" y2="22.01"/></svg>
-            <span>Built Environment</span>
-          </button>
-          <button class="sector-pill" data-sector="logistics" role="tab" aria-selected="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-            <span>Transportation &amp; Ports</span>
-          </button>
-          <button class="sector-pill" data-sector="manufacturing" role="tab" aria-selected="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-            <span>Industrial Manufacturing</span>
-          </button>
-        </div>
-
-        <!-- Dynamic Sector Card Content -->
-        <div class="sector-content-card" id="sector-display">
-          <div class="sector-info">
-            <h3 id="sec-title">Energy &amp; Utilities: Real-Time Data for an Intermittent Grid</h3>
-            <p id="sec-desc">Grids face unprecedented pressure from renewable volatility, EV charging peaks, and distributed energy resources. Univers connects generation, storage, and market data in real time — giving operators the accurate picture they need to manage, and transform, performance.</p>
-
-            <div class="sector-kpis">
-              <div class="kpi-box">
-                <div class="kpi-metric mono-metric" id="kpi-1">10–20%</div>
-                <div class="kpi-label" id="kpi-label-1">Reduction in O&amp;M costs</div>
-              </div>
-              <div class="kpi-box">
-                <div class="kpi-metric mono-metric" id="kpi-2">1,013M</div>
-                <div class="kpi-label" id="kpi-label-2">Million tCO2e avoided carbon emissions</div>
-              </div>
-              <div class="kpi-box">
-                <div class="kpi-metric mono-metric" id="kpi-3">1,070 GW</div>
-                <div class="kpi-label" id="kpi-label-3">Managed energy assets (~20% global capacity)</div>
-              </div>
-            </div>
-
-            <a href="#calculator" class="btn btn-secondary btn-sm" id="sec-cta">Explore Energy Case Study &amp; Data</a>
-          </div>
-
-          <div class="sector-quote-card">
-            <span class="eyebrow" id="quote-label" style="margin-bottom: 1rem;">Customer Testimonial</span>
-            <p class="quote-body" id="quote-text">
-              “With Univers' end-to-end solution and expertise, ORIX Renewable Energy Management can provide total customer support – from proposals to implementation to maintenance, which in turn helps our customers optimize energy use and reduce costs.”
-            </p>
-            <div class="quote-author">
-              <div class="author-avatar" id="quote-avatar">KY</div>
-              <div>
-                <div class="author-name" id="quote-name">Kazuhisa Yurita</div>
-                <div class="author-role" id="quote-role">EVP &amp; Chief Strategy Officer, ORIX Renewable Energy Management</div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -948,223 +723,6 @@
     </section>
 
     <!-- ========================================================================
-         ACT 9: MISSION-CRITICAL SECURITY & COMPLIANCE VAULT
-         Narrative Purpose: Infrastructure buyers must pass rigorous IT/OT audits.
-         Show unassailable certifications.
-         ======================================================================== -->
-    <section class="section section-border-top" id="security">
-      <div class="container">
-        <div class="section-header text-center">
-          <div class="eyebrow">
-            <span class="pulse-dot"></span>
-            <span>World-Class Security Enables Autonomy at Scale</span>
-          </div>
-          <h2 class="section-title">
-            Enterprise Trust, Sovereign Compliance &amp; Mission-Critical Reliability
-          </h2>
-          <p class="section-subtitle">
-            Engineered for the world's most regulated physical infrastructure. Dedicated Security, GRC, and OT Privacy programs govern every edge node, data fabric cluster, and closed-loop dispatch setpoint.
-          </p>
-        </div>
-
-        <!-- Dual Column: IT/OT Certifications & Global Compliance (Slide 10) -->
-        <div class="cert-dual-column">
-          <!-- IT & OT Certifications Panel -->
-          <div class="cert-category-panel">
-            <h4>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              <span>IT &amp; OT Security Certifications</span>
-            </h4>
-            <div class="cert-badges-flow">
-              <span class="cert-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> ISO 27001</span>
-              <span class="cert-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> ISO 27701</span>
-              <span class="cert-chip cert-gold"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> SOC 2 Type II</span>
-              <span class="cert-chip cert-gold"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> SOC 3 Certified</span>
-              <span class="cert-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> IEC 62443 4-1</span>
-              <span class="cert-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> IEC 62443 4-2 S1</span>
-              <span class="cert-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> IEC 62443 4-2 S2</span>
-              <span class="cert-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> MLPS Level 3</span>
-            </div>
-            <div class="cert-logos-row">
-              <img src="assets/logos/soc3.png" alt="AICPA SOC 3" class="cert-logo-thumb">
-              <span style="font-size: 0.78rem; color: var(--univ-text-secondary); line-height: 1.4;">Unassailable IT &amp; operational technology security audited by accredited independent bodies.</span>
-            </div>
-          </div>
-
-          <!-- Global & Regional Compliance Panel -->
-          <div class="cert-category-panel">
-            <h4>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              <span>Global &amp; Regional Compliance Frameworks</span>
-            </h4>
-            <div class="cert-badges-flow">
-              <span class="cert-chip cert-gold"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> GDPR (EU)</span>
-              <span class="cert-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> NIS2 Directive</span>
-              <span class="cert-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> Cyber Essentials</span>
-              <span class="cert-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> NERC CIP (North America)</span>
-              <span class="cert-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> NIST SP 800-53</span>
-              <span class="cert-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> EU Cyber Resilience Act</span>
-            </div>
-            <div class="cert-logos-row">
-              <img src="assets/logos/cyber-essentials.png" alt="Cyber Essentials" class="cert-logo-thumb">
-              <img src="assets/logos/nist.png" alt="NIST" class="cert-logo-thumb">
-              <img src="assets/logos/nerc.png" alt="NERC CIP" class="cert-logo-thumb">
-              <img src="assets/logos/eu-cyber-resilience.png" alt="EU Cyber Resilience Act" class="cert-logo-thumb">
-            </div>
-          </div>
-        </div>
-
-        <!-- Verified Awards & Recognized Leadership Showcase (Slide 11) -->
-        <div style="margin-top: 48px;">
-          <div class="section-header text-center" style="margin-bottom: 24px;">
-            <div class="eyebrow">
-              <span>Verified Industry Leadership</span>
-            </div>
-            <h3 style="font-size: 1.85rem; font-weight: 800; color: var(--univ-navy);">
-              Proven Innovation. Recognized Leadership. Trusted by Industry.
-            </h3>
-          </div>
-
-          <div class="awards-grid">
-            <!-- Award 1: Gartner MQ Leader -->
-            <div class="award-card">
-              <div class="award-year-tag">2025 LEADER</div>
-              <div class="award-logo-wrap">
-                <img src="assets/logos/gartner.png" alt="Gartner Logo">
-              </div>
-              <div class="award-title">Gartner® Magic Quadrant™ Leader</div>
-              <p class="award-desc">Recognized in the Leader's Quadrant for Global Industrial IoT Platforms for completeness of vision and ability to execute.</p>
-            </div>
-
-            <!-- Award 2: UN Global Compact -->
-            <div class="award-card">
-              <div class="award-year-tag">2024 SUSTAINABLE TECH</div>
-              <div class="award-logo-wrap">
-                <img src="assets/logos/un-global-compact.png" alt="UN Global Compact Logo">
-              </div>
-              <div class="award-title">UN Global Compact Award</div>
-              <p class="award-desc">Awarded Best Sustainable Solution for measurable contribution to global clean energy transition and climate technology innovation.</p>
-            </div>
-
-            <!-- Award 3: SEAL Sustainable Innovation -->
-            <div class="award-card">
-              <div class="award-year-tag">SEAL AWARDS</div>
-              <div class="award-logo-wrap">
-                <img src="assets/logos/seal-awards.png" alt="SEAL Awards Logo">
-              </div>
-              <div class="award-title">SEAL Sustainable Innovation Award</div>
-              <p class="award-desc">Honoring the EnOS Ark™ Energy, Resource, and Carbon Management platform for impactful sustainability outcomes.</p>
-            </div>
-
-            <!-- Award 4: Reuters Global Energy Transition -->
-            <div class="award-card">
-              <div class="award-year-tag">2025 REUTERS</div>
-              <div class="award-logo-wrap">
-                <img src="assets/logos/reuters-events.png" alt="Reuters Events Logo">
-              </div>
-              <div class="award-title">Reuters Energy Transition Award</div>
-              <p class="award-desc">Recognized in the Technology Whitespace category at the 2025 Reuters Global Energy Transition Awards for EnOS™ Microgrid.</p>
-            </div>
-
-            <!-- Award 5: NextGen Tech 30 -->
-            <div class="award-card">
-              <div class="award-year-tag">2025 NEXTGEN TECH</div>
-              <div class="award-title">NextGen Tech 30</div>
-              <p class="award-desc">Awarded the NextGen Tech 30 for strong scaling, institutional governance, and sustained global industrial impact.</p>
-            </div>
-
-            <!-- Award 6: AI Renewables & Smart Cities -->
-            <div class="award-card">
-              <div class="award-year-tag">2026 IMPACT</div>
-              <div class="award-title">AI Renewables &amp; Smart City Energy</div>
-              <p class="award-desc">Awarded for national scale of impact in physical AI-driven renewable optimization and urban energy systems.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Corporate Independence & Singapore R&D Governance (Slide 2) -->
-        <div class="governance-callout-card">
-          <h5>🇸🇬 Univers: An Independent Singapore Company Rooted in Global Substance</h5>
-          <p>
-            Founded and deeply rooted in Singapore, Univers bases its global R&amp;D and executive decision-making in Singapore, endorsed by Enterprise Singapore. The company operates completely independent of Envision with a distinct shareholder structure (HS, GIC) and an independent Board of Directors (3 external, 2 internal members). For European enterprise clients, our "Europe for Europe" strategy qualifies Univers as sovereign European software, fully compliant with EU IAA and CSA2 regulations, with zero dependency on Chinese business or supply chains.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================================
-         ACT 10: PORTFOLIO VALUE REALIZATION CALCULATOR & HIGH-INTENT CONVERSION
-         Narrative Purpose: Self-qualification for enterprise buyers.
-         Interactive sliders deliver immediate perceived value.
-         ======================================================================== -->
-    <section class="section section-border-top" id="calculator">
-      <div class="container">
-        <div class="section-header text-center">
-          <div class="eyebrow">
-            <span>Value Realization</span>
-          </div>
-          <h2 class="section-title">
-            Estimate your portfolio's decarbonization upside.
-          </h2>
-          <p class="section-subtitle">
-            Select your sector and asset scale for an illustrative estimate of energy savings, avoided downtime, and carbon abatement, modeled on Univers' published sector benchmarks.
-          </p>
-        </div>
-
-        <div class="calculator-card">
-          <div class="calc-inputs">
-            <div class="calc-form-group">
-              <label class="calc-label" for="calc-sector">Primary Asset Sector</label>
-              <select id="calc-sector" class="calc-select">
-                <option value="energy">Renewable Energy & Utilities (GW)</option>
-                <option value="buildings" selected>Commercial Built Environment (sq ft)</option>
-                <option value="logistics">Transportation / Port Infrastructure</option>
-                <option value="manufacturing">Industrial Manufacturing Plants</option>
-              </select>
-            </div>
-
-            <div class="calc-form-group">
-              <div class="calc-label">
-                <span>Asset Scale / Volume</span>
-                <span class="mono-metric" id="calc-scale-display" style="color: var(--univ-purple);">5,000,000 sq ft</span>
-              </div>
-              <input type="range" id="calc-scale-slider" class="calc-range" min="1" max="10" value="5" step="1" aria-label="Asset scale slider">
-            </div>
-
-            <div class="calc-form-group">
-              <div class="calc-label">
-                <span>Current Annual Energy / O&M Spend</span>
-                <span class="mono-metric" id="calc-spend-display" style="color: var(--univ-purple);">$12,000,000 / yr</span>
-              </div>
-              <input type="range" id="calc-spend-slider" class="calc-range" min="1" max="50" value="12" step="1" aria-label="Annual spend slider">
-            </div>
-          </div>
-
-          <div class="calc-results-panel">
-            <div class="res-title">Estimated Annual Net Value Realized</div>
-            <div class="res-highlight mono-metric" id="res-savings">$1,176,000</div>
-            <div class="res-subtext" id="res-subtext">Illustrative estimate — modeled at a 9.8% optimization rate from Univers' published sector benchmarks</div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;">
-              <div style="background: rgba(255,255,255,0.14); padding: 12px; border-radius: 6px;">
-                <div style="font-size: 0.72rem; color: rgba(255,255,255,0.86);">PROJECTED PAYBACK</div>
-                <div class="mono-metric" id="res-payback" style="font-size: 1.15rem; font-weight: 700; color: #FFFFFF;">&lt; 10 Months</div>
-              </div>
-              <div style="background: rgba(255,255,255,0.14); padding: 12px; border-radius: 6px;">
-                <div style="font-size: 0.72rem; color: rgba(255,255,255,0.86);">CO2e ABATEMENT</div>
-                <div class="mono-metric" id="res-carbon" style="font-size: 1.15rem; font-weight: 700; color: #FFFFFF;">5,040 Tons/yr</div>
-              </div>
-            </div>
-
-            <button type="button" class="btn btn-primary" id="calc-cta-demo" style="width: 100%;">
-              Request Your Decarbonization Roadmap
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================================
          FINAL HIGH-INTENT CONVERSION SECTION
          ======================================================================== -->
     <section class="section" id="contact" style="padding-top: 40px;">
@@ -1180,7 +738,7 @@
             <span>Schedule Platform Demo</span>
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </button>
-          <a href="#engine" class="btn btn-secondary" style="padding: 16px 32px;">See How It Works</a>
+          <a href="simulator.html" class="btn btn-secondary" style="padding: 16px 32px;">See How It Works</a>
         </div>
         <p style="font-size: 0.8rem; color: var(--univ-text-muted); margin-top: 1.5rem;">
           Schedule a tailored demo with a Univers Solution Architect. Submissions automatically log to the enterprise lead database (.csv).
@@ -1189,6 +747,7 @@
     </section>
   </main>
 
+
   <!-- ========================================================================
        SITE FOOTER
        ======================================================================== -->
@@ -1196,7 +755,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="#" class="brand-logo" aria-label="Univers Homepage">
+          <a href="index.html" class="brand-logo" aria-label="Univers Homepage">
             <svg class="brand-logo-mark" aria-hidden="true" viewBox="-52961 -11737 961733 203620" xmlns="http://www.w3.org/2000/svg"><path d="M395026,47802 C398186,54628 399765,62939 399765,72764 L399765,154112 L380343,154112 L380343,73010 C380343,64853 378459,58532 374691,54046 C370923,49392 365810,47052 359329,47052 C353607,47052 348868,48797 345101,52288 C341485,55778 338396,61440 335834,69261 L318436,122662 C314820,133805 309625,142207 302851,147869 C296077,153531 287337,156349 276654,156349 C267926,156349 260472,154604 254295,151114 C248269,147623 243682,142465 240512,135641 C237505,128815 235995,120503 235995,110678 L235995,29343 L255418,29343 L255418,110446 C255418,118602 257302,125001 261069,129655 C264837,134140 269950,136390 276432,136390 C282153,136390 286821,134645 290437,131154 C294204,127664 297364,122003 299926,114182 L317313,60781 C320929,49637 326124,41235 332898,35574 C339672,29911 348412,27094 359094,27094 C367823,27094 375206,28839 381232,32329 C387409,35819 391997,40976 395015,47802 L395026,47802 Z M422183,154112 L441606,154112 L441606,29343 L422183,29343 L422183,154126 L422183,154112 Z M509726,134154 L476976,29343 L456196,29343 L497990,154126 L521250,154126 L562587,29343 L542264,29343 L509737,134154 L509726,134154 Z M656834,44312 C666169,55623 670836,71600 670836,92232 L670617,99226 L583425,99226 C584035,109877 587264,118939 593141,126423 C599008,133908 607447,137657 618430,137657 C626412,137657 633031,135822 638308,132163 C643585,128337 647271,123101 649376,116444 L669265,116444 C668055,122933 665340,129254 661130,135407 C657073,141560 651338,146641 643966,150636 C636737,154462 628231,156375 618449,156375 C608057,156375 598789,153803 590655,148645 C582530,143487 576129,136080 571457,126437 C566940,116625 564682,105145 564682,91999 C564682,78853 567011,66714 571681,57057 C576348,47247 582749,39839 590883,34850 C599008,29691 608266,27119 618658,27119 C634765,27119 647500,32859 656834,44338 L656834,44312 Z M651643,81490 C650738,70670 647347,62190 641471,56036 C635594,49716 628078,46549 618877,46549 C608638,46549 600665,49547 594941,55532 C589216,61349 585378,70011 583416,81490 L651643,81490 Z M698316,39813 C691982,46639 688819,56373 688819,69015 L688819,154112 L708250,154112 L708250,69273 C708250,62952 709755,58131 712765,54795 C715918,51305 720366,49560 726091,49560 L754542,49560 L754542,29343 L725414,29343 C713813,29343 704783,32833 698297,39827 L698316,39813 Z M849782,97713 C844963,92219 836762,87734 825170,84243 L803034,77753 C796699,75918 792118,73760 789251,71265 C786384,68769 784955,65602 784955,61776 C784955,56618 787146,52624 791508,49793 C796023,46962 802272,45553 810254,45553 C818226,45553 823950,47389 828313,51047 C832828,54537 835466,59695 836228,66521 L855878,66521 C855574,54705 851211,45229 842772,38068 C834495,30751 823731,27094 810473,27094 C797214,27094 785850,30416 777726,37073 C769744,43562 765753,52456 765753,63780 C765753,72596 768382,79757 773659,85238 C779078,90732 787736,95050 799633,98217 L820636,103957 C826970,105792 831485,107950 834190,110446 C836904,112941 838257,116263 838257,120425 C838257,125919 835933,130237 831266,133404 C826598,136403 820121,137889 811844,137889 C803557,137889 797242,135977 791966,132150 C786851,128156 783898,122416 783155,114931 L763505,114931 C763953,128246 768248,138471 776373,145632 C784660,152782 796404,156362 811616,156362 C825932,156362 837066,153117 845048,146628 C853183,140139 857250,131154 857250,119676 C857250,110356 854773,103038 849801,97713 L849782,97713 Z M30782,24779 C25634,29032 23399,35328 25775,38831 C28149,42347 34257,41753 39393,37500 C44542,33247 46776,26951 44402,23448 C42026,19932 35919,20526 30782,24779 Z M24218,113704 C16531,112604 9324,119973 8119,130185 C6913,140397 12167,149562 19866,150674 C27553,151773 34760,144405 35965,134193 C37170,123980 31917,114815 24218,113704 Z M19913,84838 C23645,77275 22721,68783 17854,65848 C12986,62927 6024,66676 2292,74224 C-1440,81787 -516,90280 4351,93214 C9218,96136 16180,92387 19913,84838 Z M130388,41235 C138835,45087 147751,42644 150325,35781 C152888,28929 148125,20242 139677,16390 C131230,12538 122314,14981 119741,21845 C117177,28696 121940,37384 130388,41235 Z M68762,139557 C59097,139557 51258,148826 51258,160266 C51258,171706 59097,180975 68762,180975 C78426,180975 86265,171706 86265,160266 C86265,148826 78426,139557 68762,139557 Z M82065,180 C74729,1188 69253,6190 69838,11322 C70423,16454 76847,19790 84183,18781 C91519,17760 96995,12770 96410,7638 C95824,2507 89401,-829 82065,180 Z M166776,70670 C161112,61556 150583,58686 143246,64245 C135910,69804 134564,81709 140215,90810 C145879,99924 156409,102793 163745,97235 C171081,91676 172427,79771 166776,70670 Z M127684,116857 C117201,116857 108707,126242 108707,137825 C108707,149407 117201,158792 127684,158792 C138169,158792 146663,149395 146663,137825 C146663,126256 138169,116857 127684,116857 Z" fill="currentColor" fill-rule="evenodd"/></svg>
           </a>
           <p>
@@ -1224,8 +783,8 @@
           <h5>Platform & Products</h5>
           <ul class="footer-links">
             <li><a href="https://univers.com/products/enos/" target="_blank" rel="noopener noreferrer">EnOS™ Platform</a></li>
-            <li><a href="#flywheel">Edge Loggers: DTU &amp; HPU</a></li>
-            <li><a href="#engine">From the Edge to the Cloud</a></li>
+            <li><a href="index.html#flywheel">Edge Loggers: DTU &amp; HPU</a></li>
+            <li><a href="simulator.html">From the Edge to the Cloud</a></li>
             <li><a href="https://univers.com/platform/" target="_blank" rel="noopener noreferrer">Full Platform Overview</a></li>
           </ul>
         </div>
@@ -1233,10 +792,10 @@
         <div class="footer-col">
           <h5>Sectors</h5>
           <ul class="footer-links">
-            <li><a href="#industries">Energy & Utilities</a></li>
+            <li><a href="sectors.html">Energy & Utilities</a></li>
             <li><a href="https://univers.com/built-environment/" target="_blank" rel="noopener noreferrer">Built Environment</a></li>
-            <li><a href="#industries">Transportation & Ports</a></li>
-            <li><a href="#industries">Industrial Manufacturing</a></li>
+            <li><a href="sectors.html">Transportation & Ports</a></li>
+            <li><a href="sectors.html">Industrial Manufacturing</a></li>
           </ul>
         </div>
 

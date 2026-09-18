@@ -332,6 +332,15 @@ function initEngineSimulator() {
       }, 1400);
     });
   }
+
+  // Deep-link support: ?step=1|2|3 — the EnOS Platform page's "See in
+  // Simulator" bridge buttons land here cross-page and pass this instead
+  // of the old same-page scroll+click.
+  const requestedStep = new URLSearchParams(window.location.search).get('step');
+  if (requestedStep) {
+    const targetTab = document.querySelector(`.engine-step-tab[data-step="${requestedStep}"]`);
+    if (targetTab) targetTab.click();
+  }
 }
 
 /* ==========================================================================
@@ -1368,6 +1377,8 @@ function initCyberHUD() {
   const hudToggle = document.getElementById('cyber-hud-toggle');
   const hudPanel = document.getElementById('cyber-hud-panel');
   const hudClose = document.getElementById('cyber-hud-close');
+  // The HUD panel is only included on the homepage — other pages skip it.
+  if (!hudToggle || !hudPanel) return;
 
   const soundToggle = document.getElementById('hud-sound-toggle');
   const audioIndicator = document.getElementById('hud-audio-indicator');
@@ -2335,97 +2346,22 @@ function initDemoBookingFlow() {
 
 
 /* ==========================================================================
-   STICKY CHAPTER NAVIGATOR (INTERACTIVE STORYBOARD)
-   Tracks user scroll across key sections and provides one-click smooth jumping
-   to eliminate long-scroll fatigue and enable instant section traversal.
+   CHAPTER/SECTION PILLS: click sound feedback only
    ========================================================================== */
 function initChapterNav() {
   const nav = document.getElementById('chapter-nav');
   if (!nav) return;
 
-  const pills = nav.querySelectorAll('.chapter-pill');
-  const pillsWrap = nav;
-  const siteHeader = document.querySelector('.site-header');
-
-  // Must match actual DOM top-to-bottom order (not chapter-pill order) —
-  // the scrollspy loop below walks this back-to-front assuming it's
-  // sorted by document position.
-  const sectionIds = ['overview', 'enos-stack', 'engine', 'sectors', 'security', 'calculator'];
-  const sections = sectionIds
-    .map(id => document.getElementById(id))
-    .filter(Boolean);
-
-  // Smooth scroll on pill click
-  pills.forEach(pill => {
-    pill.addEventListener('click', (e) => {
-      e.preventDefault();
-      const targetId = pill.getAttribute('data-target') || pill.getAttribute('href').replace('#', '');
-      const targetEl = document.getElementById(targetId);
-      if (targetEl) {
-        // Sticky offset accounts for the single combined header (pills
-        // now live inline inside it, not in a second stacked bar).
-        const totalOffset = (siteHeader && siteHeader.offsetHeight) || 77;
-        const targetPos = targetEl.getBoundingClientRect().top + window.pageYOffset - totalOffset;
-        window.scrollTo({ top: Math.max(0, targetPos), behavior: 'smooth' });
-
-        // Update active class immediately
-        pills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-
-        if (window.UniversInteractive && window.UniversInteractive.playSound) {
-          window.UniversInteractive.playSound('click');
-        }
+  // Each page hardcodes which pill is .active (aria-current="page") since
+  // the pills now link across separate pages, not to anchors on one long
+  // scrolling document — no scroll-spy or offset math needed any more.
+  nav.querySelectorAll('.chapter-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      if (window.UniversInteractive && window.UniversInteractive.playSound) {
+        window.UniversInteractive.playSound('click');
       }
     });
   });
-
-  // Scrollspy to keep active pill synced with viewport
-  let ticking = false;
-  function updateActivePill() {
-    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-    const navOffset = 180;
-
-    let currentId = sectionIds[0];
-    for (let i = sections.length - 1; i >= 0; i--) {
-      const section = sections[i];
-      if (scrollY >= section.offsetTop - navOffset) {
-        currentId = section.id;
-        break;
-      }
-    }
-
-    pills.forEach(pill => {
-      const targetId = pill.getAttribute('data-target') || pill.getAttribute('href').replace('#', '');
-      if (targetId === currentId) {
-        if (!pill.classList.contains('active')) {
-          pills.forEach(p => p.classList.remove('active'));
-          pill.classList.add('active');
-          // Auto-scroll pill into view on narrow screens
-          if (pillsWrap && pillsWrap.scrollWidth > pillsWrap.clientWidth) {
-            const pillLeft = pill.offsetLeft;
-            const pillWidth = pill.offsetWidth;
-            const wrapWidth = pillsWrap.clientWidth;
-            pillsWrap.scrollTo({
-              left: pillLeft - (wrapWidth / 2) + (pillWidth / 2),
-              behavior: 'smooth'
-            });
-          }
-        }
-      }
-    });
-
-    ticking = false;
-  }
-
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(updateActivePill);
-      ticking = true;
-    }
-  }, { passive: true });
-
-  // Initial call
-  updateActivePill();
 }
 
 
@@ -2569,28 +2505,12 @@ function initEnOSStackExplorer() {
     });
   });
 
-  // Cross-section bridge button inside stack card to simulator
+  // Cross-page bridge button to the simulator (now a separate page): jump
+  // straight to the matching step via a query param, read on load below.
   if (simBtn) {
     simBtn.addEventListener('click', () => {
       const targetStep = simBtn.dataset.simStep || '3';
-      const simSection = document.getElementById('engine');
-      if (simSection) {
-        const navOffset = 120;
-        const pos = simSection.getBoundingClientRect().top + window.pageYOffset - navOffset;
-        window.scrollTo({ top: Math.max(0, pos), behavior: 'smooth' });
-
-        // Activate corresponding step tab in simulator
-        const stepTab = document.querySelector(`.engine-step-tab[data-step="${targetStep}"]`);
-        if (stepTab) {
-          setTimeout(() => {
-            stepTab.click();
-          }, 400);
-        }
-
-        if (window.UniversInteractive && window.UniversInteractive.playSound) {
-          window.UniversInteractive.playSound('laser');
-        }
-      }
+      window.location.href = `simulator.html?step=${targetStep}`;
     });
   }
 
