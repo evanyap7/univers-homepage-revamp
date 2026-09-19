@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="index.css?v=multipage-v5">
+  <link rel="stylesheet" href="index.css?v=multipage-v6">
 </head>
 <body>
   <!-- Interactive Kinetic Background Canvas -->
@@ -168,18 +168,18 @@
             <div class="res-highlight mono-metric" id="res-savings">$1,176,000</div>
             <div class="res-subtext" id="res-subtext">Illustrative estimate — modeled at a 9.8% optimization rate from Univers' published sector benchmarks</div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;">
-              <div style="background: rgba(255,255,255,0.14); padding: 12px; border-radius: 6px;">
-                <div style="font-size: 0.72rem; color: rgba(255,255,255,0.86);">PROJECTED PAYBACK</div>
-                <div class="mono-metric" id="res-payback" style="font-size: 1.15rem; font-weight: 700; color: #FFFFFF;">&lt; 10 Months</div>
+            <div class="calc-mini-stats">
+              <div class="calc-mini-stat">
+                <div class="calc-mini-stat-label">PROJECTED PAYBACK</div>
+                <div class="mono-metric calc-mini-stat-value" id="res-payback">&lt; 10 Months</div>
               </div>
-              <div style="background: rgba(255,255,255,0.14); padding: 12px; border-radius: 6px;">
-                <div style="font-size: 0.72rem; color: rgba(255,255,255,0.86);">CO2e ABATEMENT</div>
-                <div class="mono-metric" id="res-carbon" style="font-size: 1.15rem; font-weight: 700; color: #FFFFFF;">5,040 Tons/yr</div>
+              <div class="calc-mini-stat">
+                <div class="calc-mini-stat-label">CO2e ABATEMENT</div>
+                <div class="mono-metric calc-mini-stat-value" id="res-carbon">5,040 Tons/yr</div>
               </div>
             </div>
 
-            <button type="button" class="btn btn-primary" id="calc-cta-demo" style="width: 100%;">
+            <button type="button" class="btn btn-primary calc-cta-btn" id="calc-cta-demo">
               Request Your Decarbonization Roadmap
             </button>
           </div>
@@ -388,6 +388,6 @@
   </div>
 
   <!-- Scripts -->
-  <script src="app.js?v=multipage-v5"></script>
+  <script src="app.js?v=multipage-v6"></script>
 </body>
 </html>
