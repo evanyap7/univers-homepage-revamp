@@ -800,9 +800,22 @@ function initKineticCanvas() {
   let mouseY = -9999;
   let prevMouseX = -9999;
   let prevMouseY = -9999;
-  let isMouseDown = false;
   let isDragging = false;
   let dragDistance = 0;
+
+  // Scroll depth tracking for 5-stage kinetic narrative transitions
+  let currentScrollProgress = 0;
+  let targetScrollProgress = 0;
+
+  function updateScrollProgress() {
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (totalHeight > 0) {
+      targetScrollProgress = Math.max(0, Math.min(1, window.scrollY / totalHeight));
+    }
+  }
+
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  updateScrollProgress();
 
   // Track viewport sizing with device pixel ratio
   function resize() {
@@ -815,6 +828,7 @@ function initKineticCanvas() {
     canvas.style.height = `${height}px`;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     initParticles();
+    updateScrollProgress();
   }
 
   // Generate responsive pool of OT physical nodes
@@ -836,7 +850,8 @@ function initKineticCanvas() {
         pulseSpeed: 0.02 + Math.random() * 0.03,
         pulseOffset: Math.random() * Math.PI * 2,
         highlightTime: 0,
-        highlightLabel: ''
+        highlightLabel: '',
+        clusterId: i % 3
       });
     }
 
@@ -981,43 +996,70 @@ function initKineticCanvas() {
     const mode = window.UniversInteractive.bgMode;
     const speedMult = isSurging ? 2.8 : 1.0;
 
-    // 1. Update & Render Ambient Floating Glyphs
-    ctx.font = '9px "JetBrains Mono", monospace';
-    for (let g = 0; g < floatingGlyphs.length; g++) {
-      const gl = floatingGlyphs[g];
-      gl.y += gl.vy * speedMult;
-      gl.x += gl.vx * speedMult;
-      gl.rot += gl.rotSpeed;
+    // Smooth scroll depth lerp for 5-stage kinetic narrative
+    currentScrollProgress += (targetScrollProgress - currentScrollProgress) * 0.08;
+    const isLabPage = !!document.getElementById('cyber-hud-panel');
 
-      if (gl.y < -40) gl.y = height + 40;
-      if (gl.x < -40) gl.x = width + 40;
-      if (gl.x > width + 40) gl.x = -40;
+    // 1. Update & Render Ambient Floating Glyphs (strictly on lab playground page to prevent text occlusion on marketing pages)
+    if (isLabPage) {
+      ctx.font = '9px "JetBrains Mono", monospace';
+      for (let g = 0; g < floatingGlyphs.length; g++) {
+        const gl = floatingGlyphs[g];
+        gl.y += gl.vy * speedMult;
+        gl.x += gl.vx * speedMult;
+        gl.rot += gl.rotSpeed;
 
-      // Draw subtle hexagon
-      ctx.save();
-      ctx.translate(gl.x, gl.y);
-      ctx.rotate(gl.rot);
-      ctx.strokeStyle = isSurging ? 'rgba(122, 66, 234, 0.4)' : `rgba(20, 20, 43, ${gl.alpha * 0.8})`;
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      for (let s = 0; s < 6; s++) {
-        const a = (s * Math.PI) / 3;
-        const hx = Math.cos(a) * (gl.size * 0.6);
-        const hy = Math.sin(a) * (gl.size * 0.6);
-        s === 0 ? ctx.moveTo(hx, hy) : ctx.lineTo(hx, hy);
+        if (gl.y < -40) gl.y = height + 40;
+        if (gl.x < -40) gl.x = width + 40;
+        if (gl.x > width + 40) gl.x = -40;
+
+        // Draw subtle hexagon
+        ctx.save();
+        ctx.translate(gl.x, gl.y);
+        ctx.rotate(gl.rot);
+        ctx.strokeStyle = isSurging ? 'rgba(122, 66, 234, 0.4)' : `rgba(20, 20, 43, ${gl.alpha * 0.8})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        for (let s = 0; s < 6; s++) {
+          const a = (s * Math.PI) / 3;
+          const hx = Math.cos(a) * (gl.size * 0.6);
+          const hy = Math.sin(a) * (gl.size * 0.6);
+          s === 0 ? ctx.moveTo(hx, hy) : ctx.lineTo(hx, hy);
+        }
+        ctx.closePath();
+        ctx.stroke();
+
+        // Draw telemetry label
+        ctx.fillStyle = isSurging ? 'rgba(122, 66, 234, 0.7)' : `rgba(82, 82, 95, ${gl.alpha})`;
+        ctx.fillText(gl.label, gl.size * 0.8, 3);
+        ctx.restore();
       }
-      ctx.closePath();
-      ctx.stroke();
-
-      // Draw telemetry label
-      ctx.fillStyle = isSurging ? 'rgba(122, 66, 234, 0.7)' : `rgba(82, 82, 95, ${gl.alpha})`;
-      ctx.fillText(gl.label, gl.size * 0.8, 3);
-      ctx.restore();
     }
 
-    // 2. Update & Render Particles
+    // 2. Update & Render Particles with 5-stage scroll behavior
+    const isStage2 = currentScrollProgress >= 0.16 && currentScrollProgress < 0.36;
+    const isStage3 = currentScrollProgress >= 0.36 && currentScrollProgress < 0.56;
+    const isStage5 = currentScrollProgress >= 0.78;
+
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
+
+      // Stage-specific physics forces
+      if (isStage2) {
+        // Stage 2 (Tension / Fragmentation): Particles pulled toward 3 siloed cluster centers
+        const clusterCenters = [
+          { x: width * 0.22, y: height * 0.35 },
+          { x: width * 0.78, y: height * 0.35 },
+          { x: width * 0.50, y: height * 0.70 }
+        ];
+        const target = clusterCenters[p.clusterId];
+        p.vx += (target.x - p.x) * 0.0006;
+        p.vy += (target.y - p.y) * 0.0006;
+      } else if (isStage3) {
+        // Stage 3 (The Turn): Gentle central attraction to bridge clusters
+        p.vx += (width * 0.5 - p.x) * 0.00025;
+        p.vy += (height * 0.5 - p.y) * 0.00025;
+      }
 
       // Physics velocity
       p.x += p.vx * speedMult;
@@ -1047,9 +1089,13 @@ function initKineticCanvas() {
       p.vx *= 0.98;
       p.vy *= 0.98;
 
-      // Pulse alpha
+      // Pulse alpha with stage fade on close
       const pulse = Math.sin(now * p.pulseSpeed + p.pulseOffset);
-      p.alpha = Math.max(0.1, p.baseAlpha + pulse * 0.15);
+      let baseAlpha = Math.max(0.1, p.baseAlpha + pulse * 0.15);
+      if (isStage5) {
+        baseAlpha *= Math.max(0.15, 1 - (currentScrollProgress - 0.78) * 3);
+      }
+      p.alpha = baseAlpha;
 
       if (p.highlightTime > 0) {
         p.highlightTime -= dt;
@@ -1065,23 +1111,46 @@ function initKineticCanvas() {
     }
     ctx.globalAlpha = 1.0;
 
-    // 3. Connect Nodes (OT Mesh / Matrix)
+    // 3. Connect Nodes across 5 narrative stages
     if (mode === 'mesh' || mode === 'matrix') {
-      const maxDist = mode === 'matrix' ? 95 : 115;
+      let maxDist = 115;
+      if (isStage2) {
+        maxDist = 85;
+      } else if (isStage3) {
+        maxDist = 135;
+      } else if (isStage5) {
+        maxDist = 80;
+      }
+
       for (let i = 0; i < particles.length; i++) {
         const p1 = particles[i];
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
+
+          // In Stage 2 (Tension / Fragmentation), suppress cross-cluster connections
+          if (isStage2 && p1.clusterId !== p2.clusterId) {
+            continue;
+          }
+
           const dx = p1.x - p2.x;
           const dy = p1.y - p2.y;
           const dist = Math.hypot(dx, dy);
 
           if (dist < maxDist) {
-            const lineAlpha = (1 - dist / maxDist) * 0.18 * (isSurging ? 2.5 : 1);
-            ctx.strokeStyle = isSurging
-              ? `rgba(122, 66, 234, ${lineAlpha})`
-              : `rgba(122, 66, 234, ${lineAlpha * 0.75})`;
-            ctx.lineWidth = isSurging ? 1.4 : 0.8;
+            let lineAlpha = (1 - dist / maxDist) * 0.18 * (isSurging ? 2.5 : 1);
+            if (isStage5) lineAlpha *= 0.25;
+
+            // In Stage 3 (The Turn), highlight cross-cluster bridges
+            const isBridge = isStage3 && p1.clusterId !== p2.clusterId;
+            if (isBridge) {
+              ctx.strokeStyle = `rgba(0, 229, 153, ${lineAlpha * 1.5})`;
+              ctx.lineWidth = 1.2;
+            } else {
+              ctx.strokeStyle = isSurging
+                ? `rgba(122, 66, 234, ${lineAlpha})`
+                : `rgba(122, 66, 234, ${lineAlpha * 0.75})`;
+              ctx.lineWidth = isSurging ? 1.4 : 0.8;
+            }
 
             ctx.beginPath();
             if (mode === 'matrix') {
