@@ -727,6 +727,89 @@ body.nav-open {
 }
 
 /* ==========================================================================
+   ACT 3: THE TURN — 450 MILLION DEVICES. ONE LANGUAGE.
+   ========================================================================== */
+.turn-section {
+  position: relative;
+  background: linear-gradient(180deg, var(--univ-bg-base) 0%, rgba(122, 66, 234, 0.03) 50%, var(--univ-bg-base) 100%);
+}
+
+.turn-features-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  margin-top: 3.5rem;
+}
+
+@media (min-width: 768px) {
+  .turn-features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.turn-feature-card {
+  background: #FFFFFF;
+  border: 1px solid var(--univ-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  box-shadow: 0 4px 20px -2px rgba(20, 20, 43, 0.04);
+}
+
+.turn-feature-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(122, 66, 234, 0.35);
+  box-shadow: 0 16px 36px -8px rgba(122, 66, 234, 0.12);
+}
+
+.turn-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: rgba(122, 66, 234, 0.08);
+  color: var(--univ-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.turn-feature-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.85rem;
+  color: var(--univ-navy);
+}
+
+.turn-feature-card p {
+  font-size: 0.95rem;
+  color: var(--univ-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+  flex-grow: 1;
+}
+
+.turn-card-metric {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--univ-text-secondary);
+  padding-top: 1rem;
+  border-top: 1px solid var(--univ-border-subtle);
+}
+
+.turn-card-metric span {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--univ-purple-dark);
+  font-size: 1rem;
+}
+
+/* ==========================================================================
    ACT 2: INSTITUTIONAL AUTHORITY STRIP (TICKER & AWARDS)
    ========================================================================== */
 .authority-section {
