@@ -1551,13 +1551,20 @@ body.nav-open {
    Simulator, Sectors, Trust & Compliance, Calculator) that used to be full
    sections stacked on this one long homepage.
    ========================================================================== */
+/* Flex-wrap + centered instead of a fixed 3-column grid — with 5 cards a
+   3-up (or 2-up) grid always leaves one dangling empty cell on the last
+   row; centering that incomplete row reads as intentional instead of a
+   broken hole in the layout. */
 .explore-teaser-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
 }
 
 .explore-teaser-card {
+  flex: 1 1 340px;
+  max-width: 380px;
   background: #FFFFFF;
   border: 1px solid var(--univ-border-subtle);
   border-radius: var(--radius-md);
@@ -1631,14 +1638,16 @@ body.nav-open {
 }
 
 @media (max-width: 900px) {
-  .explore-teaser-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .explore-teaser-card {
+    flex: 1 1 300px;
+    max-width: 420px;
   }
 }
 
 @media (max-width: 640px) {
-  .explore-teaser-grid {
-    grid-template-columns: 1fr;
+  .explore-teaser-card {
+    flex: 1 1 100%;
+    max-width: 480px;
   }
 }
 
