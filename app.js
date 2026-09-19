@@ -1677,6 +1677,11 @@ function initNumberTallies() {
     // Skip if there are no numerical digits (e.g. "All Connected")
     if (!/\d/.test(raw)) return null;
 
+    // Stop odometer animations on static years (2030) and scientific thresholds (1.5°C)
+    if (el.classList.contains('no-odometer') || el.dataset.staticMetric === 'true' || /1\.5|2030|2026/i.test(raw)) {
+      return null;
+    }
+
     el.dataset.tallyTarget = raw;
     el.classList.add('tally-number');
     el.setAttribute('title', 'Hover or click to re-tally');
