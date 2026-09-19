@@ -352,7 +352,7 @@ function initSectorExplorer() {
   const sectorData = {
     energy: {
       title: 'Energy & Utilities: Real-Time Data for an Intermittent Grid',
-      desc: 'Grids face unprecedented pressure from rising renewable volatility, EV charging peaks, and distributed energy resources. Univers connects generation, storage, and market data in real time — managing ~20% of global installed renewable capacity.',
+      desc: 'Grids face unprecedented pressure from rising renewable volatility, EV charging peaks, and distributed energy resources. Univers connects generation, storage, and market data in real time, managing ~20% of global installed renewable capacity.',
       kpi1: '10–20%',
       kpiLabel1: 'Reduction in O&M costs',
       kpi2: '1,013M',
@@ -375,7 +375,7 @@ function initSectorExplorer() {
       kpi3: '10,000+',
       kpiLabel3: 'Assets AI-onboarded across 9 BMS vendors',
       quoteType: 'caseStudy',
-      quote: 'HDB deployed Univers to unify 11,000 residential blocks, 36 shopping malls, and 2,000 car parks into one sovereign cloud platform — replacing 9 proprietary BMS vendors, slashing integration time by 50%, and generating S$7.0M in verified annual savings.',
+      quote: 'HDB deployed Univers to unify 11,000 residential blocks, 36 shopping malls, and 2,000 car parks into one sovereign cloud platform, replacing 9 proprietary BMS vendors, slashing integration time by 50%, and generating S$7.0M in verified annual savings.',
       avatar: 'HDB',
       name: 'Housing & Development Board (HDB)',
       role: 'Singapore Sovereign Smart Nation Deployment'
@@ -408,7 +408,7 @@ function initSectorExplorer() {
       quote: 'AESC deployed Univers across 10+ battery gigafactories in 6 countries. By combining physical AI with real-time operational feedback, AESC achieved a 30%+ OEE uplift in 18 months, generating over $192M in annual net EBIT impact across its manufacturing fleet.',
       avatar: 'AESC',
       name: 'AESC Gigafactories',
-      role: 'Global Battery Manufacturing — Core Factory Operations'
+      role: 'Global Battery Manufacturing: Core Factory Operations'
     }
   };
 
@@ -483,7 +483,7 @@ function initKeyClientsInteractive() {
     psa: {
       badge: 'KEY CLIENT // GLOBAL PORTS',
       name: 'PSA International',
-      desc: "World's largest port operator spanning 70+ terminals across 180+ locations in 45 countries — with S$5B annual OPEX managed on EnOS.",
+      desc: "World's largest port operator spanning 70+ terminals across 180+ locations in 45 countries, with S$5B annual OPEX managed on EnOS.",
       metrics: [
         { val: 'S$330M', lbl: 'Annual operating profit uplift' },
         { val: 'S$83M',  lbl: 'Annual revenue uplift' },
@@ -493,7 +493,7 @@ function initKeyClientsInteractive() {
     dhl: {
       badge: 'KEY CLIENT // FLEET ELECTRIFICATION',
       name: 'DHL Fleet',
-      desc: 'Electrifying 2,100 heavy-duty trucks across 299 German sites — 60,000+ assets onboarded across 40+ EV and charger OEMs.',
+      desc: 'Electrifying 2,100 heavy-duty trucks across 299 German sites, with 60,000+ assets onboarded across 40+ EV and charger OEMs.',
       metrics: [
         { val: '€41M',    lbl: 'Net annual EBIT impact by 2030' },
         { val: '2,100',   lbl: 'Heavy-duty trucks electrified' },
@@ -513,7 +513,7 @@ function initKeyClientsInteractive() {
     aesc: {
       badge: 'KEY CLIENT // BATTERY GIGAFACTORIES',
       name: 'AESC Gigafactories',
-      desc: '10+ battery gigafactories in 6 countries with U$5B OPEX — from 50% to 80% systematic OEE uplift in 18 months.',
+      desc: '10+ battery gigafactories in 6 countries with U$5B OPEX, from 50% to 80% systematic OEE uplift in 18 months.',
       metrics: [
         { val: '50%→80%', lbl: 'Systematic OEE uplift' },
         { val: '$48M+',   lbl: 'Annual productivity gain / plant' },
@@ -523,7 +523,7 @@ function initKeyClientsInteractive() {
     changi: {
       badge: 'KEY CLIENT // GLOBAL AVIATION',
       name: 'Changi Airport Singapore',
-      desc: 'Terminal 3 and Jewel HVAC energy optimization — real-time operational insights and heightened asset reliability at the world\'s most awarded airport.',
+      desc: 'Terminal 3 and Jewel HVAC energy optimization, delivering real-time operational insights and heightened asset reliability at the world\'s most awarded airport.',
       metrics: [
         { val: 'T1–T5',  lbl: 'Terminals covered' },
         { val: '24/7',   lbl: 'Real-time HVAC monitoring' },
@@ -533,7 +533,7 @@ function initKeyClientsInteractive() {
     sp: {
       badge: 'KEY CLIENT // GRID VPP',
       name: 'SP Group',
-      desc: "Advancing Singapore's Virtual Power Plant (VPP) initiative under the Energy Market Authority's (EMA) Regulatory Sandbox — distributed energy at national scale.",
+      desc: "Advancing Singapore's Virtual Power Plant (VPP) initiative under the Energy Market Authority's (EMA) Regulatory Sandbox, enabling distributed energy at national scale.",
       metrics: [
         { val: 'VPP',    lbl: 'Virtual Power Plant operator' },
         { val: 'EMA',    lbl: 'Regulatory sandbox certified' },
@@ -553,7 +553,7 @@ function initKeyClientsInteractive() {
     hkia: {
       badge: 'KEY CLIENT // AIRPORT MICROGRID',
       name: 'HK International Airport',
-      desc: 'AI-orchestrated smart building automation, peak load shifting, and predictive energy efficiency at international aviation scale — Asia\'s cargo hub.',
+      desc: 'AI-orchestrated smart building automation, peak load shifting, and predictive energy efficiency at international aviation scale, Asia\'s cargo hub.',
       metrics: [
         { val: '#1',     lbl: 'Busiest cargo airport, Asia' },
         { val: 'AI',     lbl: 'Energy optimization engine' },
@@ -742,7 +742,7 @@ function initValueCalculator() {
       }
     }
     if (resSubtext) {
-      resSubtext.textContent = `Illustrative estimate — modeled at a ${(savingsRate * 100).toFixed(1)}% optimization rate from Univers’ published sector benchmarks`;
+      resSubtext.textContent = `Illustrative estimate, modeled at a ${(savingsRate * 100).toFixed(1)}% optimization rate from Univers’ published sector benchmarks`;
     }
     if (resPayback) {
       if (window.UniversInteractive && window.UniversInteractive.updateOdometer) {
@@ -801,6 +801,7 @@ function initKineticCanvas() {
   let prevMouseX = -9999;
   let prevMouseY = -9999;
   let isDragging = false;
+  let isMouseDown = false;
   let dragDistance = 0;
 
   // Scroll depth tracking for 5-stage kinetic narrative transitions
