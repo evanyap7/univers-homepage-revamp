@@ -50,23 +50,9 @@ if (document.readyState === 'loading') {
    prefers-reduced-motion; elements are never hidden if JS fails to load.
    ========================================================================== */
 function initHeroEntrance() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const targets = document.querySelectorAll(
-    '.hero-content .eyebrow, .hero-headline, .hero-lead, .hero-cta-group, .hero-trust-badges, .hero-visual'
-  );
-  if (!targets.length) return;
-
-  targets.forEach((el, i) => {
-    el.classList.add('hero-enter');
-    el.style.transitionDelay = `${i * 90}ms`;
-  });
-
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      targets.forEach((el) => el.classList.add('hero-entered'));
-    });
-  });
+  // Render above the fold immediately: first paint presents the value proposition
+  // instantly without visual blank, opacity delay, or staggered layout shift.
+  return;
 }
 
 /* ==========================================================================
