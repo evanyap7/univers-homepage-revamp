@@ -1820,6 +1820,15 @@ body.nav-open {
   box-shadow: 0 1px 2px rgba(20, 20, 43, 0.04);
 }
 
+/* Grid items default to min-width:auto, so their min-content size (the
+   unbreakable "$1,176,000" mono number in particular) was forcing this
+   whole card — and the page under it — wider than the mobile viewport.
+   min-width:0 lets the grid track actually shrink to fit. */
+.calc-inputs,
+.calc-results-panel {
+  min-width: 0;
+}
+
 .calc-form-group {
   margin-bottom: 24px;
 }
@@ -1889,6 +1898,7 @@ body.nav-open {
   color: #FFFFFF;
   margin-bottom: 6px;
   letter-spacing: -0.02em;
+  overflow-wrap: break-word;
 }
 
 .calc-results-panel .res-subtext {
@@ -1906,6 +1916,35 @@ body.nav-open {
 .calc-results-panel .btn-primary:hover {
   background: rgba(255, 255, 255, 0.9);
   transform: translateY(-1px);
+}
+
+.calc-mini-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.calc-mini-stat {
+  background: rgba(255, 255, 255, 0.14);
+  padding: 12px;
+  border-radius: 6px;
+  min-width: 0;
+}
+
+.calc-mini-stat-label {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.calc-mini-stat-value {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.calc-cta-btn {
+  width: 100%;
 }
 
 /* ==========================================================================
@@ -2169,6 +2208,36 @@ body.nav-open {
 
   .flow-nodes {
     grid-template-columns: 1fr;
+  }
+
+  /* The calculator card's generous desktop padding (3.5rem card + 2.5rem
+     result panel) and fixed 3-4rem result number left almost no room for
+     content at phone widths, which is what was forcing the overflow above. */
+  .calculator-card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .calc-results-panel {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .calc-results-panel .res-highlight {
+    font-size: clamp(2rem, 11vw, 2.75rem);
+  }
+
+  /* PROJECTED PAYBACK / CO2e ABATEMENT still didn't fit side-by-side once
+     the panel itself was narrowed — stack them instead of clipping. */
+  .calc-mini-stats {
+    grid-template-columns: 1fr;
+  }
+
+  /* Buttons default to white-space:nowrap; this one's label is unusually
+     long ("See Closed-Loop Execution in Simulator (Stage 3) ↓") and was
+     running off the right edge of the screen instead of wrapping. */
+  .stack-card-action .btn {
+    white-space: normal;
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -3214,6 +3283,10 @@ body.grid-surge-active::after {
   align-items: stretch;
 }
 
+.stack-explorer-layout > * {
+  min-width: 0;
+}
+
 @media (max-width: 992px) {
   .stack-explorer-layout {
     grid-template-columns: 1fr;
@@ -3289,6 +3362,7 @@ body.grid-surge-active::after {
 
 .layer-info {
   flex: 1;
+  min-width: 0;
 }
 
 .layer-title-row {
@@ -3483,6 +3557,11 @@ body.grid-surge-active::after {
 .stack-card-action {
   margin-top: auto;
   display: flex;
+  min-width: 0;
+}
+
+.stack-card-action .btn {
+  min-width: 0;
 }
 
 /* Interconnected Bridge Bars */
