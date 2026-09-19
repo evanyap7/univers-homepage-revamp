@@ -191,14 +191,14 @@ function initLiveTelemetry() {
 
   let baseGW = 1072.4;
   let baseEndpoints = 452140912;
-  let baseActions = 18.42;
+  let baseActions = 1013.24;
 
   const eventPool = [
-    { tag: 'CONNECTED', type: 'tag-autonomous', text: 'HDB Sovereign Cloud: 10,000+ assets synchronized across 9 BMS vendors; energy baseline validated' },
-    { tag: 'REPORTED', type: 'tag-governed', text: 'PSA International Terminal: Automated berth AGV power demand logged; peak shaved by 14%' },
-    { tag: 'CONNECTED', type: 'tag-autonomous', text: 'DHL Fleet Electrification: 2,100 heavy-duty e-trucks telemetry streamed; depot charging optimized' },
-    { tag: 'REPORTED', type: 'tag-governed', text: 'AESC Gigafactory Line 4: Battery cell thermal variance analyzed; OEE stabilized at 81.4%' },
-    { tag: 'ABATED', type: 'tag-autonomous', text: 'Southeast Asia BESS: 2.4 MWh discharge recorded during dynamic tariff surge; avoided carbon logged' }
+    { tag: 'OPTIMIZED', type: 'tag-autonomous', text: 'Public housing cluster: 9-vendor BMS setpoint dispatched; 142 kWh saved with zero comfort deviation' },
+    { tag: 'CONNECTED', type: 'tag-governed', text: 'Port terminal, SEA: Automated prime mover routing synchronized across 70+ global terminals' },
+    { tag: 'THROTTLED', type: 'tag-autonomous', text: 'Commercial fleet hub: 2,100 EV truck charging loads scheduled; peak demand protected in 11ms' },
+    { tag: 'STABILIZED', type: 'tag-governed', text: 'Battery gigafactory: Cell thermal variance analyzed; production line OEE stabilized at 81.4%' },
+    { tag: 'DISPATCHED', type: 'tag-autonomous', text: 'Regional BESS: 2.4 MWh discharge recorded during dynamic tariff peak; avoided carbon logged' }
   ];
 
   let eventIdx = 0;
@@ -218,8 +218,8 @@ function initLiveTelemetry() {
     }
 
     if (actionsEl) {
-      baseActions = parseFloat((baseActions + 0.001).toFixed(3));
-      actionsEl.textContent = baseActions.toFixed(2);
+      baseActions = parseFloat((baseActions + 0.01).toFixed(2));
+      actionsEl.textContent = Math.round(baseActions).toLocaleString('en-US');
     }
 
     if (latencyEl) {
