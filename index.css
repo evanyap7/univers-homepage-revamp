@@ -153,50 +153,23 @@ h1, h2, h3, h4, h5, h6 {
    DEVELOPER CREDIT BAR
    ========================================================================== */
 .dev-credit-bar {
-  background: var(--univ-navy);
-  color: rgba(255, 255, 255, 0.85);
-  text-align: center;
-  padding: 8px 16px;
-  font-size: 0.82rem;
-  font-weight: 500;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: none;
 }
 
-.dev-credit-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: #FFFFFF;
+.footer-dev-credit {
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--univ-text-muted);
+}
+
+.footer-dev-credit a {
+  color: var(--univ-purple-light);
   text-decoration: none;
-  padding: 3px 10px;
-  border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  transition: all var(--transition-fast);
+  font-weight: 500;
 }
 
-.dev-credit-link:hover {
-  color: #FFFFFF;
-  background: rgba(122, 66, 234, 0.25);
-  border-color: var(--univ-purple-light);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(122, 66, 234, 0.2);
-}
-
-.dev-credit-link .icon-linkedin {
-  width: 15px;
-  height: 15px;
-  fill: #0A66C2;
-  background: #FFFFFF;
-  border-radius: 2px;
-  flex-shrink: 0;
-  transition: transform var(--transition-fast);
-}
-
-.dev-credit-link:hover .icon-linkedin {
-  transform: scale(1.1);
+.footer-dev-credit a:hover {
+  text-decoration: underline;
 }
 
 /* Container Framework */
