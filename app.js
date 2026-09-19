@@ -12,6 +12,7 @@ function boot() {
     ['initLiveTelemetry', initLiveTelemetry],
     ['initEngineSimulator', initEngineSimulator],
     ['initSectorExplorer', initSectorExplorer],
+    ['initCompareAccordion', initCompareAccordion],
     ['initKeyClientsInteractive', initKeyClientsInteractive],
     ['initPartnerMarqueeTooltip', initPartnerMarqueeTooltip],
     ['initValueCalculator', initValueCalculator],
@@ -457,6 +458,25 @@ function initSectorExplorer() {
       if (quoteAvatarEl) quoteAvatarEl.textContent = d.avatar;
       if (quoteNameEl) quoteNameEl.textContent = d.name;
       if (quoteRoleEl) quoteRoleEl.textContent = d.role;
+    });
+  });
+}
+
+/* ==========================================================================
+   4a2. COMPARE LIST ACCORDION (Fragmentation Trap / Unity Through Connection)
+   Collapsed-by-default so the Overview doesn't dump all four points at once.
+   ========================================================================== */
+function initCompareAccordion() {
+  const items = document.querySelectorAll('.compare-accordion-item');
+  if (!items.length) return;
+
+  items.forEach((item) => {
+    const trigger = item.querySelector('.compare-accordion-trigger');
+    if (!trigger) return;
+    trigger.addEventListener('click', () => {
+      const willOpen = !item.classList.contains('open');
+      item.classList.toggle('open', willOpen);
+      trigger.setAttribute('aria-expanded', String(willOpen));
     });
   });
 }
@@ -2335,6 +2355,21 @@ function initDemoBookingFlow() {
       openDemoModal();
     });
   }
+
+  // Generic hook: any button marked data-open-demo opens the modal — used by
+  // the always-visible mobile header CTA and page-level "Talk to us" buttons,
+  // so the demo booking isn't only reachable by scrolling to the page bottom.
+  document.querySelectorAll('[data-open-demo]').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const drawer = document.getElementById('mobile-nav-drawer');
+      const backdrop = document.getElementById('nav-backdrop');
+      if (drawer) drawer.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('open');
+      document.body.classList.remove('nav-open');
+      openDemoModal();
+    });
+  });
 
   // Export globally for cross-system bridges
   window.openDemoModal = openDemoModal;

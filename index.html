@@ -66,6 +66,10 @@
             <span class="pill-dot"></span>
             <span>Overview</span>
           </a>
+          <a href="clients.html" class="chapter-pill" data-target="clients">
+            <span class="pill-dot"></span>
+            <span>Clients</span>
+          </a>
           <a href="platform.html" class="chapter-pill" data-target="enos-stack">
             <span class="pill-dot"></span>
             <span>EnOS™ Stack</span>
@@ -94,6 +98,7 @@
       <div class="nav-backdrop" id="nav-backdrop" hidden></div>
 
       <div class="nav-actions">
+        <button type="button" class="btn btn-primary btn-sm nav-cta-mobile-visible" data-open-demo aria-label="Schedule a demo">Demo</button>
         <button type="button" class="btn btn-primary btn-sm nav-cta-desktop" id="nav-cta-demo">Talk to Us</button>
 
         <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-nav-drawer" aria-label="Open menu">
@@ -125,13 +130,15 @@
             <span>Univers. All Connected.</span>
           </div>
 
+          <div class="hero-category-tag">Enterprise Software (SaaS) — Not a Utility, Not Cloud Hosting</div>
+
           <h1 class="hero-headline">
             Connect everything. <br>
             <span class="text-accent">Decarbonize everything.</span>
           </h1>
 
           <p class="hero-lead">
-            Univers is the world's most comprehensive decarbonization platform. Our EnOS™ platform connects on-the-ground operational technology and in-the-cloud intelligence to deliver real-time energy data and data-driven carbon monitoring, reporting, and abatement — giving climate leaders unmatched control and infinite opportunity.
+            In plain terms: Univers is software your team subscribes to. It plugs into your existing meters, sensors, and equipment, and turns that operational data into one real-time dashboard for energy monitoring, carbon reporting, and automated abatement — replacing spreadsheets and disconnected tools with a single accurate, actionable truth.
           </p>
 
           <div class="hero-cta-group">
@@ -286,22 +293,46 @@
             <span class="compare-badge">Fragmented Climate Action</span>
             <h3 class="compare-heading">The Fragmentation Trap</h3>
             <p class="compare-lead">Awareness without a route to abatement. Measurement without meaning.</p>
-            <ul class="compare-list">
-              <li>
-                <svg class="icon-x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-                <span><strong>Disconnected Data:</strong> Energy, carbon, and asset data trapped in separate platforms and spreadsheets across teams and geographies.</span>
+            <ul class="compare-list compare-accordion" data-accordion="legacy">
+              <li class="compare-accordion-item open">
+                <button type="button" class="compare-accordion-trigger" aria-expanded="true">
+                  <svg class="icon-x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                  <span class="compare-accordion-title">Disconnected Data</span>
+                  <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="compare-accordion-body"><div class="compare-accordion-body-inner">
+                  <p>Energy, carbon, and asset data trapped in separate platforms and spreadsheets across teams and geographies.</p>
+                </div></div>
               </li>
-              <li>
-                <svg class="icon-x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-                <span><strong>Manual Reporting:</strong> Weeks spent reconciling Scope 1, 2, and 3 emissions by hand before a single decision can be made.</span>
+              <li class="compare-accordion-item">
+                <button type="button" class="compare-accordion-trigger" aria-expanded="false">
+                  <svg class="icon-x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                  <span class="compare-accordion-title">Manual Reporting</span>
+                  <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="compare-accordion-body"><div class="compare-accordion-body-inner">
+                  <p>Weeks spent reconciling Scope 1, 2, and 3 emissions by hand before a single decision can be made.</p>
+                </div></div>
               </li>
-              <li>
-                <svg class="icon-x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-                <span><strong>Siloed Stakeholders:</strong> Facilities, sustainability, and finance teams working from different numbers, different tools, different truths.</span>
+              <li class="compare-accordion-item">
+                <button type="button" class="compare-accordion-trigger" aria-expanded="false">
+                  <svg class="icon-x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                  <span class="compare-accordion-title">Siloed Stakeholders</span>
+                  <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="compare-accordion-body"><div class="compare-accordion-body-inner">
+                  <p>Facilities, sustainability, and finance teams working from different numbers, different tools, different truths.</p>
+                </div></div>
               </li>
-              <li>
-                <svg class="icon-x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-                <span><strong>No Path to Action:</strong> Data that describes the problem but never compounds into a plan for solving it.</span>
+              <li class="compare-accordion-item">
+                <button type="button" class="compare-accordion-trigger" aria-expanded="false">
+                  <svg class="icon-x" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                  <span class="compare-accordion-title">No Path to Action</span>
+                  <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="compare-accordion-body"><div class="compare-accordion-body-inner">
+                  <p>Data that describes the problem but never compounds into a plan for solving it.</p>
+                </div></div>
               </li>
             </ul>
           </div>
@@ -311,22 +342,46 @@
             <span class="compare-badge">Univers Decarbonization Intelligence</span>
             <h3 class="compare-heading">Unity Through Connection</h3>
             <p class="compare-lead">Connecting the on-the-ground and the in-the-cloud into one accurate, actionable truth.</p>
-            <ul class="compare-list">
-              <li>
-                <svg class="icon-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <span><strong>Edge to Cloud:</strong> EnOS™ connects operational technology directly to in-the-cloud intelligence across 450M+ sensors and devices.</span>
+            <ul class="compare-list compare-accordion" data-accordion="autonomous">
+              <li class="compare-accordion-item open">
+                <button type="button" class="compare-accordion-trigger" aria-expanded="true">
+                  <svg class="icon-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <span class="compare-accordion-title">Edge to Cloud</span>
+                  <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="compare-accordion-body"><div class="compare-accordion-body-inner">
+                  <p>EnOS™ connects operational technology directly to in-the-cloud intelligence across 450M+ sensors and devices.</p>
+                </div></div>
               </li>
-              <li>
-                <svg class="icon-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <span><strong>Real-Time Energy &amp; Carbon Data:</strong> Data-driven monitoring, reporting, and abatement, updated continuously — not once a quarter.</span>
+              <li class="compare-accordion-item">
+                <button type="button" class="compare-accordion-trigger" aria-expanded="false">
+                  <svg class="icon-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <span class="compare-accordion-title">Real-Time Energy &amp; Carbon Data</span>
+                  <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="compare-accordion-body"><div class="compare-accordion-body-inner">
+                  <p>Data-driven monitoring, reporting, and abatement, updated continuously — not once a quarter.</p>
+                </div></div>
               </li>
-              <li>
-                <svg class="icon-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <span><strong>One Shared Truth:</strong> 1,070 GW of energy assets (~20% global installed capacity) managed on a single sovereign platform.</span>
+              <li class="compare-accordion-item">
+                <button type="button" class="compare-accordion-trigger" aria-expanded="false">
+                  <svg class="icon-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <span class="compare-accordion-title">One Shared Truth</span>
+                  <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="compare-accordion-body"><div class="compare-accordion-body-inner">
+                  <p>1,070 GW of energy assets (~20% global installed capacity) managed on a single sovereign platform.</p>
+                </div></div>
               </li>
-              <li>
-                <svg class="icon-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <span><strong>Measure → Manage → Transform:</strong> A decade of domain expertise means every deployment starts ahead, compounding returns from day one.</span>
+              <li class="compare-accordion-item">
+                <button type="button" class="compare-accordion-trigger" aria-expanded="false">
+                  <svg class="icon-check" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <span class="compare-accordion-title">Measure → Manage → Transform</span>
+                  <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="compare-accordion-body"><div class="compare-accordion-body-inner">
+                  <p>A decade of domain expertise means every deployment starts ahead, compounding returns from day one.</p>
+                </div></div>
               </li>
             </ul>
           </div>
@@ -445,10 +500,12 @@
     </section>
 
     <!-- ========================================================================
-         ACT 5: OFFICIAL CLIENT & PARTNER ECOSYSTEM SHOWCASE (WITH COMPANY LOGOS)
-         Featuring highlighted key enterprise clients and strategic ecosystem partners
+         ACT 5: CLIENT PROOF TEASER
+         The full interactive client tab panel, partner marquee, and landmark
+         deployments now live on their own Clients page (see nav) instead of
+         one long homepage scroll — this keeps a quick taste here.
          ======================================================================== -->
-    <section class="client-ecosystem-section" id="clients">
+    <section class="section section-border-top" id="clients">
       <div class="container">
         <div class="section-header text-center ecosystem-header">
           <div class="eyebrow">
@@ -459,192 +516,26 @@
             Trusted by the World's Most Demanding Infrastructure Operators
           </h2>
           <p class="section-subtitle">
-            From national sovereign public housing and international aviation hubs to global container ports, commercial logistics fleets, and electric battery gigafactories.
+            National sovereign public housing, international aviation hubs, global container ports, commercial logistics fleets, and electric battery gigafactories.
           </p>
         </div>
 
-        <!-- Key Clients: Interactive Tab Selector + Expandable Metrics Panel -->
-        <div class="key-clients-interactive">
-          <!-- Tab Selector Row -->
-          <div class="kc-tab-row" role="tablist" aria-label="Key enterprise clients">
-            <button class="kc-tab active" data-client="psa" role="tab" aria-selected="true">
-              <img src="assets/logos/psa-international.png" alt="PSA International" class="kc-tab-logo">
-            </button>
-            <button class="kc-tab" data-client="dhl" role="tab" aria-selected="false">
-              <span class="kc-tab-wordmark" style="color:#D40511;">DHL</span>
-            </button>
-            <button class="kc-tab" data-client="hdb" role="tab" aria-selected="false">
-              <img src="assets/logos/hdb-singapore.png" alt="HDB Singapore" class="kc-tab-logo">
-            </button>
-            <button class="kc-tab" data-client="aesc" role="tab" aria-selected="false">
-              <img src="assets/logos/aesc.png" alt="AESC" class="kc-tab-logo">
-            </button>
-            <button class="kc-tab" data-client="changi" role="tab" aria-selected="false">
-              <img src="assets/logos/changi-airport.png" alt="Changi Airport" class="kc-tab-logo">
-            </button>
-            <button class="kc-tab" data-client="sp" role="tab" aria-selected="false">
-              <img src="assets/logos/sp-group.png" alt="SP Group" class="kc-tab-logo">
-            </button>
-            <button class="kc-tab" data-client="cdg" role="tab" aria-selected="false">
-              <img src="assets/logos/comfortdelgro.png" alt="ComfortDelGro" class="kc-tab-logo">
-            </button>
-            <button class="kc-tab" data-client="hkia" role="tab" aria-selected="false">
-              <img src="assets/logos/hk-airport.png" alt="HKIA" class="kc-tab-logo">
-            </button>
-          </div>
-
-          <!-- Active Client Detail Panel -->
-          <div class="kc-panel" id="kc-panel">
-            <div class="kc-panel-inner">
-              <div class="kc-panel-left">
-                <div class="kc-panel-badge" id="kc-badge">KEY CLIENT // GLOBAL PORTS</div>
-                <div class="kc-panel-name" id="kc-name">PSA International</div>
-                <div class="kc-panel-desc" id="kc-desc">World's largest port operator spanning 70+ terminals across 180+ locations in 45 countries — with S$5B annual OPEX managed on EnOS.</div>
-              </div>
-              <div class="kc-panel-metrics" id="kc-metrics">
-                <div class="kc-metric">
-                  <div class="kc-metric-val">S$330M</div>
-                  <div class="kc-metric-lbl">Annual operating profit uplift</div>
-                </div>
-                <div class="kc-metric">
-                  <div class="kc-metric-val">S$83M</div>
-                  <div class="kc-metric-lbl">Annual revenue uplift</div>
-                </div>
-                <div class="kc-metric">
-                  <div class="kc-metric-val">45</div>
-                  <div class="kc-metric-lbl">Countries covered</div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="client-teaser-logo-row">
+          <img src="assets/logos/psa-international.png" alt="PSA International" loading="lazy">
+          <span class="client-teaser-wordmark" style="color:#D40511;">DHL</span>
+          <img src="assets/logos/hdb-singapore.png" alt="HDB Singapore" loading="lazy">
+          <img src="assets/logos/changi-airport.png" alt="Changi Airport" loading="lazy">
+          <img src="assets/logos/sp-group.png" alt="SP Group" loading="lazy">
+          <img src="assets/logos/aesc.png" alt="AESC" loading="lazy">
+          <img src="assets/logos/comfortdelgro.png" alt="ComfortDelGro" loading="lazy">
+          <img src="assets/logos/hk-airport.png" alt="HKIA" loading="lazy">
         </div>
 
-        <!-- Partners: Infinite Dual-Row Auto-Scrolling Marquee -->
-        <div class="partners-marquee-wrap">
-          <div class="partners-marquee-label">Strategic Advisory, Technology &amp; Energy Partners</div>
-
-          <!-- Row 1 — scrolls left -->
-          <div class="marquee-outer">
-            <div class="marquee-fade marquee-fade-l"></div>
-            <div class="marquee-fade marquee-fade-r"></div>
-            <div class="marquee-track marquee-track--left" aria-hidden="true">
-              <div class="marquee-content">
-                <div class="marquee-logo-item" data-name="McKinsey &amp; Company"><img src="assets/logos/mckinsey.png" alt="McKinsey &amp; Company"></div>
-                <div class="marquee-logo-item" data-name="Mott MacDonald"><img src="assets/logos/mott-macdonald.png" alt="Mott MacDonald"></div>
-                <div class="marquee-logo-item" data-name="AWS"><img src="assets/logos/aws.png" alt="AWS"></div>
-                <div class="marquee-logo-item" data-name="Advantech"><img src="assets/logos/advantech.png" alt="Advantech"></div>
-                <div class="marquee-logo-item" data-name="Moxa"><img src="assets/logos/moxa.png" alt="Moxa"></div>
-                <div class="marquee-logo-item" data-name="GovTech Singapore"><img src="assets/logos/govtech.png" alt="GovTech Singapore"></div>
-                <div class="marquee-logo-item" data-name="PUB Singapore"><img src="assets/logos/pub-water.png" alt="PUB Singapore"></div>
-                <div class="marquee-logo-item" data-name="HTX"><img src="assets/logos/htx.png" alt="HTX"></div>
-                <!-- Duplicated for seamless loop -->
-                <div class="marquee-logo-item" data-name="McKinsey &amp; Company"><img src="assets/logos/mckinsey.png" alt="McKinsey &amp; Company"></div>
-                <div class="marquee-logo-item" data-name="Mott MacDonald"><img src="assets/logos/mott-macdonald.png" alt="Mott MacDonald"></div>
-                <div class="marquee-logo-item" data-name="AWS"><img src="assets/logos/aws.png" alt="AWS"></div>
-                <div class="marquee-logo-item" data-name="Advantech"><img src="assets/logos/advantech.png" alt="Advantech"></div>
-                <div class="marquee-logo-item" data-name="Moxa"><img src="assets/logos/moxa.png" alt="Moxa"></div>
-                <div class="marquee-logo-item" data-name="GovTech Singapore"><img src="assets/logos/govtech.png" alt="GovTech Singapore"></div>
-                <div class="marquee-logo-item" data-name="PUB Singapore"><img src="assets/logos/pub-water.png" alt="PUB Singapore"></div>
-                <div class="marquee-logo-item" data-name="HTX"><img src="assets/logos/htx.png" alt="HTX"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Row 2 — scrolls right -->
-          <div class="marquee-outer" style="margin-top: 12px;">
-            <div class="marquee-fade marquee-fade-l"></div>
-            <div class="marquee-fade marquee-fade-r"></div>
-            <div class="marquee-track marquee-track--right" aria-hidden="true">
-              <div class="marquee-content">
-                <div class="marquee-logo-item" data-name="Tenaga Nasional"><img src="assets/logos/tenaga-nasional.png" alt="Tenaga Nasional"></div>
-                <div class="marquee-logo-item" data-name="PTT"><img src="assets/logos/ptt.png" alt="PTT"></div>
-                <div class="marquee-logo-item" data-name="SPIC"><img src="assets/logos/spic.png" alt="SPIC"></div>
-                <div class="marquee-logo-item" data-name="HSBC"><img src="assets/logos/hsbc.png" alt="HSBC"></div>
-                <div class="marquee-logo-item" data-name="OCBC Bank"><img src="assets/logos/ocbc.png" alt="OCBC Bank"></div>
-                <div class="marquee-logo-item" data-name="Indorama Ventures"><img src="assets/logos/indorama.png" alt="Indorama Ventures"></div>
-                <div class="marquee-logo-item" data-name="Eaton"><img src="assets/logos/eaton.png" alt="Eaton"></div>
-                <div class="marquee-logo-item" data-name="Nippon Paint"><img src="assets/logos/nippon-paint.png" alt="Nippon Paint"></div>
-                <!-- Duplicated for seamless loop -->
-                <div class="marquee-logo-item" data-name="Tenaga Nasional"><img src="assets/logos/tenaga-nasional.png" alt="Tenaga Nasional"></div>
-                <div class="marquee-logo-item" data-name="PTT"><img src="assets/logos/ptt.png" alt="PTT"></div>
-                <div class="marquee-logo-item" data-name="SPIC"><img src="assets/logos/spic.png" alt="SPIC"></div>
-                <div class="marquee-logo-item" data-name="HSBC"><img src="assets/logos/hsbc.png" alt="HSBC"></div>
-                <div class="marquee-logo-item" data-name="OCBC Bank"><img src="assets/logos/ocbc.png" alt="OCBC Bank"></div>
-                <div class="marquee-logo-item" data-name="Indorama Ventures"><img src="assets/logos/indorama.png" alt="Indorama Ventures"></div>
-                <div class="marquee-logo-item" data-name="Eaton"><img src="assets/logos/eaton.png" alt="Eaton"></div>
-                <div class="marquee-logo-item" data-name="Nippon Paint"><img src="assets/logos/nippon-paint.png" alt="Nippon Paint"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Landmark Singapore Deployments Card -->
-        <div class="landmark-deployments-card">
-          <div class="landmark-header-row">
-            <span class="sg-flag-badge">🇸🇬 SINGAPORE SMART NATION &amp; LANDMARK DEPLOYMENTS</span>
-            <span style="font-size: 0.88rem; font-weight: 600; color: var(--univ-navy);">From Infrastructure to Citizen Impact</span>
-          </div>
-          <div class="landmark-photo-grid">
-            <div>
-              <div class="landmark-photo-card">
-                <img src="assets/photos/landmark-marina-bay-skyline.jpg" alt="Marina Bay, Singapore" loading="lazy">
-                <div class="landmark-photo-caption">
-                  <h5>Singapore Smart Nation OS</h5>
-                </div>
-              </div>
-              <p class="landmark-photo-desc">Univers provided the underlying operating system of Singapore's national Smart Nation platform in 2019.</p>
-            </div>
-            <div>
-              <div class="landmark-photo-card">
-                <img src="assets/photos/landmark-gardens-by-the-bay.jpg" alt="Gardens by the Bay, Singapore" loading="lazy">
-                <div class="landmark-photo-caption">
-                  <h5>Gardens by the Bay</h5>
-                </div>
-              </div>
-              <p class="landmark-photo-desc">The operations platform for Smart Net Zero Gardens at one of the world's most visited destinations (crowd dispersal, tree health, and dynamic LLM reporting).</p>
-            </div>
-            <div>
-              <div class="landmark-photo-card">
-                <img src="assets/photos/landmark-changi-jewel.jpg" alt="Jewel Changi Airport, Singapore" loading="lazy">
-                <div class="landmark-photo-caption">
-                  <h5>Changi Airport &amp; Jewel</h5>
-                </div>
-              </div>
-              <p class="landmark-photo-desc">Terminal 3 and Jewel HVAC energy optimization for the world's most awarded airport — see the full Changi story in the client showcase above.</p>
-            </div>
-            <div>
-              <div class="landmark-photo-card">
-                <img src="assets/photos/energy-solar-aerial.jpg" alt="Large-scale energy storage infrastructure" loading="lazy">
-                <div class="landmark-photo-caption">
-                  <h5>Southeast Asia's Largest BESS</h5>
-                </div>
-              </div>
-              <p class="landmark-photo-desc">Powered the real-time telemetry, frequency synchronization, and grid dispatch for Southeast Asia's largest energy storage system.</p>
-            </div>
-            <div>
-              <div class="landmark-photo-card">
-                <img src="assets/photos/landmark-hdb-estate.jpg" alt="HDB public housing estate, Singapore" loading="lazy">
-                <div class="landmark-photo-caption">
-                  <h5>HDB Singapore Residential Estates</h5>
-                </div>
-              </div>
-              <p class="landmark-photo-desc">9 legacy BMS vendors unified into 1 sovereign platform across 11,000 residential blocks, 36 malls, and 2,000 car parks — see the full HDB story in the client showcase above.</p>
-            </div>
-          </div>
-          <div class="landmark-grid">
-            <div class="landmark-item">
-              <h5>Punggol Digital District (PDD)</h5>
-              <p>Powering Singapore's first district-level smart grid to champion sustainable, autonomous industrial development.</p>
-            </div>
-            <div class="landmark-item">
-              <h5>HTX Land Border Modernization</h5>
-              <p>Orchestrating smart BMS, predictive maintenance, and energy efficiency at the world's busiest land border.</p>
-            </div>
-            <div class="landmark-item">
-              <h5>TraceTogether National Gateway</h5>
-              <p>Served as the high-availability gateway platform for Singapore's national COVID-19 contact tracing tokens.</p>
-            </div>
-          </div>
+        <div style="text-align: center; margin-top: 2.25rem;">
+          <a href="clients.html" class="btn btn-primary">
+            <span>See Client Outcomes &amp; Partners</span>
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
         </div>
       </div>
     </section>
@@ -810,7 +701,7 @@
           <h5>Company & Trust</h5>
           <ul class="footer-links">
             <li><a href="https://univers.com/about-us/" target="_blank" rel="noopener noreferrer">About Univers</a></li>
-            <li><a href="https://univers.com/customer-stories/" target="_blank" rel="noopener noreferrer">Customer Stories</a></li>
+            <li><a href="clients.html">Customer Stories</a></li>
             <li><a href="https://univers.com/resource/univers-trust-center/" target="_blank" rel="noopener noreferrer">Security & Trust Center</a></li>
             <li><a href="https://univers.com/careers/" target="_blank" rel="noopener noreferrer">Careers</a></li>
           </ul>
