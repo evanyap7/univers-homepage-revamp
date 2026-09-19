@@ -850,6 +850,35 @@ body.nav-open {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px;
+  position: relative;
+}
+
+/* The narrative bridge between "the problem" and "the fix" — desktop only;
+   stacked mobile cards already read top-to-bottom as before/after. */
+.shift-connector {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .shift-connector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--univ-navy);
+    color: #FFFFFF;
+    padding: 10px 18px;
+    border-radius: var(--radius-full);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    box-shadow: 0 12px 28px -10px rgba(20, 20, 43, 0.45);
+    z-index: 2;
+  }
 }
 
 .compare-card {
@@ -917,23 +946,44 @@ body.nav-open {
   line-height: 1.5;
 }
 
-.icon-x {
-  color: var(--univ-red);
-  margin-top: 2px;
-  flex-shrink: 0;
-}
-
-.icon-check {
-  color: var(--univ-purple);
-  margin-top: 2px;
-  flex-shrink: 0;
-}
-
 /* Compare list as a collapsed-by-default accordion — Overview was dumping
    all four points per card at once; now only titles show until tapped. */
 .compare-accordion {
   gap: 0;
   border-top: 1px solid var(--univ-border-subtle);
+}
+
+/* Each point gets its own icon (instead of a repeated generic X/check) in a
+   colored badge, plus a step number, so the list reads as a small sequence
+   rather than a flat bullet dump. */
+.accordion-icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.accordion-icon-badge--legacy {
+  background: var(--univ-red-soft);
+  color: var(--univ-red);
+}
+
+.accordion-icon-badge--autonomous {
+  background: var(--univ-purple-soft);
+  color: var(--univ-purple-dark);
+}
+
+.accordion-step-num {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--univ-text-muted);
+  margin-right: 8px;
+  opacity: 0.75;
+  vertical-align: middle;
 }
 
 .compare-list li.compare-accordion-item {
@@ -3304,38 +3354,59 @@ body.grid-surge-active::after {
 
 /* Homepage client teaser — a quick taste of who Univers works with, with
    the full interactive breakdown, partner marquee, and landmark deployments
-   living on their own Clients page instead of one long homepage scroll. */
+   living on their own Clients page instead of one long homepage scroll.
+   Every logo sits in a uniform white tile so mismatched source assets
+   (different aspect ratios, some with baked-in dark backgrounds, some
+   nearly invisible under a desaturating filter) all read as one consistent,
+   modern row instead of a jumbled logo soup. */
 .client-teaser-logo-row {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  gap: 32px 44px;
+  gap: 14px;
   padding: 8px 0 4px;
 }
 
-.client-teaser-logo-row img {
-  max-height: 28px;
-  max-width: 96px;
+.logo-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  padding: 0 22px;
+  background: #FFFFFF;
+  border: 1px solid var(--univ-border-subtle);
+  border-radius: 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.logo-tile:hover {
+  border-color: rgba(122, 66, 234, 0.3);
+  box-shadow: 0 10px 24px -14px rgba(20, 20, 43, 0.25);
+  transform: translateY(-2px);
+}
+
+.logo-tile img {
+  max-height: 24px;
+  max-width: 104px;
   object-fit: contain;
-  filter: grayscale(1) opacity(0.6);
-  transition: filter 0.22s ease;
+  border-radius: 3px;
 }
 
-.client-teaser-logo-row img:hover {
-  filter: grayscale(0) opacity(1);
-}
-
-.client-teaser-wordmark {
-  font-size: 1.3rem;
+.logo-tile-wordmark {
+  font-size: 1.1rem;
   font-weight: 900;
-  letter-spacing: -0.03em;
-  opacity: 0.55;
-  transition: opacity 0.22s ease;
+  letter-spacing: -0.02em;
 }
 
-.client-teaser-wordmark:hover {
-  opacity: 1;
+/* Some source logo files (e.g. AESC) ship with a solid dark background baked
+   into the PNG itself rather than transparency — on a white tile that reads
+   as a broken gray box. Giving that tile a matching dark fill instead turns
+   it into an intentional "dark" logo chip, same pattern real logo walls use
+   when a brand's mark only exists in a reversed/dark lockup. */
+.logo-tile--dark {
+  background: var(--univ-navy);
+  border-color: var(--univ-navy);
 }
 
 
@@ -3364,11 +3435,11 @@ body.grid-surge-active::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6px 14px;
-  min-height: 44px;
+  padding: 8px 16px;
+  min-height: 52px;
   min-width: 68px;
-  background: transparent;
-  border: 1.5px solid transparent;
+  background: #FFFFFF;
+  border: 1.5px solid var(--univ-border-subtle);
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.22s ease;
@@ -3377,40 +3448,44 @@ body.grid-surge-active::after {
 }
 
 .kc-tab:hover {
-  background: rgba(122, 66, 234, 0.05);
-  border-color: rgba(122, 66, 234, 0.2);
+  border-color: rgba(122, 66, 234, 0.35);
+  box-shadow: 0 8px 20px -14px rgba(20, 20, 43, 0.25);
+  transform: translateY(-1px);
 }
 
 .kc-tab.active {
-  background: #ffffff;
+  background: var(--univ-purple-soft);
   border-color: var(--univ-purple);
   box-shadow: 0 2px 12px rgba(122, 66, 234, 0.15);
 }
 
+/* Full color always — logos used to be desaturated to opacity(0.55) for
+   inactive tabs, which crushed already-light brand marks (HKIA, ComfortDelGro)
+   to near-invisible. Active/inactive is now shown by the tile itself. */
 .kc-tab-logo {
   max-height: 22px;
-  max-width: 72px;
+  max-width: 76px;
   object-fit: contain;
-  filter: grayscale(1) opacity(0.55);
-  transition: filter 0.22s ease;
-}
-
-.kc-tab:hover .kc-tab-logo,
-.kc-tab.active .kc-tab-logo {
-  filter: grayscale(0) opacity(1);
+  border-radius: 3px;
 }
 
 .kc-tab-wordmark {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 900;
-  letter-spacing: -0.03em;
-  opacity: 0.45;
-  transition: opacity 0.22s ease;
+  letter-spacing: -0.02em;
 }
 
-.kc-tab:hover .kc-tab-wordmark,
-.kc-tab.active .kc-tab-wordmark {
-  opacity: 1;
+/* AESC ships as a dark logo lockup (solid dark background baked into the
+   PNG) — give its tile a matching dark fill instead of showing a broken
+   gray box on white. */
+.kc-tab--dark {
+  background: var(--univ-navy);
+  border-color: var(--univ-navy);
+}
+
+.kc-tab--dark.active {
+  border-color: var(--univ-purple-light);
+  box-shadow: 0 2px 14px rgba(122, 66, 234, 0.35);
 }
 
 /* Detail panel */
