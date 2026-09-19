@@ -275,7 +275,7 @@ function initEngineSimulator() {
     },
     '2': {
       title: 'IN THE CLOUD: ENOS CLOUD',
-      rate: 'MANAGING: 1,070 GW Energy Assets (~20% Global Capacity)',
+      rate: 'MANAGING: 1,070 GW Energy Assets (~20% Global Renewable Capacity)',
       console: '>> Fusing on-the-ground data with cloud intelligence into accurate, reliable, actionable decarbonization data...',
       activeNodes: [node1, node2]
     },
@@ -366,13 +366,13 @@ function initSectorExplorer() {
   const sectorData = {
     energy: {
       title: 'Energy & Utilities: Real-Time Data for an Intermittent Grid',
-      desc: 'Grids face unprecedented pressure from rising renewable volatility, EV charging peaks, and distributed energy resources. Univers connects generation, storage, and market data in real time — managing ~20% of world installed capacity.',
+      desc: 'Grids face unprecedented pressure from rising renewable volatility, EV charging peaks, and distributed energy resources. Univers connects generation, storage, and market data in real time — managing ~20% of global installed renewable capacity.',
       kpi1: '10–20%',
       kpiLabel1: 'Reduction in O&M costs',
       kpi2: '1,013M',
       kpiLabel2: 'Million tCO2e avoided carbon emissions',
       kpi3: '1,070 GW',
-      kpiLabel3: 'Managed energy assets (~20% global capacity)',
+      kpiLabel3: 'Managed energy assets (~20% global renewable capacity)',
       quoteType: 'testimonial',
       quote: '“With Univers’ end-to-end solution and expertise, ORIX Renewable Energy Management can provide total customer support – from proposals to implementation to maintenance, which in turn helps our customers optimize energy use and reduce costs.”',
       avatar: 'KY',
@@ -2449,7 +2449,7 @@ function initEnOSStackExplorer() {
         'Cross-domain operational ontology & semantic graph reasoning',
         'Continuous self-calibration against real-time operational feedback'
       ],
-      proof: '<strong>1,070 GW Global Managed Energy Assets (~20% world installed capacity) &amp; AESC Gigafactories:</strong> 15% improvement in wind turbine energy capture; sub-second battery cell thermal deviation forecasting across 10+ gigafactories.',
+      proof: '<strong>1,070 GW Global Managed Energy Assets (~20% of global installed renewable capacity) &amp; AESC Gigafactories:</strong> 15% improvement in wind turbine energy capture; sub-second battery cell thermal deviation forecasting across 10+ gigafactories.',
       protocols: ['ONNX Runtime', 'PyTorch / TensorFlow', 'EnOS Model Registry', 'Graph Neural Nets', 'Jupyter Workspace', 'SQL/Vector Hybrid Query'],
       simStep: '2',
       simBtnText: 'See Predictive Physics AI in Simulator (Stage 2) ↓'
