@@ -2642,6 +2642,143 @@ main,
   color: var(--univ-purple-light);
 }
 
+/* ==========================================================================
+   LAB MODULE 04: LOGIC CORE
+   Hand-built CSS/keyframe equivalent of an isometric platform, illuminated
+   logic core, and orbiting nodes — no WebGL or React dependency, so it
+   drops straight into the existing static site.
+   ========================================================================== */
+.logic-core-badge {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--univ-bg-base);
+  color: var(--univ-text-muted);
+  letter-spacing: 0.04em;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.logic-core-badge.active {
+  background: var(--univ-purple-soft);
+  color: var(--univ-purple-dark);
+}
+
+.logic-core-stage {
+  position: relative;
+  height: 148px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logic-core-platform {
+  position: absolute;
+  width: 132px;
+  height: 132px;
+  background: linear-gradient(135deg, var(--univ-purple-soft), #FFFFFF);
+  border: 1px solid rgba(122, 66, 234, 0.25);
+  border-radius: 14px;
+  transform: rotateX(58deg) rotate(45deg);
+  box-shadow: 0 18px 30px -18px rgba(122, 66, 234, 0.35);
+  overflow: hidden;
+}
+
+.logic-core-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(122, 66, 234, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(122, 66, 234, 0.18) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.logic-core-glow {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #FFFFFF 0%, var(--univ-purple-light) 40%, var(--univ-purple) 100%);
+  box-shadow: 0 0 14px 4px rgba(122, 66, 234, 0.55), 0 0 30px 10px rgba(122, 66, 234, 0.25);
+  animation: logic-core-pulse 2.4s ease-in-out infinite;
+  z-index: 2;
+  transition: box-shadow 0.3s ease;
+}
+
+@keyframes logic-core-pulse {
+  0%, 100% { transform: scale(0.92); opacity: 0.85; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+.logic-core-orbit {
+  position: absolute;
+  border: 1px dashed rgba(122, 66, 234, 0.25);
+  border-radius: 50%;
+  z-index: 1;
+  transition: border-color 0.3s ease;
+}
+
+.logic-core-orbit--outer {
+  width: 110px;
+  height: 110px;
+  animation: logic-core-spin 9s linear infinite;
+}
+
+.logic-core-orbit--inner {
+  width: 70px;
+  height: 70px;
+  animation: logic-core-spin 5s linear infinite reverse;
+}
+
+@keyframes logic-core-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.logic-core-node {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  border-radius: 50%;
+  background: var(--univ-purple);
+  box-shadow: 0 0 8px 2px rgba(122, 66, 234, 0.5);
+}
+
+.logic-core-node--alt {
+  top: auto;
+  bottom: -3px;
+  background: var(--univ-purple-light);
+}
+
+/* Active state, triggered by the "Activate Logic Core" button */
+.logic-core-stage.is-active .logic-core-glow {
+  animation-duration: 0.9s;
+  box-shadow: 0 0 22px 8px rgba(122, 66, 234, 0.7), 0 0 50px 16px rgba(122, 66, 234, 0.35);
+}
+
+.logic-core-stage.is-active .logic-core-orbit--outer {
+  animation-duration: 3s;
+  border-color: rgba(122, 66, 234, 0.5);
+}
+
+.logic-core-stage.is-active .logic-core-orbit--inner {
+  animation-duration: 1.8s;
+  border-color: rgba(122, 66, 234, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logic-core-glow,
+  .logic-core-orbit--outer,
+  .logic-core-orbit--inner {
+    animation: none;
+  }
+}
+
 .hud-action-btn,
 .hud-toggle-btn {
   width: 100%;
