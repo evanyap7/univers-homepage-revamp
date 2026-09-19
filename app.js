@@ -831,10 +831,11 @@ function initKineticCanvas() {
     updateScrollProgress();
   }
 
-  // Generate responsive pool of OT physical nodes
+  // Generate responsive pool of OT physical nodes — kept sparse and low-contrast
+  // so it reads as quiet ambient texture, not a busy foreground decoration.
   function initParticles() {
     particles.length = 0;
-    const count = Math.floor(Math.min(width, 1600) / 18); // ~50 to 90 nodes
+    const count = Math.floor(Math.min(width, 1600) / 42); // ~20 to 38 nodes
     const colors = ['#7A42EA', '#00E599', '#00D2FF', '#A984F1', '#14142B'];
 
     for (let i = 0; i < count; i++) {
@@ -845,8 +846,8 @@ function initKineticCanvas() {
         vy: (Math.random() - 0.5) * 0.45,
         radius: 1.5 + Math.random() * 2.2,
         color: colors[Math.floor(Math.random() * colors.length)],
-        baseAlpha: 0.25 + Math.random() * 0.5,
-        alpha: 0.3,
+        baseAlpha: 0.12 + Math.random() * 0.22,
+        alpha: 0.15,
         pulseSpeed: 0.02 + Math.random() * 0.03,
         pulseOffset: Math.random() * Math.PI * 2,
         highlightTime: 0,
@@ -855,7 +856,7 @@ function initKineticCanvas() {
       });
     }
 
-    // Ambient floating OT data packets / HUD glyphs
+    // Ambient floating OT data packets / HUD glyphs — rare, not a wallpaper pattern
     floatingGlyphs.length = 0;
     const glyphLabels = [
       'OT-NODE // 400kV',
@@ -868,7 +869,7 @@ function initKineticCanvas() {
       'BESS 2.4 MWh'
     ];
 
-    const glyphCount = Math.max(4, Math.floor(width / 320));
+    const glyphCount = Math.max(1, Math.floor(width / 700));
     for (let g = 0; g < glyphCount; g++) {
       floatingGlyphs.push({
         x: Math.random() * width,
@@ -876,7 +877,7 @@ function initKineticCanvas() {
         vx: (Math.random() - 0.5) * 0.2,
         vy: -0.15 - Math.random() * 0.25,
         label: glyphLabels[g % glyphLabels.length],
-        alpha: 0.18 + Math.random() * 0.22,
+        alpha: 0.07 + Math.random() * 0.08,
         size: 14 + Math.random() * 12,
         rot: Math.random() * Math.PI * 2,
         rotSpeed: (Math.random() - 0.5) * 0.004
