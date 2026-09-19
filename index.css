@@ -457,24 +457,36 @@ body.nav-open {
    ACT 1: HIGH-STAKES HERO
    ========================================================================== */
 .hero-section {
-  padding-top: clamp(80px, 10vw, 140px);
-  padding-bottom: clamp(80px, 9vw, 120px);
+  padding-top: clamp(60px, 8vw, 110px);
+  padding-bottom: clamp(60px, 8vw, 100px);
   position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
 }
 
 .hero-grid {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
   align-items: center;
-  gap: 72px;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1.12fr 0.88fr;
+    gap: 56px;
+    align-items: center;
+  }
 }
 
 .hero-content {
-  max-width: 920px;
-  text-align: center;
+  max-width: 100%;
+  text-align: left;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .hero-category-tag {
@@ -491,33 +503,61 @@ body.nav-open {
 }
 
 .hero-headline {
-  font-size: clamp(2.8rem, 6.4vw, 6.2rem);
+  font-size: clamp(2.4rem, 4.6vw, 4.4rem);
   font-weight: 300;
-  line-height: 0.98;
+  line-height: 1.04;
   letter-spacing: -0.03em;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
 }
 
 .hero-lead {
-  font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+  font-size: clamp(1.05rem, 1.3vw, 1.25rem);
   color: var(--univ-text-secondary);
-  line-height: 1.6;
-  margin-bottom: 2.5rem;
-  max-width: 52ch;
+  line-height: 1.65;
+  margin-bottom: 2rem;
+  max-width: 48ch;
 }
 
 .hero-cta-group {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 16px;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.hero-proof-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.82rem;
+  color: var(--univ-text-secondary);
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--univ-border-subtle);
+  width: 100%;
+}
+
+.proof-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.proof-num {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--univ-purple-dark);
+}
+
+.proof-sep {
+  color: var(--univ-border-subtle);
 }
 
 .hero-trust-badges {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 20px;
   padding-top: 1.5rem;
@@ -543,7 +583,8 @@ body.nav-open {
 .hero-visual {
   position: relative;
   width: 100%;
-  max-width: 720px;
+  max-width: 680px;
+  margin: 0 auto;
 }
 
 .telemetry-console {
