@@ -443,20 +443,20 @@
           <div class="form-row">
             <div class="form-group">
               <label for="demo-name" class="form-label">Full Name <span class="required-star">*</span></label>
-              <input type="text" id="demo-name" class="form-input" placeholder="e.g. Sarah Chen" required autocomplete="name">
+              <input type="text" id="demo-name" class="form-input" placeholder="e.g. Jane Doe" required autocomplete="name">
               <div class="form-error-msg" id="demo-name-error"></div>
             </div>
 
             <div class="form-group">
               <label for="demo-email" class="form-label">Business Email <span class="required-star">*</span></label>
-              <input type="email" id="demo-email" class="form-input" placeholder="e.g. s.chen@temasek.com" required autocomplete="email">
+              <input type="email" id="demo-email" class="form-input" placeholder="e.g. jane.doe@enterprise.com" required autocomplete="email">
               <div class="form-error-msg" id="demo-email-error"></div>
             </div>
           </div>
 
           <div class="form-group">
             <label for="demo-org" class="form-label">Organisation / Enterprise <span class="required-star">*</span></label>
-            <input type="text" id="demo-org" class="form-input" placeholder="e.g. Temasek Energy Holdings" required autocomplete="organization">
+            <input type="text" id="demo-org" class="form-input" placeholder="e.g. Acme Infrastructure" required autocomplete="organization">
             <div class="form-error-msg" id="demo-org-error"></div>
           </div>
 
@@ -475,7 +475,7 @@
               </svg>
             </button>
             <div class="form-privacy-note">
-              🔒 Submissions are recorded in the Univers Lead Database (.csv) with instant confirmation.
+              🔒 Submissions are processed locally for demonstration. Unofficial concept build.
             </div>
           </div>
         </form>
@@ -492,113 +492,42 @@
 
         <div class="modal-header" style="text-align: center;">
           <div class="modal-badge success-badge">
-            <span>BOOKING CONFIRMED // DISPATCHED</span>
+            <span>DEMO REQUEST RECEIVED</span>
           </div>
-          <h2 class="modal-title">Demo Successfully Scheduled</h2>
+          <h2 class="modal-title">Demo Request Received</h2>
           <p class="modal-subtitle" id="demo-success-msg">
-            Thank you! A Univers Enterprise Solution Architect has been assigned to your organization.
+            Thank you! This is an unofficial concept redesign. Your demo request has been processed locally for demonstration purposes.
           </p>
         </div>
 
         <div class="booking-receipt-card">
           <div class="receipt-row">
-            <span class="receipt-label">Booking Reference:</span>
+            <span class="receipt-label">Reference ID:</span>
             <span class="receipt-val mono-metric" id="receipt-id">UNIV-DEMO-XXXX</span>
           </div>
           <div class="receipt-row">
             <span class="receipt-label">Contact:</span>
-            <span class="receipt-val" id="receipt-name-email">Sarah Chen (s.chen@temasek.com)</span>
+            <span class="receipt-val" id="receipt-name-email">Jane Doe (jane.doe@enterprise.com)</span>
           </div>
           <div class="receipt-row">
             <span class="receipt-label">Organisation:</span>
-            <span class="receipt-val" id="receipt-org">Temasek Energy Holdings</span>
+            <span class="receipt-val" id="receipt-org">Acme Infrastructure</span>
           </div>
           <div class="receipt-row">
             <span class="receipt-label">Inquiry Scope:</span>
             <span class="receipt-val inquiry-snippet" id="receipt-inquiry">Renewable energy monitoring</span>
           </div>
           <div class="receipt-row">
-            <span class="receipt-label">Database Status:</span>
-            <span class="receipt-status-pill">SAVED IN CSV DATABASE</span>
+            <span class="receipt-label">Status:</span>
+            <span class="receipt-status-pill">PROCESSED LOCALLY (CONCEPT BUILD)</span>
           </div>
         </div>
 
-        <div class="success-actions">
-          <button class="btn btn-primary" id="btn-download-record-csv">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
-            <span>Download Booking Record (.csv)</span>
-          </button>
-          <button class="btn btn-secondary" id="btn-view-leads-db">
-            <span>View Leads Database</span>
+        <div class="success-actions" style="display: flex; justify-content: center; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-primary" id="btn-done-demo" style="min-width: 140px;">
+            <span>Done</span>
           </button>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========================================================================
-       LEADS DATABASE VIEWER MODAL
-       ======================================================================== -->
-  <div id="leads-modal-backdrop" class="modal-backdrop" hidden>
-    <div id="leads-db-modal" class="demo-modal leads-db-modal" role="dialog" aria-modal="true" aria-labelledby="leads-modal-title">
-      <button class="modal-close-btn" id="leads-modal-close" aria-label="Close database viewer">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-
-      <div class="modal-header">
-        <div class="modal-badge">
-          <span class="pulse-dot"></span>
-          <span>CSV DATABASE ENGINE</span>
-        </div>
-        <h2 id="leads-modal-title" class="modal-title">Demo Leads Database</h2>
-        <p class="modal-subtitle">
-          Real-time record of all demo bookings and inquiry dispatches. Backed by persistent client storage and Vercel serverless integration.
-        </p>
-      </div>
-
-      <div class="leads-toolbar">
-        <div class="leads-count-chip">
-          <strong id="leads-total-count">1</strong> lead(s) recorded
-        </div>
-        <div class="leads-actions-right">
-          <button class="btn btn-primary btn-sm" id="btn-export-full-csv">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
-            <span>Export univers_demo_leads.csv</span>
-          </button>
-          <button class="btn btn-secondary btn-sm" id="btn-add-sample-lead">
-            <span>+ Add Sample</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="leads-table-container">
-        <table class="leads-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Timestamp</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Organisation</th>
-              <th>Inquiry</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody id="leads-table-body">
-            <!-- Dynamic rows -->
-          </tbody>
-        </table>
       </div>
     </div>
   </div>

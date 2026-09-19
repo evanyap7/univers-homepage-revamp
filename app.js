@@ -1896,6 +1896,7 @@ function initDemoBookingFlow() {
   const receiptContact = document.getElementById('receipt-name-email');
   const receiptOrg = document.getElementById('receipt-org');
   const receiptInquiry = document.getElementById('receipt-inquiry');
+  const btnDoneDemo = document.getElementById('btn-done-demo');
   const btnDownloadRecord = document.getElementById('btn-download-record-csv');
   const btnViewLeads = document.getElementById('btn-view-leads-db');
 
@@ -2168,7 +2169,7 @@ function initDemoBookingFlow() {
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.innerHTML = `
-          <span>Recording in CSV Database...</span>
+          <span>Submitting Demo Request...</span>
           <svg class="btn-icon rotating" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="12" y1="2" x2="12" y2="6"></line>
             <line x1="12" y1="18" x2="12" y2="22"></line>
@@ -2241,6 +2242,10 @@ function initDemoBookingFlow() {
   }
 
   // --- ACTIONS IN SUCCESS VIEW ---
+  if (btnDoneDemo) {
+    btnDoneDemo.addEventListener('click', closeDemoModal);
+  }
+
   if (btnDownloadRecord) {
     btnDownloadRecord.addEventListener('click', () => {
       if (!lastActiveLead) return;
