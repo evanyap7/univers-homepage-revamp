@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="index.css?v=multipage-v8">
+  <link rel="stylesheet" href="index.css?v=multipage-v9">
 </head>
 <body>
   <!-- Interactive Kinetic Background Canvas -->
@@ -190,6 +190,40 @@
                   <line x1="2" y1="12" x2="22" y2="12"></line>
                 </svg>
                 <span>Emit Radar Scan</span>
+              </button>
+            </div>
+
+            <!-- Experiment 4: Logic Core -->
+            <div style="padding: 24px; border-radius: var(--radius-md); background: #FFFFFF; border: 1px solid var(--univ-border-subtle); display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                  <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--univ-purple); font-weight: 600;">MODULE 04</span>
+                  <span class="logic-core-badge" id="hud-logic-core-badge">IDLE</span>
+                </div>
+                <div class="logic-core-stage" id="logic-core-stage" aria-hidden="true">
+                  <div class="logic-core-platform">
+                    <div class="logic-core-grid"></div>
+                  </div>
+                  <div class="logic-core-orbit logic-core-orbit--outer">
+                    <span class="logic-core-node"></span>
+                  </div>
+                  <div class="logic-core-orbit logic-core-orbit--inner">
+                    <span class="logic-core-node"></span>
+                    <span class="logic-core-node logic-core-node--alt"></span>
+                  </div>
+                  <div class="logic-core-glow"></div>
+                </div>
+                <h3 style="font-size: 1.2rem; margin-bottom: 8px;">Logic Core</h3>
+                <p style="font-size: 0.9rem; color: var(--univ-text-secondary); line-height: 1.5; margin-bottom: 20px;">
+                  An isometric control plane with an illuminated decision core and orbiting agent nodes, visualizing EnOS™'s closed-loop dispatch logic in real time.
+                </p>
+              </div>
+              <button class="btn btn-secondary" id="hud-logic-core-toggle" style="width: 100%;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <circle cx="12" cy="12" r="9" stroke-dasharray="4 3"></circle>
+                </svg>
+                <span id="hud-logic-core-text">Activate Logic Core</span>
               </button>
             </div>
           </div>
@@ -443,6 +477,6 @@
   </div>
 
   <!-- Scripts -->
-  <script src="app.js?v=multipage-v8"></script>
+  <script src="app.js?v=multipage-v9"></script>
 </body>
 </html>

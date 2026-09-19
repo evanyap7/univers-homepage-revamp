@@ -1466,6 +1466,10 @@ function initCyberHUD() {
   const surgeBtn = document.getElementById('hud-trigger-surge');
   const statusBadge = document.getElementById('hud-status-badge');
   const radarScanBtn = document.getElementById('hud-radar-scan');
+  const logicCoreToggle = document.getElementById('hud-logic-core-toggle');
+  const logicCoreStage = document.getElementById('logic-core-stage');
+  const logicCoreBadge = document.getElementById('hud-logic-core-badge');
+  const logicCoreText = document.getElementById('hud-logic-core-text');
 
   const bgModeBtns = document.querySelectorAll('[data-bg-mode]');
   const cursorModeBtns = document.querySelectorAll('[data-cursor-mode]');
@@ -1732,6 +1736,27 @@ function initCyberHUD() {
       if (window.UniversInteractive.triggerRadar) {
         window.UniversInteractive.triggerRadar(window.innerWidth / 2, window.innerHeight / 2);
       }
+    });
+  }
+
+  // 7. Logic Core Toggle — intensifies the CSS-only pulse/orbit for 6s
+  if (logicCoreToggle && logicCoreStage) {
+    let logicCoreTimer = null;
+    logicCoreToggle.addEventListener('click', () => {
+      initAudioContext();
+      playProceduralSound('surge');
+      logicCoreStage.classList.add('is-active');
+      if (logicCoreBadge) logicCoreBadge.classList.add('active');
+      if (logicCoreBadge) logicCoreBadge.textContent = 'ACTIVE';
+      if (logicCoreText) logicCoreText.textContent = 'Logic Core Active';
+
+      clearTimeout(logicCoreTimer);
+      logicCoreTimer = setTimeout(() => {
+        logicCoreStage.classList.remove('is-active');
+        if (logicCoreBadge) logicCoreBadge.classList.remove('active');
+        if (logicCoreBadge) logicCoreBadge.textContent = 'IDLE';
+        if (logicCoreText) logicCoreText.textContent = 'Activate Logic Core';
+      }, 6000);
     });
   }
 }
