@@ -2215,7 +2215,7 @@ function initDemoBookingFlow() {
         if (submitBtn) {
           submitBtn.disabled = false;
           submitBtn.innerHTML = `
-            <span>Confirm Demo Booking</span>
+            <span>Book a demo</span>
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
