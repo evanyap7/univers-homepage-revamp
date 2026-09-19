@@ -810,27 +810,85 @@ body.nav-open {
 }
 
 /* ==========================================================================
-   ACT 2: INSTITUTIONAL AUTHORITY STRIP (TICKER & AWARDS)
+   ACT 6: INSTITUTIONAL SCALE & AUTHORITY — CONTROL ROOM BAND
    ========================================================================== */
 .authority-section {
-  background: #FFFFFF;
-  border-top: 1px solid var(--univ-border-subtle);
-  border-bottom: 1px solid var(--univ-border-subtle);
-  padding: 56px 0;
+  background: var(--univ-navy);
+  border-top: 1px solid var(--univ-navy-line);
+  border-bottom: 1px solid var(--univ-navy-line);
+  padding: clamp(60px, 8vw, 96px) 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 20px 40px -20px rgba(0, 0, 0, 0.4), inset 0 -20px 40px -20px rgba(0, 0, 0, 0.4);
+}
+
+.authority-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--univ-purple), transparent);
+  opacity: 0.6;
+}
+
+.authority-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.authority-header .eyebrow {
+  color: var(--univ-purple-light);
+  background: rgba(122, 66, 234, 0.2);
+  border-color: rgba(122, 66, 234, 0.4);
+}
+
+.authority-header .section-title {
+  color: #FFFFFF;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-top: 0.75rem;
 }
 
 .authority-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
-  align-items: center;
+  align-items: stretch;
+}
+
+@media (max-width: 1024px) {
+  .authority-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 24px;
+  }
+}
+
+@media (max-width: 580px) {
+  .authority-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
 }
 
 .authority-stat {
   display: flex;
   flex-direction: column;
-  border-left: 2px solid var(--univ-border-subtle);
-  padding-left: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid rgba(122, 66, 234, 0.5);
+  border-radius: var(--radius-md);
+  padding: 24px 20px;
+  transition: transform var(--transition-base), border-color var(--transition-base), background-color var(--transition-base);
+}
+
+.authority-stat:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.06);
+  border-left-color: var(--univ-purple-light);
+  border-color: rgba(122, 66, 234, 0.3);
 }
 
 .authority-stat:first-child {
@@ -839,24 +897,27 @@ body.nav-open {
 
 .stat-number {
   font-family: var(--font-mono);
-  font-size: clamp(2.2rem, 3vw, 3rem);
+  font-size: clamp(2.4rem, 3.2vw, 3.4rem);
   font-weight: 700;
   line-height: 1;
-  color: var(--univ-text-primary);
-  margin-bottom: 8px;
+  color: #FFFFFF;
+  margin-bottom: 12px;
   letter-spacing: -0.02em;
+  text-shadow: 0 0 24px rgba(122, 66, 234, 0.4);
 }
 
 .stat-title {
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  color: var(--univ-text-primary);
-  margin-bottom: 2px;
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
 }
 
 .stat-desc {
-  font-size: 0.78rem;
-  color: var(--univ-text-muted);
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.5;
 }
 
 /* Client & Recognition Strip */
