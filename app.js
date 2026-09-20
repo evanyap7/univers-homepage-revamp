@@ -804,14 +804,22 @@ function initKineticCanvas() {
   let isMouseDown = false;
   let dragDistance = 0;
 
-  // Scroll depth tracking for 5-stage kinetic narrative transitions
+  // Scroll depth and velocity tracking for fluid narrative transitions
   let currentScrollProgress = 0;
   let targetScrollProgress = 0;
+  let lastScrollY = window.scrollY || 0;
+  let scrollVelocity = 0;
+  let smoothScrollVelocity = 0;
 
   function updateScrollProgress() {
+    const currentY = window.scrollY || 0;
+    const deltaY = currentY - lastScrollY;
+    scrollVelocity = deltaY;
+    lastScrollY = currentY;
+
     const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
     if (totalHeight > 0) {
-      targetScrollProgress = Math.max(0, Math.min(1, window.scrollY / totalHeight));
+      targetScrollProgress = Math.max(0, Math.min(1, currentY / totalHeight));
     }
   }
 
@@ -996,10 +1004,14 @@ function initKineticCanvas() {
 
     const isSurging = window.UniversInteractive.isSurging;
     const mode = window.UniversInteractive.bgMode;
-    const speedMult = isSurging ? 2.8 : 1.0;
+    const baseSpeed = isSurging ? 2.8 : 1.0;
 
-    // Smooth scroll depth lerp for 5-stage kinetic narrative
+    // Smooth scroll depth & velocity momentum lerp (Kage fluid physics)
     currentScrollProgress += (targetScrollProgress - currentScrollProgress) * 0.08;
+    smoothScrollVelocity += (scrollVelocity - smoothScrollVelocity) * 0.12;
+    scrollVelocity *= 0.88;
+    const velocityFactor = Math.min(Math.abs(smoothScrollVelocity) * 0.025, 2.0);
+    const speedMult = baseSpeed + velocityFactor;
     const isLabPage = !!document.getElementById('cyber-hud-panel');
 
     // 1. Update & Render Ambient Floating Glyphs (strictly on lab playground page to prevent text occlusion on marketing pages)
