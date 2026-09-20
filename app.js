@@ -1112,17 +1112,21 @@ function initKineticCanvas() {
       if (p.y < 0) { p.y = 0; p.vy *= -1; }
       if (p.y > height) { p.y = height; p.vy *= -1; }
 
-      // Mouse Force-Field Repulsion & Interaction
+      // Fluid Cursor Wake & Repulsion (Kage-style fluid vortex)
       if (mouseX > 0 && mouseY > 0) {
         const dx = p.x - mouseX;
         const dy = p.y - mouseY;
         const dist = Math.hypot(dx, dy);
 
-        if (dist < 140) {
-          const force = (1 - dist / 140) * (isDragging ? 3.0 : 1.4);
-          p.vx += (dx / dist) * force * 0.8;
-          p.vy += (dy / dist) * force * 0.8;
-          p.highlightTime = 0.4;
+        if (dist < 160) {
+          const force = (1 - dist / 160) * (isDragging ? 3.2 : 1.5);
+          // Radial repulsion
+          p.vx += (dx / dist) * force * 0.75;
+          p.vy += (dy / dist) * force * 0.75;
+          // Fluid tangential wake (swirling liquid drift)
+          p.vx += (-dy / dist) * force * 0.35;
+          p.vy += (dx / dist) * force * 0.35;
+          p.highlightTime = 0.45;
         }
       }
 
