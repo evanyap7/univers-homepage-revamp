@@ -257,6 +257,57 @@ h1, h2, h3, h4, h5, h6 {
   100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(122, 66, 234, 0); }
 }
 
+/* ==========================================================================
+   DUAL-TRACK ASYNCHRONOUS BREATHING GLOWS (Inspired by Kage)
+   Two asynchronous, non-harmonic tracks (5.8s and 3.4s) that beat against each
+   other so beacons, status tags, and energy nodes breathe with organic life.
+   ========================================================================== */
+@keyframes glow-swell {
+  0% { transform: scale(0.92); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(0.92); }
+}
+
+@keyframes glow-pulse {
+  0% { opacity: 0.65; }
+  50% { opacity: 1; }
+  100% { opacity: 0.65; }
+}
+
+@keyframes conduit-flow {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.dual-glow {
+  position: relative;
+  isolation: isolate;
+}
+
+.dual-glow::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  background: radial-gradient(circle, var(--univ-purple-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+  animation: glow-swell 5.8s var(--ease-pulse) infinite;
+}
+
+.dual-glow::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: inherit;
+  filter: blur(8px);
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: -1;
+  animation: glow-pulse 3.4s var(--ease-organic) infinite;
+}
+
 h1, h2, h3, .section-title, .hero-headline, .closing-headline {
   text-wrap: balance;
 }
