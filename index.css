@@ -2319,25 +2319,12 @@ main,
     display: none;
   }
 
-  /* Hovering Interactive Elements */
-  .cyber-cursor.is-hovering .cyber-cursor-ring {
-    width: 52px;
-    height: 52px;
-    border-color: var(--univ-purple);
-    background: rgba(122, 66, 234, 0.08);
-  }
-
-  .cyber-cursor.is-hovering .cyber-cursor-brackets {
-    opacity: 1;
-    width: 58px;
-    height: 58px;
-    transform: translate(-50%, -50%) rotate(45deg);
-  }
-
+  /* Hovering Interactive Elements — same purple dot, just a bit bigger
+     and brighter. It used to switch to a solid white fill; standardizing
+     on one color everywhere the cursor appears. */
   .cyber-cursor.is-hovering .cyber-cursor-dot {
-    transform: translate(-50%, -50%) scale(1.4);
-    background: #FFFFFF;
-    box-shadow: 0 0 12px var(--univ-purple);
+    transform: translate(-50%, -50%) scale(1.6);
+    box-shadow: 0 0 12px var(--univ-purple), 0 0 22px rgba(122, 66, 234, 0.5);
   }
 
   /* Active Drag State */
