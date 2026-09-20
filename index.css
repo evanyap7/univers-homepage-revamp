@@ -2075,20 +2075,99 @@ body.nav-open {
 }
 
 /* ==========================================================================
-   SCROLL REVEAL
-   Classes are added by JS only when IntersectionObserver + motion are
-   available, so content is never hidden if JavaScript fails to load.
+   SCROLL REVEAL & MASKED EDITORIAL REVEALS (Inspired by Kage)
+   Display headlines, section titles, and cards enter with masked overflow
+   and fluid cubic-bezier(0.16, 1, 0.3, 1) timing.
    ========================================================================== */
 .reveal-on-scroll {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity var(--transition-slow), transform var(--transition-slow);
+  transition: opacity var(--flow-duration-normal) var(--ease-flow), transform var(--flow-duration-normal) var(--ease-flow);
+  will-change: opacity, transform;
 }
 
 .reveal-on-scroll.revealed {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Masked lines & words */
+.mask-line {
+  display: block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.mask-line:not(.word-reveal) > span,
+.mask-line:not(.word-reveal) > div {
+  display: block;
+  transform: translate3d(0, 112%, 0);
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: transform 0.95s var(--ease-flow), opacity 0.65s var(--ease-flow);
+}
+
+.rv-in .mask-line:not(.word-reveal) > span,
+.mask-line:not(.word-reveal).rv-in > span,
+.rv-in .mask-line:not(.word-reveal) > div,
+.mask-line:not(.word-reveal).rv-in > div,
+.revealed .mask-line:not(.word-reveal) > span,
+.revealed .mask-line:not(.word-reveal) > div {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.word {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, 114%, 0);
+  will-change: transform, opacity;
+  transition: transform 0.85s var(--ease-flow), opacity 0.55s var(--ease-flow);
+  transition-delay: var(--word-delay, 0ms);
+}
+
+.word-reveal.rv-in .word,
+.word-reveal.revealed .word,
+.revealed .word-reveal .word {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Fluid scroll reveal elements [data-rv] */
+[data-rv] {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+[data-rv="up"] {
+  transform: translate3d(0, 28px, 0);
+}
+
+[data-rv="fade"] {
+  transform: none;
+}
+
+[data-rv="scale"] {
+  transform: scale(0.96) translate3d(0, 20px, 0);
+}
+
+[data-rv].rv-in,
+[data-rv].revealed {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.85s var(--ease-flow), transform 1.05s var(--ease-flow);
+}
+
+[data-rv-delay="1"] { transition-delay: 80ms; }
+[data-rv-delay="2"] { transition-delay: 160ms; }
+[data-rv-delay="3"] { transition-delay: 240ms; }
+[data-rv-delay="4"] { transition-delay: 320ms; }
 
 /* ==========================================================================
    RESPONSIVE MEDIA QUERIES
