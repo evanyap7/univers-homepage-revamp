@@ -2327,22 +2327,12 @@ main,
     box-shadow: 0 0 12px var(--univ-purple), 0 0 22px rgba(122, 66, 234, 0.5);
   }
 
-  /* Active Drag State */
-  .cyber-cursor.is-dragging .cyber-cursor-ring {
-    width: 64px;
-    height: 64px;
-    border-color: #A984F1;
-    border-width: 2px;
-    border-style: dashed;
-    animation: cursorRingSpin 3s linear infinite;
-    background: rgba(132, 120, 255, 0.15);
-    box-shadow: 0 0 24px rgba(122, 66, 234, 0.4);
-  }
-
+  /* Active Drag State — same purple dot again, largest scale of the
+     three states. Used to switch to solid green with a spinning dashed
+     ring; both retired for the same one-color standardization. */
   .cyber-cursor.is-dragging .cyber-cursor-dot {
     transform: translate(-50%, -50%) scale(2);
-    background: #00E599;
-    box-shadow: 0 0 16px #00E599, 0 0 32px rgba(0, 229, 153, 0.8);
+    box-shadow: 0 0 16px var(--univ-purple), 0 0 30px rgba(122, 66, 234, 0.7);
   }
 }
 
