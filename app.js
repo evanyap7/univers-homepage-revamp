@@ -1368,7 +1368,9 @@ function initCyberCursor() {
 
   function spawnClickSparks(x, y) {
     const sparkCount = 12;
-    const colors = ['#7A42EA', '#00E599', '#00D2FF', '#A984F1'];
+    // Purple family only — matches the standardized cursor dot instead of
+    // mixing in green/cyan accents from elsewhere in the palette.
+    const colors = ['#7A42EA', '#5F34B7', '#A984F1'];
 
     for (let i = 0; i < sparkCount; i++) {
       const spark = document.createElement('div');
