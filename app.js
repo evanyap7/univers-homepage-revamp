@@ -50,9 +50,13 @@ if (document.readyState === 'loading') {
    prefers-reduced-motion; elements are never hidden if JS fails to load.
    ========================================================================== */
 function initHeroEntrance() {
-  // Render above the fold immediately: first paint presents the value proposition
-  // instantly without visual blank, opacity delay, or staggered layout shift.
-  return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // Trigger fluid Kage-style masked line rise on hero elements
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.hero-section .mask-line, .hero-section [data-rv]').forEach((el) => {
+      el.classList.add('rv-in', 'revealed');
+    });
+  });
 }
 
 /* ==========================================================================
