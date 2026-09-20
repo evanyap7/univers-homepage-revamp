@@ -1014,6 +1014,33 @@ function initKineticCanvas() {
     const speedMult = baseSpeed + velocityFactor;
     const isLabPage = !!document.getElementById('cyber-hud-panel');
 
+    // Fluid Harmonic Energy Ribbons (OT Data Currents - Kage flow architecture)
+    const ribbonCount = 3;
+    const ribbonTime = now * 0.0005;
+    for (let r = 0; r < ribbonCount; r++) {
+      ctx.beginPath();
+      const yOffset = height * (0.24 + r * 0.26);
+      const waveFreq = 0.0011 + r * 0.0005;
+      const waveAmp = (24 + r * 14) * (1 + velocityFactor * 0.6);
+      const speedPhase = ribbonTime * (1.1 + r * 0.65);
+
+      for (let x = 0; x <= width; x += 20) {
+        const y = yOffset +
+          Math.sin(x * waveFreq + speedPhase) * waveAmp +
+          Math.cos(x * waveFreq * 1.7 - speedPhase * 0.5) * (waveAmp * 0.35);
+
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+
+      const ribbonAlpha = (0.04 - r * 0.008) * (isSurging ? 2.0 : 1);
+      ctx.strokeStyle = r === 1
+        ? `rgba(0, 229, 153, ${ribbonAlpha * 1.25})`
+        : `rgba(122, 66, 234, ${ribbonAlpha})`;
+      ctx.lineWidth = 1.4 + r * 0.5;
+      ctx.stroke();
+    }
+
     // 1. Update & Render Ambient Floating Glyphs (strictly on lab playground page to prevent text occlusion on marketing pages)
     if (isLabPage) {
       ctx.font = '9px "JetBrains Mono", monospace';
