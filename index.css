@@ -136,6 +136,18 @@ body::before {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  .mask-line:not(.word-reveal) > span,
+  .mask-line:not(.word-reveal) > div,
+  .word,
+  [data-rv],
+  .reveal-on-scroll {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+  .conduit-line::after {
+    display: none !important;
+  }
 }
 
 /* Typography Helpers */
@@ -2343,6 +2355,14 @@ body.nav-open {
 }
 
 @media (max-width: 768px) {
+  .conduit-flow-connector {
+    margin: -36px auto 24px;
+  }
+
+  .conduit-line {
+    height: 40px;
+  }
+
   .mobile-nav-toggle {
     display: inline-flex;
   }
