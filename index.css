@@ -2319,18 +2319,6 @@ main,
     display: none;
   }
 
-  .cyber-cursor-brackets span {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border-color: var(--univ-purple);
-    border-style: solid;
-  }
-  .bracket-tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
-  .bracket-tr { top: 0; right: 0; border-width: 2px 2px 0 0; }
-  .bracket-bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
-  .bracket-br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
-
   /* Hovering Interactive Elements */
   .cyber-cursor.is-hovering .cyber-cursor-ring {
     width: 52px;
