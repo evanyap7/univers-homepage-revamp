@@ -70,10 +70,17 @@
   --radius-lg: 24px;
   --radius-full: 9999px;
 
-  /* Transitions */
+  /* Transitions & Fluid Motion (Kage-inspired kinetic system) */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 450ms cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-flow: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-organic: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-pulse: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --flow-duration-fast: 0.45s;
+  --flow-duration-normal: 0.85s;
+  --flow-duration-slow: 1.25s;
 }
 
 /* Base Reset & Typography */
