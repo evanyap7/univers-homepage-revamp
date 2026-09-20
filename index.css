@@ -4807,6 +4807,13 @@ body.grid-surge-active::after {
   position: relative;
   min-height: 75vh;
   display: flex;
+  /* Column, not the flex default row: the conduit connector (a vertical
+     dot-line-dot flow marker) and .closing-content are meant to stack,
+     connector above content. In a row, both sit as siblings sharing one
+     set of auto-margins, which was pulling .closing-content ~294px off
+     center — the connector's own margin:auto was eating space that
+     should've centered the actual content. */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
