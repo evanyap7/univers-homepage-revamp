@@ -139,26 +139,48 @@ function initMobileNav() {
    Skips entirely for prefers-reduced-motion.
    ========================================================================== */
 function initScrollReveal() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('[data-rv], .word-reveal, .mask-line').forEach((el) => {
+      el.classList.add('revealed', 'rv-in');
+    });
+    return;
+  }
   if (!('IntersectionObserver' in window)) return;
 
+  // Prepare any word-reveal typography containers with masked spans (Kage typesetting)
+  document.querySelectorAll('.word-reveal:not(.words-prepared)').forEach((el) => {
+    el.classList.add('words-prepared');
+    const nodes = Array.from(el.childNodes);
+    // If it's pure text, split into words
+    if (nodes.length === 1 && nodes[0].nodeType === Node.TEXT_NODE) {
+      const words = el.textContent.trim().split(/\s+/);
+      el.innerHTML = words
+        .map((word, i) => `<span class="word-mask"><span class="word" style="--word-delay: ${i * 35}ms">${word}</span></span>`)
+        .join(' ');
+    }
+  });
+
   const targets = document.querySelectorAll(
-    '.section-header, .card-glass, .compare-card, .engine-step-tab, .flywheel-card, .compliance-category, .authority-stat, .sector-content-card, .statement-text'
+    '.section-header, .card-glass, .compare-card, .engine-step-tab, .flywheel-card, .compliance-category, .authority-stat, .sector-content-card, .statement-text, [data-rv], .word-reveal, .mask-line, .conduit-flow-connector'
   );
   if (!targets.length) return;
 
-  targets.forEach((el) => el.classList.add('reveal-on-scroll'));
+  targets.forEach((el) => {
+    if (!el.hasAttribute('data-rv') && !el.classList.contains('word-reveal') && !el.classList.contains('mask-line') && !el.classList.contains('conduit-flow-connector')) {
+      el.classList.add('reveal-on-scroll');
+    }
+  });
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
+          entry.target.classList.add('revealed', 'rv-in');
           observer.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
   );
 
   targets.forEach((el) => observer.observe(el));
