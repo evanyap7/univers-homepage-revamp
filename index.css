@@ -243,18 +243,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .eyebrow .pulse-dot {
+  position: relative;
   width: 6px;
   height: 6px;
   background-color: var(--univ-purple);
   border-radius: 50%;
   box-shadow: 0 0 8px var(--univ-purple);
-  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  animation: glow-swell 5.6s var(--ease-pulse) infinite alternate;
 }
 
-@keyframes pulse-ring {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(122, 66, 234, 0.6); }
-  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(122, 66, 234, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(122, 66, 234, 0); }
+.eyebrow .pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(122, 66, 234, 0.45) 20%, transparent 75%);
+  pointer-events: none;
+  animation: glow-pulse 3.2s var(--ease-organic) infinite;
 }
 
 /* ==========================================================================
@@ -678,6 +683,7 @@ body.nav-open {
 
 .status-badge-live,
 .status-badge-simulation {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -691,6 +697,18 @@ body.nav-open {
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  animation: glow-swell 6.2s var(--ease-pulse) infinite alternate;
+}
+
+.status-badge-live::after,
+.status-badge-simulation::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  box-shadow: 0 0 12px rgba(122, 66, 234, 0.45);
+  pointer-events: none;
+  animation: glow-pulse 3.4s var(--ease-organic) infinite;
 }
 
 .console-body {
@@ -3504,8 +3522,20 @@ body.grid-surge-active::after {
 }
 
 .chapter-pill.active .pill-dot {
+  position: relative;
   background: var(--univ-purple);
   box-shadow: 0 0 8px var(--univ-purple);
+  animation: glow-swell 4.8s var(--ease-pulse) infinite alternate;
+}
+
+.chapter-pill.active .pill-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(122, 66, 234, 0.45) 20%, transparent 80%);
+  pointer-events: none;
+  animation: glow-pulse 3.1s var(--ease-organic) infinite;
 }
 
 /* ==========================================================================
