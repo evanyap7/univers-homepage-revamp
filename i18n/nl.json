@@ -1,4 +1,24 @@
 {
+  "sustainPage": {
+    "eyebrow": "Wij passen toe wat wij ontwikkelen",
+    "headline": "Onze toewijding aan een duurzame toekomst",
+    "subtitle": "Univers bouwt het platform dat de emissieresultaten van klanten meetbaar maakt. Wij houden onze eigen activiteiten aan dezelfde norm, onafhankelijk gewaarborgd en gevalideerd aan wetenschappelijk onderbouwde doelen.",
+    "award1Title": "CDP-klimaatscore: B",
+    "award1Desc": "Hoogst haalbare score in het CDP MKB-traject voor 2025, wat geverifieerde klimaatactie en transparantie weerspiegelt.",
+    "award2Title": "EcoVadis Gouden Medaille",
+    "award2Desc": "97e percentiel onder alle door EcoVadis beoordeelde bedrijven, op basis van prestaties in 2024 op het gebied van milieu, arbeid, ethiek en inkoop.",
+    "award3Title": "Wetenschappelijk onderbouwde doelen gevalideerd",
+    "award3Desc": "Korte- en langetermijn net-zero-doelen, onafhankelijk gevalideerd door het Science Based Targets-initiatief.",
+    "award4Title": "Onafhankelijk gewaarborgde rapportages",
+    "award4Desc": "Duurzaamheidsrapportages en broeikasgasgegevens kregen beperkte zekerheid van BSI voor boekjaar 2025/26.",
+    "award5Title": "Sustainable Solutions Award",
+    "award5Desc": "Erkend door het UN Global Compact Network Singapore voor een meetbare bijdrage aan de overgang naar schone energie.",
+    "award6Title": "UN Global Compact",
+    "award6Desc": "Ondertekenaar, toegewijd aan de Tien Principes over mensenrechten, arbeid, milieu en anticorruptie.",
+    "compactTitle": "⚡ Ondertekenaar van het 24/7 Carbon-Free Energy Compact",
+    "compactBody": "Univers is ondertekenaar van het 24/7 Carbon-Free Energy Compact, een wereldwijd initiatief gelanceerd door Sustainable Energy for All (SEforALL) in samenwerking met de Verenigde Naties. De toezegging gaat verder dan jaarlijkse compensatie: elke verbruikte eenheid elektriciteit wordt op uurbasis, op dezelfde locatie, gematcht met koolstofvrije opwekking. Het is dezelfde closed-loop-nauwkeurigheid die EnOS™ toepast op de activiteiten van klanten, nu toegepast op onszelf.",
+    "reportCta": "Lees het volledige duurzaamheidsrapport"
+  },
   "labPage": {
     "eyebrow": "Experimentele technische sandbox",
     "headline": "Interactieve technologie<span class=\"text-accent\">speeltuin</span>",

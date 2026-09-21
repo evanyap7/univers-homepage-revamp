@@ -1,4 +1,24 @@
 {
+  "sustainPage": {
+    "eyebrow": "Vi praktiserer det vi utvikler",
+    "headline": "Vårt engasjement for en bærekraftig fremtid",
+    "subtitle": "Univers bygger plattformen som gjør kundenes utslippsresultater målbare. Vi holder vår egen virksomhet til den samme standarden, uavhengig verifisert og validert mot vitenskapsbaserte mål.",
+    "award1Title": "CDP klimascore: B",
+    "award1Desc": "Høyeste tilgjengelige score i CDPs SMB-spor for 2025, som gjenspeiler verifisert klimahandling og rapportering.",
+    "award2Title": "EcoVadis gullmedalje",
+    "award2Desc": "97. persentil blant alle selskaper vurdert av EcoVadis, basert på 2024-resultater innen miljø, arbeidsforhold, etikk og innkjøp.",
+    "award3Title": "Vitenskapsbaserte mål validert",
+    "award3Desc": "Kortsiktige og langsiktige nullutslippsmål, uavhengig validert av Science Based Targets-initiativet.",
+    "award4Title": "Uavhengig verifiserte rapporter",
+    "award4Desc": "Bærekraftsrapportering og klimagassdata fikk begrenset attestasjon fra BSI for regnskapsåret 2025/26.",
+    "award5Title": "Sustainable Solutions Award",
+    "award5Desc": "Anerkjent av UN Global Compact Network Singapore for målbart bidrag til overgangen til ren energi.",
+    "award6Title": "FNs Global Compact",
+    "award6Desc": "Signatar forpliktet til de ti prinsippene om menneskerettigheter, arbeidsliv, miljø og antikorrupsjon.",
+    "compactTitle": "⚡ Signatar av 24/7 Carbon-Free Energy Compact",
+    "compactBody": "Univers er signatar av 24/7 Carbon-Free Energy Compact, et globalt initiativ lansert av Sustainable Energy for All (SEforALL) i partnerskap med FN. Forpliktelsen går utover årlig kompensasjon: hver forbrukte enhet strøm skal matches med karbonfri produksjon, på samme sted, på timebasis. Det er den samme lukkede sløyfe-nøyaktigheten som EnOS™ anvender på kundenes drift, anvendt på vår egen.",
+    "reportCta": "Les hele bærekraftsrapporten"
+  },
   "labPage": {
     "eyebrow": "Eksperimentell ingeniørsandkasse",
     "headline": "Interaktiv teknologi<span class=\"text-accent\">lekeplass</span>",

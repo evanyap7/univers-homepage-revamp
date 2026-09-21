@@ -1,4 +1,24 @@
 {
+  "sustainPage": {
+    "eyebrow": "Practicing What We Engineer",
+    "headline": "Our Commitment to a Sustainable Future",
+    "subtitle": "Univers builds the platform that makes clients' emissions outcomes measurable. We hold our own operations to that same standard, independently assured, and validated against science-based targets.",
+    "award1Title": "CDP Climate Score: B",
+    "award1Desc": "Highest score available in CDP's SME track for 2025, reflecting verified climate action and disclosure.",
+    "award2Title": "EcoVadis Gold Medal",
+    "award2Desc": "97th percentile among all companies assessed by EcoVadis, based on 2024 performance across environment, labor, ethics, and procurement.",
+    "award3Title": "Science-Based Targets Validated",
+    "award3Desc": "Near-term and long-term net-zero targets independently validated by the Science Based Targets initiative.",
+    "award4Title": "Independently Assured Disclosures",
+    "award4Desc": "Sustainability disclosures and greenhouse gas data given limited assurance by BSI for FY2025/26.",
+    "award5Title": "Sustainable Solutions Award",
+    "award5Desc": "Recognized by the UN Global Compact Network Singapore for measurable contribution to the clean energy transition.",
+    "award6Title": "UN Global Compact",
+    "award6Desc": "Signatory committed to the Ten Principles on human rights, labor, environment, and anti-corruption.",
+    "compactTitle": "⚡ Signatory of the 24/7 Carbon-Free Energy Compact",
+    "compactBody": "Univers is a signatory of the 24/7 Carbon-Free Energy Compact, a global initiative launched by Sustainable Energy for All (SEforALL) in partnership with the United Nations. The commitment goes beyond annual offsetting: matching every unit of electricity consumed with carbon-free generation, in the same location, on an hourly basis. It's the same closed-loop rigor EnOS™ applies to client operations, applied to our own.",
+    "reportCta": "Read the Full Sustainability Report"
+  },
   "labPage": {
     "eyebrow": "Experimental Engineering Sandbox",
     "headline": "Interactive Technology <span class=\"text-accent\">Playground</span>",
