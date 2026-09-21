@@ -1,4 +1,20 @@
 {
+  "calcPage": {
+    "eyebrow": "価値実現",
+    "headline": "御社のポートフォリオの脱炭素化による上振れ効果を試算する。",
+    "subtitle": "業界と資産規模を選択すると、Univers が公開している業界ベンチマークに基づき、エネルギー削減、ダウンタイム回避、炭素削減の参考試算をご覧いただけます。",
+    "sectorLabel": "主要な資産セクター",
+    "sectorEnergy": "再生可能エネルギー・公益事業（GW）",
+    "sectorBuildings": "商業用建築環境（平方フィート）",
+    "sectorLogistics": "運輸 / 港湾インフラ",
+    "sectorManufacturing": "産業製造プラント",
+    "scaleLabel": "資産規模 / 量",
+    "spendLabel": "現在の年間エネルギー / 運用保守支出",
+    "resultsTitle": "見込まれる年間純実現価値",
+    "payback": "見込み投資回収期間",
+    "abatement": "CO2換算削減量",
+    "cta": "脱炭素ロードマップをリクエストする"
+  },
   "trustPage": {
     "eyebrow": "世界クラスのセキュリティが大規模な自律運用を可能にする",
     "headline": "エンタープライズの信頼性、主権レベルのコンプライアンス、ミッションクリティカルな信頼性",

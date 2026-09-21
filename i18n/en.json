@@ -1,4 +1,20 @@
 {
+  "calcPage": {
+    "eyebrow": "Value Realization",
+    "headline": "Estimate your portfolio's decarbonization upside.",
+    "subtitle": "Select your sector and asset scale for an illustrative estimate of energy savings, avoided downtime, and carbon abatement, modeled on Univers' published sector benchmarks.",
+    "sectorLabel": "Primary Asset Sector",
+    "sectorEnergy": "Renewable Energy & Utilities (GW)",
+    "sectorBuildings": "Commercial Built Environment (sq ft)",
+    "sectorLogistics": "Transportation / Port Infrastructure",
+    "sectorManufacturing": "Industrial Manufacturing Plants",
+    "scaleLabel": "Asset Scale / Volume",
+    "spendLabel": "Current Annual Energy / O&M Spend",
+    "resultsTitle": "Estimated Annual Net Value Realized",
+    "payback": "PROJECTED PAYBACK",
+    "abatement": "CO2e ABATEMENT",
+    "cta": "Request Your Decarbonization Roadmap"
+  },
   "trustPage": {
     "eyebrow": "World-Class Security Enables Autonomy at Scale",
     "headline": "Enterprise Trust, Sovereign Compliance & Mission-Critical Reliability",
