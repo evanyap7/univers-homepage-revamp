@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="index.css?v=flow-v5">
+  <link rel="stylesheet" href="index.css?v=flow-v6">
 </head>
 <body>
   <!-- Interactive Kinetic Background Canvas -->
@@ -54,42 +54,58 @@
         <div class="chapter-pills-wrap" id="chapter-nav">
           <a href="index.html" class="chapter-pill" data-target="overview">
             <span class="pill-dot"></span>
-            <span>Overview</span>
+            <span data-i18n="nav.overview">Overview</span>
           </a>
           <a href="clients.html" class="chapter-pill active" data-target="clients" aria-current="page">
             <span class="pill-dot"></span>
-            <span>Clients</span>
+            <span data-i18n="nav.clients">Clients</span>
           </a>
           <a href="platform.html" class="chapter-pill" data-target="enos-stack">
             <span class="pill-dot"></span>
-            <span>EnOS™ Stack</span>
+            <span data-i18n="nav.enosStack">EnOS™ Stack</span>
           </a>
           <a href="simulator.html" class="chapter-pill" data-target="engine">
             <span class="pill-dot"></span>
-            <span>Simulator</span>
+            <span data-i18n="nav.simulator">Simulator</span>
           </a>
           <a href="sectors.html" class="chapter-pill" data-target="sectors">
             <span class="pill-dot"></span>
-            <span>Sectors</span>
+            <span data-i18n="nav.sectors">Sectors</span>
           </a>
           <a href="trust-compliance.html" class="chapter-pill" data-target="security">
             <span class="pill-dot"></span>
-            <span>Trust &amp; Compliance</span>
+            <span data-i18n="nav.trustCompliance">Trust &amp; Compliance</span>
           </a>
           <a href="calculator.html" class="chapter-pill" data-target="calculator">
             <span class="pill-dot"></span>
-            <span>Calculator</span>
+            <span data-i18n="nav.calculator">Calculator</span>
           </a>
         </div>
         <div class="mobile-nav-cta-group">
-          <button type="button" class="btn btn-primary" id="mobile-cta-demo">Book a demo</button>
+          <button type="button" class="btn btn-primary" id="mobile-cta-demo" data-i18n="nav.bookDemo">Book a demo</button>
         </div>
       </nav>
       <div class="nav-backdrop" id="nav-backdrop" hidden></div>
 
       <div class="nav-actions">
-        <button type="button" class="btn btn-primary btn-sm nav-cta-mobile-visible" data-open-demo aria-label="Book a demo">Book a demo</button>
-        <button type="button" class="btn btn-primary btn-sm nav-cta-desktop" id="nav-cta-demo">Book a demo</button>
+        <div class="lang-switcher" id="lang-switcher">
+          <button type="button" class="lang-switcher-trigger" id="lang-switcher-trigger" aria-expanded="false" aria-haspopup="listbox" aria-label="Select language">
+            <svg class="lang-switcher-globe" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span class="lang-switcher-code" id="lang-switcher-code">EN</span>
+            <svg class="lang-switcher-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <ul class="lang-switcher-menu" id="lang-switcher-menu" role="listbox" aria-label="Choose a language" hidden>
+            <li role="option" data-lang="en" aria-selected="true"><button type="button">English</button></li>
+            <li role="option" data-lang="zh" aria-selected="false"><button type="button">中文</button></li>
+            <li role="option" data-lang="ja" aria-selected="false"><button type="button">日本語</button></li>
+            <li role="option" data-lang="de" aria-selected="false"><button type="button">Deutsch</button></li>
+            <li role="option" data-lang="nl" aria-selected="false"><button type="button">Nederlands</button></li>
+            <li role="option" data-lang="fr" aria-selected="false"><button type="button">Français</button></li>
+            <li role="option" data-lang="no" aria-selected="false"><button type="button">Norsk</button></li>
+          </ul>
+        </div>
+        <button type="button" class="btn btn-primary btn-sm nav-cta-mobile-visible" data-open-demo aria-label="Book a demo" data-i18n="nav.bookDemo">Book a demo</button>
+        <button type="button" class="btn btn-primary btn-sm nav-cta-desktop" id="nav-cta-demo" data-i18n="nav.bookDemo">Book a demo</button>
 
         <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-nav-drawer" aria-label="Open menu">
           <svg class="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -117,17 +133,17 @@
       <div class="container">
         <a href="index.html" class="subpage-back-link">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-          <span>Back to Univers</span>
+          <span data-i18n="clientsPage.backLink">Back to Univers</span>
         </a>
         <div class="section-header text-center">
           <div class="eyebrow">
             <span class="pulse-dot"></span>
-            <span>Proven At Global Scale // Verified Enterprise Outcomes</span>
+            <span data-i18n="clientsPage.eyebrow">Proven At Global Scale // Verified Enterprise Outcomes</span>
           </div>
-          <h1 class="section-title">
+          <h1 class="section-title" data-i18n="clientsPage.headline">
             Trusted by the World's Most Demanding Infrastructure Operators
           </h1>
-          <p class="section-subtitle">
+          <p class="section-subtitle" data-i18n="clientsPage.subtitle">
             From national sovereign public housing and international aviation hubs to global container ports, commercial logistics fleets, and electric battery gigafactories.
           </p>
         </div>
@@ -194,7 +210,7 @@
 
         <!-- Partners: Infinite Dual-Row Auto-Scrolling Marquee -->
         <div class="partners-marquee-wrap">
-          <div class="partners-marquee-label">Strategic Advisory, Technology &amp; Energy Partners</div>
+          <div class="partners-marquee-label" data-i18n="clientsPage.partnersLabel">Strategic Advisory, Technology &amp; Energy Partners</div>
 
           <!-- Row 1 — scrolls left -->
           <div class="marquee-outer">
@@ -254,75 +270,75 @@
         <!-- Landmark Singapore Deployments Card -->
         <div class="landmark-deployments-card">
           <div class="landmark-header-row">
-            <span class="sg-flag-badge">🇸🇬 SINGAPORE SMART NATION &amp; LANDMARK DEPLOYMENTS</span>
-            <span style="font-size: 0.88rem; font-weight: 600; color: var(--univ-navy);">From Infrastructure to Citizen Impact</span>
+            <span class="sg-flag-badge" data-i18n="clientsPage.sgFlagBadge">🇸🇬 SINGAPORE SMART NATION &amp; LANDMARK DEPLOYMENTS</span>
+            <span style="font-size: 0.88rem; font-weight: 600; color: var(--univ-navy);" data-i18n="clientsPage.sgFlagSubtitle">From Infrastructure to Citizen Impact</span>
           </div>
           <div class="landmark-photo-grid">
             <div>
               <div class="landmark-photo-card">
                 <img src="assets/photos/landmark-marina-bay-skyline.jpg" alt="Marina Bay, Singapore" loading="lazy">
                 <div class="landmark-photo-caption">
-                  <h5>Singapore Smart Nation OS</h5>
+                  <h5 data-i18n="clientsPage.landmark1Title">Singapore Smart Nation OS</h5>
                 </div>
               </div>
-              <p class="landmark-photo-desc">Univers provided the underlying operating system of Singapore's national Smart Nation platform in 2019.</p>
+              <p class="landmark-photo-desc" data-i18n="clientsPage.landmark1Desc">Univers provided the underlying operating system of Singapore's national Smart Nation platform in 2019.</p>
             </div>
             <div>
               <div class="landmark-photo-card">
                 <img src="assets/photos/landmark-gardens-by-the-bay.jpg" alt="Gardens by the Bay, Singapore" loading="lazy">
                 <div class="landmark-photo-caption">
-                  <h5>Gardens by the Bay</h5>
+                  <h5 data-i18n="clientsPage.landmark2Title">Gardens by the Bay</h5>
                 </div>
               </div>
-              <p class="landmark-photo-desc">The operations platform for Smart Net Zero Gardens at one of the world's most visited destinations (crowd dispersal, tree health, and dynamic LLM reporting).</p>
+              <p class="landmark-photo-desc" data-i18n="clientsPage.landmark2Desc">The operations platform for Smart Net Zero Gardens at one of the world's most visited destinations (crowd dispersal, tree health, and dynamic LLM reporting).</p>
             </div>
             <div>
               <div class="landmark-photo-card">
                 <img src="assets/photos/landmark-changi-jewel.jpg" alt="Jewel Changi Airport, Singapore" loading="lazy">
                 <div class="landmark-photo-caption">
-                  <h5>Changi Airport &amp; Jewel</h5>
+                  <h5 data-i18n="clientsPage.landmark3Title">Changi Airport &amp; Jewel</h5>
                 </div>
               </div>
-              <p class="landmark-photo-desc">Terminal 3 and Jewel HVAC energy optimization for the world's most awarded airport. See the full Changi story in the client showcase above.</p>
+              <p class="landmark-photo-desc" data-i18n="clientsPage.landmark3Desc">Terminal 3 and Jewel HVAC energy optimization for the world's most awarded airport. See the full Changi story in the client showcase above.</p>
             </div>
             <div>
               <div class="landmark-photo-card">
                 <img src="assets/photos/energy-solar-aerial.jpg" alt="Large-scale energy storage infrastructure" loading="lazy">
                 <div class="landmark-photo-caption">
-                  <h5>Southeast Asia's Largest BESS</h5>
+                  <h5 data-i18n="clientsPage.landmark4Title">Southeast Asia's Largest BESS</h5>
                 </div>
               </div>
-              <p class="landmark-photo-desc">Powered the real-time telemetry, frequency synchronization, and grid dispatch for Southeast Asia's largest energy storage system.</p>
+              <p class="landmark-photo-desc" data-i18n="clientsPage.landmark4Desc">Powered the real-time telemetry, frequency synchronization, and grid dispatch for Southeast Asia's largest energy storage system.</p>
             </div>
             <div>
               <div class="landmark-photo-card">
                 <img src="assets/photos/landmark-hdb-estate.jpg" alt="HDB public housing estate, Singapore" loading="lazy">
                 <div class="landmark-photo-caption">
-                  <h5>HDB Singapore Residential Estates</h5>
+                  <h5 data-i18n="clientsPage.landmark5Title">HDB Singapore Residential Estates</h5>
                 </div>
               </div>
-              <p class="landmark-photo-desc">9 legacy BMS vendors unified into 1 sovereign platform across 11,000 residential blocks, 36 malls, and 2,000 car parks. See the full HDB story in the client showcase above.</p>
+              <p class="landmark-photo-desc" data-i18n="clientsPage.landmark5Desc">9 legacy BMS vendors unified into 1 sovereign platform across 11,000 residential blocks, 36 malls, and 2,000 car parks. See the full HDB story in the client showcase above.</p>
             </div>
           </div>
           <div class="landmark-grid">
             <div class="landmark-item">
-              <h5>Punggol Digital District (PDD)</h5>
-              <p>Powering Singapore's first district-level smart grid to champion sustainable, autonomous industrial development.</p>
+              <h5 data-i18n="clientsPage.landmark6Title">Punggol Digital District (PDD)</h5>
+              <p data-i18n="clientsPage.landmark6Desc">Powering Singapore's first district-level smart grid to champion sustainable, autonomous industrial development.</p>
             </div>
             <div class="landmark-item">
-              <h5>HTX Land Border Modernization</h5>
-              <p>Orchestrating smart BMS, predictive maintenance, and energy efficiency at the world's busiest land border.</p>
+              <h5 data-i18n="clientsPage.landmark7Title">HTX Land Border Modernization</h5>
+              <p data-i18n="clientsPage.landmark7Desc">Orchestrating smart BMS, predictive maintenance, and energy efficiency at the world's busiest land border.</p>
             </div>
             <div class="landmark-item">
-              <h5>TraceTogether National Gateway</h5>
-              <p>Served as the high-availability gateway platform for Singapore's national COVID-19 contact tracing tokens.</p>
+              <h5 data-i18n="clientsPage.landmark8Title">TraceTogether National Gateway</h5>
+              <p data-i18n="clientsPage.landmark8Desc">Served as the high-availability gateway platform for Singapore's national COVID-19 contact tracing tokens.</p>
             </div>
           </div>
         </div>
 
         <div style="text-align: center; margin-top: 3rem;">
           <button type="button" class="btn btn-primary" data-open-demo>
-            <span>Talk to a Solution Architect</span>
+            <span data-i18n="clientsPage.finalCta">Talk to a Solution Architect</span>
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </button>
         </div>
@@ -340,10 +356,10 @@
           <a href="index.html" class="brand-logo" aria-label="Univers Homepage">
             <svg class="brand-logo-mark" aria-hidden="true" viewBox="-52961 -11737 961733 203620" xmlns="http://www.w3.org/2000/svg"><path d="M395026,47802 C398186,54628 399765,62939 399765,72764 L399765,154112 L380343,154112 L380343,73010 C380343,64853 378459,58532 374691,54046 C370923,49392 365810,47052 359329,47052 C353607,47052 348868,48797 345101,52288 C341485,55778 338396,61440 335834,69261 L318436,122662 C314820,133805 309625,142207 302851,147869 C296077,153531 287337,156349 276654,156349 C267926,156349 260472,154604 254295,151114 C248269,147623 243682,142465 240512,135641 C237505,128815 235995,120503 235995,110678 L235995,29343 L255418,29343 L255418,110446 C255418,118602 257302,125001 261069,129655 C264837,134140 269950,136390 276432,136390 C282153,136390 286821,134645 290437,131154 C294204,127664 297364,122003 299926,114182 L317313,60781 C320929,49637 326124,41235 332898,35574 C339672,29911 348412,27094 359094,27094 C367823,27094 375206,28839 381232,32329 C387409,35819 391997,40976 395015,47802 L395026,47802 Z M422183,154112 L441606,154112 L441606,29343 L422183,29343 L422183,154126 L422183,154112 Z M509726,134154 L476976,29343 L456196,29343 L497990,154126 L521250,154126 L562587,29343 L542264,29343 L509737,134154 L509726,134154 Z M656834,44312 C666169,55623 670836,71600 670836,92232 L670617,99226 L583425,99226 C584035,109877 587264,118939 593141,126423 C599008,133908 607447,137657 618430,137657 C626412,137657 633031,135822 638308,132163 C643585,128337 647271,123101 649376,116444 L669265,116444 C668055,122933 665340,129254 661130,135407 C657073,141560 651338,146641 643966,150636 C636737,154462 628231,156375 618449,156375 C608057,156375 598789,153803 590655,148645 C582530,143487 576129,136080 571457,126437 C566940,116625 564682,105145 564682,91999 C564682,78853 567011,66714 571681,57057 C576348,47247 582749,39839 590883,34850 C599008,29691 608266,27119 618658,27119 C634765,27119 647500,32859 656834,44338 L656834,44312 Z M651643,81490 C650738,70670 647347,62190 641471,56036 C635594,49716 628078,46549 618877,46549 C608638,46549 600665,49547 594941,55532 C589216,61349 585378,70011 583416,81490 L651643,81490 Z M698316,39813 C691982,46639 688819,56373 688819,69015 L688819,154112 L708250,154112 L708250,69273 C708250,62952 709755,58131 712765,54795 C715918,51305 720366,49560 726091,49560 L754542,49560 L754542,29343 L725414,29343 C713813,29343 704783,32833 698297,39827 L698316,39813 Z M849782,97713 C844963,92219 836762,87734 825170,84243 L803034,77753 C796699,75918 792118,73760 789251,71265 C786384,68769 784955,65602 784955,61776 C784955,56618 787146,52624 791508,49793 C796023,46962 802272,45553 810254,45553 C818226,45553 823950,47389 828313,51047 C832828,54537 835466,59695 836228,66521 L855878,66521 C855574,54705 851211,45229 842772,38068 C834495,30751 823731,27094 810473,27094 C797214,27094 785850,30416 777726,37073 C769744,43562 765753,52456 765753,63780 C765753,72596 768382,79757 773659,85238 C779078,90732 787736,95050 799633,98217 L820636,103957 C826970,105792 831485,107950 834190,110446 C836904,112941 838257,116263 838257,120425 C838257,125919 835933,130237 831266,133404 C826598,136403 820121,137889 811844,137889 C803557,137889 797242,135977 791966,132150 C786851,128156 783898,122416 783155,114931 L763505,114931 C763953,128246 768248,138471 776373,145632 C784660,152782 796404,156362 811616,156362 C825932,156362 837066,153117 845048,146628 C853183,140139 857250,131154 857250,119676 C857250,110356 854773,103038 849801,97713 L849782,97713 Z M30782,24779 C25634,29032 23399,35328 25775,38831 C28149,42347 34257,41753 39393,37500 C44542,33247 46776,26951 44402,23448 C42026,19932 35919,20526 30782,24779 Z M24218,113704 C16531,112604 9324,119973 8119,130185 C6913,140397 12167,149562 19866,150674 C27553,151773 34760,144405 35965,134193 C37170,123980 31917,114815 24218,113704 Z M19913,84838 C23645,77275 22721,68783 17854,65848 C12986,62927 6024,66676 2292,74224 C-1440,81787 -516,90280 4351,93214 C9218,96136 16180,92387 19913,84838 Z M130388,41235 C138835,45087 147751,42644 150325,35781 C152888,28929 148125,20242 139677,16390 C131230,12538 122314,14981 119741,21845 C117177,28696 121940,37384 130388,41235 Z M68762,139557 C59097,139557 51258,148826 51258,160266 C51258,171706 59097,180975 68762,180975 C78426,180975 86265,171706 86265,160266 C86265,148826 78426,139557 68762,139557 Z M82065,180 C74729,1188 69253,6190 69838,11322 C70423,16454 76847,19790 84183,18781 C91519,17760 96995,12770 96410,7638 C95824,2507 89401,-829 82065,180 Z M166776,70670 C161112,61556 150583,58686 143246,64245 C135910,69804 134564,81709 140215,90810 C145879,99924 156409,102793 163745,97235 C171081,91676 172427,79771 166776,70670 Z M127684,116857 C117201,116857 108707,126242 108707,137825 C108707,149407 117201,158792 127684,158792 C138169,158792 146663,149395 146663,137825 C146663,126256 138169,116857 127684,116857 Z" fill="currentColor" fill-rule="evenodd"/></svg>
           </a>
-          <p>
+          <p data-i18n="footer.blurb">
             The world's most comprehensive decarbonization platform. Univers connects on-the-ground operational technology with in-the-cloud intelligence to give climate leaders unmatched control, and infinite opportunity. Headquartered in Singapore.
           </p>
-          <p style="margin-top: 0.75rem; font-weight: 600;">Univers. All connected.</p>
+          <p style="margin-top: 0.75rem; font-weight: 600;" data-i18n="footer.tagline">Univers. All connected.</p>
 
           <div class="footer-office-block">
             <div class="footer-office-title">
@@ -351,7 +367,7 @@
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
-              <span>Global Headquarters</span>
+              <span data-i18n="footer.hqTitle">Global Headquarters</span>
             </div>
             <address class="footer-office-address">
               1 Harbourfront Avenue<br>
@@ -362,50 +378,50 @@
         </div>
 
         <div class="footer-col">
-          <h5>Platform & Products</h5>
+          <h5 data-i18n="footer.colPlatform">Platform & Products</h5>
           <ul class="footer-links">
-            <li><a href="https://univers.com/products/enos/" target="_blank" rel="noopener noreferrer">EnOS™ Platform</a></li>
-            <li><a href="index.html#flywheel">Edge Loggers: DTU &amp; HPU</a></li>
-            <li><a href="simulator.html">From the Edge to the Cloud</a></li>
-            <li><a href="https://univers.com/platform/" target="_blank" rel="noopener noreferrer">Full Platform Overview</a></li>
+            <li><a href="https://univers.com/products/enos/" target="_blank" rel="noopener noreferrer" data-i18n="footer.linkEnos">EnOS™ Platform</a></li>
+            <li><a href="index.html#flywheel" data-i18n="footer.linkEdgeLoggers">Edge Loggers: DTU &amp; HPU</a></li>
+            <li><a href="simulator.html" data-i18n="footer.linkEdgeToCloud">From the Edge to the Cloud</a></li>
+            <li><a href="https://univers.com/platform/" target="_blank" rel="noopener noreferrer" data-i18n="footer.linkPlatformOverview">Full Platform Overview</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h5>Sectors</h5>
+          <h5 data-i18n="footer.colSectors">Sectors</h5>
           <ul class="footer-links">
-            <li><a href="sectors.html">Energy & Utilities</a></li>
-            <li><a href="https://univers.com/built-environment/" target="_blank" rel="noopener noreferrer">Built Environment</a></li>
-            <li><a href="sectors.html">Transportation & Ports</a></li>
-            <li><a href="sectors.html">Industrial Manufacturing</a></li>
+            <li><a href="sectors.html" data-i18n="footer.linkEnergy">Energy & Utilities</a></li>
+            <li><a href="https://univers.com/built-environment/" target="_blank" rel="noopener noreferrer" data-i18n="footer.linkBuiltEnv">Built Environment</a></li>
+            <li><a href="sectors.html" data-i18n="footer.linkTransport">Transportation & Ports</a></li>
+            <li><a href="sectors.html" data-i18n="footer.linkManufacturing">Industrial Manufacturing</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h5>Company & Trust</h5>
+          <h5 data-i18n="footer.colCompany">Company & Trust</h5>
           <ul class="footer-links">
-            <li><a href="https://univers.com/about-us/" target="_blank" rel="noopener noreferrer">About Univers</a></li>
-            <li><a href="clients.html">Customer Stories</a></li>
-            <li><a href="https://univers.com/resource/univers-trust-center/" target="_blank" rel="noopener noreferrer">Security & Trust Center</a></li>
-            <li><a href="sustainability.html">Sustainability</a></li>
-            <li><a href="https://univers.com/careers/" target="_blank" rel="noopener noreferrer">Careers</a></li>
+            <li><a href="https://univers.com/about-us/" target="_blank" rel="noopener noreferrer" data-i18n="footer.linkAbout">About Univers</a></li>
+            <li><a href="clients.html" data-i18n="footer.linkCustomerStories">Customer Stories</a></li>
+            <li><a href="https://univers.com/resource/univers-trust-center/" target="_blank" rel="noopener noreferrer" data-i18n="footer.linkTrustCenter">Security & Trust Center</a></li>
+            <li><a href="sustainability.html" data-i18n="footer.linkSustainability">Sustainability</a></li>
+            <li><a href="https://univers.com/careers/" target="_blank" rel="noopener noreferrer" data-i18n="footer.linkCareers">Careers</a></li>
           </ul>
         </div>
       </div>
 
-      <div class="footer-disclosure">
+      <div class="footer-disclosure" data-i18n-html="footer.disclosure">
         Unofficial concept redesign inspired by <a href="https://univers.com/" target="_blank" rel="noopener noreferrer">univers.com</a> and Univers' own Brand Guidelines. Not affiliated with, endorsed by, or representing Univers. Built as a design &amp; front-end exercise; company names, statistics, boilerplate, and quotes are sourced from Univers' Brand Guidelines, public website, and customer stories.
       </div>
 
       <div class="footer-bottom">
         <div>
-          © 2026 Univers. Content sourced from Univers' Brand Guidelines and univers.com. Concept build, not an official Univers property.
+          <span data-i18n="footer.copyright">© 2026 Univers. Content sourced from Univers' Brand Guidelines and univers.com. Concept build, not an official Univers property.</span>
           <span class="footer-dev-credit">· Concept redesigned by <a href="https://www.linkedin.com/in/evanyapzhikai/" target="_blank" rel="noopener noreferrer">Evan Yap</a></span>
         </div>
         <div style="display: flex; gap: 20px;">
-          <a href="https://univers.com/policies/" target="_blank" rel="noopener noreferrer" style="color: var(--univ-text-muted); text-decoration: none;">Privacy Policy</a>
-          <a href="https://univers.com/policies/" target="_blank" rel="noopener noreferrer" style="color: var(--univ-text-muted); text-decoration: none;">Terms of Service</a>
-          <a href="https://univers.com/security-compliance/" target="_blank" rel="noopener noreferrer" style="color: var(--univ-text-muted); text-decoration: none;">Security Architecture</a>
+          <a href="https://univers.com/policies/" target="_blank" rel="noopener noreferrer" style="color: var(--univ-text-muted); text-decoration: none;" data-i18n="footer.linkPrivacy">Privacy Policy</a>
+          <a href="https://univers.com/policies/" target="_blank" rel="noopener noreferrer" style="color: var(--univ-text-muted); text-decoration: none;" data-i18n="footer.linkTerms">Terms of Service</a>
+          <a href="https://univers.com/security-compliance/" target="_blank" rel="noopener noreferrer" style="color: var(--univ-text-muted); text-decoration: none;" data-i18n="footer.linkSecurity">Security Architecture</a>
         </div>
       </div>
     </div>
@@ -428,10 +444,10 @@
         <div class="modal-header">
           <div class="modal-badge">
             <span class="pulse-dot"></span>
-            <span>ENTERPRISE PLATFORM DEMO</span>
+            <span data-i18n="demoModal.badge">ENTERPRISE PLATFORM DEMO</span>
           </div>
-          <h2 id="demo-modal-title" class="modal-title">Schedule Decarbonization Assessment</h2>
-          <p class="modal-subtitle">
+          <h2 id="demo-modal-title" class="modal-title" data-i18n="demoModal.title">Schedule Decarbonization Assessment</h2>
+          <p class="modal-subtitle" data-i18n="demoModal.subtitle">
             Experience Univers live. Our solution architects will review your energy asset telemetry and show how EnOS connects your portfolio from the edge to the cloud.
           </p>
         </div>
@@ -439,39 +455,39 @@
         <form id="demo-booking-form" novalidate>
           <div class="form-row">
             <div class="form-group">
-              <label for="demo-name" class="form-label">Full Name <span class="required-star">*</span></label>
-              <input type="text" id="demo-name" class="form-input" placeholder="e.g. Jane Doe" required autocomplete="name">
+              <label for="demo-name" class="form-label" data-i18n-html="demoModal.labelName">Full Name <span class="required-star">*</span></label>
+              <input type="text" id="demo-name" class="form-input" placeholder="e.g. Jane Doe" required autocomplete="name" data-i18n-attr="placeholder:demoModal.placeholderName">
               <div class="form-error-msg" id="demo-name-error"></div>
             </div>
 
             <div class="form-group">
-              <label for="demo-email" class="form-label">Business Email <span class="required-star">*</span></label>
-              <input type="email" id="demo-email" class="form-input" placeholder="e.g. jane.doe@enterprise.com" required autocomplete="email">
+              <label for="demo-email" class="form-label" data-i18n-html="demoModal.labelEmail">Business Email <span class="required-star">*</span></label>
+              <input type="email" id="demo-email" class="form-input" placeholder="e.g. jane.doe@enterprise.com" required autocomplete="email" data-i18n-attr="placeholder:demoModal.placeholderEmail">
               <div class="form-error-msg" id="demo-email-error"></div>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="demo-org" class="form-label">Organisation / Enterprise <span class="required-star">*</span></label>
-            <input type="text" id="demo-org" class="form-input" placeholder="e.g. Acme Infrastructure" required autocomplete="organization">
+            <label for="demo-org" class="form-label" data-i18n-html="demoModal.labelOrg">Organisation / Enterprise <span class="required-star">*</span></label>
+            <input type="text" id="demo-org" class="form-input" placeholder="e.g. Acme Infrastructure" required autocomplete="organization" data-i18n-attr="placeholder:demoModal.placeholderOrg">
             <div class="form-error-msg" id="demo-org-error"></div>
           </div>
 
           <div class="form-group">
-            <label for="demo-inquiry" class="form-label">Inquiry &amp; Decarbonization Scope <span class="required-star">*</span></label>
-            <textarea id="demo-inquiry" class="form-textarea" rows="3" placeholder="Tell us about your assets (e.g. renewable fleet, real estate portfolio, ports, or industrial facilities) and primary goals..." required></textarea>
+            <label for="demo-inquiry" class="form-label" data-i18n-html="demoModal.labelInquiry">Inquiry &amp; Decarbonization Scope <span class="required-star">*</span></label>
+            <textarea id="demo-inquiry" class="form-textarea" rows="3" placeholder="Tell us about your assets (e.g. renewable fleet, real estate portfolio, ports, or industrial facilities) and primary goals..." required data-i18n-attr="placeholder:demoModal.placeholderInquiry"></textarea>
             <div class="form-error-msg" id="demo-inquiry-error"></div>
           </div>
 
           <div class="form-footer">
             <button type="submit" class="btn btn-primary btn-submit-demo" id="demo-submit-btn">
-              <span>Book a demo</span>
+              <span data-i18n="nav.bookDemo">Book a demo</span>
               <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </button>
-            <div class="form-privacy-note">
+            <div class="form-privacy-note" data-i18n="demoModal.privacyNote">
               🔒 Submissions are processed locally for demonstration. Unofficial concept build.
             </div>
           </div>
@@ -489,40 +505,40 @@
 
         <div class="modal-header" style="text-align: center;">
           <div class="modal-badge success-badge">
-            <span>DEMO REQUEST RECEIVED</span>
+            <span data-i18n="demoModal.successBadge">DEMO REQUEST RECEIVED</span>
           </div>
-          <h2 class="modal-title">Demo Request Received</h2>
-          <p class="modal-subtitle" id="demo-success-msg">
+          <h2 class="modal-title" data-i18n="demoModal.successTitle">Demo Request Received</h2>
+          <p class="modal-subtitle" id="demo-success-msg" data-i18n="demoModal.successMsg">
             Thank you! This is an unofficial concept redesign. Your demo request has been processed locally for demonstration purposes.
           </p>
         </div>
 
         <div class="booking-receipt-card">
           <div class="receipt-row">
-            <span class="receipt-label">Reference ID:</span>
+            <span class="receipt-label" data-i18n="demoModal.receiptRefId">Reference ID:</span>
             <span class="receipt-val mono-metric" id="receipt-id">UNIV-DEMO-XXXX</span>
           </div>
           <div class="receipt-row">
-            <span class="receipt-label">Contact:</span>
+            <span class="receipt-label" data-i18n="demoModal.receiptContact">Contact:</span>
             <span class="receipt-val" id="receipt-name-email">Jane Doe (jane.doe@enterprise.com)</span>
           </div>
           <div class="receipt-row">
-            <span class="receipt-label">Organisation:</span>
+            <span class="receipt-label" data-i18n="demoModal.receiptOrg">Organisation:</span>
             <span class="receipt-val" id="receipt-org">Acme Infrastructure</span>
           </div>
           <div class="receipt-row">
-            <span class="receipt-label">Inquiry Scope:</span>
+            <span class="receipt-label" data-i18n="demoModal.receiptInquiry">Inquiry Scope:</span>
             <span class="receipt-val inquiry-snippet" id="receipt-inquiry">Renewable energy monitoring</span>
           </div>
           <div class="receipt-row">
-            <span class="receipt-label">Status:</span>
-            <span class="receipt-status-pill">PROCESSED LOCALLY (CONCEPT BUILD)</span>
+            <span class="receipt-label" data-i18n="demoModal.receiptStatus">Status:</span>
+            <span class="receipt-status-pill" data-i18n="demoModal.receiptStatusVal">PROCESSED LOCALLY (CONCEPT BUILD)</span>
           </div>
         </div>
 
         <div class="success-actions" style="display: flex; justify-content: center; margin-top: 1.5rem;">
           <button type="button" class="btn btn-primary" id="btn-done-demo" style="min-width: 140px;">
-            <span>Done</span>
+            <span data-i18n="demoModal.done">Done</span>
           </button>
         </div>
       </div>
@@ -530,6 +546,6 @@
   </div>
 
   <!-- Scripts -->
-  <script src="app.js?v=flow-v5"></script>
+  <script src="app.js?v=flow-v6"></script>
 </body>
 </html>
