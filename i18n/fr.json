@@ -1,4 +1,21 @@
 {
+  "simulatorPage": {
+    "eyebrow": "Simulation d'architecture en direct",
+    "headline": "Une intelligence de décarbonation en temps réel pour un contrôle inégalé et des possibilités infinies.",
+    "subtitle": "Découvrez comment la plateforme EnOS™ relie la technologie opérationnelle sur le terrain à l'intelligence infonuagique pour offrir une surveillance, un reporting et une réduction de l'énergie et du carbone en temps réel.",
+    "step1Title": "Sur le terrain : EnOS Edge",
+    "step1Body": "Plus de 450 millions de capteurs et d'appareils connectés. Lit les données énergétiques en temps réel directement depuis les compteurs, capteurs, GTB et équipements industriels, sur tous les principaux protocoles de fabricants.",
+    "step1Badge": "→ Technologie opérationnelle",
+    "step2Title": "Dans le nuage : EnOS Cloud",
+    "step2Body": "Une décennie d'expertise sectorielle fusionnée avec des données opérationnelles en direct sur 1 070 GW d'actifs énergétiques gérés, transformant les signaux bruts en une intelligence précise et fiable.",
+    "step2Badge": "→ Intelligence de décarbonation",
+    "step3Title": "Pour la planète : action climatique",
+    "step3Body": "Une surveillance, un reporting et une réduction du carbone pilotés par les données, générant 1 013 millions de tonnes de CO2e d'émissions évitées auprès de plus de 800 clients mondiaux.",
+    "step3Badge": "→ Réduction de 1 013 Mt de CO2e",
+    "bridgeCaption": "Vous voulez savoir comment ces 3 étapes se traduisent en rendement financier pour votre secteur ?",
+    "bridgeSectorsLink": "Découvrir les déploiements sectoriels →",
+    "bridgeCalcLink": "Calculer la valeur pour votre parc →"
+  },
   "platformPage": {
     "eyebrow": "La plateforme pour l'IA physique // Architecture EnOS™",
     "headline": "La pile plateforme EnOS™ : IA évolutive, fiabilité critique et connectivité ouverte",

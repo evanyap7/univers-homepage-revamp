@@ -1,4 +1,21 @@
 {
+  "simulatorPage": {
+    "eyebrow": "Live architectuursimulatie",
+    "headline": "Realtime decarbonisatie-intelligentie voor ongeëvenaarde controle en eindeloze mogelijkheden.",
+    "subtitle": "Ervaar hoe het EnOS™-platform operationele technologie op locatie verbindt met cloudintelligentie om realtime energie- en koolstofmonitoring, -rapportage en -reductie te leveren.",
+    "step1Title": "Op locatie: EnOS Edge",
+    "step1Body": "Meer dan 450 miljoen verbonden sensoren en apparaten. Leest realtime energiegegevens rechtstreeks uit meters, sensoren, BMS en industriële apparatuur, over elk groot OEM-protocol heen.",
+    "step1Badge": "→ Operationele technologie",
+    "step2Title": "In de cloud: EnOS Cloud",
+    "step2Body": "Een decennium aan domeinexpertise, samengesmolten met live operationele data over 1.070 GW beheerde energieassets, zet ruwe signalen om in nauwkeurige, betrouwbare intelligentie.",
+    "step2Badge": "→ Decarbonisatie-intelligentie",
+    "step3Title": "Voor de aarde: klimaatactie",
+    "step3Body": "Datagedreven koolstofmonitoring, -rapportage en -reductie, met 1.013 miljoen ton CO2e aan vermeden uitstoot bij meer dan 800 wereldwijde klanten.",
+    "step3Badge": "→ 1.013 mln. ton CO2e gereduceerd",
+    "bridgeCaption": "Benieuwd hoe deze 3 fasen zich vertalen naar financieel rendement voor uw sector?",
+    "bridgeSectorsLink": "Ontdek sectorimplementaties →",
+    "bridgeCalcLink": "Bereken de waarde voor uw portefeuille →"
+  },
   "platformPage": {
     "eyebrow": "Het platform voor Physical AI // EnOS™-architectuur",
     "headline": "De EnOS™-platformstack: schaalbare AI, bedrijfskritische betrouwbaarheid en open connectiviteit",
