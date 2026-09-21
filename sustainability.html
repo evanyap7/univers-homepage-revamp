@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clients & Partners | Univers</title>
-  <meta name="description" content="See who Univers works with: key enterprise clients, verified outcomes, strategic partners, and landmark Singapore deployments.">
+  <title>Sustainability | Univers</title>
+  <meta name="description" content="Univers' own sustainability commitments and independently verified credentials: science-based net-zero targets, CDP, EcoVadis, and UN Global Compact.">
   <meta name="robots" content="noindex, nofollow">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Clients & Partners | Univers">
+  <meta property="og:title" content="Sustainability | Univers">
   <meta property="og:description" content="Unofficial concept redesign inspired by univers.com and Univers' Brand Guidelines. Content sourced from Univers' public site and brand materials; not an official Univers property.">
   <meta property="og:type" content="website">
 
@@ -43,6 +43,9 @@
 
   <!-- ========================================================================
        NAVIGATION BAR
+       One combined header: brand mark, the interactive chapter/section
+       pills (with scroll-spy + smooth-jump, wired in initChapterNav), and
+       the primary CTAs — previously split across two stacked sticky bars.
        ======================================================================== -->
   <header class="site-header">
     <div class="container nav-container">
@@ -56,7 +59,7 @@
             <span class="pill-dot"></span>
             <span>Overview</span>
           </a>
-          <a href="clients.html" class="chapter-pill active" data-target="clients" aria-current="page">
+          <a href="clients.html" class="chapter-pill" data-target="clients">
             <span class="pill-dot"></span>
             <span>Clients</span>
           </a>
@@ -109,11 +112,12 @@
 
   <main>
     <!-- ========================================================================
-         CLIENTS & PARTNERS
-         Everything about who Univers works with lives on its own tab now —
-         it used to be lumped into the Overview homepage.
+         SUSTAINABILITY & ESG CREDENTIALS
+         Narrative Purpose: Univers sells decarbonization outcomes to clients —
+         this section shows it holds its own operations to the same standard,
+         with independently verified, third-party credentials.
          ======================================================================== -->
-    <section class="section" id="clients-page-hero" style="padding-bottom: 0;">
+    <section class="section" id="sustainability">
       <div class="container">
         <a href="index.html" class="subpage-back-link">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
@@ -122,212 +126,72 @@
         <div class="section-header text-center">
           <div class="eyebrow">
             <span class="pulse-dot"></span>
-            <span>Proven At Global Scale // Verified Enterprise Outcomes</span>
+            <span>Practicing What We Engineer</span>
           </div>
           <h1 class="section-title">
-            Trusted by the World's Most Demanding Infrastructure Operators
+            Our Commitment to a Sustainable Future
           </h1>
           <p class="section-subtitle">
-            From national sovereign public housing and international aviation hubs to global container ports, commercial logistics fleets, and electric battery gigafactories.
+            Univers builds the platform that makes clients' emissions outcomes measurable. We hold our own operations to that same standard, independently assured, and validated against science-based targets.
           </p>
         </div>
-      </div>
-    </section>
 
-    <section class="client-ecosystem-section" id="clients">
-      <div class="container">
-        <!-- Key Clients: Interactive Tab Selector + Expandable Metrics Panel -->
-        <div class="key-clients-interactive">
-          <!-- Tab Selector Row -->
-          <div class="kc-tab-row" role="tablist" aria-label="Key enterprise clients">
-            <button class="kc-tab active" data-client="psa" role="tab" aria-selected="true">
-              <img src="assets/logos/psa-international.png" alt="PSA International" class="kc-tab-logo">
-            </button>
-            <button class="kc-tab" data-client="dhl" role="tab" aria-selected="false">
-              <span class="kc-tab-wordmark" style="color:#D40511;">DHL</span>
-            </button>
-            <button class="kc-tab" data-client="hdb" role="tab" aria-selected="false">
-              <img src="assets/logos/hdb-singapore.png" alt="HDB Singapore" class="kc-tab-logo">
-            </button>
-            <button class="kc-tab kc-tab--dark" data-client="aesc" role="tab" aria-selected="false">
-              <img src="assets/logos/aesc.png" alt="AESC" class="kc-tab-logo">
-            </button>
-            <button class="kc-tab" data-client="changi" role="tab" aria-selected="false">
-              <img src="assets/logos/changi-airport.png" alt="Changi Airport" class="kc-tab-logo">
-            </button>
-            <button class="kc-tab" data-client="sp" role="tab" aria-selected="false">
-              <img src="assets/logos/sp-group.png" alt="SP Group" class="kc-tab-logo">
-            </button>
-            <button class="kc-tab" data-client="cdg" role="tab" aria-selected="false">
-              <img src="assets/logos/comfortdelgro.png" alt="ComfortDelGro" class="kc-tab-logo">
-            </button>
-            <button class="kc-tab" data-client="hkia" role="tab" aria-selected="false">
-              <img src="assets/logos/hk-airport.png" alt="HKIA" class="kc-tab-logo">
-            </button>
+        <!-- Independently Verified Credentials -->
+        <div class="awards-grid">
+          <div class="award-card">
+            <div class="award-year-tag">2025 CDP</div>
+            <div class="award-title">CDP Climate Score: B</div>
+            <p class="award-desc">Highest score available in CDP's SME track for 2025, reflecting verified climate action and disclosure.</p>
           </div>
 
-          <!-- Active Client Detail Panel -->
-          <div class="kc-panel" id="kc-panel">
-            <div class="kc-panel-inner">
-              <div class="kc-panel-left">
-                <div class="kc-panel-badge" id="kc-badge">KEY CLIENT // GLOBAL PORTS</div>
-                <div class="kc-panel-name" id="kc-name">PSA International</div>
-                <div class="kc-panel-desc" id="kc-desc">World's largest port operator spanning 70+ terminals across 180+ locations in 45 countries, with S$5B annual OPEX managed on EnOS.</div>
-              </div>
-              <div class="kc-panel-metrics" id="kc-metrics">
-                <div class="kc-metric">
-                  <div class="kc-metric-val">S$330M</div>
-                  <div class="kc-metric-lbl">Annual operating profit uplift</div>
-                </div>
-                <div class="kc-metric">
-                  <div class="kc-metric-val">S$83M</div>
-                  <div class="kc-metric-lbl">Annual revenue uplift</div>
-                </div>
-                <div class="kc-metric">
-                  <div class="kc-metric-val">45</div>
-                  <div class="kc-metric-lbl">Countries covered</div>
-                </div>
-              </div>
-            </div>
+          <div class="award-card">
+            <div class="award-year-tag">2024 ECOVADIS</div>
+            <div class="award-title">EcoVadis Gold Medal</div>
+            <p class="award-desc">97th percentile among all companies assessed by EcoVadis, based on 2024 performance across environment, labor, ethics, and procurement.</p>
+          </div>
+
+          <div class="award-card">
+            <div class="award-year-tag">2025 SBTi</div>
+            <div class="award-title">Science-Based Targets Validated</div>
+            <p class="award-desc">Near-term and long-term net-zero targets independently validated by the Science Based Targets initiative.</p>
+          </div>
+
+          <div class="award-card">
+            <div class="award-year-tag">FY2025/26 BSI</div>
+            <div class="award-title">Independently Assured Disclosures</div>
+            <p class="award-desc">Sustainability disclosures and greenhouse gas data given limited assurance by BSI for FY2025/26.</p>
+          </div>
+
+          <div class="award-card">
+            <div class="award-year-tag">2024 UNGC SINGAPORE</div>
+            <div class="award-title">Sustainable Solutions Award</div>
+            <p class="award-desc">Recognized by the UN Global Compact Network Singapore for measurable contribution to the clean energy transition.</p>
+          </div>
+
+          <div class="award-card">
+            <div class="award-year-tag">SIGNATORY</div>
+            <div class="award-title">UN Global Compact</div>
+            <p class="award-desc">Signatory committed to the Ten Principles on human rights, labor, environment, and anti-corruption.</p>
           </div>
         </div>
 
-        <!-- Partners: Infinite Dual-Row Auto-Scrolling Marquee -->
-        <div class="partners-marquee-wrap">
-          <div class="partners-marquee-label">Strategic Advisory, Technology &amp; Energy Partners</div>
-
-          <!-- Row 1 — scrolls left -->
-          <div class="marquee-outer">
-            <div class="marquee-fade marquee-fade-l"></div>
-            <div class="marquee-fade marquee-fade-r"></div>
-            <div class="marquee-track marquee-track--left" aria-hidden="true">
-              <div class="marquee-content">
-                <div class="marquee-logo-item" data-name="McKinsey &amp; Company"><img src="assets/logos/mckinsey.png" alt="McKinsey &amp; Company"></div>
-                <div class="marquee-logo-item" data-name="Mott MacDonald"><img src="assets/logos/mott-macdonald.png" alt="Mott MacDonald"></div>
-                <div class="marquee-logo-item" data-name="AWS"><img src="assets/logos/aws.png" alt="AWS"></div>
-                <div class="marquee-logo-item" data-name="Advantech"><img src="assets/logos/advantech.png" alt="Advantech"></div>
-                <div class="marquee-logo-item" data-name="Moxa"><img src="assets/logos/moxa.png" alt="Moxa"></div>
-                <div class="marquee-logo-item" data-name="GovTech Singapore"><img src="assets/logos/govtech.png" alt="GovTech Singapore"></div>
-                <div class="marquee-logo-item" data-name="PUB Singapore"><img src="assets/logos/pub-water.png" alt="PUB Singapore"></div>
-                <div class="marquee-logo-item" data-name="HTX"><img src="assets/logos/htx.png" alt="HTX"></div>
-                <!-- Duplicated for seamless loop -->
-                <div class="marquee-logo-item" data-name="McKinsey &amp; Company"><img src="assets/logos/mckinsey.png" alt="McKinsey &amp; Company"></div>
-                <div class="marquee-logo-item" data-name="Mott MacDonald"><img src="assets/logos/mott-macdonald.png" alt="Mott MacDonald"></div>
-                <div class="marquee-logo-item" data-name="AWS"><img src="assets/logos/aws.png" alt="AWS"></div>
-                <div class="marquee-logo-item" data-name="Advantech"><img src="assets/logos/advantech.png" alt="Advantech"></div>
-                <div class="marquee-logo-item" data-name="Moxa"><img src="assets/logos/moxa.png" alt="Moxa"></div>
-                <div class="marquee-logo-item" data-name="GovTech Singapore"><img src="assets/logos/govtech.png" alt="GovTech Singapore"></div>
-                <div class="marquee-logo-item" data-name="PUB Singapore"><img src="assets/logos/pub-water.png" alt="PUB Singapore"></div>
-                <div class="marquee-logo-item" data-name="HTX"><img src="assets/logos/htx.png" alt="HTX"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Row 2 — scrolls right -->
-          <div class="marquee-outer" style="margin-top: 12px;">
-            <div class="marquee-fade marquee-fade-l"></div>
-            <div class="marquee-fade marquee-fade-r"></div>
-            <div class="marquee-track marquee-track--right" aria-hidden="true">
-              <div class="marquee-content">
-                <div class="marquee-logo-item" data-name="Tenaga Nasional"><img src="assets/logos/tenaga-nasional.png" alt="Tenaga Nasional"></div>
-                <div class="marquee-logo-item" data-name="PTT"><img src="assets/logos/ptt.png" alt="PTT"></div>
-                <div class="marquee-logo-item" data-name="SPIC"><img src="assets/logos/spic.png" alt="SPIC"></div>
-                <div class="marquee-logo-item" data-name="HSBC"><img src="assets/logos/hsbc.png" alt="HSBC"></div>
-                <div class="marquee-logo-item" data-name="OCBC Bank"><img src="assets/logos/ocbc.png" alt="OCBC Bank"></div>
-                <div class="marquee-logo-item" data-name="Indorama Ventures"><img src="assets/logos/indorama.png" alt="Indorama Ventures"></div>
-                <div class="marquee-logo-item" data-name="Eaton"><img src="assets/logos/eaton.png" alt="Eaton"></div>
-                <div class="marquee-logo-item" data-name="Nippon Paint"><img src="assets/logos/nippon-paint.png" alt="Nippon Paint"></div>
-                <!-- Duplicated for seamless loop -->
-                <div class="marquee-logo-item" data-name="Tenaga Nasional"><img src="assets/logos/tenaga-nasional.png" alt="Tenaga Nasional"></div>
-                <div class="marquee-logo-item" data-name="PTT"><img src="assets/logos/ptt.png" alt="PTT"></div>
-                <div class="marquee-logo-item" data-name="SPIC"><img src="assets/logos/spic.png" alt="SPIC"></div>
-                <div class="marquee-logo-item" data-name="HSBC"><img src="assets/logos/hsbc.png" alt="HSBC"></div>
-                <div class="marquee-logo-item" data-name="OCBC Bank"><img src="assets/logos/ocbc.png" alt="OCBC Bank"></div>
-                <div class="marquee-logo-item" data-name="Indorama Ventures"><img src="assets/logos/indorama.png" alt="Indorama Ventures"></div>
-                <div class="marquee-logo-item" data-name="Eaton"><img src="assets/logos/eaton.png" alt="Eaton"></div>
-                <div class="marquee-logo-item" data-name="Nippon Paint"><img src="assets/logos/nippon-paint.png" alt="Nippon Paint"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Landmark Singapore Deployments Card -->
-        <div class="landmark-deployments-card">
-          <div class="landmark-header-row">
-            <span class="sg-flag-badge">🇸🇬 SINGAPORE SMART NATION &amp; LANDMARK DEPLOYMENTS</span>
-            <span style="font-size: 0.88rem; font-weight: 600; color: var(--univ-navy);">From Infrastructure to Citizen Impact</span>
-          </div>
-          <div class="landmark-photo-grid">
-            <div>
-              <div class="landmark-photo-card">
-                <img src="assets/photos/landmark-marina-bay-skyline.jpg" alt="Marina Bay, Singapore" loading="lazy">
-                <div class="landmark-photo-caption">
-                  <h5>Singapore Smart Nation OS</h5>
-                </div>
-              </div>
-              <p class="landmark-photo-desc">Univers provided the underlying operating system of Singapore's national Smart Nation platform in 2019.</p>
-            </div>
-            <div>
-              <div class="landmark-photo-card">
-                <img src="assets/photos/landmark-gardens-by-the-bay.jpg" alt="Gardens by the Bay, Singapore" loading="lazy">
-                <div class="landmark-photo-caption">
-                  <h5>Gardens by the Bay</h5>
-                </div>
-              </div>
-              <p class="landmark-photo-desc">The operations platform for Smart Net Zero Gardens at one of the world's most visited destinations (crowd dispersal, tree health, and dynamic LLM reporting).</p>
-            </div>
-            <div>
-              <div class="landmark-photo-card">
-                <img src="assets/photos/landmark-changi-jewel.jpg" alt="Jewel Changi Airport, Singapore" loading="lazy">
-                <div class="landmark-photo-caption">
-                  <h5>Changi Airport &amp; Jewel</h5>
-                </div>
-              </div>
-              <p class="landmark-photo-desc">Terminal 3 and Jewel HVAC energy optimization for the world's most awarded airport. See the full Changi story in the client showcase above.</p>
-            </div>
-            <div>
-              <div class="landmark-photo-card">
-                <img src="assets/photos/energy-solar-aerial.jpg" alt="Large-scale energy storage infrastructure" loading="lazy">
-                <div class="landmark-photo-caption">
-                  <h5>Southeast Asia's Largest BESS</h5>
-                </div>
-              </div>
-              <p class="landmark-photo-desc">Powered the real-time telemetry, frequency synchronization, and grid dispatch for Southeast Asia's largest energy storage system.</p>
-            </div>
-            <div>
-              <div class="landmark-photo-card">
-                <img src="assets/photos/landmark-hdb-estate.jpg" alt="HDB public housing estate, Singapore" loading="lazy">
-                <div class="landmark-photo-caption">
-                  <h5>HDB Singapore Residential Estates</h5>
-                </div>
-              </div>
-              <p class="landmark-photo-desc">9 legacy BMS vendors unified into 1 sovereign platform across 11,000 residential blocks, 36 malls, and 2,000 car parks. See the full HDB story in the client showcase above.</p>
-            </div>
-          </div>
-          <div class="landmark-grid">
-            <div class="landmark-item">
-              <h5>Punggol Digital District (PDD)</h5>
-              <p>Powering Singapore's first district-level smart grid to champion sustainable, autonomous industrial development.</p>
-            </div>
-            <div class="landmark-item">
-              <h5>HTX Land Border Modernization</h5>
-              <p>Orchestrating smart BMS, predictive maintenance, and energy efficiency at the world's busiest land border.</p>
-            </div>
-            <div class="landmark-item">
-              <h5>TraceTogether National Gateway</h5>
-              <p>Served as the high-availability gateway platform for Singapore's national COVID-19 contact tracing tokens.</p>
-            </div>
-          </div>
+        <!-- Signatory & Commitment Callout -->
+        <div class="governance-callout-card">
+          <h5>⚡ Signatory of the 24/7 Carbon-Free Energy Compact</h5>
+          <p>
+            Univers is a signatory of the 24/7 Carbon-Free Energy Compact, a global initiative launched by Sustainable Energy for All (SEforALL) in partnership with the United Nations. The commitment goes beyond annual offsetting: matching every unit of electricity consumed with carbon-free generation, in the same location, on an hourly basis. It's the same closed-loop rigor EnOS™ applies to client operations, applied to our own.
+          </p>
         </div>
 
         <div style="text-align: center; margin-top: 3rem;">
-          <button type="button" class="btn btn-primary" data-open-demo>
-            <span>Talk to a Solution Architect</span>
-            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </button>
+          <a href="https://univers.com/sustainability/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <span>Read the Full Sustainability Report</span>
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
         </div>
       </div>
     </section>
+
   </main>
 
   <!-- ========================================================================
