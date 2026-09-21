@@ -2251,6 +2251,15 @@ body.nav-open {
   display: block;
   overflow: hidden;
   vertical-align: top;
+  /* Headings use a tight line-height (as low as 1.05) for a dense
+     display-type look. That's fine for normal text, but once wrapped
+     in overflow:hidden for the mask-reveal animation, descenders (g,
+     p, y...) that extend below what 1.05 allocates get clipped flat.
+     Loosen the line-height specifically inside the mask so descenders
+     have room, then pull the next line back up with a matching
+     negative margin so multi-line spacing doesn't visibly loosen. */
+  line-height: 1.2;
+  margin-bottom: -0.15em;
 }
 
 .mask-line:not(.word-reveal) > span,
