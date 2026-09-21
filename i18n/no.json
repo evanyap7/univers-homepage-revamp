@@ -1,4 +1,21 @@
 {
+  "simulatorPage": {
+    "eyebrow": "Live arkitektursimulering",
+    "headline": "Sanntids karbonreduksjonsintelligens for uovertruffen kontroll og uendelige muligheter.",
+    "subtitle": "Opplev hvordan EnOS™-plattformen kobler operasjonell teknologi ute i felt sammen med skyintelligens for å levere sanntids energi- og karbonovervåking, -rapportering og -reduksjon.",
+    "step1Title": "Ute i felt: EnOS Edge",
+    "step1Body": "Over 450 millioner tilkoblede sensorer og enheter. Leser sanntids energidata direkte fra målere, sensorer, BMS og industrielt utstyr på tvers av alle store leverandørprotokoller.",
+    "step1Badge": "→ Operasjonell teknologi",
+    "step2Title": "I skyen: EnOS Cloud",
+    "step2Body": "Et tiår med bransjeekspertise smeltet sammen med sanntids driftsdata på tvers av 1070 GW forvaltede energiressurser, som omdanner rå signaler til nøyaktig, pålitelig intelligens.",
+    "step2Badge": "→ Karbonreduksjonsintelligens",
+    "step3Title": "For kloden: klimahandling",
+    "step3Body": "Datadrevet karbonovervåking, -rapportering og -reduksjon som leverer 1013 millioner tonn CO2e i unngåtte utslipp på tvers av over 800 globale kunder.",
+    "step3Badge": "→ 1013M tonn CO2e redusert",
+    "bridgeCaption": "Lurer du på hvordan disse 3 trinnene omsettes til finansiell avkastning for din sektor?",
+    "bridgeSectorsLink": "Utforsk sektorutrullinger →",
+    "bridgeCalcLink": "Beregn verdien for din portefølje →"
+  },
   "platformPage": {
     "eyebrow": "Plattformen for fysisk AI // EnOS™-arkitektur",
     "headline": "EnOS™-plattformstacken: Skalerbar AI, forretningskritisk pålitelighet og åpen tilkobling",

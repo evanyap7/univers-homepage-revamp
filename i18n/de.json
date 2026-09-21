@@ -1,4 +1,21 @@
 {
+  "simulatorPage": {
+    "eyebrow": "Live-Architektursimulation",
+    "headline": "Echtzeit-Dekarbonisierungsintelligenz für beispiellose Kontrolle und grenzenlose Möglichkeiten.",
+    "subtitle": "Erleben Sie, wie die EnOS™-Plattform operative Technologie vor Ort mit Cloud-Intelligenz verbindet, um Echtzeit-Energie- und CO2-Monitoring, -Reporting und -Minderung zu liefern.",
+    "step1Title": "Vor Ort: EnOS Edge",
+    "step1Body": "Über 450 Mio. vernetzte Sensoren & Geräte. Liest Echtzeit-Energiedaten direkt von Zählern, Sensoren, GLT und Industrieanlagen über jedes wichtige Herstellerprotokoll hinweg.",
+    "step1Badge": "→ Operative Technologie",
+    "step2Title": "In der Cloud: EnOS Cloud",
+    "step2Body": "Ein Jahrzehnt an Fachexpertise, verschmolzen mit Live-Betriebsdaten über 1.070 GW verwaltete Energieanlagen, verwandelt Rohsignale in präzise, zuverlässige Intelligenz.",
+    "step2Badge": "→ Dekarbonisierungsintelligenz",
+    "step3Title": "Für die Erde: Klimaschutzmaßnahmen",
+    "step3Body": "Datengetriebenes CO2-Monitoring, -Reporting und -Minderung, die 1.013 Millionen Tonnen CO2e an vermiedenen Emissionen über mehr als 800 globale Kunden hinweg liefern.",
+    "step3Badge": "→ 1.013 Mio. t CO2e Minderung",
+    "bridgeCaption": "Möchten Sie wissen, wie sich diese 3 Stufen in finanzielle Erträge für Ihre Branche übersetzen?",
+    "bridgeSectorsLink": "Brancheneinsätze entdecken →",
+    "bridgeCalcLink": "Wert für Ihren Bestand berechnen →"
+  },
   "platformPage": {
     "eyebrow": "Die Plattform für Physical AI // EnOS™-Architektur",
     "headline": "Der EnOS™-Plattform-Stack: Skalierbare KI, unternehmenskritische Zuverlässigkeit und offene Konnektivität",

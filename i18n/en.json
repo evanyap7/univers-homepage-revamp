@@ -1,4 +1,21 @@
 {
+  "simulatorPage": {
+    "eyebrow": "Live Architecture Simulation",
+    "headline": "Real-time decarbonization intelligence for unmatched control and infinite opportunity.",
+    "subtitle": "Experience how the EnOS™ platform connects on-the-ground operational technology with in-the-cloud intelligence to deliver real-time energy and carbon monitoring, reporting, and abatement.",
+    "step1Title": "On the Ground: EnOS Edge",
+    "step1Body": "450M+ connected sensors & devices. Reading real-time energy data directly from meters, sensors, BMS, and industrial equipment across every major OEM protocol.",
+    "step1Badge": "→ Operational Technology",
+    "step2Title": "In the Cloud: EnOS Cloud",
+    "step2Body": "A decade of domain expertise fused with live operational data across 1,070 GW of managed energy assets, turning raw signals into accurate, reliable intelligence.",
+    "step2Badge": "→ Decarbonization Intelligence",
+    "step3Title": "For the Earth: Climate Action",
+    "step3Body": "Data-driven carbon monitoring, reporting, and abatement, delivering 1,013 Million tCO2e in avoided emissions across 800+ global clients.",
+    "step3Badge": "→ 1,013M tCO2e Abatement",
+    "bridgeCaption": "Wondering how these 3 stages translate to financial returns for your sector?",
+    "bridgeSectorsLink": "Explore Sector Deployments →",
+    "bridgeCalcLink": "Calculate Value for Your Estate →"
+  },
   "platformPage": {
     "eyebrow": "The Platform for Physical AI // EnOS™ Architecture",
     "headline": "The EnOS™ Platform Stack: Scalable AI, Mission-Critical Reliability & Open Connectivity",
