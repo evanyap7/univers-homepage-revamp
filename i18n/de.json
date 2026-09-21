@@ -1,4 +1,24 @@
 {
+  "sustainPage": {
+    "eyebrow": "Wir setzen um, was wir entwickeln",
+    "headline": "Unser Engagement für eine nachhaltige Zukunft",
+    "subtitle": "Univers baut die Plattform, die die Emissionsergebnisse von Kunden messbar macht. Wir legen an unseren eigenen Betrieb denselben Maßstab an, unabhängig geprüft und anhand wissenschaftlich fundierter Ziele validiert.",
+    "award1Title": "CDP-Klimabewertung: B",
+    "award1Desc": "Höchste im CDP-KMU-Track für 2025 erreichbare Bewertung, die verifiziertes Klimahandeln und Offenlegung widerspiegelt.",
+    "award2Title": "EcoVadis-Goldmedaille",
+    "award2Desc": "97. Perzentil unter allen von EcoVadis bewerteten Unternehmen, basierend auf der Leistung 2024 in den Bereichen Umwelt, Arbeit, Ethik und Beschaffung.",
+    "award3Title": "Wissenschaftlich fundierte Ziele validiert",
+    "award3Desc": "Kurz- und langfristige Netto-Null-Ziele, unabhängig validiert von der Science Based Targets initiative.",
+    "award4Title": "Unabhängig geprüfte Offenlegungen",
+    "award4Desc": "Nachhaltigkeitsangaben und Treibhausgasdaten erhielten für das Geschäftsjahr 2025/26 eine eingeschränkte Prüfsicherheit durch BSI.",
+    "award5Title": "Sustainable Solutions Award",
+    "award5Desc": "Ausgezeichnet vom UN Global Compact Network Singapore für den messbaren Beitrag zur Energiewende hin zu sauberer Energie.",
+    "award6Title": "UN Global Compact",
+    "award6Desc": "Unterzeichner, verpflichtet zu den zehn Prinzipien für Menschenrechte, Arbeit, Umwelt und Korruptionsbekämpfung.",
+    "compactTitle": "⚡ Unterzeichner des 24/7 Carbon-Free Energy Compact",
+    "compactBody": "Univers ist Unterzeichner des 24/7 Carbon-Free Energy Compact, einer globalen Initiative von Sustainable Energy for All (SEforALL) in Partnerschaft mit den Vereinten Nationen. Die Verpflichtung geht über jährliche Kompensation hinaus: Jede verbrauchte Stromeinheit wird stündlich und am selben Standort mit kohlenstofffreier Erzeugung abgeglichen. Es ist dieselbe Closed-Loop-Genauigkeit, die EnOS™ auf den Betrieb von Kunden anwendet, angewendet auf unseren eigenen.",
+    "reportCta": "Vollständigen Nachhaltigkeitsbericht lesen"
+  },
   "labPage": {
     "eyebrow": "Experimentelle Engineering-Sandbox",
     "headline": "Interaktiver Technologie-<span class=\"text-accent\">Spielplatz</span>",

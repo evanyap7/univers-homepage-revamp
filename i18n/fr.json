@@ -1,4 +1,24 @@
 {
+  "sustainPage": {
+    "eyebrow": "Nous appliquons ce que nous concevons",
+    "headline": "Notre engagement envers un avenir durable",
+    "subtitle": "Univers construit la plateforme qui rend mesurables les résultats d'émissions de ses clients. Nous appliquons cette même norme à nos propres activités, avec une assurance indépendante et une validation par rapport à des objectifs fondés sur la science.",
+    "award1Title": "Score climatique CDP : B",
+    "award1Desc": "Score le plus élevé disponible dans le volet PME du CDP pour 2025, reflétant une action climatique et une transparence vérifiées.",
+    "award2Title": "Médaille d'or EcoVadis",
+    "award2Desc": "97e percentile parmi toutes les entreprises évaluées par EcoVadis, sur la base des performances 2024 en matière d'environnement, de travail, d'éthique et d'achats.",
+    "award3Title": "Objectifs fondés sur la science validés",
+    "award3Desc": "Objectifs de zéro émission nette à court et long terme, validés de manière indépendante par l'initiative Science Based Targets.",
+    "award4Title": "Déclarations vérifiées de manière indépendante",
+    "award4Desc": "Déclarations de durabilité et données sur les gaz à effet de serre ayant reçu une assurance limitée de BSI pour l'exercice 2025/26.",
+    "award5Title": "Prix de la solution durable",
+    "award5Desc": "Reconnu par le UN Global Compact Network Singapore pour sa contribution mesurable à la transition vers l'énergie propre.",
+    "award6Title": "Pacte mondial des Nations Unies",
+    "award6Desc": "Signataire engagé envers les dix principes relatifs aux droits humains, au travail, à l'environnement et à la lutte contre la corruption.",
+    "compactTitle": "⚡ Signataire du Pacte 24/7 pour une énergie sans carbone",
+    "compactBody": "Univers est signataire du Pacte 24/7 pour une énergie sans carbone, une initiative mondiale lancée par Sustainable Energy for All (SEforALL) en partenariat avec les Nations Unies. Cet engagement va au-delà de la compensation annuelle : il consiste à faire correspondre chaque unité d'électricité consommée à une production sans carbone, au même endroit, sur une base horaire. C'est la même rigueur en boucle fermée qu'EnOS™ applique aux activités de ses clients, appliquée à nos propres activités.",
+    "reportCta": "Lire le rapport de durabilité complet"
+  },
   "labPage": {
     "eyebrow": "Bac à sable d'ingénierie expérimental",
     "headline": "Terrain de jeu technologique <span class=\"text-accent\">interactif</span>",
