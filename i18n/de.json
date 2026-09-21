@@ -1,4 +1,20 @@
 {
+  "calcPage": {
+    "eyebrow": "Wertrealisierung",
+    "headline": "Schätzen Sie das Dekarbonisierungspotenzial Ihres Portfolios ab.",
+    "subtitle": "Wählen Sie Ihre Branche und Anlagengröße für eine beispielhafte Schätzung von Energieeinsparungen, vermiedenen Ausfallzeiten und CO2-Minderung, modelliert nach den veröffentlichten Branchen-Benchmarks von Univers.",
+    "sectorLabel": "Primäre Anlagenbranche",
+    "sectorEnergy": "Erneuerbare Energien & Versorgung (GW)",
+    "sectorBuildings": "Gewerbliche Gebäudeumgebung (m²)",
+    "sectorLogistics": "Transport-/Hafeninfrastruktur",
+    "sectorManufacturing": "Industrielle Fertigungsanlagen",
+    "scaleLabel": "Anlagengröße / -volumen",
+    "spendLabel": "Aktuelle jährliche Energie-/Betriebskosten",
+    "resultsTitle": "Geschätzter jährlicher Nettowert",
+    "payback": "PROGNOSTIZIERTE AMORTISATION",
+    "abatement": "CO2E-MINDERUNG",
+    "cta": "Ihre Dekarbonisierungs-Roadmap anfordern"
+  },
   "trustPage": {
     "eyebrow": "Erstklassige Sicherheit ermöglicht Autonomie im großen Maßstab",
     "headline": "Unternehmensvertrauen, souveräne Compliance und unternehmenskritische Zuverlässigkeit",

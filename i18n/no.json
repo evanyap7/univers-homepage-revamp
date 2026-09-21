@@ -1,4 +1,20 @@
 {
+  "calcPage": {
+    "eyebrow": "Verdirealisering",
+    "headline": "Estimer karbonreduksjonspotensialet i porteføljen din.",
+    "subtitle": "Velg sektor og ressursomfang for et illustrerende estimat av energibesparelser, unngått nedetid og karbonreduksjon, modellert etter Univers' publiserte sektorbenchmarker.",
+    "sectorLabel": "Primær ressurssektor",
+    "sectorEnergy": "Fornybar energi og forsyning (GW)",
+    "sectorBuildings": "Kommersielt bygg og eiendom (kvadratfot)",
+    "sectorLogistics": "Transport- / havneinfrastruktur",
+    "sectorManufacturing": "Industrielle produksjonsanlegg",
+    "scaleLabel": "Ressursomfang / volum",
+    "spendLabel": "Nåværende årlige energi- / driftskostnader",
+    "resultsTitle": "Estimert årlig netto realisert verdi",
+    "payback": "FORVENTET TILBAKEBETALINGSTID",
+    "abatement": "CO2E-REDUKSJON",
+    "cta": "Be om din karbonreduksjonsplan"
+  },
   "trustPage": {
     "eyebrow": "Sikkerhet i verdensklasse muliggjør autonomi i stor skala",
     "headline": "Tillit for bedrifter, suveren etterlevelse og forretningskritisk pålitelighet",

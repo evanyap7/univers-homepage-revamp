@@ -1,4 +1,20 @@
 {
+  "calcPage": {
+    "eyebrow": "Réalisation de valeur",
+    "headline": "Estimez le potentiel de décarbonation de votre portefeuille.",
+    "subtitle": "Sélectionnez votre secteur et l'échelle de vos actifs pour une estimation illustrative des économies d'énergie, des temps d'arrêt évités et de la réduction du carbone, modélisée à partir des références sectorielles publiées par Univers.",
+    "sectorLabel": "Secteur d'actifs principal",
+    "sectorEnergy": "Énergies renouvelables & services publics (GW)",
+    "sectorBuildings": "Environnement bâti commercial (pi²)",
+    "sectorLogistics": "Infrastructure de transport / portuaire",
+    "sectorManufacturing": "Usines de fabrication industrielle",
+    "scaleLabel": "Échelle / volume des actifs",
+    "spendLabel": "Dépenses énergétiques / d'exploitation annuelles actuelles",
+    "resultsTitle": "Valeur nette annuelle estimée réalisée",
+    "payback": "RETOUR SUR INVESTISSEMENT PROJETÉ",
+    "abatement": "RÉDUCTION DE CO2E",
+    "cta": "Demander votre feuille de route de décarbonation"
+  },
   "trustPage": {
     "eyebrow": "Une sécurité de classe mondiale permet l'autonomie à grande échelle",
     "headline": "Confiance d'entreprise, conformité souveraine et fiabilité critique",

@@ -1,4 +1,20 @@
 {
+  "calcPage": {
+    "eyebrow": "价值实现",
+    "headline": "估算您资产组合的脱碳增值空间。",
+    "subtitle": "选择您的行业与资产规模，即可获得基于 Univers 已发布行业基准建模的节能、停机避免与碳减排示例估算。",
+    "sectorLabel": "主要资产行业",
+    "sectorEnergy": "可再生能源与公用事业（吉瓦）",
+    "sectorBuildings": "商业建筑环境（平方英尺）",
+    "sectorLogistics": "交通运输 / 港口基础设施",
+    "sectorManufacturing": "工业制造厂",
+    "scaleLabel": "资产规模 / 体量",
+    "spendLabel": "当前年度能源 / 运维支出",
+    "resultsTitle": "预计年度净实现价值",
+    "payback": "预计投资回收期",
+    "abatement": "二氧化碳当量减排",
+    "cta": "申请您的脱碳路线图"
+  },
   "trustPage": {
     "eyebrow": "世界级安全体系，支撑规模化自主运营",
     "headline": "企业级信任、主权级合规与任务关键级可靠性",

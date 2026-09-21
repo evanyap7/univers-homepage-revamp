@@ -1,4 +1,20 @@
 {
+  "calcPage": {
+    "eyebrow": "Waarderealisatie",
+    "headline": "Schat het decarbonisatiepotentieel van uw portefeuille in.",
+    "subtitle": "Selecteer uw sector en assetomvang voor een illustratieve schatting van energiebesparingen, vermeden uitvaltijd en koolstofreductie, gemodelleerd op de gepubliceerde sectorbenchmarks van Univers.",
+    "sectorLabel": "Primaire assetsector",
+    "sectorEnergy": "Hernieuwbare energie & nutsvoorzieningen (GW)",
+    "sectorBuildings": "Commerciële gebouwde omgeving (sq ft)",
+    "sectorLogistics": "Transport-/haveninfrastructuur",
+    "sectorManufacturing": "Industriële productiefaciliteiten",
+    "scaleLabel": "Assetomvang / volume",
+    "spendLabel": "Huidige jaarlijkse energie-/O&M-uitgaven",
+    "resultsTitle": "Geschatte jaarlijkse netto gerealiseerde waarde",
+    "payback": "VERWACHTE TERUGVERDIENTIJD",
+    "abatement": "CO2E-REDUCTIE",
+    "cta": "Vraag uw decarbonisatie-roadmap aan"
+  },
   "trustPage": {
     "eyebrow": "Beveiliging van wereldklasse maakt autonomie op schaal mogelijk",
     "headline": "Zakelijk vertrouwen, soevereine compliance en bedrijfskritische betrouwbaarheid",
