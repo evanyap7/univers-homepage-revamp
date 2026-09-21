@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="index.css?v=flow-v11">
+  <link rel="stylesheet" href="index.css?v=flow-v12">
 </head>
 <body>
   <!-- Interactive Kinetic Background Canvas -->
@@ -50,46 +50,62 @@
         <div class="chapter-pills-wrap" id="chapter-nav">
           <a href="index.html" class="chapter-pill">
             <span class="pill-dot"></span>
-            <span>Overview</span>
+            <span data-i18n="nav.overview">Overview</span>
           </a>
           <a href="clients.html" class="chapter-pill">
             <span class="pill-dot"></span>
-            <span>Clients</span>
+            <span data-i18n="nav.clients">Clients</span>
           </a>
           <a href="platform.html" class="chapter-pill">
             <span class="pill-dot"></span>
-            <span>EnOS™ Stack</span>
+            <span data-i18n="nav.enosStack">EnOS™ Stack</span>
           </a>
           <a href="simulator.html" class="chapter-pill">
             <span class="pill-dot"></span>
-            <span>Simulator</span>
+            <span data-i18n="nav.simulator">Simulator</span>
           </a>
           <a href="sectors.html" class="chapter-pill">
             <span class="pill-dot"></span>
-            <span>Sectors</span>
+            <span data-i18n="nav.sectors">Sectors</span>
           </a>
           <a href="trust-compliance.html" class="chapter-pill">
             <span class="pill-dot"></span>
-            <span>Trust &amp; Compliance</span>
+            <span data-i18n="nav.trustCompliance">Trust &amp; Compliance</span>
           </a>
           <a href="calculator.html" class="chapter-pill">
             <span class="pill-dot"></span>
-            <span>Calculator</span>
+            <span data-i18n="nav.calculator">Calculator</span>
           </a>
           <a href="lab.html" class="chapter-pill active" aria-current="page">
             <span class="pill-dot"></span>
-            <span>Lab</span>
+            <span data-i18n="nav.lab">Lab</span>
           </a>
         </div>
         <div class="mobile-nav-cta-group">
-          <button type="button" class="btn btn-primary" id="mobile-cta-demo">Book a demo</button>
+          <button type="button" class="btn btn-primary" id="mobile-cta-demo" data-i18n="nav.bookDemo">Book a demo</button>
         </div>
       </nav>
       <div class="nav-backdrop" id="nav-backdrop" hidden></div>
 
       <div class="nav-actions">
-        <button type="button" class="btn btn-primary btn-sm nav-cta-mobile-visible" data-open-demo aria-label="Book a demo">Book a demo</button>
-        <button type="button" class="btn btn-primary btn-sm nav-cta-desktop" id="nav-cta-demo">Book a demo</button>
+        <div class="lang-switcher" id="lang-switcher">
+          <button type="button" class="lang-switcher-trigger" id="lang-switcher-trigger" aria-expanded="false" aria-haspopup="listbox" aria-label="Select language">
+            <svg class="lang-switcher-globe" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span class="lang-switcher-code" id="lang-switcher-code">EN</span>
+            <svg class="lang-switcher-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <ul class="lang-switcher-menu" id="lang-switcher-menu" role="listbox" aria-label="Choose a language" hidden>
+            <li role="option" data-lang="en" aria-selected="true"><button type="button">English</button></li>
+            <li role="option" data-lang="zh" aria-selected="false"><button type="button">中文</button></li>
+            <li role="option" data-lang="ja" aria-selected="false"><button type="button">日本語</button></li>
+            <li role="option" data-lang="de" aria-selected="false"><button type="button">Deutsch</button></li>
+            <li role="option" data-lang="nl" aria-selected="false"><button type="button">Nederlands</button></li>
+            <li role="option" data-lang="fr" aria-selected="false"><button type="button">Français</button></li>
+            <li role="option" data-lang="no" aria-selected="false"><button type="button">Norsk</button></li>
+          </ul>
+        </div>
+        <button type="button" class="btn btn-primary btn-sm nav-cta-mobile-visible" data-open-demo aria-label="Book a demo" data-i18n="nav.bookDemo">Book a demo</button>
+        <button type="button" class="btn btn-primary btn-sm nav-cta-desktop" id="nav-cta-demo" data-i18n="nav.bookDemo">Book a demo</button>
 
         <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-nav-drawer" aria-label="Open menu">
           <svg class="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -111,12 +127,12 @@
       <div class="container" style="max-width: 900px; text-align: center;">
         <div class="eyebrow" style="margin-bottom: 1rem;">
           <span class="pulse-dot"></span>
-          <span>Experimental Engineering Sandbox</span>
+          <span data-i18n="labPage.eyebrow">Experimental Engineering Sandbox</span>
         </div>
-        <h1 style="font-size: clamp(2.4rem, 5vw, 4.4rem); font-weight: 300; letter-spacing: -0.03em; margin-bottom: 1.25rem;">
+        <h1 style="font-size: clamp(2.4rem, 5vw, 4.4rem); font-weight: 300; letter-spacing: -0.03em; margin-bottom: 1.25rem;" data-i18n-html="labPage.headline">
           Interactive Technology <span class="text-accent">Playground</span>
         </h1>
-        <p style="font-size: clamp(1.05rem, 1.3vw, 1.2rem); color: var(--univ-text-secondary); line-height: 1.6; max-width: 65ch; margin: 0 auto 2.5rem;">
+        <p style="font-size: clamp(1.05rem, 1.3vw, 1.2rem); color: var(--univ-text-secondary); line-height: 1.6; max-width: 65ch; margin: 0 auto 2.5rem;" data-i18n="labPage.subtitle">
           A dedicated experimental environment for procedural Web Audio synthesis, real-time grid cascade stress testing, multi-mode canvas particle physics, and cybernetic cursor interaction.
         </p>
       </div>
@@ -132,8 +148,8 @@
                   <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--univ-purple); font-weight: 600;">MODULE 01</span>
                   <span class="hud-badge-active" id="hud-status-badge">STANDBY</span>
                 </div>
-                <h3 style="font-size: 1.2rem; margin-bottom: 8px;">Grid Stress Cascade</h3>
-                <p style="font-size: 0.9rem; color: var(--univ-text-secondary); line-height: 1.5; margin-bottom: 20px;">
+                <h3 style="font-size: 1.2rem; margin-bottom: 8px;" data-i18n="labPage.module1Title">Grid Stress Cascade</h3>
+                <p style="font-size: 0.9rem; color: var(--univ-text-secondary); line-height: 1.5; margin-bottom: 20px;" data-i18n="labPage.module1Body">
                   Simulate a sudden load anomaly across 450M+ device telemetry streams to test sub-second resilience and automated throttling.
                 </p>
               </div>
@@ -141,7 +157,7 @@
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                 </svg>
-                <span>Trigger Grid Surge</span>
+                <span data-i18n="labPage.module1Btn">Trigger Grid Surge</span>
               </button>
             </div>
 
@@ -152,8 +168,8 @@
                   <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--univ-purple); font-weight: 600;">MODULE 02</span>
                   <span class="hud-audio-indicator" id="hud-audio-indicator">MUTED</span>
                 </div>
-                <h3 style="font-size: 1.2rem; margin-bottom: 8px;">Procedural Web Audio FX</h3>
-                <p style="font-size: 0.9rem; color: var(--univ-text-secondary); line-height: 1.5; margin-bottom: 20px;">
+                <h3 style="font-size: 1.2rem; margin-bottom: 8px;" data-i18n="labPage.module2Title">Procedural Web Audio FX</h3>
+                <p style="font-size: 0.9rem; color: var(--univ-text-secondary); line-height: 1.5; margin-bottom: 20px;" data-i18n="labPage.module2Body">
                   Real-time procedural sine and frequency modulation feedback generated on hover, click, and dragging using Web Audio API oscillators.
                 </p>
               </div>
@@ -167,7 +183,7 @@
                   <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                   <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                 </svg>
-                <span id="hud-sound-text">Enable Audio FX</span>
+                <span id="hud-sound-text" data-i18n="labPage.module2Btn">Enable Audio FX</span>
               </button>
             </div>
 
@@ -178,8 +194,8 @@
                   <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--univ-purple); font-weight: 600;">MODULE 03</span>
                   <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--univ-text-muted);">OT RADAR</span>
                 </div>
-                <h3 style="font-size: 1.2rem; margin-bottom: 8px;">Network Radar Ping</h3>
-                <p style="font-size: 0.9rem; color: var(--univ-text-secondary); line-height: 1.5; margin-bottom: 20px;">
+                <h3 style="font-size: 1.2rem; margin-bottom: 8px;" data-i18n="labPage.module3Title">Network Radar Ping</h3>
+                <p style="font-size: 0.9rem; color: var(--univ-text-secondary); line-height: 1.5; margin-bottom: 20px;" data-i18n="labPage.module3Body">
                   Emit a high-frequency circular telemetry pulse across the kinetic node mesh to simulate device discovery and packet arrival.
                 </p>
               </div>
@@ -189,7 +205,7 @@
                   <line x1="12" y1="2" x2="12" y2="22"></line>
                   <line x1="2" y1="12" x2="22" y2="12"></line>
                 </svg>
-                <span>Emit Radar Scan</span>
+                <span data-i18n="labPage.module3Btn">Emit Radar Scan</span>
               </button>
             </div>
 
@@ -213,8 +229,8 @@
                   </div>
                   <div class="logic-core-glow"></div>
                 </div>
-                <h3 style="font-size: 1.2rem; margin-bottom: 8px;">Logic Core</h3>
-                <p style="font-size: 0.9rem; color: var(--univ-text-secondary); line-height: 1.5; margin-bottom: 20px;">
+                <h3 style="font-size: 1.2rem; margin-bottom: 8px;" data-i18n="labPage.module4Title">Logic Core</h3>
+                <p style="font-size: 0.9rem; color: var(--univ-text-secondary); line-height: 1.5; margin-bottom: 20px;" data-i18n="labPage.module4Body">
                   An isometric control plane with an illuminated decision core and orbiting agent nodes, visualizing EnOS™'s closed-loop dispatch logic in real time.
                 </p>
               </div>
@@ -223,7 +239,7 @@
                   <circle cx="12" cy="12" r="3"></circle>
                   <circle cx="12" cy="12" r="9" stroke-dasharray="4 3"></circle>
                 </svg>
-                <span id="hud-logic-core-text">Activate Logic Core</span>
+                <span id="hud-logic-core-text" data-i18n="labPage.module4Btn">Activate Logic Core</span>
               </button>
             </div>
           </div>
@@ -231,25 +247,25 @@
           <!-- Physics & Cursor Settings Row -->
           <div style="margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--univ-border-subtle); display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
             <div>
-              <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; margin-bottom: 12px; color: var(--univ-purple-dark);">
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; margin-bottom: 12px; color: var(--univ-purple-dark);" data-i18n="labPage.bgPhysicsLabel">
                 BACKGROUND PHYSICS SIMULATION
               </div>
               <div class="hud-button-row" style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button class="hud-pill-btn active" data-bg-mode="mesh">OT Mesh</button>
-                <button class="hud-pill-btn" data-bg-mode="matrix">Grid Matrix</button>
-                <button class="hud-pill-btn" data-bg-mode="particles">Solar Drift</button>
+                <button class="hud-pill-btn active" data-bg-mode="mesh" data-i18n="labPage.bgModeMesh">OT Mesh</button>
+                <button class="hud-pill-btn" data-bg-mode="matrix" data-i18n="labPage.bgModeMatrix">Grid Matrix</button>
+                <button class="hud-pill-btn" data-bg-mode="particles" data-i18n="labPage.bgModeParticles">Solar Drift</button>
               </div>
             </div>
 
             <div>
-              <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; margin-bottom: 12px; color: var(--univ-purple-dark);">
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; margin-bottom: 12px; color: var(--univ-purple-dark);" data-i18n="labPage.cursorLabel">
                 MOUSE DRAG FLUID DYNAMICS
               </div>
               <div class="hud-button-row" style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button class="hud-pill-btn active" data-cursor-mode="plasma">Electric Ribbon</button>
-                <button class="hud-pill-btn" data-cursor-mode="sparks">Spark Stream</button>
+                <button class="hud-pill-btn active" data-cursor-mode="plasma" data-i18n="labPage.cursorPlasma">Electric Ribbon</button>
+                <button class="hud-pill-btn" data-cursor-mode="sparks" data-i18n="labPage.cursorSparks">Spark Stream</button>
               </div>
-              <div style="font-size: 0.82rem; color: var(--univ-text-muted); margin-top: 8px;">
+              <div style="font-size: 0.82rem; color: var(--univ-text-muted); margin-top: 8px;" data-i18n="labPage.cursorTip">
                 Tip: Click, hold, and drag your cursor anywhere on the screen!
               </div>
             </div>
@@ -267,33 +283,33 @@
         <circle cx="12" cy="12" r="3"></circle>
         <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
       </svg>
-      <span class="hud-label">CONTROLS</span>
+      <span class="hud-label" data-i18n="labPage.controlsLabel">CONTROLS</span>
     </button>
 
     <div class="cyber-hud-panel" id="cyber-hud-panel" hidden>
       <div class="hud-panel-header">
         <div class="hud-panel-title">
           <span class="pulse-dot"></span>
-          <span>QUICK CONTROLS</span>
+          <span data-i18n="labPage.quickControls">QUICK CONTROLS</span>
         </div>
         <button class="hud-close-btn" id="cyber-hud-close" aria-label="Close Interactive Controls">✕</button>
       </div>
 
       <div class="hud-panel-body">
         <div class="hud-control-group">
-          <div class="hud-control-label">Background Mode</div>
+          <div class="hud-control-label" data-i18n="labPage.bgModeLabel">Background Mode</div>
           <div class="hud-button-row">
-            <button class="hud-pill-btn active" data-bg-mode="mesh">OT Mesh</button>
-            <button class="hud-pill-btn" data-bg-mode="matrix">Grid Matrix</button>
-            <button class="hud-pill-btn" data-bg-mode="particles">Solar Drift</button>
+            <button class="hud-pill-btn active" data-bg-mode="mesh" data-i18n="labPage.bgModeMesh">OT Mesh</button>
+            <button class="hud-pill-btn" data-bg-mode="matrix" data-i18n="labPage.bgModeMatrix">Grid Matrix</button>
+            <button class="hud-pill-btn" data-bg-mode="particles" data-i18n="labPage.bgModeParticles">Solar Drift</button>
           </div>
         </div>
 
         <div class="hud-control-group">
-          <div class="hud-control-label">Cursor Dynamics</div>
+          <div class="hud-control-label" data-i18n="labPage.cursorDynamicsLabel">Cursor Dynamics</div>
           <div class="hud-button-row">
-            <button class="hud-pill-btn active" data-cursor-mode="plasma">Electric Ribbon</button>
-            <button class="hud-pill-btn" data-cursor-mode="sparks">Spark Stream</button>
+            <button class="hud-pill-btn active" data-cursor-mode="plasma" data-i18n="labPage.cursorPlasma">Electric Ribbon</button>
+            <button class="hud-pill-btn" data-cursor-mode="sparks" data-i18n="labPage.cursorSparks">Spark Stream</button>
           </div>
         </div>
       </div>
@@ -308,54 +324,54 @@
           <a href="index.html" class="brand-logo" aria-label="Univers Homepage">
             <svg class="brand-logo-mark" aria-hidden="true" viewBox="-52961 -11737 961733 203620" xmlns="http://www.w3.org/2000/svg"><path d="M395026,47802 C398186,54628 399765,62939 399765,72764 L399765,154112 L380343,154112 L380343,73010 C380343,64853 378459,58532 374691,54046 C370923,49392 365810,47052 359329,47052 C353607,47052 348868,48797 345101,52288 C341485,55778 338396,61440 335834,69261 L318436,122662 C314820,133805 309625,142207 302851,147869 C296077,153531 287337,156349 276654,156349 C267926,156349 260472,154604 254295,151114 C248269,147623 243682,142465 240512,135641 C237505,128815 235995,120503 235995,110678 L235995,29343 L255418,29343 L255418,110446 C255418,118602 257302,125001 261069,129655 C264837,134140 269950,136390 276432,136390 C282153,136390 286821,134645 290437,131154 C294204,127664 297364,122003 299926,114182 L317313,60781 C320929,49637 326124,41235 332898,35574 C339672,29911 348412,27094 359094,27094 C367823,27094 375206,28839 381232,32329 C387409,35819 391997,40976 395015,47802 L395026,47802 Z M422183,154112 L441606,154112 L441606,29343 L422183,29343 L422183,154126 L422183,154112 Z M509726,134154 L476976,29343 L456196,29343 L497990,154126 L521250,154126 L562587,29343 L542264,29343 L509737,134154 L509726,134154 Z M656834,44312 C666169,55623 670836,71600 670836,92232 L670617,99226 L583425,99226 C584035,109877 587264,118939 593141,126423 C599008,133908 607447,137657 618430,137657 C626412,137657 633031,135822 638308,132163 C643585,128337 647271,123101 649376,116444 L669265,116444 C668055,122933 665340,129254 661130,135407 C657073,141560 651338,146641 643966,150636 C636737,154462 628231,156375 618449,156375 C608057,156375 598789,153803 590655,148645 C582530,143487 576129,136080 571457,126437 C566940,116625 564682,105145 564682,91999 C564682,78853 567011,66714 571681,57057 C576348,47247 582749,39839 590883,34850 C599008,29691 608266,27119 618658,27119 C634765,27119 647500,32859 656834,44338 L656834,44312 Z M651643,81490 C650738,70670 647347,62190 641471,56036 C635594,49716 628078,46549 618877,46549 C608638,46549 600665,49547 594941,55532 C589216,61349 585378,70011 583416,81490 L651643,81490 Z M698316,39813 C691982,46639 688819,56373 688819,69015 L688819,154112 L708250,154112 L708250,69273 C708250,62952 709755,58131 712765,54795 C715918,51305 720366,49560 726091,49560 L754542,49560 L754542,29343 L725414,29343 C713813,29343 704783,32833 698297,39827 L698316,39813 Z M849782,97713 C844963,92219 836762,87734 825170,84243 L803034,77753 C796699,75918 792118,73760 789251,71265 C786384,68769 784955,65602 784955,61776 C784955,56618 787146,52624 791508,49793 C796023,46962 802272,45553 810254,45553 C818226,45553 823950,47389 828313,51047 C832828,54537 835466,59695 836228,66521 L855878,66521 C855574,54705 851211,45229 842772,38068 C834495,30751 823731,27094 810473,27094 C797214,27094 785850,30416 777726,37073 C769744,43562 765753,52456 765753,63780 C765753,72596 768382,79757 773659,85238 C779078,90732 787736,95050 799633,98217 L820636,103957 C826970,105792 831485,107950 834190,110446 C836904,112941 838257,116263 838257,120425 C838257,125919 835933,130237 831266,133404 C826598,136403 820121,137889 811844,137889 C803557,137889 797242,135977 791966,132150 C786851,128156 783898,122416 783155,114931 L763505,114931 C763953,128246 768248,138471 776373,145632 C784660,152782 796404,156362 811616,156362 C825932,156362 837066,153117 845048,146628 C853183,140139 857250,131154 857250,119676 C857250,110356 854773,103038 849801,97713 L849782,97713 Z M30782,24779 C25634,29032 23399,35328 25775,38831 C28149,42347 34257,41753 39393,37500 C44542,33247 46776,26951 44402,23448 C42026,19932 35919,20526 30782,24779 Z M24218,113704 C16531,112604 9324,119973 8119,130185 C6913,140397 12167,149562 19866,150674 C27553,151773 34760,144405 35965,134193 C37170,123980 31917,114815 24218,113704 Z M19913,84838 C23645,77275 22721,68783 17854,65848 C12986,62927 6024,66676 2292,74224 C-1440,81787 -516,90280 4351,93214 C9218,96136 16180,92387 19913,84838 Z M130388,41235 C138835,45087 147751,42644 150325,35781 C152888,28929 148125,20242 139677,16390 C131230,12538 122314,14981 119741,21845 C117177,28696 121940,37384 130388,41235 Z M68762,139557 C59097,139557 51258,148826 51258,160266 C51258,171706 59097,180975 68762,180975 C78426,180975 86265,171706 86265,160266 C86265,148826 78426,139557 68762,139557 Z M82065,180 C74729,1188 69253,6190 69838,11322 C70423,16454 76847,19790 84183,18781 C91519,17760 96995,12770 96410,7638 C95824,2507 89401,-829 82065,180 Z M166776,70670 C161112,61556 150583,58686 143246,64245 C135910,69804 134564,81709 140215,90810 C145879,99924 156409,102793 163745,97235 C171081,91676 172427,79771 166776,70670 Z M127684,116857 C117201,116857 108707,126242 108707,137825 C108707,149407 117201,158792 127684,158792 C138169,158792 146663,149395 146663,137825 C146663,126256 138169,116857 127684,116857 Z" fill="currentColor" fill-rule="evenodd"/></svg>
           </a>
-          <p>
+          <p data-i18n="labPage.footerBlurb">
             The world's most comprehensive decarbonization platform. Univers connects on-the-ground operational technology with in-the-cloud intelligence.
           </p>
         </div>
 
         <div class="footer-col">
-          <h5>Platform &amp; Products</h5>
+          <h5 data-i18n="footer.colPlatform">Platform &amp; Products</h5>
           <ul class="footer-links">
-            <li><a href="platform.html">EnOS™ Platform</a></li>
-            <li><a href="simulator.html">Live Simulator</a></li>
-            <li><a href="calculator.html">Impact Calculator</a></li>
-            <li><a href="lab.html">Interactive Lab</a></li>
+            <li><a href="platform.html" data-i18n="labPage.footerEnos">EnOS™ Platform</a></li>
+            <li><a href="simulator.html" data-i18n="labPage.footerSimulator">Live Simulator</a></li>
+            <li><a href="calculator.html" data-i18n="labPage.footerCalculator">Impact Calculator</a></li>
+            <li><a href="lab.html" data-i18n="nav.lab">Interactive Lab</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h5>Sectors</h5>
+          <h5 data-i18n="footer.colSectors">Sectors</h5>
           <ul class="footer-links">
-            <li><a href="sectors.html">Energy &amp; Utilities</a></li>
-            <li><a href="sectors.html">Built Environment</a></li>
-            <li><a href="sectors.html">Transportation &amp; Ports</a></li>
-            <li><a href="sectors.html">Industrial Manufacturing</a></li>
+            <li><a href="sectors.html" data-i18n="footer.linkEnergy">Energy &amp; Utilities</a></li>
+            <li><a href="sectors.html" data-i18n="footer.linkBuiltEnv">Built Environment</a></li>
+            <li><a href="sectors.html" data-i18n="footer.linkTransport">Transportation &amp; Ports</a></li>
+            <li><a href="sectors.html" data-i18n="footer.linkManufacturing">Industrial Manufacturing</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h5>Company &amp; Trust</h5>
+          <h5 data-i18n="footer.colCompany">Company &amp; Trust</h5>
           <ul class="footer-links">
-            <li><a href="clients.html">Customer Stories</a></li>
-            <li><a href="trust-compliance.html">Trust &amp; Compliance</a></li>
-            <li><a href="sustainability.html">Sustainability</a></li>
-            <li><a href="index.html">Homepage</a></li>
+            <li><a href="clients.html" data-i18n="footer.linkCustomerStories">Customer Stories</a></li>
+            <li><a href="trust-compliance.html" data-i18n="nav.trustCompliance">Trust &amp; Compliance</a></li>
+            <li><a href="sustainability.html" data-i18n="footer.linkSustainability">Sustainability</a></li>
+            <li><a href="index.html" data-i18n="labPage.footerHomepage">Homepage</a></li>
           </ul>
         </div>
       </div>
 
-      <div class="footer-disclosure">
+      <div class="footer-disclosure" data-i18n-html="labPage.footerDisclosure">
         Unofficial concept redesign inspired by <a href="https://univers.com/" target="_blank" rel="noopener noreferrer">univers.com</a> and Univers' own Brand Guidelines. Not affiliated with, endorsed by, or representing Univers. Built as an interactive technology exercise.
       </div>
 
       <div class="footer-bottom">
         <div>
-          © 2026 Univers. Content sourced from Univers' Brand Guidelines and univers.com. Concept build, not an official Univers property.
+          <span data-i18n="footer.copyright">© 2026 Univers. Content sourced from Univers' Brand Guidelines and univers.com. Concept build, not an official Univers property.</span>
           <span class="footer-dev-credit">· Concept redesigned by <a href="https://www.linkedin.com/in/evanyapzhikai/" target="_blank" rel="noopener noreferrer">Evan Yap</a></span>
         </div>
         <div style="display: flex; gap: 20px;">
-          <a href="https://univers.com/policies/" target="_blank" rel="noopener noreferrer" style="color: var(--univ-text-muted); text-decoration: none;">Privacy Policy</a>
-          <a href="https://univers.com/policies/" target="_blank" rel="noopener noreferrer" style="color: var(--univ-text-muted); text-decoration: none;">Terms of Service</a>
+          <a href="https://univers.com/policies/" target="_blank" rel="noopener noreferrer" style="color: var(--univ-text-muted); text-decoration: none;" data-i18n="footer.linkPrivacy">Privacy Policy</a>
+          <a href="https://univers.com/policies/" target="_blank" rel="noopener noreferrer" style="color: var(--univ-text-muted); text-decoration: none;" data-i18n="footer.linkTerms">Terms of Service</a>
         </div>
       </div>
     </div>
@@ -376,10 +392,10 @@
         <div class="modal-header">
           <div class="modal-badge">
             <span class="pulse-dot"></span>
-            <span>ENTERPRISE PLATFORM DEMO</span>
+            <span data-i18n="demoModal.badge">ENTERPRISE PLATFORM DEMO</span>
           </div>
-          <h2 id="demo-modal-title" class="modal-title">Schedule Decarbonization Assessment</h2>
-          <p class="modal-subtitle">
+          <h2 id="demo-modal-title" class="modal-title" data-i18n="demoModal.title">Schedule Decarbonization Assessment</h2>
+          <p class="modal-subtitle" data-i18n="demoModal.subtitle">
             Experience Univers live. Our solution architects will review your energy asset telemetry and show how EnOS connects your portfolio from the edge to the cloud.
           </p>
         </div>
@@ -387,39 +403,39 @@
         <form id="demo-booking-form" novalidate>
           <div class="form-row">
             <div class="form-group">
-              <label for="demo-name" class="form-label">Full Name <span class="required-star">*</span></label>
-              <input type="text" id="demo-name" class="form-input" placeholder="e.g. Jane Doe" required autocomplete="name">
+              <label for="demo-name" class="form-label" data-i18n-html="demoModal.labelName">Full Name <span class="required-star">*</span></label>
+              <input type="text" id="demo-name" class="form-input" placeholder="e.g. Jane Doe" required autocomplete="name" data-i18n-attr="placeholder:demoModal.placeholderName">
               <div class="form-error-msg" id="demo-name-error"></div>
             </div>
 
             <div class="form-group">
-              <label for="demo-email" class="form-label">Business Email <span class="required-star">*</span></label>
-              <input type="email" id="demo-email" class="form-input" placeholder="e.g. jane.doe@enterprise.com" required autocomplete="email">
+              <label for="demo-email" class="form-label" data-i18n-html="demoModal.labelEmail">Business Email <span class="required-star">*</span></label>
+              <input type="email" id="demo-email" class="form-input" placeholder="e.g. jane.doe@enterprise.com" required autocomplete="email" data-i18n-attr="placeholder:demoModal.placeholderEmail">
               <div class="form-error-msg" id="demo-email-error"></div>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="demo-org" class="form-label">Organisation / Enterprise <span class="required-star">*</span></label>
-            <input type="text" id="demo-org" class="form-input" placeholder="e.g. Acme Infrastructure" required autocomplete="organization">
+            <label for="demo-org" class="form-label" data-i18n-html="demoModal.labelOrg">Organisation / Enterprise <span class="required-star">*</span></label>
+            <input type="text" id="demo-org" class="form-input" placeholder="e.g. Acme Infrastructure" required autocomplete="organization" data-i18n-attr="placeholder:demoModal.placeholderOrg">
             <div class="form-error-msg" id="demo-org-error"></div>
           </div>
 
           <div class="form-group">
-            <label for="demo-inquiry" class="form-label">Inquiry &amp; Decarbonization Scope <span class="required-star">*</span></label>
-            <textarea id="demo-inquiry" class="form-textarea" rows="3" placeholder="Tell us about your assets (e.g. renewable fleet, real estate portfolio, ports, or industrial facilities) and primary goals..." required></textarea>
+            <label for="demo-inquiry" class="form-label" data-i18n-html="demoModal.labelInquiry">Inquiry &amp; Decarbonization Scope <span class="required-star">*</span></label>
+            <textarea id="demo-inquiry" class="form-textarea" rows="3" placeholder="Tell us about your assets (e.g. renewable fleet, real estate portfolio, ports, or industrial facilities) and primary goals..." required data-i18n-attr="placeholder:demoModal.placeholderInquiry"></textarea>
             <div class="form-error-msg" id="demo-inquiry-error"></div>
           </div>
 
           <div class="form-footer">
             <button type="submit" class="btn btn-primary btn-submit-demo" id="demo-submit-btn">
-              <span>Book a demo</span>
+              <span data-i18n="nav.bookDemo">Book a demo</span>
               <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </button>
-            <div class="form-privacy-note">
+            <div class="form-privacy-note" data-i18n="demoModal.privacyNote">
               🔒 Submissions are processed locally for demonstration. Unofficial concept build.
             </div>
           </div>
@@ -437,40 +453,40 @@
 
         <div class="modal-header" style="text-align: center;">
           <div class="modal-badge success-badge">
-            <span>DEMO REQUEST RECEIVED</span>
+            <span data-i18n="demoModal.successBadge">DEMO REQUEST RECEIVED</span>
           </div>
-          <h2 class="modal-title">Demo Request Received</h2>
-          <p class="modal-subtitle" id="demo-success-msg">
+          <h2 class="modal-title" data-i18n="demoModal.successTitle">Demo Request Received</h2>
+          <p class="modal-subtitle" id="demo-success-msg" data-i18n="demoModal.successMsg">
             Thank you! This is an unofficial concept redesign. Your demo request has been processed locally for demonstration purposes.
           </p>
         </div>
 
         <div class="booking-receipt-card">
           <div class="receipt-row">
-            <span class="receipt-label">Reference ID:</span>
+            <span class="receipt-label" data-i18n="demoModal.receiptRefId">Reference ID:</span>
             <span class="receipt-val mono-metric" id="receipt-id">UNIV-DEMO-XXXX</span>
           </div>
           <div class="receipt-row">
-            <span class="receipt-label">Contact:</span>
+            <span class="receipt-label" data-i18n="demoModal.receiptContact">Contact:</span>
             <span class="receipt-val" id="receipt-name-email">Jane Doe (jane.doe@enterprise.com)</span>
           </div>
           <div class="receipt-row">
-            <span class="receipt-label">Organisation:</span>
+            <span class="receipt-label" data-i18n="demoModal.receiptOrg">Organisation:</span>
             <span class="receipt-val" id="receipt-org">Acme Infrastructure</span>
           </div>
           <div class="receipt-row">
-            <span class="receipt-label">Inquiry Scope:</span>
+            <span class="receipt-label" data-i18n="demoModal.receiptInquiry">Inquiry Scope:</span>
             <span class="receipt-val inquiry-snippet" id="receipt-inquiry">Renewable energy monitoring</span>
           </div>
           <div class="receipt-row">
-            <span class="receipt-label">Status:</span>
-            <span class="receipt-status-pill">PROCESSED LOCALLY (CONCEPT BUILD)</span>
+            <span class="receipt-label" data-i18n="demoModal.receiptStatus">Status:</span>
+            <span class="receipt-status-pill" data-i18n="demoModal.receiptStatusVal">PROCESSED LOCALLY (CONCEPT BUILD)</span>
           </div>
         </div>
 
         <div class="success-actions" style="display: flex; justify-content: center; margin-top: 1.5rem;">
           <button type="button" class="btn btn-primary" id="btn-done-demo" style="min-width: 140px;">
-            <span>Done</span>
+            <span data-i18n="demoModal.done">Done</span>
           </button>
         </div>
       </div>
@@ -478,6 +494,6 @@
   </div>
 
   <!-- Scripts -->
-  <script src="app.js?v=flow-v11"></script>
+  <script src="app.js?v=flow-v12"></script>
 </body>
 </html>
