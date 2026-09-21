@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="index.css?v=flow-v4">
+  <link rel="stylesheet" href="index.css?v=flow-v5">
 </head>
 <body>
   <!-- Interactive Kinetic Background Canvas & Atmospheric Staging -->
@@ -58,42 +58,58 @@
         <div class="chapter-pills-wrap" id="chapter-nav">
           <a href="#overview" class="chapter-pill active" data-target="overview" aria-current="page">
             <span class="pill-dot"></span>
-            <span>Overview</span>
+            <span data-i18n="nav.overview">Overview</span>
           </a>
           <a href="clients.html" class="chapter-pill" data-target="clients">
             <span class="pill-dot"></span>
-            <span>Clients</span>
+            <span data-i18n="nav.clients">Clients</span>
           </a>
           <a href="platform.html" class="chapter-pill" data-target="enos-stack">
             <span class="pill-dot"></span>
-            <span>EnOS™ Stack</span>
+            <span data-i18n="nav.enosStack">EnOS™ Stack</span>
           </a>
           <a href="simulator.html" class="chapter-pill" data-target="engine">
             <span class="pill-dot"></span>
-            <span>Simulator</span>
+            <span data-i18n="nav.simulator">Simulator</span>
           </a>
           <a href="sectors.html" class="chapter-pill" data-target="sectors">
             <span class="pill-dot"></span>
-            <span>Sectors</span>
+            <span data-i18n="nav.sectors">Sectors</span>
           </a>
           <a href="trust-compliance.html" class="chapter-pill" data-target="security">
             <span class="pill-dot"></span>
-            <span>Trust &amp; Compliance</span>
+            <span data-i18n="nav.trustCompliance">Trust &amp; Compliance</span>
           </a>
           <a href="calculator.html" class="chapter-pill" data-target="calculator">
             <span class="pill-dot"></span>
-            <span>Calculator</span>
+            <span data-i18n="nav.calculator">Calculator</span>
           </a>
         </div>
         <div class="mobile-nav-cta-group">
-          <button type="button" class="btn btn-primary" id="mobile-cta-demo">Book a demo</button>
+          <button type="button" class="btn btn-primary" id="mobile-cta-demo" data-i18n="nav.bookDemo">Book a demo</button>
         </div>
       </nav>
       <div class="nav-backdrop" id="nav-backdrop" hidden></div>
 
       <div class="nav-actions">
-        <button type="button" class="btn btn-primary btn-sm nav-cta-mobile-visible" data-open-demo aria-label="Book a demo">Book a demo</button>
-        <button type="button" class="btn btn-primary btn-sm nav-cta-desktop" id="nav-cta-demo">Book a demo</button>
+        <div class="lang-switcher" id="lang-switcher">
+          <button type="button" class="lang-switcher-trigger" id="lang-switcher-trigger" aria-expanded="false" aria-haspopup="listbox" aria-label="Select language">
+            <svg class="lang-switcher-globe" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span class="lang-switcher-code" id="lang-switcher-code">EN</span>
+            <svg class="lang-switcher-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <ul class="lang-switcher-menu" id="lang-switcher-menu" role="listbox" aria-label="Choose a language" hidden>
+            <li role="option" data-lang="en" aria-selected="true"><button type="button">English</button></li>
+            <li role="option" data-lang="zh" aria-selected="false"><button type="button">中文</button></li>
+            <li role="option" data-lang="ja" aria-selected="false"><button type="button">日本語</button></li>
+            <li role="option" data-lang="de" aria-selected="false"><button type="button">Deutsch</button></li>
+            <li role="option" data-lang="nl" aria-selected="false"><button type="button">Nederlands</button></li>
+            <li role="option" data-lang="fr" aria-selected="false"><button type="button">Français</button></li>
+            <li role="option" data-lang="no" aria-selected="false"><button type="button">Norsk</button></li>
+          </ul>
+        </div>
+        <button type="button" class="btn btn-primary btn-sm nav-cta-mobile-visible" data-open-demo aria-label="Book a demo" data-i18n="nav.bookDemo">Book a demo</button>
+        <button type="button" class="btn btn-primary btn-sm nav-cta-desktop" id="nav-cta-demo" data-i18n="nav.bookDemo">Book a demo</button>
 
         <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-nav-drawer" aria-label="Open menu">
           <svg class="icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -121,39 +137,39 @@
         <div class="hero-content">
           <div class="eyebrow">
             <span class="pulse-dot"></span>
-            <span>UNIVERS · ALL CONNECTED</span>
+            <span data-i18n="home.hero.eyebrow">UNIVERS · ALL CONNECTED</span>
           </div>
 
-          <div class="hero-category-tag" data-rv="fade">Enterprise Decarbonization Operating System</div>
+          <div class="hero-category-tag" data-rv="fade" data-i18n="home.hero.categoryTag">Enterprise Decarbonization Operating System</div>
 
           <h1 class="hero-headline">
-            <span class="mask-line"><span class="reveal-inner">Even giants can have</span></span>
-            <span class="mask-line"><span class="reveal-inner text-accent">small footprints.</span></span>
+            <span class="mask-line"><span class="reveal-inner" data-i18n="home.hero.headline1">Even giants can have</span></span>
+            <span class="mask-line"><span class="reveal-inner text-accent" data-i18n="home.hero.headline2">small footprints.</span></span>
           </h1>
 
-          <p class="hero-lead" data-rv="up" data-rv-delay="1">
+          <p class="hero-lead" data-rv="up" data-rv-delay="1" data-i18n="home.hero.lead">
             The decarbonization operating system connecting the physical world to the digital realm, turning billions of operational data points across energy, industry, and infrastructure into autonomous carbon abatement.
           </p>
 
           <div class="hero-cta-group" data-rv="up" data-rv-delay="2">
             <button type="button" class="btn btn-primary" data-open-demo>
-              <span>Book a demo</span>
+              <span data-i18n="nav.bookDemo">Book a demo</span>
               <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </button>
             <a href="platform.html" class="btn btn-secondary">
-              <span>Explore EnOS™ Stack</span>
+              <span data-i18n="home.hero.ctaExplore">Explore EnOS™ Stack</span>
             </a>
           </div>
 
           <div class="hero-proof-strip" data-rv="up" data-rv-delay="3">
-            <div class="proof-pill"><span class="proof-num">800+</span> enterprise clients</div>
+            <div class="proof-pill"><span class="proof-num">800+</span> <span data-i18n="home.hero.proofClients">enterprise clients</span></div>
             <div class="proof-sep">·</div>
-            <div class="proof-pill"><span class="proof-num">1,070 GW</span> renewable assets</div>
+            <div class="proof-pill"><span class="proof-num">1,070 GW</span> <span data-i18n="home.hero.proofAssets">renewable assets</span></div>
             <div class="proof-sep">·</div>
-            <div class="proof-pill"><span class="proof-num">450M+</span> connected devices</div>
+            <div class="proof-pill"><span class="proof-num">450M+</span> <span data-i18n="home.hero.proofDevices">connected devices</span></div>
           </div>
         </div>
 
@@ -165,34 +181,34 @@
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
                 </svg>
-                <span>EnOS™ REAL-TIME DECARBONIZATION ENGINE</span>
+                <span data-i18n="home.hero.consoleTitle">EnOS™ REAL-TIME DECARBONIZATION ENGINE</span>
               </div>
               <span class="status-badge-simulation" title="Illustrative operational data simulation">
-                <span class="pulse-dot"></span> ILLUSTRATIVE SIMULATION
+                <span class="pulse-dot"></span> <span data-i18n="home.hero.illustrativeSimulation">ILLUSTRATIVE SIMULATION</span>
               </span>
             </div>
 
             <div class="console-body">
               <div class="telemetry-metric-grid">
                 <div class="metric-tile">
-                  <div class="metric-label">Managed Energy Assets</div>
+                  <div class="metric-label" data-i18n="home.hero.metricAssetsLabel">Managed Energy Assets</div>
                   <div class="metric-value mono-metric"><span id="telemetry-gw">1,072.4</span> GW</div>
-                  <div class="metric-delta">▲ ~20% of global renewable capacity</div>
+                  <div class="metric-delta">▲ <span data-i18n="home.hero.metricAssetsDelta">~20% of global renewable capacity</span></div>
                 </div>
                 <div class="metric-tile">
-                  <div class="metric-label">Connected Sensors &amp; Devices</div>
+                  <div class="metric-label" data-i18n="home.hero.metricSensorsLabel">Connected Sensors &amp; Devices</div>
                   <div class="metric-value mono-metric"><span id="telemetry-endpoints">452,140,912</span></div>
-                  <div class="metric-delta">▲ Microsecond edge-to-cloud stream</div>
+                  <div class="metric-delta">▲ <span data-i18n="home.hero.metricSensorsDelta">Microsecond edge-to-cloud stream</span></div>
                 </div>
                 <div class="metric-tile">
-                  <div class="metric-label">Avoided Carbon Emissions</div>
+                  <div class="metric-label" data-i18n="home.hero.metricCarbonLabel">Avoided Carbon Emissions</div>
                   <div class="metric-value mono-metric"><span id="telemetry-actions">1,013</span>M tCO2e</div>
-                  <div class="metric-delta">18× Singapore's 2023 annual GHG</div>
+                  <div class="metric-delta" data-i18n="home.hero.metricCarbonDelta">18× Singapore's 2023 annual GHG</div>
                 </div>
                 <div class="metric-tile">
-                  <div class="metric-label">Data Sync Latency</div>
+                  <div class="metric-label" data-i18n="home.hero.metricLatencyLabel">Data Sync Latency</div>
                   <div class="metric-value mono-metric" style="color: var(--univ-purple-light);"><span id="telemetry-latency">18</span> ms</div>
-                  <div class="metric-delta">Sub-second closed-loop dispatch</div>
+                  <div class="metric-delta" data-i18n="home.hero.metricLatencyDelta">Sub-second closed-loop dispatch</div>
                 </div>
               </div>
 
@@ -236,12 +252,12 @@
         <div class="section-header text-center" data-rv="up">
           <div class="eyebrow">
             <span class="pulse-dot"></span>
-            <span>The Tension · Fragmentation</span>
+            <span data-i18n="home.shift.eyebrow">The Tension · Fragmentation</span>
           </div>
-          <h2 class="section-title word-reveal">
+          <h2 class="section-title word-reveal" data-i18n="home.shift.headline">
             The enemy of decarbonization isn't ambition. It's fragmentation.
           </h2>
-          <p class="section-subtitle" data-rv="fade">
+          <p class="section-subtitle" data-rv="fade" data-i18n="home.shift.subtitle">
             There is an undeniable scientific and economic consensus on the climate crisis. Yet across global infrastructure, awareness exists without a route to abatement, because physical operations and digital intelligence are completely disconnected.
           </p>
         </div>
@@ -249,43 +265,43 @@
         <div class="market-signal-grid">
           <div class="kpi-box">
             <div class="kpi-metric mono-metric no-odometer" data-static-metric="true">1.5°C</div>
-            <div class="kpi-label">Warming limit the world must not exceed by century's end</div>
-            <div class="kpi-source">Source: UN, Paris Agreement</div>
+            <div class="kpi-label" data-i18n="home.shift.kpi1Label">Warming limit the world must not exceed by century's end</div>
+            <div class="kpi-source" data-i18n="home.shift.kpi1Source">Source: UN, Paris Agreement</div>
           </div>
           <div class="kpi-box">
             <div class="kpi-metric mono-metric no-odometer" data-static-metric="true">2030</div>
-            <div class="kpi-label">Milestone deadline to halve global greenhouse emissions</div>
-            <div class="kpi-source">Source: UN IPCC, AR6 Synthesis Report</div>
+            <div class="kpi-label" data-i18n="home.shift.kpi2Label">Milestone deadline to halve global greenhouse emissions</div>
+            <div class="kpi-source" data-i18n="home.shift.kpi2Source">Source: UN IPCC, AR6 Synthesis Report</div>
           </div>
           <div class="kpi-box">
             <div class="kpi-metric mono-metric no-odometer" data-static-metric="true">80%+</div>
-            <div class="kpi-label">Enterprise emissions data trapped in siloed manual spreadsheets</div>
-            <div class="kpi-source">Source: PwC, Global CEO Survey 2025</div>
+            <div class="kpi-label" data-i18n="home.shift.kpi3Label">Enterprise emissions data trapped in siloed manual spreadsheets</div>
+            <div class="kpi-source" data-i18n="home.shift.kpi3Source">Source: PwC, Global CEO Survey 2025</div>
           </div>
           <div class="kpi-box">
             <div class="kpi-metric mono-metric no-odometer" data-static-metric="true">90+ Days</div>
-            <div class="kpi-label">Average reporting latency between energy use and carbon disclosure</div>
-            <div class="kpi-source">Source: Deloitte, CxO Sustainability Report 2025</div>
+            <div class="kpi-label" data-i18n="home.shift.kpi4Label">Average reporting latency between energy use and carbon disclosure</div>
+            <div class="kpi-source" data-i18n="home.shift.kpi4Source">Source: Deloitte, CxO Sustainability Report 2025</div>
           </div>
         </div>
 
         <div class="shift-comparison-grid">
           <!-- Fragmented Climate Action -->
           <div class="compare-card compare-legacy">
-            <span class="compare-badge">Fragmented Climate Action</span>
-            <h3 class="compare-heading">The Fragmentation Trap</h3>
-            <p class="compare-lead">Awareness without a route to abatement. Measurement without meaning.</p>
+            <span class="compare-badge" data-i18n="home.shift.legacyBadge">Fragmented Climate Action</span>
+            <h3 class="compare-heading" data-i18n="home.shift.legacyHeading">The Fragmentation Trap</h3>
+            <p class="compare-lead" data-i18n="home.shift.legacyLead">Awareness without a route to abatement. Measurement without meaning.</p>
             <ul class="compare-list compare-accordion" data-accordion="legacy">
               <li class="compare-accordion-item open">
                 <button type="button" class="compare-accordion-trigger" aria-expanded="true">
                   <span class="accordion-icon-badge accordion-icon-badge--legacy">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
                   </span>
-                  <span class="compare-accordion-title"><span class="accordion-step-num">01</span>Disconnected Data</span>
+                  <span class="compare-accordion-title"><span class="accordion-step-num">01</span><span data-i18n="home.shift.legacyItem1Title">Disconnected Data</span></span>
                   <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
                 </button>
                 <div class="compare-accordion-body"><div class="compare-accordion-body-inner">
-                  <p>Energy, carbon, and asset data trapped in separate platforms and spreadsheets across teams and geographies.</p>
+                  <p data-i18n="home.shift.legacyItem1Body">Energy, carbon, and asset data trapped in separate platforms and spreadsheets across teams and geographies.</p>
                 </div></div>
               </li>
               <li class="compare-accordion-item">
@@ -293,11 +309,11 @@
                   <span class="accordion-icon-badge accordion-icon-badge--legacy">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 16 14"/></svg>
                   </span>
-                  <span class="compare-accordion-title"><span class="accordion-step-num">02</span>Manual Reporting</span>
+                  <span class="compare-accordion-title"><span class="accordion-step-num">02</span><span data-i18n="home.shift.legacyItem2Title">Manual Reporting</span></span>
                   <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
                 </button>
                 <div class="compare-accordion-body"><div class="compare-accordion-body-inner">
-                  <p>Weeks spent reconciling Scope 1, 2, and 3 emissions by hand before a single decision can be made.</p>
+                  <p data-i18n="home.shift.legacyItem2Body">Weeks spent reconciling Scope 1, 2, and 3 emissions by hand before a single decision can be made.</p>
                 </div></div>
               </li>
               <li class="compare-accordion-item">
@@ -305,11 +321,11 @@
                   <span class="accordion-icon-badge accordion-icon-badge--legacy">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="4.5" height="11" rx="1.4"/><rect x="9.75" y="5" width="4.5" height="16" rx="1.4"/><rect x="16.5" y="13" width="4.5" height="8" rx="1.4"/></svg>
                   </span>
-                  <span class="compare-accordion-title"><span class="accordion-step-num">03</span>Siloed Stakeholders</span>
+                  <span class="compare-accordion-title"><span class="accordion-step-num">03</span><span data-i18n="home.shift.legacyItem3Title">Siloed Stakeholders</span></span>
                   <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
                 </button>
                 <div class="compare-accordion-body"><div class="compare-accordion-body-inner">
-                  <p>Facilities, sustainability, and finance teams working from different numbers, different tools, different truths.</p>
+                  <p data-i18n="home.shift.legacyItem3Body">Facilities, sustainability, and finance teams working from different numbers, different tools, different truths.</p>
                 </div></div>
               </li>
               <li class="compare-accordion-item">
@@ -317,11 +333,11 @@
                   <span class="accordion-icon-badge accordion-icon-badge--legacy">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h7" stroke-dasharray="2.5 3"/><line x1="16" y1="8" x2="22" y2="16"/><line x1="22" y1="8" x2="16" y2="16"/></svg>
                   </span>
-                  <span class="compare-accordion-title"><span class="accordion-step-num">04</span>No Path to Action</span>
+                  <span class="compare-accordion-title"><span class="accordion-step-num">04</span><span data-i18n="home.shift.legacyItem4Title">No Path to Action</span></span>
                   <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
                 </button>
                 <div class="compare-accordion-body"><div class="compare-accordion-body-inner">
-                  <p>Data that describes the problem but never compounds into a plan for solving it.</p>
+                  <p data-i18n="home.shift.legacyItem4Body">Data that describes the problem but never compounds into a plan for solving it.</p>
                 </div></div>
               </li>
             </ul>
@@ -331,25 +347,25 @@
                reads top-to-bottom as problem, then solution. -->
           <div class="shift-connector" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
-            <span>The Shift</span>
+            <span data-i18n="home.shift.theShift">The Shift</span>
           </div>
 
           <!-- Univers Decarbonization Intelligence Card -->
           <div class="compare-card compare-autonomous">
-            <span class="compare-badge">Univers Decarbonization Intelligence</span>
-            <h3 class="compare-heading">Unity Through Connection</h3>
-            <p class="compare-lead">Connecting the on-the-ground and the in-the-cloud into one accurate, actionable truth.</p>
+            <span class="compare-badge" data-i18n="home.shift.unityBadge">Univers Decarbonization Intelligence</span>
+            <h3 class="compare-heading" data-i18n="home.shift.unityHeading">Unity Through Connection</h3>
+            <p class="compare-lead" data-i18n="home.shift.unityLead">Connecting the on-the-ground and the in-the-cloud into one accurate, actionable truth.</p>
             <ul class="compare-list compare-accordion" data-accordion="autonomous">
               <li class="compare-accordion-item open">
                 <button type="button" class="compare-accordion-trigger" aria-expanded="true">
                   <span class="accordion-icon-badge accordion-icon-badge--autonomous">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
                   </span>
-                  <span class="compare-accordion-title"><span class="accordion-step-num">01</span>Edge to Cloud</span>
+                  <span class="compare-accordion-title"><span class="accordion-step-num">01</span><span data-i18n="home.shift.unityItem1Title">Edge to Cloud</span></span>
                   <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
                 </button>
                 <div class="compare-accordion-body"><div class="compare-accordion-body-inner">
-                  <p>EnOS™ connects operational technology directly to in-the-cloud intelligence across 450M+ sensors and devices.</p>
+                  <p data-i18n="home.shift.unityItem1Body">EnOS™ connects operational technology directly to in-the-cloud intelligence across 450M+ sensors and devices.</p>
                 </div></div>
               </li>
               <li class="compare-accordion-item">
@@ -357,11 +373,11 @@
                   <span class="accordion-icon-badge accordion-icon-badge--autonomous">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
                   </span>
-                  <span class="compare-accordion-title"><span class="accordion-step-num">02</span>Real-Time Energy &amp; Carbon Data</span>
+                  <span class="compare-accordion-title"><span class="accordion-step-num">02</span><span data-i18n="home.shift.unityItem2Title">Real-Time Energy &amp; Carbon Data</span></span>
                   <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
                 </button>
                 <div class="compare-accordion-body"><div class="compare-accordion-body-inner">
-                  <p>Data-driven monitoring, reporting, and abatement, updated continuously, not once a quarter.</p>
+                  <p data-i18n="home.shift.unityItem2Body">Data-driven monitoring, reporting, and abatement, updated continuously, not once a quarter.</p>
                 </div></div>
               </li>
               <li class="compare-accordion-item">
@@ -369,11 +385,11 @@
                   <span class="accordion-icon-badge accordion-icon-badge--autonomous">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="7"/><circle cx="15" cy="12" r="7"/></svg>
                   </span>
-                  <span class="compare-accordion-title"><span class="accordion-step-num">03</span>One Shared Truth</span>
+                  <span class="compare-accordion-title"><span class="accordion-step-num">03</span><span data-i18n="home.shift.unityItem3Title">One Shared Truth</span></span>
                   <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
                 </button>
                 <div class="compare-accordion-body"><div class="compare-accordion-body-inner">
-                  <p>1,070 GW of energy assets (~20% of global installed renewable capacity) managed on a single sovereign platform.</p>
+                  <p data-i18n="home.shift.unityItem3Body">1,070 GW of energy assets (~20% of global installed renewable capacity) managed on a single sovereign platform.</p>
                 </div></div>
               </li>
               <li class="compare-accordion-item">
@@ -381,11 +397,11 @@
                   <span class="accordion-icon-badge accordion-icon-badge--autonomous">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
                   </span>
-                  <span class="compare-accordion-title"><span class="accordion-step-num">04</span>Measure → Manage → Transform</span>
+                  <span class="compare-accordion-title"><span class="accordion-step-num">04</span><span data-i18n="home.shift.unityItem4Title">Measure → Manage → Transform</span></span>
                   <svg class="accordion-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
                 </button>
                 <div class="compare-accordion-body"><div class="compare-accordion-body-inner">
-                  <p>A decade of domain expertise means every deployment starts ahead, compounding returns from day one.</p>
+                  <p data-i18n="home.shift.unityItem4Body">A decade of domain expertise means every deployment starts ahead, compounding returns from day one.</p>
                 </div></div>
               </li>
             </ul>
@@ -410,12 +426,12 @@
         <div class="section-header text-center" data-rv="up">
           <div class="eyebrow">
             <span class="pulse-dot"></span>
-            <span>The Turn · EnOS™ Connection</span>
+            <span data-i18n="home.turn.eyebrow">The Turn · EnOS™ Connection</span>
           </div>
-          <h2 class="section-title word-reveal">
+          <h2 class="section-title word-reveal" data-i18n="home.turn.headline">
             450 million devices. One language.
           </h2>
-          <p class="section-subtitle" data-rv="fade">
+          <p class="section-subtitle" data-rv="fade" data-i18n="home.turn.subtitle">
             EnOS™ dissolves the fragmentation trap. By connecting physical operational technology directly to cloud intelligence, Univers creates a single, live, sovereign nervous system for global enterprise infrastructure.
           </p>
         </div>
@@ -425,27 +441,27 @@
             <div class="turn-icon-box">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
             </div>
-            <h3>Edge-to-Cloud Ingestion</h3>
-            <p>Universal connectivity across 200+ hardware OEM protocols (Modbus, BACnet, MQTT, OPC-UA) with zero equipment rip-and-replace.</p>
-            <div class="turn-card-metric"><span>450M+</span> live connected endpoints</div>
+            <h3 data-i18n="home.turn.card1Title">Edge-to-Cloud Ingestion</h3>
+            <p data-i18n="home.turn.card1Body">Universal connectivity across 200+ hardware OEM protocols (Modbus, BACnet, MQTT, OPC-UA) with zero equipment rip-and-replace.</p>
+            <div class="turn-card-metric"><span>450M+</span> <span data-i18n="home.turn.card1Metric">live connected endpoints</span></div>
           </div>
 
           <div class="turn-feature-card" data-rv="up" data-rv-delay="2">
             <div class="turn-icon-box">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
             </div>
-            <h3>Sub-Second Closed-Loop Dispatch</h3>
-            <p>From passive monitoring to automated abatement. High-frequency edge loggers optimize setpoints and shed peak loads in milliseconds.</p>
-            <div class="turn-card-metric"><span>&lt; 20ms</span> telemetry latency</div>
+            <h3 data-i18n="home.turn.card2Title">Sub-Second Closed-Loop Dispatch</h3>
+            <p data-i18n="home.turn.card2Body">From passive monitoring to automated abatement. High-frequency edge loggers optimize setpoints and shed peak loads in milliseconds.</p>
+            <div class="turn-card-metric"><span>&lt; 20ms</span> <span data-i18n="home.turn.card2Metric">telemetry latency</span></div>
           </div>
 
           <div class="turn-feature-card" data-rv="up" data-rv-delay="3">
             <div class="turn-icon-box">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
             </div>
-            <h3>One Sovereign Ground Truth</h3>
-            <p>A single audit-ready source of truth unifying operations, finance, and sustainability across global portfolios and jurisdictions.</p>
-            <div class="turn-card-metric"><span>1,070 GW</span> managed energy assets</div>
+            <h3 data-i18n="home.turn.card3Title">One Sovereign Ground Truth</h3>
+            <p data-i18n="home.turn.card3Body">A single audit-ready source of truth unifying operations, finance, and sustainability across global portfolios and jurisdictions.</p>
+            <div class="turn-card-metric"><span>1,070 GW</span> <span data-i18n="home.turn.card3Metric">managed energy assets</span></div>
           </div>
         </div>
       </div>
@@ -467,12 +483,12 @@
         <div class="section-header text-center ecosystem-header" data-rv="up">
           <div class="eyebrow">
             <span class="pulse-dot"></span>
-            <span>Proven At Global Scale · Verified Outcomes</span>
+            <span data-i18n="home.clients.eyebrow">Proven At Global Scale · Verified Outcomes</span>
           </div>
-          <h2 class="section-title word-reveal">
+          <h2 class="section-title word-reveal" data-i18n="home.clients.headline">
             Where physical giants cut real footprints.
           </h2>
-          <p class="section-subtitle" data-rv="fade">
+          <p class="section-subtitle" data-rv="fade" data-i18n="home.clients.subtitle">
             From the world's busiest container terminals to national power grids, EnOS™ turns heavy operational technology into quantifiable decarbonization and financial return.
           </p>
         </div>
@@ -482,36 +498,36 @@
           <div class="flagship-visual-wrap">
             <img src="assets/photos/ports-logistics-containers.jpg" alt="PSA International automated container terminal logistics" class="flagship-photo" loading="lazy">
             <div class="flagship-overlay">
-              <span class="flagship-badge">FLAGSHIP DEPLOYMENT // GLOBAL MARITIME</span>
+              <span class="flagship-badge" data-i18n="home.clients.flagshipBadge">FLAGSHIP DEPLOYMENT // GLOBAL MARITIME</span>
               <h3>PSA International</h3>
-              <p>World's largest port operator spanning 70+ terminals across 180+ locations in 45 countries, with S$5B annual OPEX managed on EnOS™.</p>
+              <p data-i18n="home.clients.flagshipDesc">World's largest port operator spanning 70+ terminals across 180+ locations in 45 countries, with S$5B annual OPEX managed on EnOS™.</p>
             </div>
           </div>
           <div class="flagship-content-side">
-            <div class="flagship-quote">
+            <div class="flagship-quote" data-i18n="home.clients.flagshipQuote">
               "EnOS connects automated guided vehicles, electrified cranes, and smart microgrids across our global terminals, delivering autonomous optimization without disrupting 24/7 maritime throughput."
             </div>
             <div class="flagship-metrics-grid">
               <div class="flagship-metric-item">
                 <div class="flagship-metric-num mono-metric">S$330M</div>
-                <div class="flagship-metric-lbl">Annual operating profit uplift</div>
+                <div class="flagship-metric-lbl" data-i18n="home.clients.metric1">Annual operating profit uplift</div>
               </div>
               <div class="flagship-metric-item">
                 <div class="flagship-metric-num mono-metric">S$83M</div>
-                <div class="flagship-metric-lbl">Annual revenue uplift</div>
+                <div class="flagship-metric-lbl" data-i18n="home.clients.metric2">Annual revenue uplift</div>
               </div>
               <div class="flagship-metric-item">
                 <div class="flagship-metric-num mono-metric">70+</div>
-                <div class="flagship-metric-lbl">Global port terminals connected</div>
+                <div class="flagship-metric-lbl" data-i18n="home.clients.metric3">Global port terminals connected</div>
               </div>
               <div class="flagship-metric-item">
                 <div class="flagship-metric-num mono-metric">45</div>
-                <div class="flagship-metric-lbl">Countries under EnOS orchestration</div>
+                <div class="flagship-metric-lbl" data-i18n="home.clients.metric4">Countries under EnOS orchestration</div>
               </div>
             </div>
             <div>
               <a href="clients.html" class="flagship-link">
-                <span>Read the full PSA International case study</span>
+                <span data-i18n="home.clients.readCaseStudy">Read the full PSA International case study</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
               </a>
             </div>
@@ -532,7 +548,7 @@
 
         <div style="text-align: center; margin-top: 2.5rem;">
           <a href="clients.html" class="btn btn-primary">
-            <span>Explore all customer stories &amp; partners</span>
+            <span data-i18n="home.clients.exploreAll">Explore all customer stories &amp; partners</span>
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
         </div>
@@ -554,36 +570,36 @@
         <div class="section-header text-center" data-rv="up">
           <div class="eyebrow">
             <span class="pulse-dot"></span>
-            <span>The Operating Model · Four Stages</span>
+            <span data-i18n="home.flywheel.eyebrow">The Operating Model · Four Stages</span>
           </div>
-          <h2 class="section-title word-reveal">
+          <h2 class="section-title word-reveal" data-i18n="home.flywheel.headline">
             Connect. Measure. Manage. Transform.
           </h2>
-          <p class="section-subtitle" data-rv="fade">
+          <p class="section-subtitle" data-rv="fade" data-i18n="home.flywheel.subtitle">
             Univers creates a self-reinforcing operational flywheel. Every device connected compounds the intelligence of the entire system, driving continuous optimization from day one.
           </p>
         </div>
 
         <div class="flywheel-grid">
           <div class="flywheel-card" data-rv="up" data-rv-delay="1">
-            <span class="flywheel-step-tag">01 / CONNECT</span>
-            <h4>Connect</h4>
-            <p>Ingest physical reality. Connect on-the-ground operational technology with cloud intelligence across energy, buildings, ports, and manufacturing without hardware lock-in.</p>
+            <span class="flywheel-step-tag" data-i18n="home.flywheel.tag1">01 / CONNECT</span>
+            <h4 data-i18n="home.flywheel.title1">Connect</h4>
+            <p data-i18n="home.flywheel.body1">Ingest physical reality. Connect on-the-ground operational technology with cloud intelligence across energy, buildings, ports, and manufacturing without hardware lock-in.</p>
           </div>
           <div class="flywheel-card" data-rv="up" data-rv-delay="2">
-            <span class="flywheel-step-tag">02 / MEASURE</span>
-            <h4>Measure</h4>
-            <p>Convert physics to verified data. 450M+ connected sensors &amp; devices are fused into accurate, audit-ready energy baselines and real-time carbon telemetry.</p>
+            <span class="flywheel-step-tag" data-i18n="home.flywheel.tag2">02 / MEASURE</span>
+            <h4 data-i18n="home.flywheel.title2">Measure</h4>
+            <p data-i18n="home.flywheel.body2">Convert physics to verified data. 450M+ connected sensors &amp; devices are fused into accurate, audit-ready energy baselines and real-time carbon telemetry.</p>
           </div>
           <div class="flywheel-card" data-rv="up" data-rv-delay="3">
-            <span class="flywheel-step-tag">03 / MANAGE</span>
-            <h4>Manage</h4>
-            <p>Move from awareness to control. Real-time telemetry is translated into automated setpoint tuning, closed-loop dispatch, and demand-response peak shedding.</p>
+            <span class="flywheel-step-tag" data-i18n="home.flywheel.tag3">03 / MANAGE</span>
+            <h4 data-i18n="home.flywheel.title3">Manage</h4>
+            <p data-i18n="home.flywheel.body3">Move from awareness to control. Real-time telemetry is translated into automated setpoint tuning, closed-loop dispatch, and demand-response peak shedding.</p>
           </div>
           <div class="flywheel-card" data-rv="up" data-rv-delay="4">
-            <span class="flywheel-step-tag">04 / TRANSFORM</span>
-            <h4>Transform</h4>
-            <p>Compound intelligence network-wide. Optimization returns are reinvested into systemic decarbonization across 1,070 GW of managed global energy assets.</p>
+            <span class="flywheel-step-tag" data-i18n="home.flywheel.tag4">04 / TRANSFORM</span>
+            <h4 data-i18n="home.flywheel.title4">Transform</h4>
+            <p data-i18n="home.flywheel.body4">Compound intelligence network-wide. Optimization returns are reinvested into systemic decarbonization across 1,070 GW of managed global energy assets.</p>
           </div>
         </div>
 
@@ -591,28 +607,28 @@
         <div class="hardware-banner">
           <div class="hardware-info">
             <div class="eyebrow" style="color: var(--univ-purple-dark);">
-              <span>Reliable Telemetry, From the Physical Edge</span>
+              <span data-i18n="home.hardware.eyebrow">Reliable Telemetry, From the Physical Edge</span>
             </div>
-            <h3>Edge Loggers: DTU and HPU</h3>
-            <p>
+            <h3 data-i18n="home.hardware.title">Edge Loggers: DTU and HPU</h3>
+            <p data-i18n="home.hardware.body">
               Edge Loggers provide rapid time to value with plug-and-play installation, remote device orchestration, and secure OTA updates, establishing a resilient hardware foundation for operational technology.
             </p>
             <div class="chip-specs">
-              <span class="chip-spec-pill">DTU: Lightweight Data Acquisition</span>
-              <span class="chip-spec-pill">HPU: High-Performance Local Compute</span>
-              <span class="chip-spec-pill">Plug &amp; Play · Remote OTA Updates</span>
+              <span class="chip-spec-pill" data-i18n="home.hardware.pill1">DTU: Lightweight Data Acquisition</span>
+              <span class="chip-spec-pill" data-i18n="home.hardware.pill2">HPU: High-Performance Local Compute</span>
+              <span class="chip-spec-pill" data-i18n="home.hardware.pill3">Plug &amp; Play · Remote OTA Updates</span>
             </div>
             <div style="margin-top: 1.5rem;">
               <a href="platform.html" class="btn btn-secondary btn-sm">
-                <span>Explore EnOS™ Stack Architecture</span>
+                <span data-i18n="home.hardware.cta">Explore EnOS™ Stack Architecture</span>
                 <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
               </a>
             </div>
           </div>
           <div class="hardware-graphic">
-            <div style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--univ-purple-dark); margin-bottom: 8px;">EDGE HARDWARE SPECIFICATION</div>
-            <div style="font-size: 2.2rem; font-weight: 800; font-family: var(--font-heading); color: var(--univ-navy);">Edge Loggers</div>
-            <p style="font-size: 0.82rem; color: var(--univ-text-secondary); margin-top: 6px;">Data Transfer Unit (DTU) &amp; High Performance Unit (HPU) // ARM Industrial Core</p>
+            <div style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--univ-purple-dark); margin-bottom: 8px;" data-i18n="home.hardware.specLabel">EDGE HARDWARE SPECIFICATION</div>
+            <div style="font-size: 2.2rem; font-weight: 800; font-family: var(--font-heading); color: var(--univ-navy);" data-i18n="home.hardware.title">Edge Loggers</div>
+            <p style="font-size: 0.82rem; color: var(--univ-text-secondary); margin-top: 6px;" data-i18n="home.hardware.graphicCaption">Data Transfer Unit (DTU) &amp; High Performance Unit (HPU) // ARM Industrial Core</p>
           </div>
         </div>
       </div>
@@ -635,12 +651,12 @@
         <div class="section-header text-center" data-rv="up">
           <div class="eyebrow">
             <span class="pulse-dot"></span>
-            <span>Explore Univers</span>
+            <span data-i18n="home.explore.eyebrow">Explore Univers</span>
           </div>
-          <h2 class="section-title word-reveal">
+          <h2 class="section-title word-reveal" data-i18n="home.explore.headline">
             One platform. Five ways in.
           </h2>
-          <p class="section-subtitle" data-rv="fade">
+          <p class="section-subtitle" data-rv="fade" data-i18n="home.explore.subtitle">
             Dig into the architecture, watch it run live, see it by sector, check the compliance posture, or estimate your own impact.
           </p>
         </div>
@@ -651,9 +667,9 @@
               <img src="assets/photos/built-environment-building.jpg" alt="EnOS Platform Architecture" loading="lazy">
             </div>
             <div class="explore-teaser-body">
-              <h3>EnOS™ Platform Architecture</h3>
-              <p>A 4-layer stack, from physical connectivity to the agentic control tower, powering 1,070 GW of managed energy assets and 450M+ connected sensors.</p>
-              <span class="explore-teaser-link">Explore the platform <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+              <h3 data-i18n="home.explore.card1Title">EnOS™ Platform Architecture</h3>
+              <p data-i18n="home.explore.card1Body">A 4-layer stack, from physical connectivity to the agentic control tower, powering 1,070 GW of managed energy assets and 450M+ connected sensors.</p>
+              <span class="explore-teaser-link"><span data-i18n="home.explore.card1Link">Explore the platform</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
             </div>
           </a>
 
@@ -662,9 +678,9 @@
               <img src="assets/photos/energy-solar-aerial.jpg" alt="Live Decarbonization Simulator" loading="lazy">
             </div>
             <div class="explore-teaser-body">
-              <h3>Live Decarbonization Simulator</h3>
-              <p>Watch it work in real time: edge sensor data, cloud intelligence, and carbon abatement across a live 3-stage simulation you control.</p>
-              <span class="explore-teaser-link">Run the simulator <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+              <h3 data-i18n="home.explore.card2Title">Live Decarbonization Simulator</h3>
+              <p data-i18n="home.explore.card2Body">Watch it work in real time: edge sensor data, cloud intelligence, and carbon abatement across a live 3-stage simulation you control.</p>
+              <span class="explore-teaser-link"><span data-i18n="home.explore.card2Link">Run the simulator</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
             </div>
           </a>
 
@@ -673,9 +689,9 @@
               <img src="assets/photos/ports-logistics-containers.jpg" alt="Built for Four Critical Sectors" loading="lazy">
             </div>
             <div class="explore-teaser-body">
-              <h3>Built for Four Critical Sectors</h3>
-              <p>One operating foundation across energy &amp; utilities, built environment, transportation &amp; ports, and industrial manufacturing.</p>
-              <span class="explore-teaser-link">Explore sectors <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+              <h3 data-i18n="home.explore.card3Title">Built for Four Critical Sectors</h3>
+              <p data-i18n="home.explore.card3Body">One operating foundation across energy &amp; utilities, built environment, transportation &amp; ports, and industrial manufacturing.</p>
+              <span class="explore-teaser-link"><span data-i18n="home.explore.card3Link">Explore sectors</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
             </div>
           </a>
 
@@ -684,9 +700,9 @@
               <img src="assets/photos/landmark-marina-bay-skyline.jpg" alt="Enterprise Trust & Compliance" loading="lazy">
             </div>
             <div class="explore-teaser-body">
-              <h3>Enterprise Trust &amp; Compliance</h3>
-              <p>ISO 27001, IEC 62443, SOC 3, and sovereign-grade certifications, built for mission-critical infrastructure buyers.</p>
-              <span class="explore-teaser-link">View the trust center <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+              <h3 data-i18n="home.explore.card4Title">Enterprise Trust &amp; Compliance</h3>
+              <p data-i18n="home.explore.card4Body">ISO 27001, IEC 62443, SOC 3, and sovereign-grade certifications, built for mission-critical infrastructure buyers.</p>
+              <span class="explore-teaser-link"><span data-i18n="home.explore.card4Link">View the trust center</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
             </div>
           </a>
 
@@ -695,9 +711,9 @@
               <img src="assets/photos/manufacturing-line.jpg" alt="Decarbonization Impact Calculator" loading="lazy">
             </div>
             <div class="explore-teaser-body">
-              <h3>Decarbonization Impact Calculator</h3>
-              <p>Estimate your portfolio's net savings and carbon abatement potential in under a minute, by sector and scale.</p>
-              <span class="explore-teaser-link">Calculate your impact <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+              <h3 data-i18n="home.explore.card5Title">Decarbonization Impact Calculator</h3>
+              <p data-i18n="home.explore.card5Body">Estimate your portfolio's net savings and carbon abatement potential in under a minute, by sector and scale.</p>
+              <span class="explore-teaser-link"><span data-i18n="home.explore.card5Link">Calculate your impact</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
             </div>
           </a>
         </div>
@@ -718,32 +734,32 @@
         <div class="authority-header" data-rv="up">
           <div class="eyebrow">
             <span class="pulse-dot"></span>
-            <span>INSTITUTIONAL SCALE // 2026 OFFICIAL TELEMETRY</span>
+            <span data-i18n="home.authority.eyebrow">INSTITUTIONAL SCALE // 2026 OFFICIAL TELEMETRY</span>
           </div>
-          <h2 class="section-title word-reveal">
+          <h2 class="section-title word-reveal" data-i18n="home.authority.headline">
             The proof is in the physics.
           </h2>
         </div>
         <div class="authority-grid">
           <div class="authority-stat" data-rv="up" data-rv-delay="1">
             <div class="stat-number mono-metric" data-tally-target="1070">1,070 GW</div>
-            <div class="stat-title">Managed Energy Assets</div>
-            <div class="stat-desc">~20% of global installed renewable capacity under management</div>
+            <div class="stat-title" data-i18n="home.authority.stat1Title">Managed Energy Assets</div>
+            <div class="stat-desc" data-i18n="home.authority.stat1Desc">~20% of global installed renewable capacity under management</div>
           </div>
           <div class="authority-stat" data-rv="up" data-rv-delay="2">
             <div class="stat-number mono-metric" data-tally-target="450">450M+</div>
-            <div class="stat-title">Connected Sensors &amp; Devices</div>
-            <div class="stat-desc">Agnostic OT protocol onboarding across 200+ hardware OEMs</div>
+            <div class="stat-title" data-i18n="home.authority.stat2Title">Connected Sensors &amp; Devices</div>
+            <div class="stat-desc" data-i18n="home.authority.stat2Desc">Agnostic OT protocol onboarding across 200+ hardware OEMs</div>
           </div>
           <div class="authority-stat" data-rv="up" data-rv-delay="3">
             <div class="stat-number mono-metric" data-tally-target="1013">1,013M</div>
-            <div class="stat-title">Million tCO2e Avoided Emissions</div>
-            <div class="stat-desc">Equivalent to 18× Singapore's total annual GHG emissions</div>
+            <div class="stat-title" data-i18n="home.authority.stat3Title">Million tCO2e Avoided Emissions</div>
+            <div class="stat-desc" data-i18n="home.authority.stat3Desc">Equivalent to 18× Singapore's total annual GHG emissions</div>
           </div>
           <div class="authority-stat" data-rv="up" data-rv-delay="4">
             <div class="stat-number mono-metric" data-tally-target="800">800+</div>
-            <div class="stat-title">Global Enterprise Clients</div>
-            <div class="stat-desc">Transforming energy, real estate, transportation, and industry</div>
+            <div class="stat-title" data-i18n="home.authority.stat4Title">Global Enterprise Clients</div>
+            <div class="stat-desc" data-i18n="home.authority.stat4Desc">Transforming energy, real estate, transportation, and industry</div>
           </div>
         </div>
       </div>
@@ -767,25 +783,25 @@
       <div class="container closing-content">
         <div class="closing-eyebrow" data-rv="fade">
           <span class="pulse-dot"></span>
-          <span>THE CONVERGENCE · EDGE TO CLOUD</span>
+          <span data-i18n="home.closing.eyebrow">THE CONVERGENCE · EDGE TO CLOUD</span>
         </div>
         <h2 class="closing-headline">
-          <span class="mask-line"><span class="reveal-inner">Even giants can have</span></span>
-          <span class="mask-line"><span class="reveal-inner">small footprints.</span></span>
+          <span class="mask-line"><span class="reveal-inner" data-i18n="home.hero.headline1">Even giants can have</span></span>
+          <span class="mask-line"><span class="reveal-inner" data-i18n="home.hero.headline2">small footprints.</span></span>
         </h2>
-        <p class="closing-lead" data-rv="up" data-rv-delay="1">
+        <p class="closing-lead" data-rv="up" data-rv-delay="1" data-i18n="home.closing.lead">
           Our solution architects will review your physical asset telemetry, reporting frameworks, and decarbonization roadmap, then show Univers connecting a portfolio similar to yours. From the edge to the cloud, for the earth.
         </p>
         <div class="closing-cta-wrap" data-rv="up" data-rv-delay="2">
           <button type="button" class="btn btn-primary" id="final-cta-demo" data-open-demo style="padding: 18px 40px; font-size: 1.05rem;">
-            <span>Book a demo</span>
+            <span data-i18n="nav.bookDemo">Book a demo</span>
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </button>
           <a href="simulator.html" class="btn btn-secondary" style="padding: 18px 36px; background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.25); color: #FFFFFF;">
-            <span>See How It Works</span>
+            <span data-i18n="home.closing.ctaSecondary">See How It Works</span>
           </a>
         </div>
-        <p class="closing-trust-subtext">
+        <p class="closing-trust-subtext" data-i18n="home.closing.trustSubtext">
           Enterprise data security &amp; sovereign confidentiality assured under ISO 27001, IEC 62443, and SOC 2 Type II certified architectures.
         </p>
       </div>
@@ -803,10 +819,10 @@
           <a href="index.html" class="brand-logo" aria-label="Univers Homepage">
             <svg class="brand-logo-mark" aria-hidden="true" viewBox="-52961 -11737 961733 203620" xmlns="http://www.w3.org/2000/svg"><path d="M395026,47802 C398186,54628 399765,62939 399765,72764 L399765,154112 L380343,154112 L380343,73010 C380343,64853 378459,58532 374691,54046 C370923,49392 365810,47052 359329,47052 C353607,47052 348868,48797 345101,52288 C341485,55778 338396,61440 335834,69261 L318436,122662 C314820,133805 309625,142207 302851,147869 C296077,153531 287337,156349 276654,156349 C267926,156349 260472,154604 254295,151114 C248269,147623 243682,142465 240512,135641 C237505,128815 235995,120503 235995,110678 L235995,29343 L255418,29343 L255418,110446 C255418,118602 257302,125001 261069,129655 C264837,134140 269950,136390 276432,136390 C282153,136390 286821,134645 290437,131154 C294204,127664 297364,122003 299926,114182 L317313,60781 C320929,49637 326124,41235 332898,35574 C339672,29911 348412,27094 359094,27094 C367823,27094 375206,28839 381232,32329 C387409,35819 391997,40976 395015,47802 L395026,47802 Z M422183,154112 L441606,154112 L441606,29343 L422183,29343 L422183,154126 L422183,154112 Z M509726,134154 L476976,29343 L456196,29343 L497990,154126 L521250,154126 L562587,29343 L542264,29343 L509737,134154 L509726,134154 Z M656834,44312 C666169,55623 670836,71600 670836,92232 L670617,99226 L583425,99226 C584035,109877 587264,118939 593141,126423 C599008,133908 607447,137657 618430,137657 C626412,137657 633031,135822 638308,132163 C643585,128337 647271,123101 649376,116444 L669265,116444 C668055,122933 665340,129254 661130,135407 C657073,141560 651338,146641 643966,150636 C636737,154462 628231,156375 618449,156375 C608057,156375 598789,153803 590655,148645 C582530,143487 576129,136080 571457,126437 C566940,116625 564682,105145 564682,91999 C564682,78853 567011,66714 571681,57057 C576348,47247 582749,39839 590883,34850 C599008,29691 608266,27119 618658,27119 C634765,27119 647500,32859 656834,44338 L656834,44312 Z M651643,81490 C650738,70670 647347,62190 641471,56036 C635594,49716 628078,46549 618877,46549 C608638,46549 600665,49547 594941,55532 C589216,61349 585378,70011 583416,81490 L651643,81490 Z M698316,39813 C691982,46639 688819,56373 688819,69015 L688819,154112 L708250,154112 L708250,69273 C708250,62952 709755,58131 712765,54795 C715918,51305 720366,49560 726091,49560 L754542,49560 L754542,29343 L725414,29343 C713813,29343 704783,32833 698297,39827 L698316,39813 Z M849782,97713 C844963,92219 836762,87734 825170,84243 L803034,77753 C796699,75918 792118,73760 789251,71265 C786384,68769 784955,65602 784955,61776 C784955,56618 787146,52624 791508,49793 C796023,46962 802272,45553 810254,45553 C818226,45553 823950,47389 828313,51047 C832828,54537 835466,59695 836228,66521 L855878,66521 C855574,54705 851211,45229 842772,38068 C834495,30751 823731,27094 810473,27094 C797214,27094 785850,30416 777726,37073 C769744,43562 765753,52456 765753,63780 C765753,72596 768382,79757 773659,85238 C779078,90732 787736,95050 799633,98217 L820636,103957 C826970,105792 831485,107950 834190,110446 C836904,112941 838257,116263 838257,120425 C838257,125919 835933,130237 831266,133404 C826598,136403 820121,137889 811844,137889 C803557,137889 797242,135977 791966,132150 C786851,128156 783898,122416 783155,114931 L763505,114931 C763953,128246 768248,138471 776373,145632 C784660,152782 796404,156362 811616,156362 C825932,156362 837066,153117 845048,146628 C853183,140139 857250,131154 857250,119676 C857250,110356 854773,103038 849801,97713 L849782,97713 Z M30782,24779 C25634,29032 23399,35328 25775,38831 C28149,42347 34257,41753 39393,37500 C44542,33247 46776,26951 44402,23448 C42026,19932 35919,20526 30782,24779 Z M24218,113704 C16531,112604 9324,119973 8119,130185 C6913,140397 12167,149562 19866,150674 C27553,151773 34760,144405 35965,134193 C37170,123980 31917,114815 24218,113704 Z M19913,84838 C23645,77275 22721,68783 17854,65848 C12986,62927 6024,66676 2292,74224 C-1440,81787 -516,90280 4351,93214 C9218,96136 16180,92387 19913,84838 Z M130388,41235 C138835,45087 147751,42644 150325,35781 C152888,28929 148125,20242 139677,16390 C131230,12538 122314,14981 119741,21845 C117177,28696 121940,37384 130388,41235 Z M68762,139557 C59097,139557 51258,148826 51258,160266 C51258,171706 59097,180975 68762,180975 C78426,180975 86265,171706 86265,160266 C86265,148826 78426,139557 68762,139557 Z M82065,180 C74729,1188 69253,6190 69838,11322 C70423,16454 76847,19790 84183,18781 C91519,17760 96995,12770 96410,7638 C95824,2507 89401,-829 82065,180 Z M166776,70670 C161112,61556 150583,58686 143246,64245 C135910,69804 134564,81709 140215,90810 C145879,99924 156409,102793 163745,97235 C171081,91676 172427,79771 166776,70670 Z M127684,116857 C117201,116857 108707,126242 108707,137825 C108707,149407 117201,158792 127684,158792 C138169,158792 146663,149395 146663,137825 C146663,126256 138169,116857 127684,116857 Z" fill="currentColor" fill-rule="evenodd"/></svg>
           </a>
-          <p>
+          <p data-i18n="footer.blurb">
             The world's most comprehensive decarbonization platform. Univers connects on-the-ground operational technology with in-the-cloud intelligence to give climate leaders unmatched control, and infinite opportunity. Headquartered in Singapore.
           </p>
-          <p style="margin-top: 0.75rem; font-weight: 600;">Univers. All connected.</p>
+          <p style="margin-top: 0.75rem; font-weight: 600;" data-i18n="footer.tagline">Univers. All connected.</p>
 
           <div class="footer-office-block">
             <div class="footer-office-title">
@@ -814,7 +830,7 @@
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
-              <span>Global Headquarters</span>
+              <span data-i18n="footer.hqTitle">Global Headquarters</span>
             </div>
             <address class="footer-office-address">
               1 Harbourfront Avenue<br>
@@ -825,51 +841,51 @@
         </div>
 
         <div class="footer-col">
-          <h5>Platform & Products</h5>
+          <h5 data-i18n="footer.colPlatform">Platform & Products</h5>
           <ul class="footer-links">
-            <li><a href="https://univers.com/products/enos/" target="_blank" rel="noopener noreferrer">EnOS™ Platform</a></li>
-            <li><a href="index.html#flywheel">Edge Loggers: DTU &amp; HPU</a></li>
-            <li><a href="simulator.html">From the Edge to the Cloud</a></li>
-            <li><a href="lab.html">Interactive Lab</a></li>
-            <li><a href="https://univers.com/platform/" target="_blank" rel="noopener noreferrer">Full Platform Overview</a></li>
+            <li><a href="https://univers.com/products/enos/" target="_blank" rel="noopener noreferrer" data-i18n="footer.linkEnos">EnOS™ Platform</a></li>
+            <li><a href="index.html#flywheel" data-i18n="footer.linkEdgeLoggers">Edge Loggers: DTU &amp; HPU</a></li>
+            <li><a href="simulator.html" data-i18n="footer.linkEdgeToCloud">From the Edge to the Cloud</a></li>
+            <li><a href="lab.html" data-i18n="footer.linkLab">Interactive Lab</a></li>
+            <li><a href="https://univers.com/platform/" target="_blank" rel="noopener noreferrer" data-i18n="footer.linkPlatformOverview">Full Platform Overview</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h5>Sectors</h5>
+          <h5 data-i18n="footer.colSectors">Sectors</h5>
           <ul class="footer-links">
-            <li><a href="sectors.html">Energy & Utilities</a></li>
-            <li><a href="https://univers.com/built-environment/" target="_blank" rel="noopener noreferrer">Built Environment</a></li>
-            <li><a href="sectors.html">Transportation & Ports</a></li>
-            <li><a href="sectors.html">Industrial Manufacturing</a></li>
+            <li><a href="sectors.html" data-i18n="footer.linkEnergy">Energy & Utilities</a></li>
+            <li><a href="https://univers.com/built-environment/" target="_blank" rel="noopener noreferrer" data-i18n="footer.linkBuiltEnv">Built Environment</a></li>
+            <li><a href="sectors.html" data-i18n="footer.linkTransport">Transportation & Ports</a></li>
+            <li><a href="sectors.html" data-i18n="footer.linkManufacturing">Industrial Manufacturing</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h5>Company & Trust</h5>
+          <h5 data-i18n="footer.colCompany">Company & Trust</h5>
           <ul class="footer-links">
-            <li><a href="https://univers.com/about-us/" target="_blank" rel="noopener noreferrer">About Univers</a></li>
-            <li><a href="clients.html">Customer Stories</a></li>
-            <li><a href="https://univers.com/resource/univers-trust-center/" target="_blank" rel="noopener noreferrer">Security & Trust Center</a></li>
-            <li><a href="sustainability.html">Sustainability</a></li>
-            <li><a href="https://univers.com/careers/" target="_blank" rel="noopener noreferrer">Careers</a></li>
+            <li><a href="https://univers.com/about-us/" target="_blank" rel="noopener noreferrer" data-i18n="footer.linkAbout">About Univers</a></li>
+            <li><a href="clients.html" data-i18n="footer.linkCustomerStories">Customer Stories</a></li>
+            <li><a href="https://univers.com/resource/univers-trust-center/" target="_blank" rel="noopener noreferrer" data-i18n="footer.linkTrustCenter">Security & Trust Center</a></li>
+            <li><a href="sustainability.html" data-i18n="footer.linkSustainability">Sustainability</a></li>
+            <li><a href="https://univers.com/careers/" target="_blank" rel="noopener noreferrer" data-i18n="footer.linkCareers">Careers</a></li>
           </ul>
         </div>
       </div>
 
-      <div class="footer-disclosure">
+      <div class="footer-disclosure" data-i18n-html="footer.disclosure">
         Unofficial concept redesign inspired by <a href="https://univers.com/" target="_blank" rel="noopener noreferrer">univers.com</a> and Univers' own Brand Guidelines. Not affiliated with, endorsed by, or representing Univers. Built as a design &amp; front-end exercise; company names, statistics, boilerplate, and quotes are sourced from Univers' Brand Guidelines, public website, and customer stories.
       </div>
 
       <div class="footer-bottom">
         <div>
-          © 2026 Univers. Content sourced from Univers' Brand Guidelines and univers.com. Concept build, not an official Univers property.
+          <span data-i18n="footer.copyright">© 2026 Univers. Content sourced from Univers' Brand Guidelines and univers.com. Concept build, not an official Univers property.</span>
           <span class="footer-dev-credit">· Concept redesigned by <a href="https://www.linkedin.com/in/evanyapzhikai/" target="_blank" rel="noopener noreferrer">Evan Yap</a></span>
         </div>
         <div style="display: flex; gap: 20px;">
-          <a href="https://univers.com/policies/" target="_blank" rel="noopener noreferrer" style="color: var(--univ-text-muted); text-decoration: none;">Privacy Policy</a>
-          <a href="https://univers.com/policies/" target="_blank" rel="noopener noreferrer" style="color: var(--univ-text-muted); text-decoration: none;">Terms of Service</a>
-          <a href="https://univers.com/security-compliance/" target="_blank" rel="noopener noreferrer" style="color: var(--univ-text-muted); text-decoration: none;">Security Architecture</a>
+          <a href="https://univers.com/policies/" target="_blank" rel="noopener noreferrer" style="color: var(--univ-text-muted); text-decoration: none;" data-i18n="footer.linkPrivacy">Privacy Policy</a>
+          <a href="https://univers.com/policies/" target="_blank" rel="noopener noreferrer" style="color: var(--univ-text-muted); text-decoration: none;" data-i18n="footer.linkTerms">Terms of Service</a>
+          <a href="https://univers.com/security-compliance/" target="_blank" rel="noopener noreferrer" style="color: var(--univ-text-muted); text-decoration: none;" data-i18n="footer.linkSecurity">Security Architecture</a>
         </div>
       </div>
     </div>
@@ -894,10 +910,10 @@
         <div class="modal-header">
           <div class="modal-badge">
             <span class="pulse-dot"></span>
-            <span>ENTERPRISE PLATFORM DEMO</span>
+            <span data-i18n="demoModal.badge">ENTERPRISE PLATFORM DEMO</span>
           </div>
-          <h2 id="demo-modal-title" class="modal-title">Schedule Decarbonization Assessment</h2>
-          <p class="modal-subtitle">
+          <h2 id="demo-modal-title" class="modal-title" data-i18n="demoModal.title">Schedule Decarbonization Assessment</h2>
+          <p class="modal-subtitle" data-i18n="demoModal.subtitle">
             Experience Univers live. Our solution architects will review your energy asset telemetry and show how EnOS connects your portfolio from the edge to the cloud.
           </p>
         </div>
@@ -905,39 +921,39 @@
         <form id="demo-booking-form" novalidate>
           <div class="form-row">
             <div class="form-group">
-              <label for="demo-name" class="form-label">Full Name <span class="required-star">*</span></label>
-              <input type="text" id="demo-name" class="form-input" placeholder="e.g. Jane Doe" required autocomplete="name">
+              <label for="demo-name" class="form-label" data-i18n-html="demoModal.labelName">Full Name <span class="required-star">*</span></label>
+              <input type="text" id="demo-name" class="form-input" placeholder="e.g. Jane Doe" required autocomplete="name" data-i18n-attr="placeholder:demoModal.placeholderName">
               <div class="form-error-msg" id="demo-name-error"></div>
             </div>
 
             <div class="form-group">
-              <label for="demo-email" class="form-label">Business Email <span class="required-star">*</span></label>
-              <input type="email" id="demo-email" class="form-input" placeholder="e.g. jane.doe@enterprise.com" required autocomplete="email">
+              <label for="demo-email" class="form-label" data-i18n-html="demoModal.labelEmail">Business Email <span class="required-star">*</span></label>
+              <input type="email" id="demo-email" class="form-input" placeholder="e.g. jane.doe@enterprise.com" required autocomplete="email" data-i18n-attr="placeholder:demoModal.placeholderEmail">
               <div class="form-error-msg" id="demo-email-error"></div>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="demo-org" class="form-label">Organisation / Enterprise <span class="required-star">*</span></label>
-            <input type="text" id="demo-org" class="form-input" placeholder="e.g. Acme Infrastructure" required autocomplete="organization">
+            <label for="demo-org" class="form-label" data-i18n-html="demoModal.labelOrg">Organisation / Enterprise <span class="required-star">*</span></label>
+            <input type="text" id="demo-org" class="form-input" placeholder="e.g. Acme Infrastructure" required autocomplete="organization" data-i18n-attr="placeholder:demoModal.placeholderOrg">
             <div class="form-error-msg" id="demo-org-error"></div>
           </div>
 
           <div class="form-group">
-            <label for="demo-inquiry" class="form-label">Inquiry &amp; Decarbonization Scope <span class="required-star">*</span></label>
-            <textarea id="demo-inquiry" class="form-textarea" rows="3" placeholder="Tell us about your assets (e.g. renewable fleet, real estate portfolio, ports, or industrial facilities) and primary goals..." required></textarea>
+            <label for="demo-inquiry" class="form-label" data-i18n-html="demoModal.labelInquiry">Inquiry &amp; Decarbonization Scope <span class="required-star">*</span></label>
+            <textarea id="demo-inquiry" class="form-textarea" rows="3" placeholder="Tell us about your assets (e.g. renewable fleet, real estate portfolio, ports, or industrial facilities) and primary goals..." required data-i18n-attr="placeholder:demoModal.placeholderInquiry"></textarea>
             <div class="form-error-msg" id="demo-inquiry-error"></div>
           </div>
 
           <div class="form-footer">
             <button type="submit" class="btn btn-primary btn-submit-demo" id="demo-submit-btn">
-              <span>Book a demo</span>
+              <span data-i18n="nav.bookDemo">Book a demo</span>
               <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </button>
-            <div class="form-privacy-note">
+            <div class="form-privacy-note" data-i18n="demoModal.privacyNote">
               🔒 Submissions are processed locally for demonstration. Unofficial concept build.
             </div>
           </div>
@@ -955,40 +971,40 @@
 
         <div class="modal-header" style="text-align: center;">
           <div class="modal-badge success-badge">
-            <span>DEMO REQUEST RECEIVED</span>
+            <span data-i18n="demoModal.successBadge">DEMO REQUEST RECEIVED</span>
           </div>
-          <h2 class="modal-title">Demo Request Received</h2>
-          <p class="modal-subtitle" id="demo-success-msg">
+          <h2 class="modal-title" data-i18n="demoModal.successTitle">Demo Request Received</h2>
+          <p class="modal-subtitle" id="demo-success-msg" data-i18n="demoModal.successMsg">
             Thank you! This is an unofficial concept redesign. Your demo request has been processed locally for demonstration purposes.
           </p>
         </div>
 
         <div class="booking-receipt-card">
           <div class="receipt-row">
-            <span class="receipt-label">Reference ID:</span>
+            <span class="receipt-label" data-i18n="demoModal.receiptRefId">Reference ID:</span>
             <span class="receipt-val mono-metric" id="receipt-id">UNIV-DEMO-XXXX</span>
           </div>
           <div class="receipt-row">
-            <span class="receipt-label">Contact:</span>
+            <span class="receipt-label" data-i18n="demoModal.receiptContact">Contact:</span>
             <span class="receipt-val" id="receipt-name-email">Jane Doe (jane.doe@enterprise.com)</span>
           </div>
           <div class="receipt-row">
-            <span class="receipt-label">Organisation:</span>
+            <span class="receipt-label" data-i18n="demoModal.receiptOrg">Organisation:</span>
             <span class="receipt-val" id="receipt-org">Acme Infrastructure</span>
           </div>
           <div class="receipt-row">
-            <span class="receipt-label">Inquiry Scope:</span>
+            <span class="receipt-label" data-i18n="demoModal.receiptInquiry">Inquiry Scope:</span>
             <span class="receipt-val inquiry-snippet" id="receipt-inquiry">Renewable energy monitoring</span>
           </div>
           <div class="receipt-row">
-            <span class="receipt-label">Status:</span>
-            <span class="receipt-status-pill">PROCESSED LOCALLY (CONCEPT BUILD)</span>
+            <span class="receipt-label" data-i18n="demoModal.receiptStatus">Status:</span>
+            <span class="receipt-status-pill" data-i18n="demoModal.receiptStatusVal">PROCESSED LOCALLY (CONCEPT BUILD)</span>
           </div>
         </div>
 
         <div class="success-actions" style="display: flex; justify-content: center; margin-top: 1.5rem;">
           <button type="button" class="btn btn-primary" id="btn-done-demo" style="min-width: 140px;">
-            <span>Done</span>
+            <span data-i18n="demoModal.done">Done</span>
           </button>
         </div>
       </div>
@@ -996,6 +1012,6 @@
   </div>
 
   <!-- Scripts -->
-  <script src="app.js?v=flow-v4"></script>
+  <script src="app.js?v=flow-v5"></script>
 </body>
 </html>

@@ -533,6 +533,95 @@ h1, h2, h3, .section-title, .hero-headline, .closing-headline {
   gap: 14px;
 }
 
+/* LANGUAGE SWITCHER */
+.lang-switcher {
+  position: relative;
+}
+
+.lang-switcher-trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 10px;
+  background: #FFFFFF;
+  border: 1px solid var(--univ-border-medium);
+  border-radius: var(--radius-sm);
+  color: var(--univ-text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.lang-switcher-trigger:hover {
+  background: var(--univ-purple-soft);
+  border-color: var(--univ-purple);
+  color: var(--univ-purple);
+}
+
+.lang-switcher-globe {
+  flex-shrink: 0;
+}
+
+.lang-switcher-chevron {
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.lang-switcher-trigger[aria-expanded="true"] .lang-switcher-chevron {
+  transform: rotate(180deg);
+}
+
+.lang-switcher-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 168px;
+  background: #FFFFFF;
+  border: 1px solid var(--univ-border-medium);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 20px 40px -20px rgba(20, 20, 43, 0.18);
+  padding: 6px;
+  list-style: none;
+  margin: 0;
+  z-index: 200;
+}
+
+.lang-switcher-menu[hidden] {
+  display: none;
+}
+
+.lang-switcher-menu li {
+  margin: 0;
+}
+
+.lang-switcher-menu li button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: var(--univ-text-primary);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.lang-switcher-menu li button:hover {
+  background: var(--univ-purple-soft);
+  color: var(--univ-purple);
+}
+
+.lang-switcher-menu li[aria-selected="true"] button {
+  color: var(--univ-purple);
+  font-weight: 700;
+}
+
 /* Compact "Demo" button, mobile-only — on phones the full "Talk to Us" CTA
    used to be hidden inside the hamburger drawer, so scheduling a demo meant
    scrolling all the way to the page bottom. This keeps it one tap away. */
@@ -2298,6 +2387,13 @@ body.nav-open {
   display: inline-block;
   overflow: hidden;
   vertical-align: top;
+  /* Same tight-line-height clipping fix as .mask-line (see above): CJK
+     translations have no inter-word spaces, so the whole heading collapses
+     into one .word-mask that wraps across multiple lines internally. At
+     the heading's default 1.05 line-height that wrap clips the tops of
+     glyphs on every line after the first. */
+  line-height: 1.2;
+  margin-bottom: -0.15em;
 }
 
 .word {
@@ -2397,6 +2493,20 @@ body.nav-open {
     display: inline-flex;
     padding: 8px 14px;
     font-size: 0.82rem;
+  }
+
+  /* Drop the "EN" code label on phones — the globe icon alone stays
+     tappable at 38px while freeing room for the demo button + toggle. */
+  .lang-switcher-trigger {
+    padding: 0 8px;
+  }
+
+  .lang-switcher-code {
+    display: none;
+  }
+
+  .lang-switcher-menu {
+    right: -8px;
   }
 
   .nav-menu {

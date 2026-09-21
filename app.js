@@ -7,6 +7,7 @@
 
 function boot() {
   const systems = [
+    ['initLangSwitcher', initLangSwitcher],
     ['initMobileNav', initMobileNav],
     ['initHeroEntrance', initHeroEntrance],
     ['initLiveTelemetry', initLiveTelemetry],
@@ -40,6 +41,135 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', boot);
 } else {
   boot();
+}
+
+
+/* ==========================================================================
+   0. INTERNATIONALIZATION (i18n)
+   Client-side text swap driven by data-i18n attributes. Translation JSON
+   lives in i18n/<lang>.json, one shared file per language covering every
+   page (nav/footer keys are reused site-wide; page keys are namespaced,
+   e.g. "home.hero.headline"). Selection persists to localStorage so it
+   carries across page navigation on this static multi-page site.
+   ========================================================================== */
+const I18N_LANGS = ['en', 'zh', 'ja', 'de', 'nl', 'fr', 'no'];
+const I18N_STORAGE_KEY = 'univers-lang';
+const i18nCache = {};
+
+function resolveI18nKey(dict, key) {
+  return key.split('.').reduce((obj, part) => (obj && typeof obj === 'object' ? obj[part] : undefined), dict);
+}
+
+async function loadI18nDict(lang) {
+  if (i18nCache[lang]) return i18nCache[lang];
+  const res = await fetch(`i18n/${lang}.json`);
+  if (!res.ok) throw new Error(`i18n fetch failed for ${lang}: ${res.status}`);
+  const data = await res.json();
+  i18nCache[lang] = data;
+  return data;
+}
+
+function applyI18nDict(dict) {
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const value = resolveI18nKey(dict, el.getAttribute('data-i18n'));
+    if (typeof value === 'string') el.textContent = value;
+  });
+
+  document.querySelectorAll('[data-i18n-html]').forEach((el) => {
+    const value = resolveI18nKey(dict, el.getAttribute('data-i18n-html'));
+    if (typeof value === 'string') el.innerHTML = value;
+  });
+
+  document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
+    el.getAttribute('data-i18n-attr').split('|').forEach((pair) => {
+      const [attr, key] = pair.split(':');
+      const value = resolveI18nKey(dict, key);
+      if (attr && typeof value === 'string') el.setAttribute(attr, value);
+    });
+  });
+
+  // Word-reveal headings wrap their text in per-word spans (see
+  // prepareWordReveal). Setting textContent above just wiped those spans
+  // back to plain text, so re-wrap anything that had been prepared before.
+  document.querySelectorAll('.word-reveal[data-i18n]').forEach((el) => {
+    el.classList.remove('words-prepared');
+  });
+  prepareWordReveal();
+}
+
+async function setLanguage(lang) {
+  if (!I18N_LANGS.includes(lang)) lang = 'en';
+  try {
+    localStorage.setItem(I18N_STORAGE_KEY, lang);
+  } catch (err) {
+    /* private-browsing / storage-blocked: language just won't persist */
+  }
+  document.documentElement.lang = lang;
+
+  const trigger = document.getElementById('lang-switcher-trigger');
+  const codeEl = document.getElementById('lang-switcher-code');
+  if (codeEl) codeEl.textContent = lang.toUpperCase();
+  document.querySelectorAll('#lang-switcher-menu [role="option"]').forEach((li) => {
+    li.setAttribute('aria-selected', li.getAttribute('data-lang') === lang ? 'true' : 'false');
+  });
+
+  try {
+    const dict = await loadI18nDict(lang);
+    applyI18nDict(dict);
+  } catch (err) {
+    console.warn('[Univers] Failed to load language:', lang, err);
+  }
+}
+
+function initLangSwitcher() {
+  const root = document.getElementById('lang-switcher');
+  const trigger = document.getElementById('lang-switcher-trigger');
+  const menu = document.getElementById('lang-switcher-menu');
+  if (!root || !trigger || !menu) return;
+
+  const closeMenu = () => {
+    menu.hidden = true;
+    trigger.setAttribute('aria-expanded', 'false');
+  };
+
+  trigger.addEventListener('click', () => {
+    const isOpen = !menu.hidden;
+    if (isOpen) {
+      closeMenu();
+    } else {
+      menu.hidden = false;
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  menu.querySelectorAll('[data-lang]').forEach((li) => {
+    const btn = li.querySelector('button');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      setLanguage(li.getAttribute('data-lang'));
+      closeMenu();
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!root.contains(e.target)) closeMenu();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu.hidden) {
+      closeMenu();
+      trigger.focus();
+    }
+  });
+
+  let initialLang = 'en';
+  try {
+    const saved = localStorage.getItem(I18N_STORAGE_KEY);
+    if (saved && I18N_LANGS.includes(saved)) initialLang = saved;
+  } catch (err) {
+    /* private-browsing / storage-blocked: default to English */
+  }
+  if (initialLang !== 'en') setLanguage(initialLang);
 }
 
 
@@ -137,6 +267,26 @@ function initMobileNav() {
   });
 }
 
+/* Wraps each word of a .word-reveal heading's plain text in nested
+   .word-mask/.word spans for the per-word mask-reveal animation. Re-run
+   after an i18n language swap (see applyI18nDict) since translated text
+   replaces the wrapped spans with a fresh text node. CJK translations
+   have no inter-word spaces, so they collapse to a single "word" and
+   reveal as one unit instead of staggering — a fine simplification, since
+   per-word stagger typography isn't meaningful for those scripts anyway. */
+function prepareWordReveal(scope) {
+  (scope || document).querySelectorAll('.word-reveal:not(.words-prepared)').forEach((el) => {
+    el.classList.add('words-prepared');
+    const nodes = Array.from(el.childNodes);
+    if (nodes.length === 1 && nodes[0].nodeType === Node.TEXT_NODE) {
+      const words = el.textContent.trim().split(/\s+/);
+      el.innerHTML = words
+        .map((word, i) => `<span class="word-mask"><span class="word" style="--word-delay: ${i * 35}ms">${word}</span></span>`)
+        .join(' ');
+    }
+  });
+}
+
 /* ==========================================================================
    SCROLL REVEAL
    Lightweight IntersectionObserver fade/slide-up on section entry.
@@ -152,17 +302,7 @@ function initScrollReveal() {
   if (!('IntersectionObserver' in window)) return;
 
   // Prepare any word-reveal typography containers with masked spans (Kage typesetting)
-  document.querySelectorAll('.word-reveal:not(.words-prepared)').forEach((el) => {
-    el.classList.add('words-prepared');
-    const nodes = Array.from(el.childNodes);
-    // If it's pure text, split into words
-    if (nodes.length === 1 && nodes[0].nodeType === Node.TEXT_NODE) {
-      const words = el.textContent.trim().split(/\s+/);
-      el.innerHTML = words
-        .map((word, i) => `<span class="word-mask"><span class="word" style="--word-delay: ${i * 35}ms">${word}</span></span>`)
-        .join(' ');
-    }
-  });
+  prepareWordReveal();
 
   const targets = document.querySelectorAll(
     '.section-header, .card-glass, .compare-card, .engine-step-tab, .flywheel-card, .compliance-category, .authority-stat, .sector-content-card, .statement-text, [data-rv], .word-reveal, .mask-line, .conduit-flow-connector'
