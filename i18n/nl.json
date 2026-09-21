@@ -1,4 +1,27 @@
 {
+  "trustPage": {
+    "eyebrow": "Beveiliging van wereldklasse maakt autonomie op schaal mogelijk",
+    "headline": "Zakelijk vertrouwen, soevereine compliance en bedrijfskritische betrouwbaarheid",
+    "subtitle": "Ontworpen voor 's werelds meest gereguleerde fysieke infrastructuur. Toegewijde security-, GRC- en OT-privacyprogramma's beheersen elk edge-knooppunt, elke datastructuurcluster en elk closed-loop dispatch-instelpunt.",
+    "itotHeading": "IT- en OT-beveiligingscertificeringen",
+    "itotCaption": "Onaantastbare IT- en operationele technologiebeveiliging, gecontroleerd door erkende onafhankelijke instanties.",
+    "complianceHeading": "Wereldwijde en regionale compliancekaders",
+    "awardsEyebrow": "Geverifieerd sectorleiderschap",
+    "awardsHeadline": "Bewezen innovatie. Erkend leiderschap. Vertrouwd door de sector.",
+    "award1Title": "Gartner® Magic Quadrant™ Leader",
+    "award1Desc": "Erkend in het Leaders-kwadrant voor wereldwijde industriële IoT-platforms vanwege volledigheid van visie en uitvoeringsvermogen.",
+    "award2Title": "UN Global Compact Award",
+    "award2Desc": "Bekroond als beste duurzame oplossing voor meetbare bijdrage aan de wereldwijde overgang naar schone energie en klimaattechnologische innovatie.",
+    "award3Title": "SEAL Sustainable Innovation Award",
+    "award3Desc": "Eert het EnOS Ark™-platform voor energie-, hulpbronnen- en koolstofbeheer voor impactvolle duurzaamheidsresultaten.",
+    "award4Title": "Reuters Energy Transition Award",
+    "award4Desc": "Erkend in de categorie Technology Whitespace bij de Reuters Global Energy Transition Awards 2025 voor EnOS™ Microgrid.",
+    "award5Desc": "Ontving de NextGen Tech 30 voor sterke schaalvergroting, institutionele governance en aanhoudende wereldwijde industriële impact.",
+    "award6Title": "AI Renewables & Smart City Energy",
+    "award6Desc": "Bekroond voor impact op nationale schaal in fysieke AI-gedreven optimalisatie van hernieuwbare energie en stedelijke energiesystemen.",
+    "governanceTitle": "🇸🇬 Univers: een onafhankelijk Singaporees bedrijf geworteld in wereldwijde substantie",
+    "governanceBody": "Univers is opgericht en diep geworteld in Singapore en vestigt zijn wereldwijde R&D en bestuurlijke besluitvorming in Singapore, onderschreven door Enterprise Singapore. Het bedrijf opereert volledig onafhankelijk van Envision, met een eigen aandeelhoudersstructuur (HS, GIC) en een onafhankelijke raad van bestuur (3 externe, 2 interne leden). Voor Europese zakelijke klanten kwalificeert onze \"Europa voor Europa\"-strategie Univers als soevereine Europese software, volledig conform de EU IAA- en CSA2-regelgeving, zonder enige afhankelijkheid van Chinese bedrijven of toeleveringsketens."
+  },
   "sectorsPage": {
     "eyebrow": "Vier kritieke sectoren",
     "headline": "Voor koplopers, vroege gebruikers en iedereen die net begint met decarbonisatie.",

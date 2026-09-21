@@ -1,4 +1,27 @@
 {
+  "trustPage": {
+    "eyebrow": "Erstklassige Sicherheit ermöglicht Autonomie im großen Maßstab",
+    "headline": "Unternehmensvertrauen, souveräne Compliance und unternehmenskritische Zuverlässigkeit",
+    "subtitle": "Entwickelt für die weltweit am stärksten regulierte physische Infrastruktur. Dedizierte Security-, GRC- und OT-Datenschutzprogramme regeln jeden Edge-Knoten, jeden Daten-Fabric-Cluster und jeden Closed-Loop-Dispatch-Sollwert.",
+    "itotHeading": "IT- und OT-Sicherheitszertifizierungen",
+    "itotCaption": "Unangreifbare IT- und Betriebstechnologie-Sicherheit, geprüft von akkreditierten unabhängigen Stellen.",
+    "complianceHeading": "Globale und regionale Compliance-Rahmenwerke",
+    "awardsEyebrow": "Verifizierte Branchenführerschaft",
+    "awardsHeadline": "Bewährte Innovation. Anerkannte Führerschaft. Vertraut von der Branche.",
+    "award1Title": "Gartner® Magic Quadrant™ Leader",
+    "award1Desc": "Ausgezeichnet im Leader-Quadranten für globale industrielle IoT-Plattformen für Vollständigkeit der Vision und Umsetzungsfähigkeit.",
+    "award2Title": "UN Global Compact Award",
+    "award2Desc": "Ausgezeichnet als beste nachhaltige Lösung für den messbaren Beitrag zur globalen Energiewende und Klimatechnologie-Innovation.",
+    "award3Title": "SEAL Sustainable Innovation Award",
+    "award3Desc": "Würdigung der EnOS Ark™ Energie-, Ressourcen- und CO2-Management-Plattform für wirkungsvolle Nachhaltigkeitsergebnisse.",
+    "award4Title": "Reuters Energy Transition Award",
+    "award4Desc": "Ausgezeichnet in der Kategorie Technology Whitespace bei den Reuters Global Energy Transition Awards 2025 für EnOS™ Microgrid.",
+    "award5Desc": "Ausgezeichnet mit dem NextGen Tech 30 für starke Skalierung, institutionelle Governance und nachhaltige globale industrielle Wirkung.",
+    "award6Title": "AI Renewables & Smart City Energy",
+    "award6Desc": "Ausgezeichnet für die nationale Wirkungsskala bei physikalisch-KI-gesteuerter Optimierung erneuerbarer Energien und urbaner Energiesysteme.",
+    "governanceTitle": "🇸🇬 Univers: Ein unabhängiges singapurisches Unternehmen mit globaler Substanz",
+    "governanceBody": "Univers wurde in Singapur gegründet und ist dort tief verwurzelt; das Unternehmen verlagert globale F&E und unternehmerische Entscheidungsfindung nach Singapur, unterstützt von Enterprise Singapore. Das Unternehmen agiert völlig unabhängig von Envision, mit einer eigenständigen Aktionärsstruktur (HS, GIC) und einem unabhängigen Vorstand (3 externe, 2 interne Mitglieder). Für europäische Unternehmenskunden qualifiziert unsere „Europa für Europa“-Strategie Univers als souveräne europäische Software, vollständig konform mit den EU-IAA- und CSA2-Vorschriften, ohne jegliche Abhängigkeit von chinesischen Geschäften oder Lieferketten."
+  },
   "sectorsPage": {
     "eyebrow": "Vier kritische Branchen",
     "headline": "Für Vorreiter, frühe Anwender und alle, die gerade erst mit der Dekarbonisierung beginnen.",

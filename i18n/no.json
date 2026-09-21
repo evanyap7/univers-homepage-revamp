@@ -1,4 +1,27 @@
 {
+  "trustPage": {
+    "eyebrow": "Sikkerhet i verdensklasse muliggjør autonomi i stor skala",
+    "headline": "Tillit for bedrifter, suveren etterlevelse og forretningskritisk pålitelighet",
+    "subtitle": "Utviklet for verdens mest regulerte fysiske infrastruktur. Dedikerte sikkerhets-, GRC- og OT-personvernprogrammer styrer hver edge-node, hver datastrukturklynge og hvert lukket sløyfe-dispatch-settpunkt.",
+    "itotHeading": "IT- og OT-sikkerhetssertifiseringer",
+    "itotCaption": "Ubestridelig IT- og driftsteknologisikkerhet, revidert av akkrediterte uavhengige organer.",
+    "complianceHeading": "Globale og regionale etterlevelsesrammeverk",
+    "awardsEyebrow": "Verifisert bransjeledelse",
+    "awardsHeadline": "Bevist innovasjon. Anerkjent ledelse. Tillit fra bransjen.",
+    "award1Title": "Gartner® Magic Quadrant™-leder",
+    "award1Desc": "Anerkjent i lederkvadranten for globale industrielle IoT-plattformer for helhetlig visjon og evne til gjennomføring.",
+    "award2Title": "FNs Global Compact-pris",
+    "award2Desc": "Tildelt Best bærekraftig løsning for målbart bidrag til den globale overgangen til ren energi og klimateknologisk innovasjon.",
+    "award3Title": "SEAL-prisen for bærekraftig innovasjon",
+    "award3Desc": "Hedrer EnOS Ark™-plattformen for energi-, ressurs- og karbonstyring for virkningsfulle bærekraftsresultater.",
+    "award4Title": "Reuters-prisen for energiomstilling",
+    "award4Desc": "Anerkjent i kategorien Technology Whitespace ved Reuters Global Energy Transition Awards 2025 for EnOS™ Microgrid.",
+    "award5Desc": "Tildelt NextGen Tech 30 for sterk skalering, institusjonell styring og vedvarende global industriell påvirkning.",
+    "award6Title": "AI for fornybar energi og smartby-energi",
+    "award6Desc": "Tildelt for nasjonal skala av innvirkning innen fysisk AI-drevet optimalisering av fornybar energi og urbane energisystemer.",
+    "governanceTitle": "🇸🇬 Univers: Et uavhengig singapoensk selskap forankret i global substans",
+    "governanceBody": "Univers er grunnlagt og dypt forankret i Singapore, og legger sin globale FoU og ledelsesbeslutninger til Singapore, støttet av Enterprise Singapore. Selskapet opererer fullstendig uavhengig av Envision, med en distinkt aksjonærstruktur (HS, GIC) og et uavhengig styre (3 eksterne, 2 interne medlemmer). For europeiske bedriftskunder kvalifiserer vår «Europa for Europa»-strategi Univers som suveren europeisk programvare, fullt i samsvar med EUs IAA- og CSA2-regelverk, uten noen avhengighet av kinesisk virksomhet eller forsyningskjeder."
+  },
   "sectorsPage": {
     "eyebrow": "Fire kritiske sektorer",
     "headline": "For pionerer, tidlige brukere og alle som akkurat har begynt på karbonreduksjonsreisen.",

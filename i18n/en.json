@@ -1,4 +1,27 @@
 {
+  "trustPage": {
+    "eyebrow": "World-Class Security Enables Autonomy at Scale",
+    "headline": "Enterprise Trust, Sovereign Compliance & Mission-Critical Reliability",
+    "subtitle": "Engineered for the world's most regulated physical infrastructure. Dedicated Security, GRC, and OT Privacy programs govern every edge node, data fabric cluster, and closed-loop dispatch setpoint.",
+    "itotHeading": "IT & OT Security Certifications",
+    "itotCaption": "Unassailable IT & operational technology security audited by accredited independent bodies.",
+    "complianceHeading": "Global & Regional Compliance Frameworks",
+    "awardsEyebrow": "Verified Industry Leadership",
+    "awardsHeadline": "Proven Innovation. Recognized Leadership. Trusted by Industry.",
+    "award1Title": "Gartner® Magic Quadrant™ Leader",
+    "award1Desc": "Recognized in the Leader's Quadrant for Global Industrial IoT Platforms for completeness of vision and ability to execute.",
+    "award2Title": "UN Global Compact Award",
+    "award2Desc": "Awarded Best Sustainable Solution for measurable contribution to global clean energy transition and climate technology innovation.",
+    "award3Title": "SEAL Sustainable Innovation Award",
+    "award3Desc": "Honoring the EnOS Ark™ Energy, Resource, and Carbon Management platform for impactful sustainability outcomes.",
+    "award4Title": "Reuters Energy Transition Award",
+    "award4Desc": "Recognized in the Technology Whitespace category at the 2025 Reuters Global Energy Transition Awards for EnOS™ Microgrid.",
+    "award5Desc": "Awarded the NextGen Tech 30 for strong scaling, institutional governance, and sustained global industrial impact.",
+    "award6Title": "AI Renewables & Smart City Energy",
+    "award6Desc": "Awarded for national scale of impact in physical AI-driven renewable optimization and urban energy systems.",
+    "governanceTitle": "🇸🇬 Univers: An Independent Singapore Company Rooted in Global Substance",
+    "governanceBody": "Founded and deeply rooted in Singapore, Univers bases its global R&D and executive decision-making in Singapore, endorsed by Enterprise Singapore. The company operates completely independent of Envision with a distinct shareholder structure (HS, GIC) and an independent Board of Directors (3 external, 2 internal members). For European enterprise clients, our \"Europe for Europe\" strategy qualifies Univers as sovereign European software, fully compliant with EU IAA and CSA2 regulations, with zero dependency on Chinese business or supply chains."
+  },
   "sectorsPage": {
     "eyebrow": "Four Critical Sectors",
     "headline": "For front-runners, early adopters, and those just starting to decarbonize.",

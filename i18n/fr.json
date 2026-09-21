@@ -1,4 +1,27 @@
 {
+  "trustPage": {
+    "eyebrow": "Une sécurité de classe mondiale permet l'autonomie à grande échelle",
+    "headline": "Confiance d'entreprise, conformité souveraine et fiabilité critique",
+    "subtitle": "Conçu pour l'infrastructure physique la plus réglementée au monde. Des programmes dédiés de sécurité, de GRC et de confidentialité OT régissent chaque nœud périphérique, chaque cluster de tissu de données et chaque point de consigne de répartition en boucle fermée.",
+    "itotHeading": "Certifications de sécurité IT et OT",
+    "itotCaption": "Une sécurité IT et technologie opérationnelle inattaquable, auditée par des organismes indépendants accrédités.",
+    "complianceHeading": "Cadres de conformité mondiaux et régionaux",
+    "awardsEyebrow": "Leadership sectoriel vérifié",
+    "awardsHeadline": "Innovation prouvée. Leadership reconnu. Confiance du secteur.",
+    "award1Title": "Leader du Magic Quadrant™ de Gartner®",
+    "award1Desc": "Reconnu dans le quadrant des leaders pour les plateformes IoT industrielles mondiales, pour l'exhaustivité de sa vision et sa capacité d'exécution.",
+    "award2Title": "Prix du Pacte mondial des Nations Unies",
+    "award2Desc": "Récompensé comme meilleure solution durable pour sa contribution mesurable à la transition énergétique propre mondiale et à l'innovation en technologie climatique.",
+    "award3Title": "Prix SEAL de l'innovation durable",
+    "award3Desc": "Distinction pour la plateforme de gestion de l'énergie, des ressources et du carbone EnOS Ark™, pour ses résultats de développement durable percutants.",
+    "award4Title": "Prix Reuters de la transition énergétique",
+    "award4Desc": "Reconnu dans la catégorie Technology Whitespace des Reuters Global Energy Transition Awards 2025 pour EnOS™ Microgrid.",
+    "award5Desc": "Récompensé par le NextGen Tech 30 pour sa forte capacité de mise à l'échelle, sa gouvernance institutionnelle et son impact industriel mondial durable.",
+    "award6Title": "IA pour les énergies renouvelables et l'énergie des villes intelligentes",
+    "award6Desc": "Récompensé pour son impact à l'échelle nationale dans l'optimisation des énergies renouvelables pilotée par l'IA physique et les systèmes énergétiques urbains.",
+    "governanceTitle": "🇸🇬 Univers : une entreprise singapourienne indépendante ancrée dans une substance mondiale",
+    "governanceBody": "Fondée et profondément ancrée à Singapour, Univers y établit sa R&D mondiale et ses décisions exécutives, avec le soutien d'Enterprise Singapore. L'entreprise opère de manière totalement indépendante d'Envision, avec une structure actionnariale distincte (HS, GIC) et un conseil d'administration indépendant (3 membres externes, 2 membres internes). Pour ses clients entreprises européens, notre stratégie « l'Europe pour l'Europe » qualifie Univers de logiciel européen souverain, pleinement conforme aux réglementations européennes IAA et CSA2, sans aucune dépendance envers des activités ou chaînes d'approvisionnement chinoises."
+  },
   "sectorsPage": {
     "eyebrow": "Quatre secteurs critiques",
     "headline": "Pour les pionniers, les adopteurs précoces et ceux qui commencent tout juste à décarboner.",
