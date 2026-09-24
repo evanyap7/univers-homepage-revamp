@@ -12,7 +12,7 @@ I built this project as a front-end and design exploration into how a modern, en
 
 I wanted the page to feel alive rather than just a wall of static marketing text. Here are a few interactive details built right into the site:
 
-- **Interactive Background Mesh:** Fullscreen HTML5 Canvas simulating connected OT endpoints and energy grids. Nodes drift with organic physics, draw live vector connections, and gently repel away from your cursor with spring-mass dampening.
+- **Interactive Background Mesh:** Fullscreen WebGL (Three.js) scene simulating connected OT endpoints and energy grids, with real depth, per-node glow, and camera parallax. Nodes drift with organic physics, draw live vector connections, and gently repel away from your cursor with spring-mass dampening.
 - **Electric Drag Trail & Particle Sparks:** Click and drag your mouse anywhere on the page! It generates an electric neon ribbon path with glowing spark micro-particles that shoot outward with real-time physics velocity and decay.
 - **Mechanical Number Tally (Odometer Animation):** As you scroll down the page, statistics and KPI counters don't just jump into place — each individual digit reel scrolls vertically downward like a precision slot machine or mechanical ticker. You can also hover over or click any number to re-roll it!
 - **3D Card Tilt & Specular Flashlight:** Cards across the page react to your mouse position with smooth 3D perspective rotation, casting a soft radial spotlight flare across their surfaces.
@@ -23,19 +23,20 @@ I wanted the page to feel alive rather than just a wall of static marketing text
 
 ---
 
-## 🛠️ Built Purely with Vanilla Web Tech
+## 🛠️ Built with Vanilla Web Tech (Plus One Library)
 
-No React, no Next.js, no Tailwind, and zero `node_modules` bloat.
+No React, no Next.js, no Tailwind, and no build step or `node_modules` to install.
 
 - **HTML5:** Semantic, accessible markup structured logically from hero down to footer.
 - **Vanilla CSS:** Custom design tokens, glassmorphism, responsive grid & flexbox layouts, and hardware-accelerated transforms.
-- **Vanilla JavaScript:** Clean, dependency-free modules driving canvas rendering, physics interpolation, custom cursor tracking, and the Web Audio engine.
+- **Vanilla JavaScript:** Clean modules driving physics interpolation, custom cursor tracking, and the Web Audio engine.
+- **Three.js (loaded via CDN, no bundler):** The kinetic background is real WebGL, not a flat 2D canvas, a shader-driven particle field with genuine depth, per-particle glow sprites, and camera parallax. Everything that already made the background feel alive (scroll-stage cluster physics, cursor wake, drag sparks, radar pings) is unchanged; only the renderer is new.
 
-### Why Vanilla?
-Frameworks are great, but building this dependency-free means:
+### Why (Mostly) Vanilla?
+Frameworks are great, but keeping this build-step-free means:
 - Instantaneous initial paint (< 50ms)
-- Rock-solid 60fps canvas animations
 - Zero build steps required to run or deploy
+- The one exception, Three.js, is a single dynamic `import()` from a CDN inside `app.js`, not a dependency you install; drop the import and the site still runs, just with no kinetic background.
 
 ---
 

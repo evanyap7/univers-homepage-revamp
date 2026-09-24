@@ -1008,555 +1008,745 @@ function initValueCalculator() {
 }
 
 /* ==========================================================================
-   INTERACTIVE ENGINE: KINETIC BACKGROUND CANVAS & PHYSICS SIMULATION
+   INTERACTIVE ENGINE: KINETIC BACKGROUND (WebGL / Three.js) & PHYSICS SIM
    Operational data mesh, floating OT telemetry nodes, mouse force-field,
-   and drag-activated electric tethering.
+   and drag-activated electric tethering. All physics below is unchanged
+   from the original 2D canvas version; only the renderer is WebGL, for
+   real per-node depth, glow, and camera parallax. Three.js loads lazily
+   via a dynamic import from a CDN (no bundler, no node_modules) and the
+   whole scene degrades to "no background" if that import fails, rather
+   than throwing.
    ========================================================================== */
 function initKineticCanvas() {
   const canvas = document.getElementById('kinetic-canvas');
   if (!canvas) return;
 
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return;
-
-  let width = 0;
-  let height = 0;
-  let dpr = 1;
-
-  // Global interactive configuration accessible by HUD
   window.UniversInteractive = window.UniversInteractive || {};
   window.UniversInteractive.bgMode = 'mesh'; // 'mesh' | 'matrix' | 'particles'
   window.UniversInteractive.cursorMode = 'plasma'; // 'plasma' | 'sparks'
   window.UniversInteractive.isSurging = false;
   window.UniversInteractive.soundEnabled = false;
 
-  const particles = [];
-  const floatingGlyphs = [];
-  const dragTrail = [];
-  const dragSparks = [];
-  const radarRings = [];
+  import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js')
+    .then((THREE) => bootScene(THREE))
+    .catch((err) => {
+      console.warn('[Univers] Three.js failed to load; kinetic background disabled:', err);
+    });
 
-  let mouseX = -9999;
-  let mouseY = -9999;
-  let prevMouseX = -9999;
-  let prevMouseY = -9999;
-  let isDragging = false;
-  let isMouseDown = false;
-  let dragDistance = 0;
-
-  // Scroll depth and velocity tracking for fluid narrative transitions
-  let currentScrollProgress = 0;
-  let targetScrollProgress = 0;
-  let lastScrollY = window.scrollY || 0;
-  let scrollVelocity = 0;
-  let smoothScrollVelocity = 0;
-
-  function updateScrollProgress() {
-    const currentY = window.scrollY || 0;
-    const deltaY = currentY - lastScrollY;
-    scrollVelocity = deltaY;
-    lastScrollY = currentY;
-
-    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-    if (totalHeight > 0) {
-      targetScrollProgress = Math.max(0, Math.min(1, currentY / totalHeight));
+  function bootScene(THREE) {
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'low-power' });
+    } catch (err) {
+      console.warn('[Univers] WebGL unavailable; kinetic background disabled:', err);
+      return;
     }
-  }
 
-  window.addEventListener('scroll', updateScrollProgress, { passive: true });
-  updateScrollProgress();
+    const scene = new THREE.Scene();
+    const FOV = 45;
+    const camera = new THREE.PerspectiveCamera(FOV, 1, 1, 4000);
+    const cameraBase = new THREE.Vector3(0, 0, 800);
 
-  // Track viewport sizing with device pixel ratio
-  function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    initParticles();
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+
+    // Real per-vertex size/color/alpha for soft circular sprites. Plain
+    // THREE.PointsMaterial can't vary size or alpha per point, so a small
+    // custom shader carries all three, with true alpha blending (not a
+    // fake blend-toward-background hack).
+    const pointVert = `
+      attribute float aSize;
+      attribute vec3 aColor;
+      attribute float aAlpha;
+      varying vec3 vColor;
+      varying float vAlpha;
+      void main() {
+        vColor = aColor;
+        vAlpha = aAlpha;
+        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+        gl_PointSize = aSize * (420.0 / -mvPosition.z);
+        gl_Position = projectionMatrix * mvPosition;
+      }
+    `;
+    const pointFrag = `
+      varying vec3 vColor;
+      varying float vAlpha;
+      void main() {
+        vec2 uv = gl_PointCoord - 0.5;
+        float d = length(uv);
+        float edge = smoothstep(0.5, 0.08, d);
+        if (edge < 0.01) discard;
+        gl_FragColor = vec4(vColor, edge * vAlpha);
+      }
+    `;
+    const lineVert = `
+      attribute vec3 aColor;
+      attribute float aAlpha;
+      varying vec3 vColor;
+      varying float vAlpha;
+      void main() {
+        vColor = aColor;
+        vAlpha = aAlpha;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `;
+    const lineFrag = `
+      varying vec3 vColor;
+      varying float vAlpha;
+      void main() {
+        gl_FragColor = vec4(vColor, vAlpha);
+      }
+    `;
+
+    function makePointMaterial() {
+      return new THREE.ShaderMaterial({
+        vertexShader: pointVert,
+        fragmentShader: pointFrag,
+        transparent: true,
+        depthWrite: false,
+        blending: THREE.NormalBlending
+      });
+    }
+    function makeLineMaterial() {
+      return new THREE.ShaderMaterial({
+        vertexShader: lineVert,
+        fragmentShader: lineFrag,
+        transparent: true,
+        depthWrite: false,
+        blending: THREE.NormalBlending
+      });
+    }
+
+    // ---- Ambient node field (the "mesh" of physical/OT nodes) ----
+    const MAX_PARTICLES = 60;
+    const particleGeo = new THREE.BufferGeometry();
+    const particlePos = new Float32Array(MAX_PARTICLES * 3);
+    const particleColor = new Float32Array(MAX_PARTICLES * 3);
+    const particleAlpha = new Float32Array(MAX_PARTICLES);
+    const particleSize = new Float32Array(MAX_PARTICLES);
+    particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
+    particleGeo.setAttribute('aColor', new THREE.BufferAttribute(particleColor, 3));
+    particleGeo.setAttribute('aAlpha', new THREE.BufferAttribute(particleAlpha, 1));
+    particleGeo.setAttribute('aSize', new THREE.BufferAttribute(particleSize, 1));
+    const particlePoints = new THREE.Points(particleGeo, makePointMaterial());
+    scene.add(particlePoints);
+
+    // ---- Mesh/matrix connection lines (rebuilt every frame, drawRange trims it) ----
+    const MAX_LINE_VERTS = MAX_PARTICLES * MAX_PARTICLES * 4;
+    const lineGeo = new THREE.BufferGeometry();
+    const linePos = new Float32Array(MAX_LINE_VERTS * 3);
+    const lineColor = new Float32Array(MAX_LINE_VERTS * 3);
+    const lineAlphaAttr = new Float32Array(MAX_LINE_VERTS);
+    lineGeo.setAttribute('position', new THREE.BufferAttribute(linePos, 3));
+    lineGeo.setAttribute('aColor', new THREE.BufferAttribute(lineColor, 3));
+    lineGeo.setAttribute('aAlpha', new THREE.BufferAttribute(lineAlphaAttr, 1));
+    lineGeo.setDrawRange(0, 0);
+    const meshLines = new THREE.LineSegments(lineGeo, makeLineMaterial());
+    scene.add(meshLines);
+
+    // ---- Harmonic energy ribbons (3 flowing sine waves) ----
+    const RIBBON_COUNT = 3;
+    const RIBBON_SEGMENTS = 90;
+    const ribbonGeo = new THREE.BufferGeometry();
+    const ribbonPos = new Float32Array(RIBBON_COUNT * RIBBON_SEGMENTS * 2 * 3);
+    const ribbonColor = new Float32Array(RIBBON_COUNT * RIBBON_SEGMENTS * 2 * 3);
+    const ribbonAlphaAttr = new Float32Array(RIBBON_COUNT * RIBBON_SEGMENTS * 2);
+    ribbonGeo.setAttribute('position', new THREE.BufferAttribute(ribbonPos, 3));
+    ribbonGeo.setAttribute('aColor', new THREE.BufferAttribute(ribbonColor, 3));
+    ribbonGeo.setAttribute('aAlpha', new THREE.BufferAttribute(ribbonAlphaAttr, 1));
+    const ribbonLines = new THREE.LineSegments(ribbonGeo, makeLineMaterial());
+    scene.add(ribbonLines);
+
+    // ---- Cursor tether arcs (drawn while dragging) ----
+    const MAX_TETHERS = 4;
+    const TETHER_SEGMENTS = 14;
+    const tetherGeo = new THREE.BufferGeometry();
+    const tetherPos = new Float32Array(MAX_TETHERS * TETHER_SEGMENTS * 2 * 3);
+    const tetherColor = new Float32Array(MAX_TETHERS * TETHER_SEGMENTS * 2 * 3);
+    const tetherAlphaAttr = new Float32Array(MAX_TETHERS * TETHER_SEGMENTS * 2);
+    tetherGeo.setAttribute('position', new THREE.BufferAttribute(tetherPos, 3));
+    tetherGeo.setAttribute('aColor', new THREE.BufferAttribute(tetherColor, 3));
+    tetherGeo.setAttribute('aAlpha', new THREE.BufferAttribute(tetherAlphaAttr, 1));
+    tetherGeo.setDrawRange(0, 0);
+    const tetherLines = new THREE.LineSegments(tetherGeo, makeLineMaterial());
+    scene.add(tetherLines);
+
+    // ---- Drag trail ribbon ----
+    const MAX_TRAIL = 26;
+    const trailGeo = new THREE.BufferGeometry();
+    const trailPos = new Float32Array(MAX_TRAIL * 3);
+    const trailColor = new Float32Array(MAX_TRAIL * 3);
+    const trailAlphaAttr = new Float32Array(MAX_TRAIL);
+    trailGeo.setAttribute('position', new THREE.BufferAttribute(trailPos, 3));
+    trailGeo.setAttribute('aColor', new THREE.BufferAttribute(trailColor, 3));
+    trailGeo.setAttribute('aAlpha', new THREE.BufferAttribute(trailAlphaAttr, 1));
+    trailGeo.setDrawRange(0, 0);
+    const trailLine = new THREE.Line(trailGeo, makeLineMaterial());
+    scene.add(trailLine);
+
+    // ---- Drag sparks (their own point cloud, independent of ambient nodes) ----
+    const MAX_SPARKS = 140;
+    const sparkGeo = new THREE.BufferGeometry();
+    const sparkPos = new Float32Array(MAX_SPARKS * 3);
+    const sparkColor = new Float32Array(MAX_SPARKS * 3);
+    const sparkAlpha = new Float32Array(MAX_SPARKS);
+    const sparkSize = new Float32Array(MAX_SPARKS);
+    sparkGeo.setAttribute('position', new THREE.BufferAttribute(sparkPos, 3));
+    sparkGeo.setAttribute('aColor', new THREE.BufferAttribute(sparkColor, 3));
+    sparkGeo.setAttribute('aAlpha', new THREE.BufferAttribute(sparkAlpha, 1));
+    sparkGeo.setAttribute('aSize', new THREE.BufferAttribute(sparkSize, 1));
+    const sparkPoints = new THREE.Points(sparkGeo, makePointMaterial());
+    scene.add(sparkPoints);
+
+    // ---- Radar pings: short-lived ring outlines, pooled ----
+    const radarPool = [];
+    function acquireRadarMesh() {
+      const geo = new THREE.RingGeometry(0.97, 1, 64);
+      const mat = new THREE.MeshBasicMaterial({ color: 0x7A42EA, transparent: true, opacity: 0, side: THREE.DoubleSide });
+      const mesh = new THREE.Mesh(geo, mat);
+      scene.add(mesh);
+      return mesh;
+    }
+
+    function hexToRgb(hex) {
+      const c = new THREE.Color(hex);
+      return [c.r, c.g, c.b];
+    }
+    const PALETTE = ['#7A42EA', '#00E599', '#00D2FF', '#A984F1', '#14142B'].map(hexToRgb);
+    const SPARK_PALETTE = ['#7A42EA', '#00E599', '#00D2FF', '#FFFFFF', '#A984F1'].map(hexToRgb);
+    const SURGE_COLOR = hexToRgb('#7A42EA');
+    const BRIDGE_COLOR = hexToRgb('#00E599');
+
+    const particles = [];
+    const floatingGlyphs = [];
+    const dragTrail = [];
+    const dragSparks = [];
+    const radarRings = [];
+
+    let mouseX = -9999;
+    let mouseY = -9999;
+    let prevMouseX = -9999;
+    let prevMouseY = -9999;
+    let isDragging = false;
+    let isMouseDown = false;
+    let dragDistance = 0;
+    let normMouseX = 0; // -1..1, for camera parallax
+    let normMouseY = 0;
+
+    let currentScrollProgress = 0;
+    let targetScrollProgress = 0;
+    let lastScrollY = window.scrollY || 0;
+    let scrollVelocity = 0;
+    let smoothScrollVelocity = 0;
+
+    function updateScrollProgress() {
+      const currentY = window.scrollY || 0;
+      const deltaY = currentY - lastScrollY;
+      scrollVelocity = deltaY;
+      lastScrollY = currentY;
+
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        targetScrollProgress = Math.max(0, Math.min(1, currentY / totalHeight));
+      }
+    }
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
     updateScrollProgress();
-  }
 
-  // Generate responsive pool of OT physical nodes — kept sparse and low-contrast
-  // so it reads as quiet ambient texture, not a busy foreground decoration.
-  function initParticles() {
-    particles.length = 0;
-    const count = Math.floor(Math.min(width, 1600) / 42); // ~20 to 38 nodes
-    const colors = ['#7A42EA', '#00E599', '#00D2FF', '#A984F1', '#14142B'];
-
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.45,
-        vy: (Math.random() - 0.5) * 0.45,
-        radius: 1.5 + Math.random() * 2.2,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        baseAlpha: 0.12 + Math.random() * 0.22,
-        alpha: 0.15,
-        pulseSpeed: 0.02 + Math.random() * 0.03,
-        pulseOffset: Math.random() * Math.PI * 2,
-        highlightTime: 0,
-        highlightLabel: '',
-        clusterId: i % 3
-      });
-    }
-
-    // Ambient floating OT data packets / HUD glyphs — rare, not a wallpaper pattern
-    floatingGlyphs.length = 0;
-    const glyphLabels = [
-      'OT-NODE // 400kV',
-      'IEC 61850 STREAM',
-      'EnOS™ CLOUD SYNC',
-      '1,070 GW MANAGED',
-      'SUBSTATION ALPHA',
-      'BERTH-04 AGV',
-      'ALL CONNECTED',
-      'BESS 2.4 MWh'
-    ];
-
-    const glyphCount = Math.max(1, Math.floor(width / 700));
-    for (let g = 0; g < glyphCount; g++) {
-      floatingGlyphs.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.2,
-        vy: -0.15 - Math.random() * 0.25,
-        label: glyphLabels[g % glyphLabels.length],
-        alpha: 0.07 + Math.random() * 0.08,
-        size: 14 + Math.random() * 12,
-        rot: Math.random() * Math.PI * 2,
-        rotSpeed: (Math.random() - 0.5) * 0.004
-      });
-    }
-  }
-
-  // Listeners for mouse tracking and interaction
-  window.addEventListener('mousemove', (e) => {
-    prevMouseX = mouseX;
-    prevMouseY = mouseY;
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-
-    if (isMouseDown) {
-      const distMoved = Math.hypot(mouseX - prevMouseX, mouseY - prevMouseY);
-      dragDistance += distMoved;
-      if (dragDistance > 4) {
-        isDragging = true;
-        addDragSparks(mouseX, mouseY, distMoved);
-      }
-    }
-  });
-
-  window.addEventListener('mousedown', (e) => {
-    // Only capture primary mouse clicks
-    if (e.button !== 0) return;
-    isMouseDown = true;
-    dragDistance = 0;
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
-
-  window.addEventListener('mouseup', () => {
-    isMouseDown = false;
-    isDragging = false;
-    dragDistance = 0;
-  });
-
-  window.addEventListener('mouseleave', () => {
-    isMouseDown = false;
-    isDragging = false;
-    mouseX = -9999;
-    mouseY = -9999;
-  });
-
-  // Radar click ping emitter on canvas
-  window.addEventListener('click', (e) => {
-    // Check if clicked element was an input or button
-    if (e.target.closest('button, a, input, select, textarea, .cyber-hud')) return;
-    triggerRadarPing(e.clientX, e.clientY);
-  });
-
-  function triggerRadarPing(x, y) {
-    radarRings.push({
-      x,
-      y,
-      radius: 5,
-      maxRadius: Math.max(width, height) * 0.75,
-      alpha: 0.8,
-      speed: 14
-    });
-
-    if (window.UniversInteractive.soundEnabled && window.UniversInteractive.playSound) {
-      window.UniversInteractive.playSound('ping');
-    }
-  }
-  window.UniversInteractive.triggerRadar = triggerRadarPing;
-
-  // Add sparks along cursor drag path
-  function addDragSparks(x, y, speed) {
-    const sparkCount = Math.min(Math.floor(speed * 0.4) + 1, 5);
-    const colors = ['#7A42EA', '#00E599', '#00D2FF', '#FFFFFF', '#A984F1'];
-
-    // Push into drag trail points
-    dragTrail.push({
-      x,
-      y,
-      life: 1.0,
-      decay: 0.04
-    });
-    if (dragTrail.length > 25) dragTrail.shift();
-
-    for (let i = 0; i < sparkCount; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const velocity = 1.5 + Math.random() * 4.5;
-      dragSparks.push({
-        x,
-        y,
-        vx: Math.cos(angle) * velocity,
-        vy: Math.sin(angle) * velocity,
-        size: 2 + Math.random() * 3.5,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        life: 1.0,
-        decay: 0.035 + Math.random() * 0.04
-      });
-    }
-
-    if (dragSparks.length > 120) dragSparks.splice(0, dragSparks.length - 120);
-
-    if (window.UniversInteractive.soundEnabled && window.UniversInteractive.playSound) {
-      window.UniversInteractive.playSound('drag');
-    }
-  }
-
-  // Main Canvas Render Loop (60fps)
-  let lastTime = performance.now();
-
-  function animate(now) {
-    requestAnimationFrame(animate);
-    const dt = Math.min((now - lastTime) / 1000, 0.1);
-    lastTime = now;
-
-    ctx.clearRect(0, 0, width, height);
-
-    const isSurging = window.UniversInteractive.isSurging;
-    const mode = window.UniversInteractive.bgMode;
-    const baseSpeed = isSurging ? 2.8 : 1.0;
-
-    // Smooth scroll depth & velocity momentum lerp (Kage fluid physics)
-    currentScrollProgress += (targetScrollProgress - currentScrollProgress) * 0.08;
-    smoothScrollVelocity += (scrollVelocity - smoothScrollVelocity) * 0.12;
-    scrollVelocity *= 0.88;
-    const velocityFactor = Math.min(Math.abs(smoothScrollVelocity) * 0.025, 2.0);
-    const speedMult = baseSpeed + velocityFactor;
+    // Lab-page-only ambient telemetry glyphs render as a DOM overlay (a font
+    // renderer in WebGL is a lot of machinery for a handful of faint labels
+    // that only ever appear on one page).
     const isLabPage = !!document.getElementById('cyber-hud-panel');
-
-    // Fluid Harmonic Energy Ribbons (OT Data Currents - Kage flow architecture)
-    const ribbonCount = 3;
-    const ribbonTime = now * 0.0005;
-    for (let r = 0; r < ribbonCount; r++) {
-      ctx.beginPath();
-      const yOffset = height * (0.24 + r * 0.26);
-      const waveFreq = 0.0011 + r * 0.0005;
-      const waveAmp = (24 + r * 14) * (1 + velocityFactor * 0.6);
-      const speedPhase = ribbonTime * (1.1 + r * 0.65);
-
-      for (let x = 0; x <= width; x += 20) {
-        const y = yOffset +
-          Math.sin(x * waveFreq + speedPhase) * waveAmp +
-          Math.cos(x * waveFreq * 1.7 - speedPhase * 0.5) * (waveAmp * 0.35);
-
-        if (x === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      }
-
-      const ribbonAlpha = (0.04 - r * 0.008) * (isSurging ? 2.0 : 1);
-      ctx.strokeStyle = r === 1
-        ? `rgba(0, 229, 153, ${ribbonAlpha * 1.25})`
-        : `rgba(122, 66, 234, ${ribbonAlpha})`;
-      ctx.lineWidth = 1.4 + r * 0.5;
-      ctx.stroke();
-    }
-
-    // 1. Update & Render Ambient Floating Glyphs (strictly on lab playground page to prevent text occlusion on marketing pages)
+    let glyphLayer = null;
     if (isLabPage) {
-      ctx.font = '9px "JetBrains Mono", monospace';
-      for (let g = 0; g < floatingGlyphs.length; g++) {
-        const gl = floatingGlyphs[g];
-        gl.y += gl.vy * speedMult;
-        gl.x += gl.vx * speedMult;
-        gl.rot += gl.rotSpeed;
-
-        if (gl.y < -40) gl.y = height + 40;
-        if (gl.x < -40) gl.x = width + 40;
-        if (gl.x > width + 40) gl.x = -40;
-
-        // Draw subtle hexagon
-        ctx.save();
-        ctx.translate(gl.x, gl.y);
-        ctx.rotate(gl.rot);
-        ctx.strokeStyle = isSurging ? 'rgba(122, 66, 234, 0.4)' : `rgba(20, 20, 43, ${gl.alpha * 0.8})`;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        for (let s = 0; s < 6; s++) {
-          const a = (s * Math.PI) / 3;
-          const hx = Math.cos(a) * (gl.size * 0.6);
-          const hy = Math.sin(a) * (gl.size * 0.6);
-          s === 0 ? ctx.moveTo(hx, hy) : ctx.lineTo(hx, hy);
-        }
-        ctx.closePath();
-        ctx.stroke();
-
-        // Draw telemetry label
-        ctx.fillStyle = isSurging ? 'rgba(122, 66, 234, 0.7)' : `rgba(82, 82, 95, ${gl.alpha})`;
-        ctx.fillText(gl.label, gl.size * 0.8, 3);
-        ctx.restore();
-      }
+      glyphLayer = document.createElement('div');
+      glyphLayer.id = 'kinetic-glyph-layer';
+      glyphLayer.setAttribute('aria-hidden', 'true');
+      Object.assign(glyphLayer.style, {
+        position: 'fixed', inset: '0', pointerEvents: 'none', zIndex: '1', overflow: 'hidden'
+      });
+      document.body.appendChild(glyphLayer);
     }
 
-    // 2. Update & Render Particles with 5-stage scroll behavior
-    const isStage2 = currentScrollProgress >= 0.16 && currentScrollProgress < 0.36;
-    const isStage3 = currentScrollProgress >= 0.36 && currentScrollProgress < 0.56;
-    const isStage5 = currentScrollProgress >= 0.78;
+    function fitCamera() {
+      camera.aspect = width / height;
+      camera.fov = FOV;
+      cameraBase.z = (height / 2) / Math.tan(THREE.MathUtils.degToRad(FOV / 2));
+      camera.updateProjectionMatrix();
+    }
 
-    for (let i = 0; i < particles.length; i++) {
-      const p = particles[i];
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      renderer.setPixelRatio(dpr);
+      renderer.setSize(width, height, true);
+      fitCamera();
+      initParticles();
+    }
 
-      // Stage-specific physics forces
-      if (isStage2) {
-        // Stage 2 (Tension / Fragmentation): Particles pulled toward 3 siloed cluster centers
-        const clusterCenters = [
-          { x: width * 0.22, y: height * 0.35 },
-          { x: width * 0.78, y: height * 0.35 },
-          { x: width * 0.50, y: height * 0.70 }
+    // Same sparse pool sizing/coloring as before, plus a static depth (z)
+    // per particle. That is the one new field the WebGL port adds; every
+    // other property and every physics rule below is unchanged.
+    function initParticles() {
+      particles.length = 0;
+      const count = Math.min(Math.floor(Math.min(width, 1600) / 42), MAX_PARTICLES);
+
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          z: (Math.random() - 0.5) * 260,
+          vx: (Math.random() - 0.5) * 0.45,
+          vy: (Math.random() - 0.5) * 0.45,
+          radius: 1.5 + Math.random() * 2.2,
+          color: PALETTE[Math.floor(Math.random() * PALETTE.length)],
+          baseAlpha: 0.12 + Math.random() * 0.22,
+          alpha: 0.15,
+          pulseSpeed: 0.02 + Math.random() * 0.03,
+          pulseOffset: Math.random() * Math.PI * 2,
+          highlightTime: 0,
+          clusterId: i % 3
+        });
+      }
+      particleGeo.setDrawRange(0, count);
+
+      if (isLabPage) {
+        floatingGlyphs.length = 0;
+        if (glyphLayer) glyphLayer.innerHTML = '';
+        const glyphLabels = [
+          'OT-NODE // 400kV', 'IEC 61850 STREAM', 'EnOS™ CLOUD SYNC', '1,070 GW MANAGED',
+          'SUBSTATION ALPHA', 'BERTH-04 AGV', 'ALL CONNECTED', 'BESS 2.4 MWh'
         ];
-        const target = clusterCenters[p.clusterId];
-        p.vx += (target.x - p.x) * 0.0006;
-        p.vy += (target.y - p.y) * 0.0006;
-      } else if (isStage3) {
-        // Stage 3 (The Turn): Gentle central attraction to bridge clusters
-        p.vx += (width * 0.5 - p.x) * 0.00025;
-        p.vy += (height * 0.5 - p.y) * 0.00025;
+        const glyphCount = Math.max(1, Math.floor(width / 700));
+        for (let g = 0; g < glyphCount; g++) {
+          const el = document.createElement('div');
+          el.className = 'kinetic-glyph';
+          el.textContent = glyphLabels[g % glyphLabels.length];
+          if (glyphLayer) glyphLayer.appendChild(el);
+          floatingGlyphs.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.2,
+            vy: -0.15 - Math.random() * 0.25,
+            alpha: 0.16 + Math.random() * 0.14,
+            size: 14 + Math.random() * 12,
+            rot: Math.random() * Math.PI * 2,
+            rotSpeed: (Math.random() - 0.5) * 0.004,
+            el
+          });
+        }
       }
+    }
 
-      // Physics velocity
-      p.x += p.vx * speedMult;
-      p.y += p.vy * speedMult;
+    window.addEventListener('mousemove', (e) => {
+      prevMouseX = mouseX;
+      prevMouseY = mouseY;
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      normMouseX = (e.clientX / width) * 2 - 1;
+      normMouseY = (e.clientY / height) * 2 - 1;
 
-      // Gentle screen bounce/wrap
-      if (p.x < 0) { p.x = 0; p.vx *= -1; }
-      if (p.x > width) { p.x = width; p.vx *= -1; }
-      if (p.y < 0) { p.y = 0; p.vy *= -1; }
-      if (p.y > height) { p.y = height; p.vy *= -1; }
+      if (isMouseDown) {
+        const distMoved = Math.hypot(mouseX - prevMouseX, mouseY - prevMouseY);
+        dragDistance += distMoved;
+        if (dragDistance > 4) {
+          isDragging = true;
+          addDragSparks(mouseX, mouseY, distMoved);
+        }
+      }
+    });
 
-      // Fluid Cursor Wake & Repulsion (Kage-style fluid vortex)
-      if (mouseX > 0 && mouseY > 0) {
-        const dx = p.x - mouseX;
-        const dy = p.y - mouseY;
-        const dist = Math.hypot(dx, dy);
+    window.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return;
+      isMouseDown = true;
+      dragDistance = 0;
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
 
-        if (dist < 160) {
-          const force = (1 - dist / 160) * (isDragging ? 3.2 : 1.5);
-          // Radial repulsion
-          p.vx += (dx / dist) * force * 0.75;
-          p.vy += (dy / dist) * force * 0.75;
-          // Fluid tangential wake (swirling liquid drift)
-          p.vx += (-dy / dist) * force * 0.35;
-          p.vy += (dx / dist) * force * 0.35;
-          p.highlightTime = 0.45;
+    window.addEventListener('mouseup', () => {
+      isMouseDown = false;
+      isDragging = false;
+      dragDistance = 0;
+    });
+
+    window.addEventListener('mouseleave', () => {
+      isMouseDown = false;
+      isDragging = false;
+      mouseX = -9999;
+      mouseY = -9999;
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target.closest('button, a, input, select, textarea, .cyber-hud')) return;
+      triggerRadarPing(e.clientX, e.clientY);
+    });
+
+    function triggerRadarPing(x, y) {
+      const mesh = acquireRadarMesh();
+      radarRings.push({
+        x, y, mesh,
+        radius: 5,
+        maxRadius: Math.max(width, height) * 0.75,
+        alpha: 0.8,
+        speed: 14
+      });
+      if (window.UniversInteractive.soundEnabled && window.UniversInteractive.playSound) {
+        window.UniversInteractive.playSound('ping');
+      }
+    }
+    window.UniversInteractive.triggerRadar = triggerRadarPing;
+
+    function addDragSparks(x, y, speed) {
+      const sparkCount = Math.min(Math.floor(speed * 0.4) + 1, 5);
+
+      dragTrail.push({ x, y, life: 1.0, decay: 0.04 });
+      if (dragTrail.length > MAX_TRAIL) dragTrail.shift();
+
+      for (let i = 0; i < sparkCount; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = 1.5 + Math.random() * 4.5;
+        dragSparks.push({
+          x, y,
+          vx: Math.cos(angle) * velocity,
+          vy: Math.sin(angle) * velocity,
+          size: 2 + Math.random() * 3.5,
+          color: SPARK_PALETTE[Math.floor(Math.random() * SPARK_PALETTE.length)],
+          life: 1.0,
+          decay: 0.035 + Math.random() * 0.04
+        });
+      }
+      if (dragSparks.length > MAX_SPARKS) dragSparks.splice(0, dragSparks.length - MAX_SPARKS);
+
+      if (window.UniversInteractive.soundEnabled && window.UniversInteractive.playSound) {
+        window.UniversInteractive.playSound('drag');
+      }
+    }
+
+    function toWorldX(x) { return x - width / 2; }
+    function toWorldY(y) { return -(y - height / 2); }
+
+    function writePoint(posArr, colorArr, alphaArr, sizeArr, idx, x, y, z, color, alpha, size) {
+      posArr[idx * 3] = toWorldX(x);
+      posArr[idx * 3 + 1] = toWorldY(y);
+      posArr[idx * 3 + 2] = z;
+      colorArr[idx * 3] = color[0];
+      colorArr[idx * 3 + 1] = color[1];
+      colorArr[idx * 3 + 2] = color[2];
+      alphaArr[idx] = alpha;
+      sizeArr[idx] = size;
+    }
+
+    function writeLineVert(posArr, colorArr, alphaArr, idx, x, y, z, color, alpha) {
+      posArr[idx * 3] = toWorldX(x);
+      posArr[idx * 3 + 1] = toWorldY(y);
+      posArr[idx * 3 + 2] = z;
+      colorArr[idx * 3] = color[0];
+      colorArr[idx * 3 + 1] = color[1];
+      colorArr[idx * 3 + 2] = color[2];
+      alphaArr[idx] = alpha;
+    }
+
+    let lastTime = performance.now();
+
+    function animate(now) {
+      requestAnimationFrame(animate);
+      const dt = Math.min((now - lastTime) / 1000, 0.1);
+      lastTime = now;
+
+      const isSurging = window.UniversInteractive.isSurging;
+      const mode = window.UniversInteractive.bgMode;
+      const baseSpeed = isSurging ? 2.8 : 1.0;
+
+      currentScrollProgress += (targetScrollProgress - currentScrollProgress) * 0.08;
+      smoothScrollVelocity += (scrollVelocity - smoothScrollVelocity) * 0.12;
+      scrollVelocity *= 0.88;
+      const velocityFactor = Math.min(Math.abs(smoothScrollVelocity) * 0.025, 2.0);
+      const speedMult = baseSpeed + velocityFactor;
+
+      // Subtle camera parallax against the cursor: the actual "real depth"
+      // payoff. Nodes at different z now visibly shift against each other
+      // as the camera pans, instead of a flat, static mesh.
+      camera.position.x += ((normMouseX || 0) * 40 - camera.position.x) * 0.04;
+      camera.position.y += ((-normMouseY || 0) * 24 - camera.position.y) * 0.04;
+      camera.position.z = cameraBase.z;
+      camera.lookAt(camera.position.x * 0.3, camera.position.y * 0.3, 0);
+
+      // ---- Harmonic energy ribbons ----
+      const ribbonTime = now * 0.0005;
+      let ribbonVertIdx = 0;
+      for (let r = 0; r < RIBBON_COUNT; r++) {
+        const yOffset = height * (0.24 + r * 0.26);
+        const waveFreq = 0.0011 + r * 0.0005;
+        const waveAmp = (24 + r * 14) * (1 + velocityFactor * 0.6);
+        const speedPhase = ribbonTime * (1.1 + r * 0.65);
+        const ribbonAlpha = (0.04 - r * 0.008) * (isSurging ? 2.0 : 1);
+        const color = r === 1 ? BRIDGE_COLOR : SURGE_COLOR;
+        const alphaMult = r === 1 ? 1.25 : 1;
+
+        let prevX = null;
+        let prevY = null;
+        const step = width / RIBBON_SEGMENTS;
+        for (let s = 0; s <= RIBBON_SEGMENTS; s++) {
+          const x = s * step;
+          const y = yOffset +
+            Math.sin(x * waveFreq + speedPhase) * waveAmp +
+            Math.cos(x * waveFreq * 1.7 - speedPhase * 0.5) * (waveAmp * 0.35);
+
+          if (prevX !== null && ribbonVertIdx + 1 < RIBBON_COUNT * RIBBON_SEGMENTS * 2) {
+            writeLineVert(ribbonPos, ribbonColor, ribbonAlphaAttr, ribbonVertIdx++, prevX, prevY, -40, color, ribbonAlpha * alphaMult);
+            writeLineVert(ribbonPos, ribbonColor, ribbonAlphaAttr, ribbonVertIdx++, x, y, -40, color, ribbonAlpha * alphaMult);
+          }
+          prevX = x;
+          prevY = y;
+        }
+      }
+      ribbonGeo.setDrawRange(0, ribbonVertIdx);
+      ribbonGeo.attributes.position.needsUpdate = true;
+      ribbonGeo.attributes.aColor.needsUpdate = true;
+      ribbonGeo.attributes.aAlpha.needsUpdate = true;
+
+      // ---- Floating glyphs (lab page only), DOM-positioned ----
+      if (isLabPage) {
+        for (let g = 0; g < floatingGlyphs.length; g++) {
+          const gl = floatingGlyphs[g];
+          gl.y += gl.vy * speedMult;
+          gl.x += gl.vx * speedMult;
+          gl.rot += gl.rotSpeed;
+          if (gl.y < -40) gl.y = height + 40;
+          if (gl.x < -40) gl.x = width + 40;
+          if (gl.x > width + 40) gl.x = -40;
+
+          const alpha = isSurging ? 0.5 : gl.alpha;
+          const color = isSurging ? '#7A42EA' : '#52525F';
+          gl.el.style.cssText =
+            `position:absolute;left:0;top:0;font:9px "JetBrains Mono",monospace;` +
+            `color:${color};opacity:${alpha};white-space:nowrap;` +
+            `transform:translate3d(${gl.x}px,${gl.y}px,0) rotate(${gl.rot}rad);`;
         }
       }
 
-      // Dampening to prevent runaway speed
-      p.vx *= 0.98;
-      p.vy *= 0.98;
-
-      // Pulse alpha with stage fade on close
-      const pulse = Math.sin(now * p.pulseSpeed + p.pulseOffset);
-      let baseAlpha = Math.max(0.1, p.baseAlpha + pulse * 0.15);
-      if (isStage5) {
-        baseAlpha *= Math.max(0.15, 1 - (currentScrollProgress - 0.78) * 3);
-      }
-      p.alpha = baseAlpha;
-
-      if (p.highlightTime > 0) {
-        p.highlightTime -= dt;
-        p.alpha = Math.min(1.0, p.alpha + 0.5);
-      }
-
-      // Render node dot
-      ctx.fillStyle = isSurging ? '#7A42EA' : p.color;
-      ctx.globalAlpha = p.alpha;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.radius * (isSurging ? 1.5 : 1), 0, Math.PI * 2);
-      ctx.fill();
-    }
-    ctx.globalAlpha = 1.0;
-
-    // 3. Connect Nodes across 5 narrative stages
-    if (mode === 'mesh' || mode === 'matrix') {
-      let maxDist = 115;
-      if (isStage2) {
-        maxDist = 85;
-      } else if (isStage3) {
-        maxDist = 135;
-      } else if (isStage5) {
-        maxDist = 80;
-      }
+      // ---- Ambient particle physics (unchanged from the 2D version) ----
+      const isStage2 = currentScrollProgress >= 0.16 && currentScrollProgress < 0.36;
+      const isStage3 = currentScrollProgress >= 0.36 && currentScrollProgress < 0.56;
+      const isStage5 = currentScrollProgress >= 0.78;
 
       for (let i = 0; i < particles.length; i++) {
-        const p1 = particles[i];
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
+        const p = particles[i];
 
-          // In Stage 2 (Tension / Fragmentation), suppress cross-cluster connections
-          if (isStage2 && p1.clusterId !== p2.clusterId) {
-            continue;
-          }
+        if (isStage2) {
+          const clusterCenters = [
+            { x: width * 0.22, y: height * 0.35 },
+            { x: width * 0.78, y: height * 0.35 },
+            { x: width * 0.50, y: height * 0.70 }
+          ];
+          const target = clusterCenters[p.clusterId];
+          p.vx += (target.x - p.x) * 0.0006;
+          p.vy += (target.y - p.y) * 0.0006;
+        } else if (isStage3) {
+          p.vx += (width * 0.5 - p.x) * 0.00025;
+          p.vy += (height * 0.5 - p.y) * 0.00025;
+        }
 
-          const dx = p1.x - p2.x;
-          const dy = p1.y - p2.y;
+        p.x += p.vx * speedMult;
+        p.y += p.vy * speedMult;
+
+        if (p.x < 0) { p.x = 0; p.vx *= -1; }
+        if (p.x > width) { p.x = width; p.vx *= -1; }
+        if (p.y < 0) { p.y = 0; p.vy *= -1; }
+        if (p.y > height) { p.y = height; p.vy *= -1; }
+
+        if (mouseX > 0 && mouseY > 0) {
+          const dx = p.x - mouseX;
+          const dy = p.y - mouseY;
           const dist = Math.hypot(dx, dy);
+          if (dist < 160) {
+            const force = (1 - dist / 160) * (isDragging ? 3.2 : 1.5);
+            p.vx += (dx / dist) * force * 0.75;
+            p.vy += (dy / dist) * force * 0.75;
+            p.vx += (-dy / dist) * force * 0.35;
+            p.vy += (dx / dist) * force * 0.35;
+            p.highlightTime = 0.45;
+          }
+        }
 
-          if (dist < maxDist) {
-            let lineAlpha = (1 - dist / maxDist) * 0.18 * (isSurging ? 2.5 : 1);
-            if (isStage5) lineAlpha *= 0.25;
+        p.vx *= 0.98;
+        p.vy *= 0.98;
 
-            // In Stage 3 (The Turn), highlight cross-cluster bridges
+        const pulse = Math.sin(now * p.pulseSpeed + p.pulseOffset);
+        let baseAlpha = Math.max(0.1, p.baseAlpha + pulse * 0.15);
+        if (isStage5) {
+          baseAlpha *= Math.max(0.15, 1 - (currentScrollProgress - 0.78) * 3);
+        }
+        p.alpha = baseAlpha;
+
+        if (p.highlightTime > 0) {
+          p.highlightTime -= dt;
+          p.alpha = Math.min(1.0, p.alpha + 0.5);
+        }
+
+        const color = isSurging ? SURGE_COLOR : p.color;
+        const renderRadius = p.radius * (isSurging ? 1.5 : 1);
+        writePoint(particlePos, particleColor, particleAlpha, particleSize, i, p.x, p.y, p.z, color, p.alpha, renderRadius * 3.2);
+      }
+      particleGeo.attributes.position.needsUpdate = true;
+      particleGeo.attributes.aColor.needsUpdate = true;
+      particleGeo.attributes.aAlpha.needsUpdate = true;
+      particleGeo.attributes.aSize.needsUpdate = true;
+
+      // ---- Connecting mesh/matrix lines ----
+      let lineVertIdx = 0;
+      if (mode === 'mesh' || mode === 'matrix') {
+        let maxDist = 115;
+        if (isStage2) maxDist = 85;
+        else if (isStage3) maxDist = 135;
+        else if (isStage5) maxDist = 80;
+
+        for (let i = 0; i < particles.length; i++) {
+          const p1 = particles[i];
+          for (let j = i + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            if (isStage2 && p1.clusterId !== p2.clusterId) continue;
+
+            const dx = p1.x - p2.x;
+            const dy = p1.y - p2.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist >= maxDist) continue;
+
+            let alpha = (1 - dist / maxDist) * 0.18 * (isSurging ? 2.5 : 1);
+            if (isStage5) alpha *= 0.25;
+
             const isBridge = isStage3 && p1.clusterId !== p2.clusterId;
-            if (isBridge) {
-              ctx.strokeStyle = `rgba(0, 229, 153, ${lineAlpha * 1.5})`;
-              ctx.lineWidth = 1.2;
-            } else {
-              ctx.strokeStyle = isSurging
-                ? `rgba(122, 66, 234, ${lineAlpha})`
-                : `rgba(122, 66, 234, ${lineAlpha * 0.75})`;
-              ctx.lineWidth = isSurging ? 1.4 : 0.8;
-            }
+            const color = isBridge ? BRIDGE_COLOR : SURGE_COLOR;
+            const finalAlpha = isBridge ? alpha * 1.5 : (isSurging ? alpha : alpha * 0.75);
 
-            ctx.beginPath();
+            if (lineVertIdx + 4 > MAX_LINE_VERTS) continue;
+
             if (mode === 'matrix') {
-              // Digital right-angle connections
-              ctx.moveTo(p1.x, p1.y);
-              ctx.lineTo(p2.x, p1.y);
-              ctx.lineTo(p2.x, p2.y);
+              const midZ = (p1.z + p2.z) / 2;
+              writeLineVert(linePos, lineColor, lineAlphaAttr, lineVertIdx++, p1.x, p1.y, p1.z, color, finalAlpha);
+              writeLineVert(linePos, lineColor, lineAlphaAttr, lineVertIdx++, p2.x, p1.y, midZ, color, finalAlpha);
+              writeLineVert(linePos, lineColor, lineAlphaAttr, lineVertIdx++, p2.x, p1.y, midZ, color, finalAlpha);
+              writeLineVert(linePos, lineColor, lineAlphaAttr, lineVertIdx++, p2.x, p2.y, p2.z, color, finalAlpha);
             } else {
-              // Direct organic vector connections
-              ctx.moveTo(p1.x, p1.y);
-              ctx.lineTo(p2.x, p2.y);
+              writeLineVert(linePos, lineColor, lineAlphaAttr, lineVertIdx++, p1.x, p1.y, p1.z, color, finalAlpha);
+              writeLineVert(linePos, lineColor, lineAlphaAttr, lineVertIdx++, p2.x, p2.y, p2.z, color, finalAlpha);
             }
-            ctx.stroke();
           }
         }
       }
-    }
+      lineGeo.setDrawRange(0, lineVertIdx);
+      lineGeo.attributes.position.needsUpdate = true;
+      lineGeo.attributes.aColor.needsUpdate = true;
+      lineGeo.attributes.aAlpha.needsUpdate = true;
 
-    // 4. Mouse Tethering / Energy Arcs when Dragging
-    if (isDragging && mouseX > 0) {
-      let connectedCount = 0;
-      for (let i = 0; i < particles.length && connectedCount < 4; i++) {
-        const p = particles[i];
-        const dist = Math.hypot(p.x - mouseX, p.y - mouseY);
-        if (dist < 190) {
+      // ---- Mouse tether arcs while dragging ----
+      let tetherVertIdx = 0;
+      if (isDragging && mouseX > 0) {
+        let connectedCount = 0;
+        for (let i = 0; i < particles.length && connectedCount < MAX_TETHERS; i++) {
+          const p = particles[i];
+          const dist = Math.hypot(p.x - mouseX, p.y - mouseY);
+          if (dist >= 190) continue;
           connectedCount++;
           const arcAlpha = (1 - dist / 190) * 0.7;
-          ctx.strokeStyle = `rgba(132, 120, 255, ${arcAlpha})`;
-          ctx.lineWidth = 1.6;
-          ctx.beginPath();
-          ctx.moveTo(mouseX, mouseY);
-          // Curved electric bezier arc
           const cx = (mouseX + p.x) / 2 + (Math.random() - 0.5) * 20;
           const cy = (mouseY + p.y) / 2 + (Math.random() - 0.5) * 20;
-          ctx.quadraticCurveTo(cx, cy, p.x, p.y);
-          ctx.stroke();
+
+          let prevX = mouseX;
+          let prevY = mouseY;
+          for (let s = 1; s <= TETHER_SEGMENTS; s++) {
+            const t = s / TETHER_SEGMENTS;
+            const x = (1 - t) * (1 - t) * mouseX + 2 * (1 - t) * t * cx + t * t * p.x;
+            const y = (1 - t) * (1 - t) * mouseY + 2 * (1 - t) * t * cy + t * t * p.y;
+            if (tetherVertIdx + 1 >= MAX_TETHERS * TETHER_SEGMENTS * 2) break;
+            writeLineVert(tetherPos, tetherColor, tetherAlphaAttr, tetherVertIdx++, prevX, prevY, 0, [0.52, 0.47, 1], arcAlpha);
+            writeLineVert(tetherPos, tetherColor, tetherAlphaAttr, tetherVertIdx++, x, y, 0, [0.52, 0.47, 1], arcAlpha);
+            prevX = x;
+            prevY = y;
+          }
         }
       }
-    }
+      tetherGeo.setDrawRange(0, tetherVertIdx);
+      tetherGeo.attributes.position.needsUpdate = true;
+      tetherGeo.attributes.aColor.needsUpdate = true;
+      tetherGeo.attributes.aAlpha.needsUpdate = true;
 
-    // 5. Render Electric Drag Ribbon Trail
-    if (dragTrail.length > 1) {
-      ctx.beginPath();
-      ctx.moveTo(dragTrail[0].x, dragTrail[0].y);
-      for (let t = 1; t < dragTrail.length; t++) {
-        const pt = dragTrail[t];
-        ctx.lineTo(pt.x, pt.y);
-        pt.life -= pt.decay;
+      // ---- Drag trail ribbon ----
+      let trailVertIdx = 0;
+      if (dragTrail.length > 1) {
+        for (let t = 0; t < dragTrail.length; t++) {
+          const pt = dragTrail[t];
+          writeLineVert(trailPos, trailColor, trailAlphaAttr, trailVertIdx++, pt.x, pt.y, 2, SURGE_COLOR, 0.45 * pt.life);
+          pt.life -= pt.decay;
+        }
+        while (dragTrail.length > 0 && dragTrail[0].life <= 0) dragTrail.shift();
       }
-      ctx.strokeStyle = 'rgba(122, 66, 234, 0.45)';
-      ctx.lineWidth = 4;
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
-      ctx.stroke();
+      trailGeo.setDrawRange(0, trailVertIdx);
+      trailGeo.attributes.position.needsUpdate = true;
+      trailGeo.attributes.aColor.needsUpdate = true;
+      trailGeo.attributes.aAlpha.needsUpdate = true;
 
-      // Clean dead trail points
-      while (dragTrail.length > 0 && dragTrail[0].life <= 0) {
-        dragTrail.shift();
+      // ---- Drag sparks ----
+      for (let s = dragSparks.length - 1; s >= 0; s--) {
+        const sp = dragSparks[s];
+        sp.x += sp.vx;
+        sp.y += sp.vy;
+        sp.vx *= 0.94;
+        sp.vy *= 0.94;
+        sp.life -= sp.decay;
+        if (sp.life <= 0) dragSparks.splice(s, 1);
       }
-    }
-
-    // 6. Render Kinetic Drag Sparks
-    for (let s = dragSparks.length - 1; s >= 0; s--) {
-      const sp = dragSparks[s];
-      sp.x += sp.vx;
-      sp.y += sp.vy;
-      sp.vx *= 0.94;
-      sp.vy *= 0.94;
-      sp.life -= sp.decay;
-
-      if (sp.life <= 0) {
-        dragSparks.splice(s, 1);
-        continue;
-      }
-
-      ctx.save();
-      ctx.globalAlpha = sp.life;
-      ctx.fillStyle = sp.color;
-      ctx.shadowColor = sp.color;
-      ctx.shadowBlur = 8;
-      ctx.beginPath();
-      ctx.arc(sp.x, sp.y, sp.size * sp.life, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-    }
-
-    // 7. Render Radar Wave Rings
-    for (let r = radarRings.length - 1; r >= 0; r--) {
-      const ring = radarRings[r];
-      ring.radius += ring.speed;
-      ring.alpha = Math.max(0, 1 - ring.radius / ring.maxRadius);
-
-      if (ring.radius >= ring.maxRadius) {
-        radarRings.splice(r, 1);
-        continue;
-      }
-
-      ctx.save();
-      ctx.strokeStyle = `rgba(122, 66, 234, ${ring.alpha * 0.85})`;
-      ctx.lineWidth = 2;
-      ctx.shadowColor = '#7A42EA';
-      ctx.shadowBlur = 12;
-      ctx.beginPath();
-      ctx.arc(ring.x, ring.y, ring.radius, 0, Math.PI * 2);
-      ctx.stroke();
-
-      // Highlight particles crossed by radar
-      for (let p = 0; p < particles.length; p++) {
-        const pt = particles[p];
-        const dist = Math.hypot(pt.x - ring.x, pt.y - ring.y);
-        if (Math.abs(dist - ring.radius) < ring.speed * 1.5) {
-          pt.highlightTime = 0.9;
+      for (let s = 0; s < MAX_SPARKS; s++) {
+        if (s < dragSparks.length) {
+          const sp = dragSparks[s];
+          writePoint(sparkPos, sparkColor, sparkAlpha, sparkSize, s, sp.x, sp.y, 4, sp.color, sp.life, sp.size * sp.life * 3.4);
+        } else {
+          sparkAlpha[s] = 0;
         }
       }
-      ctx.restore();
+      sparkGeo.setDrawRange(0, Math.max(dragSparks.length, 0));
+      sparkGeo.attributes.position.needsUpdate = true;
+      sparkGeo.attributes.aColor.needsUpdate = true;
+      sparkGeo.attributes.aAlpha.needsUpdate = true;
+      sparkGeo.attributes.aSize.needsUpdate = true;
+
+      // ---- Radar pings ----
+      for (let r = radarRings.length - 1; r >= 0; r--) {
+        const ring = radarRings[r];
+        ring.radius += ring.speed;
+        ring.alpha = Math.max(0, 1 - ring.radius / ring.maxRadius);
+
+        if (ring.radius >= ring.maxRadius) {
+          scene.remove(ring.mesh);
+          ring.mesh.geometry.dispose();
+          ring.mesh.material.dispose();
+          radarRings.splice(r, 1);
+          continue;
+        }
+
+        ring.mesh.position.set(toWorldX(ring.x), toWorldY(ring.y), 6);
+        ring.mesh.scale.setScalar(ring.radius);
+        ring.mesh.material.opacity = ring.alpha * 0.85;
+
+        for (let p = 0; p < particles.length; p++) {
+          const pt = particles[p];
+          const dist = Math.hypot(pt.x - ring.x, pt.y - ring.y);
+          if (Math.abs(dist - ring.radius) < ring.speed * 1.5) {
+            pt.highlightTime = 0.9;
+          }
+        }
+      }
+
+      renderer.render(scene, camera);
     }
+
+    window.addEventListener('resize', resize);
+    resize();
+    requestAnimationFrame(animate);
   }
-
-  window.addEventListener('resize', resize);
-  resize();
-  requestAnimationFrame(animate);
 }
 
 /* ==========================================================================
