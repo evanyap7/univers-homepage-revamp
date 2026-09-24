@@ -1,6 +1,6 @@
 /**
  * UNIVERS — ALL CONNECTED. INTERACTIVE HOMEPAGE ENGINE
- * Powers the live decarbonization data stream, mobile navigation, scroll
+ * Powers the live operational data stream, mobile navigation, scroll
  * reveals, interactive Edge -> Cloud -> Earth simulator, sector explorer,
  * and portfolio value calculator.
  */
@@ -428,7 +428,7 @@ function initEngineSimulator() {
     '2': {
       title: 'IN THE CLOUD: ENOS CLOUD',
       rate: 'MANAGING: 1,070 GW Energy Assets (~20% Global Renewable Capacity)',
-      console: '>> Fusing on-the-ground data with cloud intelligence into accurate, reliable, actionable decarbonization data...',
+      console: '>> Fusing on-the-ground data with cloud intelligence into accurate, reliable, actionable operational data...',
       activeNodes: [node1, node2]
     },
     '3': {
@@ -935,7 +935,7 @@ function initValueCalculator() {
 
 /* ==========================================================================
    INTERACTIVE ENGINE: KINETIC BACKGROUND CANVAS & PHYSICS SIMULATION
-   Decarbonization data mesh, floating OT telemetry nodes, mouse force-field,
+   Operational data mesh, floating OT telemetry nodes, mouse force-field,
    and drag-activated electric tethering.
    ========================================================================== */
 function initKineticCanvas() {
@@ -2457,7 +2457,7 @@ function initDemoBookingFlow() {
       }
 
       if (!inquiry || inquiry.length < 5) {
-        showError(inquiryInput, inquiryError, 'Please describe your inquiry or decarbonization requirements.');
+        showError(inquiryInput, inquiryError, 'Please describe your inquiry or project requirements.');
         hasError = true;
       }
 
@@ -2639,7 +2639,7 @@ function initDemoBookingFlow() {
       const savings = (resSavings && resSavings.dataset.tallyTarget) ? resSavings.dataset.tallyTarget : (resSavings ? resSavings.textContent : '$1,176,000');
       const carbon = (resCarbon && resCarbon.dataset.tallyTarget) ? resCarbon.dataset.tallyTarget : (resCarbon ? resCarbon.textContent : '5,040 Tons/yr');
 
-      const prefillMsg = `We are exploring decarbonization for our ${sector.toUpperCase()} portfolio (${spend} spend). Interested in seeing how Univers EnOS delivers the estimated ${savings} net annual savings and ${carbon} abatement.`;
+      const prefillMsg = `We are exploring operational impact for our ${sector.toUpperCase()} portfolio (${spend} spend). Interested in seeing how Univers EnOS delivers the estimated ${savings} net annual savings and ${carbon} abatement.`;
       openDemoModal(prefillMsg);
     });
   }
