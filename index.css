@@ -1797,6 +1797,32 @@ body.nav-open {
   color: var(--univ-text-muted);
 }
 
+.quote-dots {
+  display: flex;
+  gap: 8px;
+  margin-top: 1.75rem;
+}
+
+.quote-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: var(--univ-border-medium);
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.quote-dot:hover {
+  background: var(--univ-border-glow);
+}
+
+.quote-dot.active {
+  width: 22px;
+  background: var(--univ-purple);
+}
+
 /* ==========================================================================
    ACT 6: THE COMPOUNDING MOAT & HARDWARE (FLYWEEL & AMD AI BOX)
    ========================================================================== */
@@ -4558,6 +4584,22 @@ body.grid-surge-active::after {
 .marquee-logo-item:hover img {
   filter: grayscale(0) opacity(1);
   transform: scale(1.06);
+}
+
+.marquee-logo-text {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: -0.01em;
+  color: var(--univ-text-muted);
+  opacity: 0.55;
+  white-space: nowrap;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.marquee-logo-item:hover .marquee-logo-text {
+  opacity: 1;
+  color: var(--univ-text-primary);
 }
 
 /* Hover tooltip (JS-positioned singleton, see initPartnerMarqueeTooltip in
