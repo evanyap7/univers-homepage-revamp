@@ -899,8 +899,23 @@ function initPartnerMarqueeTooltip() {
    ========================================================================== */
 function initValueCalculator() {
   const sectorSelect = document.getElementById('calc-sector');
+  const sectorPills = document.querySelectorAll('.calc-sector-pill');
   const scaleSlider = document.getElementById('calc-scale-slider');
   const spendSlider = document.getElementById('calc-spend-slider');
+
+  sectorPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      if (!sectorSelect) return;
+      sectorPills.forEach(p => {
+        p.classList.remove('active');
+        p.setAttribute('aria-selected', 'false');
+      });
+      pill.classList.add('active');
+      pill.setAttribute('aria-selected', 'true');
+      sectorSelect.value = pill.getAttribute('data-sector');
+      sectorSelect.dispatchEvent(new Event('change'));
+    });
+  });
 
   const scaleDisplay = document.getElementById('calc-scale-display');
   const spendDisplay = document.getElementById('calc-spend-display');
