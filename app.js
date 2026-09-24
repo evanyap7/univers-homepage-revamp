@@ -951,85 +951,244 @@ function initValueCalculator() {
   const sectorPills = document.querySelectorAll('.calc-sector-pill');
   const scaleSlider = document.getElementById('calc-scale-slider');
   const spendSlider = document.getElementById('calc-spend-slider');
-
-  sectorPills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      if (!sectorSelect) return;
-      sectorPills.forEach(p => {
-        p.classList.remove('active');
-        p.setAttribute('aria-selected', 'false');
-      });
-      pill.classList.add('active');
-      pill.setAttribute('aria-selected', 'true');
-      sectorSelect.value = pill.getAttribute('data-sector');
-      sectorSelect.dispatchEvent(new Event('change'));
-    });
-  });
+  const presetChips = document.querySelectorAll('.calc-preset-chip');
+  const spendChips = document.querySelectorAll('.calc-spend-chip');
+  const scenarioBtns = document.querySelectorAll('.calc-scenario-btn');
 
   const scaleDisplay = document.getElementById('calc-scale-display');
   const spendDisplay = document.getElementById('calc-spend-display');
+  const scaleMinLabel = document.getElementById('scale-min-label');
+  const scaleMidLabel = document.getElementById('scale-mid-label');
+  const scaleMaxLabel = document.getElementById('scale-max-label');
 
   const resSavings = document.getElementById('res-savings');
   const resSubtext = document.getElementById('res-subtext');
   const resPayback = document.getElementById('res-payback');
   const resCarbon = document.getElementById('res-carbon');
+  const resCarbonEquiv = document.getElementById('res-carbon-equiv');
+  const resDowntime = document.getElementById('res-downtime');
+  const resYieldBadge = document.getElementById('res-yield-badge');
+
+  // Breakdown elements
+  const barSegEnergy = document.getElementById('bar-seg-energy');
+  const barSegMaint = document.getElementById('bar-seg-maint');
+  const barSegCarbon = document.getElementById('bar-seg-carbon');
+  const resEnergySavings = document.getElementById('res-energy-savings');
+  const resEnergyPct = document.getElementById('res-energy-pct');
+  const resMaintSavings = document.getElementById('res-maint-savings');
+  const resMaintPct = document.getElementById('res-maint-pct');
+  const resCarbonSavings = document.getElementById('res-carbon-savings');
+  const resCarbonPct = document.getElementById('res-carbon-pct');
+
+  // 5-Year Chart elements
+  const chart5yrTotal = document.getElementById('chart-5yr-total');
+  const chartBreakevenText = document.getElementById('chart-breakeven-text');
+  const breakevenLine = document.getElementById('breakeven-line');
+  const breakevenBadgeBg = document.getElementById('breakeven-badge-bg');
+
+  // Action buttons
+  const btnShare = document.getElementById('btn-share-calc');
+  const btnReset = document.getElementById('btn-reset-calc');
+  const btnExport = document.getElementById('btn-export-calc');
+  const calcToast = document.getElementById('calc-toast');
+
+  let currentScenario = 'standard';
+
+  // Sector metadata dictionary
+  const SECTOR_DATA = {
+    energy: {
+      name: 'Renewable Energy & Utilities',
+      savingsRate: 0.14,
+      paybackMonths: 8,
+      carbonMult: 650,
+      downtimeMult: 4.8,
+      energyPct: 0.58,
+      maintPct: 0.28,
+      carbonPct: 0.14,
+      getScaleText: (v) => `${(v * 0.25).toFixed(2)} GW Capacity`,
+      minLabel: '0.25 GW',
+      midLabel: '1.25 GW',
+      maxLabel: '2.50 GW'
+    },
+    buildings: {
+      name: 'Commercial Built Environment',
+      savingsRate: 0.098,
+      paybackMonths: 10,
+      carbonMult: 420,
+      downtimeMult: 3.2,
+      energyPct: 0.55,
+      maintPct: 0.30,
+      carbonPct: 0.15,
+      getScaleText: (v) => `${(v * 1000000).toLocaleString('en-US')} sq ft`,
+      minLabel: '1M sq ft',
+      midLabel: '5M sq ft',
+      maxLabel: '10M sq ft'
+    },
+    logistics: {
+      name: 'Transportation & Ports',
+      savingsRate: 0.105,
+      paybackMonths: 11,
+      carbonMult: 380,
+      downtimeMult: 5.5,
+      energyPct: 0.50,
+      maintPct: 0.35,
+      carbonPct: 0.15,
+      getScaleText: (v) => `${(v * 1.5).toFixed(1)}M TEUs / Terminals`,
+      minLabel: '1.5M TEUs',
+      midLabel: '7.5M TEUs',
+      maxLabel: '15.0M TEUs'
+    },
+    manufacturing: {
+      name: 'Industrial Manufacturing',
+      savingsRate: 0.155,
+      paybackMonths: 9,
+      carbonMult: 510,
+      downtimeMult: 6.2,
+      energyPct: 0.52,
+      maintPct: 0.36,
+      carbonPct: 0.12,
+      getScaleText: (v) => `${v * 2} Industrial Plants`,
+      minLabel: '2 Plants',
+      midLabel: '10 Plants',
+      maxLabel: '20 Plants'
+    }
+  };
+
+  // Helper to activate sector pill
+  function setSector(sectorKey, skipPresetReset = false) {
+    if (!SECTOR_DATA[sectorKey]) sectorKey = 'buildings';
+    if (sectorSelect) sectorSelect.value = sectorKey;
+    sectorPills.forEach(p => {
+      const match = p.getAttribute('data-sector') === sectorKey;
+      p.classList.toggle('active', match);
+      p.setAttribute('aria-selected', String(match));
+    });
+    if (!skipPresetReset) {
+      presetChips.forEach(c => {
+        c.classList.remove('active');
+        c.setAttribute('aria-pressed', 'false');
+      });
+    }
+    updateCalculator();
+  }
+
+  sectorPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const sec = pill.getAttribute('data-sector');
+      setSector(sec);
+      if (window.UniversInteractive && window.UniversInteractive.playSound) {
+        window.UniversInteractive.playSound('click');
+      }
+    });
+  });
+
+  // Enterprise Presets
+  presetChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const presetSec = chip.getAttribute('data-preset');
+      const presetScale = parseInt(chip.getAttribute('data-scale'), 10);
+      const presetSpend = parseInt(chip.getAttribute('data-spend'), 10);
+
+      presetChips.forEach(c => {
+        c.classList.remove('active');
+        c.setAttribute('aria-pressed', 'false');
+      });
+      chip.classList.add('active');
+      chip.setAttribute('aria-pressed', 'true');
+
+      if (scaleSlider && !isNaN(presetScale)) scaleSlider.value = presetScale;
+      if (spendSlider && !isNaN(presetSpend)) spendSlider.value = presetSpend;
+
+      setSector(presetSec, true);
+
+      if (window.UniversInteractive && window.UniversInteractive.playSound) {
+        window.UniversInteractive.playSound('click');
+      }
+    });
+  });
+
+  // Quick spend chips
+  spendChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const spendVal = parseInt(chip.getAttribute('data-spend'), 10);
+      if (spendSlider && !isNaN(spendVal)) {
+        spendSlider.value = spendVal;
+        spendChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        updateCalculator();
+      }
+    });
+  });
+
+  // Scenario toggle
+  scenarioBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      scenarioBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-checked', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-checked', 'true');
+      currentScenario = btn.getAttribute('data-scenario') || 'standard';
+      updateCalculator();
+      if (window.UniversInteractive && window.UniversInteractive.playSound) {
+        window.UniversInteractive.playSound('click');
+      }
+    });
+  });
 
   function updateCalculator() {
     if (!scaleSlider || !spendSlider || !sectorSelect) return;
 
-    const sector = sectorSelect.value;
+    const sectorKey = sectorSelect.value || 'buildings';
+    const data = SECTOR_DATA[sectorKey] || SECTOR_DATA.buildings;
     const scaleVal = parseInt(scaleSlider.value, 10);
-    const spendVal = parseInt(spendSlider.value, 10); // in Millions USD
+    const spendVal = parseInt(spendSlider.value, 10); // Millions USD
 
-    // Update slider labels
-    if (sector === 'buildings') {
-      const sqft = (scaleVal * 1000000).toLocaleString('en-US');
-      scaleDisplay.textContent = `${sqft} sq ft`;
-    } else if (sector === 'energy') {
-      const gw = (scaleVal * 0.25).toFixed(2);
-      scaleDisplay.textContent = `${gw} GW Capacity`;
-    } else if (sector === 'logistics') {
-      const teus = (scaleVal * 1.5).toFixed(1);
-      scaleDisplay.textContent = `${teus}M TEUs / Terminals`;
-    } else {
-      scaleDisplay.textContent = `${scaleVal * 2} Industrial Plants`;
+    // Update scale labels
+    if (scaleDisplay) scaleDisplay.textContent = data.getScaleText(scaleVal);
+    if (scaleMinLabel) scaleMinLabel.textContent = data.minLabel;
+    if (scaleMidLabel) scaleMidLabel.textContent = data.midLabel;
+    if (scaleMaxLabel) scaleMaxLabel.textContent = data.maxLabel;
+
+    // Update spend label
+    if (spendDisplay) spendDisplay.textContent = `$${spendVal.toLocaleString('en-US')},000,000 / yr`;
+
+    // Sync spend chips active state
+    spendChips.forEach(chip => {
+      const chipVal = parseInt(chip.getAttribute('data-spend'), 10);
+      chip.classList.toggle('active', chipVal === spendVal);
+    });
+
+    // Multipliers & Scenario
+    let scenarioMultiplier = currentScenario === 'advanced' ? 1.25 : 1.0;
+    let baseRate = data.savingsRate;
+    let effectiveRate = baseRate * scenarioMultiplier;
+    let paybackMonths = currentScenario === 'advanced' ? Math.max(5, data.paybackMonths - 2) : data.paybackMonths;
+
+    const netSavings = Math.round(spendVal * 1000000 * effectiveRate);
+    const carbonTons = Math.round(spendVal * data.carbonMult * scenarioMultiplier);
+    const carbonEquiv = Math.round(carbonTons / 4.6);
+    const downtimeHours = (spendVal * data.downtimeMult * scenarioMultiplier).toFixed(1);
+
+    // Yield Badge
+    if (resYieldBadge) {
+      const pctStr = (effectiveRate * 100).toFixed(1);
+      resYieldBadge.textContent = `${pctStr}% Portfolio Yield${currentScenario === 'advanced' ? ' (Physical AI)' : ''}`;
     }
 
-    spendDisplay.textContent = `$${spendVal},000,000 / yr`;
-
-    // Calculation multipliers based on Univers real-world benchmarks
-    let savingsRate = 0.12; // 12% default
-    let paybackMonths = 10;
-    let carbonMultiplier = 400; // tons per $M spend
-
-    if (sector === 'energy') {
-      savingsRate = 0.14;
-      paybackMonths = 8;
-      carbonMultiplier = 650;
-    } else if (sector === 'buildings') {
-      savingsRate = 0.098;
-      paybackMonths = 10;
-      carbonMultiplier = 420;
-    } else if (sector === 'logistics') {
-      savingsRate = 0.105;
-      paybackMonths = 11;
-      carbonMultiplier = 380;
-    } else if (sector === 'manufacturing') {
-      savingsRate = 0.155;
-      paybackMonths = 9;
-      carbonMultiplier = 510;
-    }
-
-    const netSavings = Math.round(spendVal * 1000000 * savingsRate);
-    const carbonTons = Math.round(spendVal * carbonMultiplier);
-
+    // Hero Savings
     if (resSavings) {
       animateNumberTo(resSavings, netSavings, (v) => `$${Math.round(v).toLocaleString('en-US')}`);
       resSavings.dataset.tallyTarget = `$${netSavings.toLocaleString('en-US')}`;
     }
+
+    // Subtext
     if (resSubtext) {
-      resSubtext.textContent = `Illustrative estimate, modeled at a ${(savingsRate * 100).toFixed(1)}% optimization rate from Univers’ published sector benchmarks`;
+      resSubtext.textContent = `Illustrative estimate, modeled at a ${(effectiveRate * 100).toFixed(1)}% optimization rate from Univers' published sector benchmarks`;
     }
+
+    // Core KPIs
     if (resPayback) {
       animateNumberTo(resPayback, paybackMonths, (v) => `< ${Math.round(v)} Months`);
     }
@@ -1037,13 +1196,172 @@ function initValueCalculator() {
       animateNumberTo(resCarbon, carbonTons, (v) => `${Math.round(v).toLocaleString('en-US')} Tons/yr`);
       resCarbon.dataset.tallyTarget = `${carbonTons.toLocaleString('en-US')} Tons/yr`;
     }
+    if (resCarbonEquiv) {
+      resCarbonEquiv.textContent = `≈ ${carbonEquiv.toLocaleString('en-US')} passenger vehicles / yr`;
+    }
+    if (resDowntime) {
+      resDowntime.textContent = `≈ ${downtimeHours} Hours/yr`;
+    }
+
+    // Granular Breakdown
+    const energySavings = Math.round(netSavings * data.energyPct);
+    const maintSavings = Math.round(netSavings * data.maintPct);
+    const carbonSavings = Math.round(netSavings * data.carbonPct);
+
+    if (resEnergySavings) resEnergySavings.textContent = `$${energySavings.toLocaleString('en-US')}`;
+    if (resEnergyPct) resEnergyPct.textContent = `${Math.round(data.energyPct * 100)}%`;
+    if (resMaintSavings) resMaintSavings.textContent = `$${maintSavings.toLocaleString('en-US')}`;
+    if (resMaintPct) resMaintPct.textContent = `${Math.round(data.maintPct * 100)}%`;
+    if (resCarbonSavings) resCarbonSavings.textContent = `$${carbonSavings.toLocaleString('en-US')}`;
+    if (resCarbonPct) resCarbonPct.textContent = `${Math.round(data.carbonPct * 100)}%`;
+
+    if (barSegEnergy) barSegEnergy.style.width = `${Math.round(data.energyPct * 100)}%`;
+    if (barSegMaint) barSegMaint.style.width = `${Math.round(data.maintPct * 100)}%`;
+    if (barSegCarbon) barSegCarbon.style.width = `${Math.round(data.carbonPct * 100)}%`;
+
+    // 5-Year Cumulative ROI Projections
+    const deploymentCost = Math.round(netSavings * (paybackMonths / 12));
+    const y1 = Math.max(0, Math.round(netSavings - deploymentCost));
+    const y2 = Math.round(y1 + netSavings * 1.05);
+    const y3 = Math.round(y2 + netSavings * 1.10);
+    const y4 = Math.round(y3 + netSavings * 1.15);
+    const y5 = Math.round(y4 + netSavings * 1.20);
+
+    if (chart5yrTotal) {
+      chart5yrTotal.textContent = `+$${y5.toLocaleString('en-US')}`;
+    }
+
+    if (chartBreakevenText) {
+      chartBreakevenText.textContent = `★ Breakeven M${paybackMonths}`;
+    }
+
+    // Update SVG Bars and labels
+    const years = [y1, y2, y3, y4, y5];
+    const maxVal = Math.max(y5, 1);
+    const chartBaseY = 130;
+    const maxBarH = 105;
+
+    years.forEach((val, idx) => {
+      const yearNum = idx + 1;
+      const barEl = document.getElementById(`bar-y${yearNum}`);
+      const txtEl = document.getElementById(`bar-txt-y${yearNum}`);
+      if (barEl) {
+        const barH = Math.max(14, Math.round((val / maxVal) * maxBarH));
+        const barY = chartBaseY - barH;
+        barEl.setAttribute('y', String(barY));
+        barEl.setAttribute('height', String(barH));
+      }
+      if (txtEl) {
+        const barH = Math.max(14, Math.round((val / maxVal) * maxBarH));
+        const txtY = chartBaseY - barH - 7;
+        txtEl.setAttribute('y', String(txtY));
+        txtEl.textContent = `$${(val / 1000000).toFixed(2)}M`;
+      }
+    });
+
+    // Position Breakeven Marker Line cleanly in the gap between Year 1 and Year 2
+    if (breakevenLine && breakevenBadgeBg) {
+      const bx = Math.round(112 + Math.min(26, Math.max(0, ((paybackMonths - 5) / 7) * 26)));
+      breakevenLine.setAttribute('x1', String(bx));
+      breakevenLine.setAttribute('x2', String(bx));
+      if (chartBreakevenText) chartBreakevenText.setAttribute('x', String(bx));
+      breakevenBadgeBg.setAttribute('x', String(bx - 45));
+    }
   }
 
-  if (sectorSelect) sectorSelect.addEventListener('change', updateCalculator);
+  // Event Listeners for inputs
   if (scaleSlider) scaleSlider.addEventListener('input', updateCalculator);
   if (spendSlider) spendSlider.addEventListener('input', updateCalculator);
 
-  updateCalculator();
+  // Share Configuration button
+  if (btnShare) {
+    btnShare.addEventListener('click', () => {
+      const sector = sectorSelect ? sectorSelect.value : 'buildings';
+      const scale = scaleSlider ? scaleSlider.value : '5';
+      const spend = spendSlider ? spendSlider.value : '12';
+      const scenario = currentScenario;
+
+      const url = new URL(window.location.href);
+      url.searchParams.set('sector', sector);
+      url.searchParams.set('scale', scale);
+      url.searchParams.set('spend', spend);
+      url.searchParams.set('scenario', scenario);
+      url.hash = 'calculator';
+
+      navigator.clipboard.writeText(url.toString()).then(() => {
+        if (calcToast) {
+          calcToast.hidden = false;
+          clearTimeout(calcToast._timer);
+          calcToast._timer = setTimeout(() => {
+            calcToast.hidden = true;
+          }, 3500);
+        }
+      }).catch(() => {
+        prompt('Copy this shareable link:', url.toString());
+      });
+
+      if (window.UniversInteractive && window.UniversInteractive.playSound) {
+        window.UniversInteractive.playSound('ping');
+      }
+    });
+  }
+
+  // Reset defaults button
+  if (btnReset) {
+    btnReset.addEventListener('click', () => {
+      if (scaleSlider) scaleSlider.value = 5;
+      if (spendSlider) spendSlider.value = 12;
+      currentScenario = 'standard';
+      scenarioBtns.forEach(b => {
+        const isStd = b.getAttribute('data-scenario') === 'standard';
+        b.classList.toggle('active', isStd);
+        b.setAttribute('aria-checked', String(isStd));
+      });
+      setSector('buildings');
+      if (window.UniversInteractive && window.UniversInteractive.playSound) {
+        window.UniversInteractive.playSound('click');
+      }
+    });
+  }
+
+  // Export Executive PDF / Print
+  if (btnExport) {
+    btnExport.addEventListener('click', () => {
+      window.print();
+    });
+  }
+
+  // URL Query / Hash Params Restoration on Load
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const hashParams = new URLSearchParams(window.location.hash.includes('?') ? window.location.hash.split('?')[1] : '');
+    const pSector = urlParams.get('sector') || hashParams.get('sector');
+    const pScale = urlParams.get('scale') || hashParams.get('scale');
+    const pSpend = urlParams.get('spend') || hashParams.get('spend');
+    const pScenario = urlParams.get('scenario') || hashParams.get('scenario');
+
+    if (pScale && scaleSlider && !isNaN(parseInt(pScale, 10))) {
+      scaleSlider.value = parseInt(pScale, 10);
+    }
+    if (pSpend && spendSlider && !isNaN(parseInt(pSpend, 10))) {
+      spendSlider.value = parseInt(pSpend, 10);
+    }
+    if (pScenario) {
+      currentScenario = pScenario === 'advanced' ? 'advanced' : 'standard';
+      scenarioBtns.forEach(b => {
+        const match = b.getAttribute('data-scenario') === currentScenario;
+        b.classList.toggle('active', match);
+        b.setAttribute('aria-checked', String(match));
+      });
+    }
+    if (pSector && SECTOR_DATA[pSector]) {
+      setSector(pSector);
+    } else {
+      updateCalculator();
+    }
+  } catch (err) {
+    updateCalculator();
+  }
 }
 
 /* ==========================================================================
