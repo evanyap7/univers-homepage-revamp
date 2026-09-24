@@ -514,6 +514,7 @@ function initSectorExplorer() {
   const quoteAvatarEl = document.getElementById('quote-avatar');
   const quoteNameEl = document.getElementById('quote-name');
   const quoteRoleEl = document.getElementById('quote-role');
+  const quoteDotsEl = document.getElementById('quote-dots');
 
   const sectorData = {
     energy: {
@@ -525,11 +526,22 @@ function initSectorExplorer() {
       kpiLabel2: 'Million tCO2e avoided carbon emissions',
       kpi3: '1,070 GW',
       kpiLabel3: 'Managed energy assets (~20% global renewable capacity)',
-      quoteType: 'testimonial',
-      quote: '“With Univers’ end-to-end solution and expertise, ORIX Renewable Energy Management can provide total customer support – from proposals to implementation to maintenance, which in turn helps our customers optimize energy use and reduce costs.”',
-      avatar: 'KY',
-      name: 'Kazuhisa Yurita',
-      role: 'EVP & Chief Strategy Officer, ORIX Renewable Energy Management'
+      quotes: [
+        {
+          quoteType: 'testimonial',
+          quote: '“With Univers’ end-to-end solution and expertise, ORIX Renewable Energy Management can provide total customer support – from proposals to implementation to maintenance, which in turn helps our customers optimize energy use and reduce costs.”',
+          avatar: 'KY',
+          name: 'Kazuhisa Yurita',
+          role: 'EVP & Chief Strategy Officer, ORIX Renewable Energy Management'
+        },
+        {
+          quoteType: 'testimonial',
+          quote: '“The clarity and consistency of data across different suppliers, and the ability to drill from site-level KPIs down to rack and cell data, are vital to our day-to-day operation.”',
+          avatar: 'KS',
+          name: 'Ked Shayer',
+          role: 'Engineering Director, Harmony Energy'
+        }
+      ]
     },
     buildings: {
       title: 'Built Environment: Cloud BMS Proven at National Scale',
@@ -540,11 +552,22 @@ function initSectorExplorer() {
       kpiLabel2: 'Verified ROI on S$3.6M investment',
       kpi3: '10,000+',
       kpiLabel3: 'Assets AI-onboarded across 9 BMS vendors',
-      quoteType: 'caseStudy',
-      quote: 'HDB deployed Univers to unify 11,000 residential blocks, 36 shopping malls, and 2,000 car parks into one sovereign cloud platform, replacing 9 proprietary BMS vendors, slashing integration time by 50%, and generating S$7.0M in verified annual savings.',
-      avatar: 'HDB',
-      name: 'Housing & Development Board (HDB)',
-      role: 'Singapore Sovereign Smart Nation Deployment'
+      quotes: [
+        {
+          quoteType: 'caseStudy',
+          quote: 'HDB deployed Univers to unify 11,000 residential blocks, 36 shopping malls, and 2,000 car parks into one sovereign cloud platform, replacing 9 proprietary BMS vendors, slashing integration time by 50%, and generating S$7.0M in verified annual savings.',
+          avatar: 'HDB',
+          name: 'Housing & Development Board (HDB)',
+          role: 'Singapore Sovereign Smart Nation Deployment'
+        },
+        {
+          quoteType: 'caseStudy',
+          quote: 'Côte Brasserie deployed Univers’ refrigeration energy optimization across its restaurant estate, achieving over 55% energy savings and a 22% reduction in operating costs, without disrupting service.',
+          avatar: 'CB',
+          name: 'Côte Brasserie',
+          role: 'Restaurant & Hospitality Energy Optimization'
+        }
+      ]
     },
     logistics: {
       title: 'Transportation & Ports: Fleet Electrification & Coordinated Terminals',
@@ -555,11 +578,15 @@ function initSectorExplorer() {
       kpiLabel2: 'Annual operating profit uplift (PSA International)',
       kpi3: '60,000+',
       kpiLabel3: 'Assets onboarded across 40+ OEMs',
-      quoteType: 'caseStudy',
-      quote: 'At PSA International (70+ terminals across 45 countries) and DHL Fleet (electrifying 2,100 heavy-duty trucks across 299 sites), Univers unlocks massive operational upside while guaranteeing grid resiliency under intensive megawatt charging demands.',
-      avatar: 'PSA',
-      name: 'PSA International & DHL Fleet',
-      role: 'Global Trade & Logistics Electrification Case Studies'
+      quotes: [
+        {
+          quoteType: 'caseStudy',
+          quote: 'At PSA International (70+ terminals across 45 countries) and DHL Fleet (electrifying 2,100 heavy-duty trucks across 299 sites), Univers unlocks massive operational upside while guaranteeing grid resiliency under intensive megawatt charging demands.',
+          avatar: 'PSA',
+          name: 'PSA International & DHL Fleet',
+          role: 'Global Trade & Logistics Electrification Case Studies'
+        }
+      ]
     },
     manufacturing: {
       title: 'Industrial Manufacturing: Physical AI for Core Factory Operations',
@@ -570,13 +597,43 @@ function initSectorExplorer() {
       kpiLabel2: 'Annual productivity improvement per plant',
       kpi3: '$39M+',
       kpiLabel3: 'Annual operating cost reduction',
-      quoteType: 'caseStudy',
-      quote: 'AESC deployed Univers across 10+ battery gigafactories in 6 countries. By combining physical AI with real-time operational feedback, AESC achieved a 30%+ OEE uplift in 18 months, generating over $192M in annual net EBIT impact across its manufacturing fleet.',
-      avatar: 'AESC',
-      name: 'AESC Gigafactories',
-      role: 'Global Battery Manufacturing: Core Factory Operations'
+      quotes: [
+        {
+          quoteType: 'caseStudy',
+          quote: 'AESC deployed Univers across 10+ battery gigafactories in 6 countries. By combining physical AI with real-time operational feedback, AESC achieved a 30%+ OEE uplift in 18 months, generating over $192M in annual net EBIT impact across its manufacturing fleet.',
+          avatar: 'AESC',
+          name: 'AESC Gigafactories',
+          role: 'Global Battery Manufacturing: Core Factory Operations'
+        }
+      ]
     }
   };
+
+  function renderQuote(quotes, idx) {
+    const q = quotes[idx];
+    if (!q) return;
+    if (quoteLabelEl) quoteLabelEl.textContent = q.quoteType === 'testimonial' ? 'Customer Testimonial' : 'Customer Story';
+    if (quoteTextEl) quoteTextEl.textContent = q.quote;
+    if (quoteAvatarEl) quoteAvatarEl.textContent = q.avatar;
+    if (quoteNameEl) quoteNameEl.textContent = q.name;
+    if (quoteRoleEl) quoteRoleEl.textContent = q.role;
+
+    if (quoteDotsEl) {
+      quoteDotsEl.innerHTML = '';
+      if (quotes.length > 1) {
+        quotes.forEach((_, i) => {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'quote-dot' + (i === idx ? ' active' : '');
+          dot.setAttribute('role', 'tab');
+          dot.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+          dot.setAttribute('aria-label', `Customer story ${i + 1} of ${quotes.length}`);
+          dot.addEventListener('click', () => renderQuote(quotes, i));
+          quoteDotsEl.appendChild(dot);
+        });
+      }
+    }
+  }
 
   pills.forEach(pill => {
     pill.addEventListener('click', () => {
@@ -605,13 +662,15 @@ function initSectorExplorer() {
       if (kpiLabel1El) kpiLabel1El.textContent = d.kpiLabel1;
       if (kpiLabel2El) kpiLabel2El.textContent = d.kpiLabel2;
       if (kpiLabel3El) kpiLabel3El.textContent = d.kpiLabel3;
-      if (quoteLabelEl) quoteLabelEl.textContent = d.quoteType === 'testimonial' ? 'Customer Testimonial' : 'Customer Story';
-      if (quoteTextEl) quoteTextEl.textContent = d.quote;
-      if (quoteAvatarEl) quoteAvatarEl.textContent = d.avatar;
-      if (quoteNameEl) quoteNameEl.textContent = d.name;
-      if (quoteRoleEl) quoteRoleEl.textContent = d.role;
+      renderQuote(d.quotes, 0);
     });
   });
+
+  const activePill = document.querySelector('.sector-pill.active') || pills[0];
+  if (activePill) {
+    const initialData = sectorData[activePill.getAttribute('data-sector')];
+    if (initialData) renderQuote(initialData.quotes, 0);
+  }
 }
 
 /* ==========================================================================
