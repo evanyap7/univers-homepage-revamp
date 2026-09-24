@@ -895,6 +895,55 @@ function initPartnerMarqueeTooltip() {
 }
 
 /* ==========================================================================
+   NUMBER TWEEN: smooth, tear-proof live-value animation
+   Interpolates a displayed number toward a target over `duration`, writing
+   plain textContent every frame, no DOM rebuild ever. Calling it again
+   mid-flight (e.g. while a slider is being dragged) just retargets the
+   already-running loop from wherever it currently is, so rapid repeated
+   calls glide smoothly instead of restarting or tearing.
+   ========================================================================== */
+const numberTweenState = new WeakMap();
+
+function easeOutCubic(t) {
+  return 1 - Math.pow(1 - t, 3);
+}
+
+function animateNumberTo(el, targetValue, formatFn, duration = 450) {
+  if (!el) return;
+
+  let state = numberTweenState.get(el);
+  if (!state) {
+    state = { currentValue: 0, running: false };
+    numberTweenState.set(el, state);
+  }
+
+  state.fromValue = state.currentValue;
+  state.targetValue = targetValue;
+  state.startTime = performance.now();
+  state.duration = duration;
+
+  if (state.running) return; // already ticking; it will pick up the new target next frame
+  state.running = true;
+
+  function tick(ts) {
+    const elapsed = ts - state.startTime;
+    const t = Math.min(1, elapsed / state.duration);
+    const eased = easeOutCubic(t);
+    state.currentValue = state.fromValue + (state.targetValue - state.fromValue) * eased;
+    el.textContent = formatFn(state.currentValue);
+
+    if (t < 1) {
+      requestAnimationFrame(tick);
+    } else {
+      state.currentValue = state.targetValue;
+      el.textContent = formatFn(state.targetValue);
+      state.running = false;
+    }
+  }
+  requestAnimationFrame(tick);
+}
+
+/* ==========================================================================
    5. PORTFOLIO VALUE REALIZATION CALCULATOR
    ========================================================================== */
 function initValueCalculator() {
@@ -975,28 +1024,18 @@ function initValueCalculator() {
     const carbonTons = Math.round(spendVal * carbonMultiplier);
 
     if (resSavings) {
-      if (window.UniversInteractive && window.UniversInteractive.updateOdometer) {
-        window.UniversInteractive.updateOdometer(resSavings, `$${netSavings.toLocaleString('en-US')}`);
-      } else {
-        resSavings.textContent = `$${netSavings.toLocaleString('en-US')}`;
-      }
+      animateNumberTo(resSavings, netSavings, (v) => `$${Math.round(v).toLocaleString('en-US')}`);
+      resSavings.dataset.tallyTarget = `$${netSavings.toLocaleString('en-US')}`;
     }
     if (resSubtext) {
       resSubtext.textContent = `Illustrative estimate, modeled at a ${(savingsRate * 100).toFixed(1)}% optimization rate from Univers’ published sector benchmarks`;
     }
     if (resPayback) {
-      if (window.UniversInteractive && window.UniversInteractive.updateOdometer) {
-        window.UniversInteractive.updateOdometer(resPayback, `< ${paybackMonths} Months`);
-      } else {
-        resPayback.textContent = `< ${paybackMonths} Months`;
-      }
+      animateNumberTo(resPayback, paybackMonths, (v) => `< ${Math.round(v)} Months`);
     }
     if (resCarbon) {
-      if (window.UniversInteractive && window.UniversInteractive.updateOdometer) {
-        window.UniversInteractive.updateOdometer(resCarbon, `${carbonTons.toLocaleString('en-US')} Tons/yr`);
-      } else {
-        resCarbon.textContent = `${carbonTons.toLocaleString('en-US')} Tons/yr`;
-      }
+      animateNumberTo(resCarbon, carbonTons, (v) => `${Math.round(v).toLocaleString('en-US')} Tons/yr`);
+      resCarbon.dataset.tallyTarget = `${carbonTons.toLocaleString('en-US')} Tons/yr`;
     }
   }
 
@@ -2361,15 +2400,17 @@ function initNumberTallies() {
     if (odo) odo.roll(800);
   };
 
-  // Find all statistics on page
+  // Find all statistics on page. The calculator's #res-* fields are
+  // deliberately excluded: they update live on every slider tick, and this
+  // odometer's rebuild-the-DOM-then-roll approach tears/corrupts mid-digit
+  // when retriggered faster than its own animation finishes. They use
+  // animateNumberTo() instead (see initValueCalculator), a textContent-only
+  // tween that retargets smoothly with no rebuild, so it can't tear.
   const targetSelectors = [
     '.authority-stat .stat-number',
     '.stat-number',
     '.market-signal-grid .kpi-metric',
-    '.sector-kpis .kpi-metric',
-    '#res-savings',
-    '#res-carbon',
-    '#res-payback'
+    '.sector-kpis .kpi-metric'
   ];
 
   const statEls = Array.from(document.querySelectorAll(targetSelectors.join(', ')));
