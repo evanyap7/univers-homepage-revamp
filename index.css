@@ -2432,6 +2432,11 @@ body.nav-open {
   transition: background 0.2s ease;
 }
 
+.calc-range:focus-visible {
+  outline: 2px solid var(--univ-purple);
+  outline-offset: 4px;
+}
+
 .calc-range::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 22px;
