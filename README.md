@@ -39,6 +39,6 @@ Deployed as static hosting on Vercel; `vercel.json` sets clean URLs and cache he
 
 ## Disclaimer
 
-Unofficial concept and portfolio work based on univers.com and its public brand guidelines. Not affiliated with or endorsed by Univers. All trademarks belong to their owners.
+I built this for Univers' Corporate Website Revamp Challenge in September 2026, during my internship there, and it reached the Top 5. It is a concept redesign, not the official Univers website: the copy and brand material come from [univers.com](https://univers.com/) and Univers' brand guidelines. All trademarks belong to their owners.
 
 Built by **Evan Yap** · [LinkedIn](https://www.linkedin.com/in/evanyapzhikai/)
